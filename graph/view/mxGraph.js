@@ -667,6 +667,8 @@ import collapsedGif from './../assets/collapse.gif';
  * renderHint - Optional string that specifies the display accuracy and
  * performance. Default is mxConstants.DIALECT_MIXEDHTML (for IE).
  * stylesheet - Optional <mxStylesheet> to be used in the graph.
+ *  
+ * @constructor
  */
 export function mxGraph(container, model, renderHint, stylesheet) {
   // Initializes the variable in case the prototype has been

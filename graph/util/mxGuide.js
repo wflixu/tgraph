@@ -1,7 +1,9 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
+
+import { mxPolyline } from "../shape/mxPolyline";
+import { mxConstants } from "./mxConstants";
+import { mxPoint } from "./mxPoint";
+
 /**
  * Class: mxGuide
  *
@@ -11,7 +13,9 @@
  * 
  * Constructs a new guide object.
  */
-function mxGuide(graph, states)
+
+
+export function mxGuide(graph, states)
 {
 	this.graph = graph;
 	this.setStates(states);

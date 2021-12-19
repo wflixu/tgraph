@@ -32,7 +32,14 @@
     "type": "git",
     "url": "https://gitee.com/wflixu/tgraph.git"
   },
-  "keywords": ["mxGraph","jgraph","svg","editor","es6","TypeScript"],
+  "keywords": [
+    "mxGraph",
+    "jgraph",
+    "svg",
+    "editor",
+    "es6",
+    "TypeScript"
+  ],
   "author": "wflixu",
   "license": "MIT"
 }

@@ -9,6 +9,9 @@ import { mxConstants } from './../util/mxConstants';
 import { mxPoint } from './../util/mxPoint';
 import { mxDictionary } from './mxDictionary';
 import { mxRectangle } from './mxRectangle';
+import { mxEvent } from '..';
+import { mxDragSource } from '..';
+
 
 export const mxUtils = {
   /**

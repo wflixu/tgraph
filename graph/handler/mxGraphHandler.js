@@ -32,7 +32,7 @@ import { mxDictionary } from '../util/mxDictionary';
 import { mxPoint } from '../util/mxPoint';
 import { mxCellHighlight } from './mxCellHighlight';
 import { mxRectangleShape } from '../shape/mxRectangleShape';
-
+import { mxGuide } from '../util/mxGuide';
 
  
 export function mxGraphHandler(graph)

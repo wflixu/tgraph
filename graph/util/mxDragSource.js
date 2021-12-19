@@ -1,7 +1,12 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+import { mxEvent } from "./mxEvent";
+import { mxUtils } from "./mxUtils";
+import {mxClient} from "../mxClient";
+import { mxGuide } from "./mxGuide";
+import { mxCellHighlight } from "../handler/mxCellHighlight";
+import { mxConstants } from "./mxConstants";
+import { mxRectangle } from "./mxRectangle";
+import { mxPoint } from "./mxPoint";
+
 /**
  * Class: mxDragSource
  * 
@@ -15,7 +20,8 @@
  * 
  * Constructs a new drag source for the given element.
  */
-function mxDragSource(element, dropHandler)
+
+export function mxDragSource(element, dropHandler)
 {
 	this.element = element;
 	this.dropHandler = dropHandler;
