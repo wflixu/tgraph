@@ -1,0 +1,38 @@
+{
+  "name": "tgraph",
+  "version": "0.0.1",
+  "description": "学习 jgraph/mxgraph 源码，TS 重构，面向现代浏览器",
+  "main": "/graph/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "dependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@vitejs/plugin-react": "^1.0.0",
+    "@vitejs/plugin-vue": "^2.0.0",
+    "less": "^4.1.2",
+    "typescript": "^4.3.2",
+    "vite": "^2.7.2",
+    "vitepress": "^0.20.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/wflixu/tgraph.git"
+  },
+  "keywords": ["mxGraph","jgraph","svg","editor","es6","TypeScript"],
+  "author": "wflixu",
+  "license": "MIT"
+}

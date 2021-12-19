@@ -1,0 +1,8 @@
+{
+	"fontSize": "14px",
+	"graphVizOptions": {
+		"G": {
+			"rankdir": "LR"
+		}
+	}
+}
