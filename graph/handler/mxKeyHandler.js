@@ -83,17 +83,6 @@ function mxKeyHandler(graph, target)
 
 		// Installs the keystroke listener in the target
 		mxEvent.addListener(this.target, 'keydown', this.keydownHandler);
-		
-		// Automatically deallocates memory in IE
-		if (mxClient.IS_IE)
-		{
-			mxEvent.addListener(window, 'unload',
-				mxUtils.bind(this, function()
-				{
-					this.destroy();
-				})
-			);
-		}
 	}
 };
 

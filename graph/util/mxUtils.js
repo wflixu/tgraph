@@ -12,7 +12,6 @@ import { mxRectangle } from './mxRectangle';
 import { mxEvent } from '..';
 import { mxDragSource } from '..';
 
-
 export const mxUtils = {
   /**
    * Class: mxUtils
@@ -89,20 +88,9 @@ export const mxUtils = {
    *
    * element - DOM node whose current style should be returned.
    */
-  getCurrentStyle: (function () {
-    if (
-      mxClient.IS_IE &&
-      (document.documentMode == null || document.documentMode < 9)
-    ) {
-      return function (element) {
-        return element != null ? element.currentStyle : null;
-      };
-    } else {
-      return function (element) {
-        return element != null ? window.getComputedStyle(element, '') : null;
-      };
-    }
-  })(),
+  getCurrentStyle: function (element) {
+    return element != null ? window.getComputedStyle(element, '') : null;
+  },
 
   /**
    * Function: parseCssNumber
@@ -147,12 +135,6 @@ export const mxUtils = {
       prefix = 'Webkit';
     } else if (mxClient.IS_MT) {
       prefix = 'Moz';
-    } else if (
-      mxClient.IS_IE &&
-      document.documentMode >= 9 &&
-      document.documentMode < 10
-    ) {
-      prefix = 'ms';
     }
 
     return function (style, name, value) {
@@ -478,14 +460,7 @@ export const mxUtils = {
    * allChildren - If all children should be imported.
    */
   importNode: function (doc, node, allChildren) {
-    if (
-      mxClient.IS_IE &&
-      (document.documentMode == null || document.documentMode < 10)
-    ) {
-      return mxUtils.importNodeImplementation(doc, node, allChildren);
-    } else {
-      return doc.importNode(node, allChildren);
-    }
+    return doc.importNode(node, allChildren);
   },
 
   /**
@@ -719,9 +694,7 @@ export const mxUtils = {
     if (!node) {
       return;
     }
-    if (mxClient.IS_IE || mxClient.IS_IE11) {
-      xml = mxUtils.getPrettyXml(node, '', '', '');
-    } else if (window.XMLSerializer != null) {
+    if (window.XMLSerializer != null) {
       var xmlSerializer = new XMLSerializer();
       xml = xmlSerializer.serializeToString(node);
     } else if (node.xml != null) {
@@ -939,14 +912,9 @@ export const mxUtils = {
    * node - DOM node to return the text content for.
    */
   getTextContent: function (node) {
-    // Only IE10-
-    if (mxClient.IS_IE && node.innerText !== undefined) {
-      return node.innerText;
-    } else {
-      return node != null
-        ? node[node.textContent === undefined ? 'text' : 'textContent']
-        : '';
-    }
+    return node != null
+      ? node[node.textContent === undefined ? 'text' : 'textContent']
+      : '';
   },
 
   /**
@@ -978,26 +946,14 @@ export const mxUtils = {
    *
    * node - DOM node to return the inner HTML for.
    */
-  getInnerHtml: (function () {
-    if (mxClient.IS_IE) {
-      return function (node) {
-        if (node != null) {
-          return node.innerHTML;
-        }
-
-        return '';
-      };
-    } else {
-      return function (node) {
-        if (node != null) {
-          var serializer = new XMLSerializer();
-          return serializer.serializeToString(node);
-        }
-
-        return '';
-      };
+  getInnerHtml: function (node) {
+    if (node != null) {
+      var serializer = new XMLSerializer();
+      return serializer.serializeToString(node);
     }
-  })(),
+
+    return '';
+  },
 
   /**
    * Function: getOuterHtml
@@ -1011,55 +967,14 @@ export const mxUtils = {
    * node - DOM node to return the outer HTML for.
    */
   getOuterHtml: (function () {
-    if (mxClient.IS_IE) {
-      return function (node) {
-        if (node != null) {
-          if (node.outerHTML != null) {
-            return node.outerHTML;
-          } else {
-            var tmp = [];
-            tmp.push('<' + node.nodeName);
+    return function (node) {
+      if (node != null) {
+        var serializer = new XMLSerializer();
+        return serializer.serializeToString(node);
+      }
 
-            var attrs = node.attributes;
-
-            if (attrs != null) {
-              for (var i = 0; i < attrs.length; i++) {
-                var value = attrs[i].value;
-
-                if (value != null && value.length > 0) {
-                  tmp.push(' ');
-                  tmp.push(attrs[i].nodeName);
-                  tmp.push('="');
-                  tmp.push(value);
-                  tmp.push('"');
-                }
-              }
-            }
-
-            if (node.innerHTML.length == 0) {
-              tmp.push('/>');
-            } else {
-              tmp.push('>');
-              tmp.push(node.innerHTML);
-              tmp.push('</' + node.nodeName + '>');
-            }
-
-            return tmp.join('');
-          }
-        }
-
-        return '';
-      };
-    } else {
-      return function (node) {
-        if (node != null) {
-          var serializer = new XMLSerializer();
-          return serializer.serializeToString(node);
-        }
-
-        return '';
-      };
-    }
+      return '';
+    };
   })(),
 
   /**
@@ -1553,15 +1468,7 @@ export const mxUtils = {
    * onload - Function to execute when the URL has been loaded.
    */
   loadInto: function (url, doc, onload) {
-    if (mxClient.IS_IE) {
-      doc.onreadystatechange = function () {
-        if (doc.readyState == 4) {
-          onload();
-        }
-      };
-    } else {
-      doc.addEventListener('load', onload, false);
-    }
+    doc.addEventListener('load', onload, false);
 
     doc.load(url);
   },
@@ -2983,16 +2890,6 @@ export const mxUtils = {
         // TODO: Why is the division by 5 needed in VML?
         node.style.filter = 'alpha(opacity=' + value / 5 + ')';
       }
-    } else if (
-      mxClient.IS_IE &&
-      (typeof document.documentMode === 'undefined' ||
-        document.documentMode < 9)
-    ) {
-      if (value >= 100) {
-        node.style.filter = '';
-      } else {
-        node.style.filter = 'alpha(opacity=' + value + ')';
-      }
     } else {
       node.style.opacity = value / 100;
     }
@@ -3011,15 +2908,9 @@ export const mxUtils = {
   createImage: function (src) {
     var imageNode = null;
 
-    if (mxClient.IS_IE6 && document.compatMode != 'CSS1Compat') {
-      imageNode = document.createElement(mxClient.VML_PREFIX + ':image');
-      imageNode.setAttribute('src', src);
-      imageNode.style.borderStyle = 'none';
-    } else {
-      imageNode = document.createElement('img');
-      imageNode.setAttribute('src', src);
-      imageNode.setAttribute('border', '0');
-    }
+    imageNode = document.createElement('img');
+    imageNode.setAttribute('src', src);
+    imageNode.setAttribute('border', '0');
 
     return imageNode;
   },
@@ -3776,110 +3667,71 @@ export const mxUtils = {
     // to refresh the contents after the external CSS styles have been loaded.
     // To avoid a click or programmatic refresh, the styleSheets[].cssText
     // property is copied over from the original document.
-    if (mxClient.IS_IE || document.documentMode == 11) {
-      var html = '<html><head>';
 
-      var base = document.getElementsByTagName('base');
+    doc.writeln('<html><head>');
 
-      for (var i = 0; i < base.length; i++) {
-        html += base[i].outerHTML;
+    var base = document.getElementsByTagName('base');
+
+    for (var i = 0; i < base.length; i++) {
+      doc.writeln(mxUtils.getOuterHtml(base[i]));
+    }
+
+    var links = document.getElementsByTagName('link');
+
+    for (var i = 0; i < links.length; i++) {
+      doc.writeln(mxUtils.getOuterHtml(links[i]));
+    }
+
+    var styles = document.getElementsByTagName('style');
+
+    for (var i = 0; i < styles.length; i++) {
+      doc.writeln(mxUtils.getOuterHtml(styles[i]));
+    }
+
+    doc.writeln('</head><body style="margin:0px;"></body></html>');
+    doc.close();
+
+    var outer = doc.createElement('div');
+    outer.position = 'absolute';
+    outer.overflow = 'hidden';
+    outer.style.width = w + 'px';
+    outer.style.height = h + 'px';
+
+    // Required for HTML labels if foreignObjects are disabled
+    var div = doc.createElement('div');
+    div.style.position = 'absolute';
+    div.style.left = dx + 'px';
+    div.style.top = dy + 'px';
+
+    var node = graph.container.firstChild;
+    var svg = null;
+
+    while (node != null) {
+      var clone = node.cloneNode(true);
+
+      if (node == graph.view.drawPane.ownerSVGElement) {
+        outer.appendChild(clone);
+        svg = clone;
+      } else {
+        div.appendChild(clone);
       }
 
-      html += '<style>';
+      node = node.nextSibling;
+    }
 
-      // Copies the stylesheets without having to load them again
-      for (var i = 0; i < document.styleSheets.length; i++) {
-        try {
-          html += document.styleSheets[i].cssText;
-        } catch (e) {
-          // ignore security exception
-        }
-      }
+    doc.body.appendChild(outer);
 
-      html += '</style></head><body style="margin:0px;">';
+    if (div.firstChild != null) {
+      doc.body.appendChild(div);
+    }
 
-      // Copies the contents of the graph container
-      html +=
-        '<div style="position:absolute;overflow:hidden;width:' +
-        w +
-        'px;height:' +
-        h +
-        'px;"><div style="position:relative;left:' +
-        dx +
-        'px;top:' +
-        dy +
-        'px;">';
-      html += graph.container.innerHTML;
-      html += '</div></div></body><html>';
-
-      doc.writeln(html);
-      doc.close();
-    } else {
-      doc.writeln('<html><head>');
-
-      var base = document.getElementsByTagName('base');
-
-      for (var i = 0; i < base.length; i++) {
-        doc.writeln(mxUtils.getOuterHtml(base[i]));
-      }
-
-      var links = document.getElementsByTagName('link');
-
-      for (var i = 0; i < links.length; i++) {
-        doc.writeln(mxUtils.getOuterHtml(links[i]));
-      }
-
-      var styles = document.getElementsByTagName('style');
-
-      for (var i = 0; i < styles.length; i++) {
-        doc.writeln(mxUtils.getOuterHtml(styles[i]));
-      }
-
-      doc.writeln('</head><body style="margin:0px;"></body></html>');
-      doc.close();
-
-      var outer = doc.createElement('div');
-      outer.position = 'absolute';
-      outer.overflow = 'hidden';
-      outer.style.width = w + 'px';
-      outer.style.height = h + 'px';
-
-      // Required for HTML labels if foreignObjects are disabled
-      var div = doc.createElement('div');
-      div.style.position = 'absolute';
-      div.style.left = dx + 'px';
-      div.style.top = dy + 'px';
-
-      var node = graph.container.firstChild;
-      var svg = null;
-
-      while (node != null) {
-        var clone = node.cloneNode(true);
-
-        if (node == graph.view.drawPane.ownerSVGElement) {
-          outer.appendChild(clone);
-          svg = clone;
-        } else {
-          div.appendChild(clone);
-        }
-
-        node = node.nextSibling;
-      }
-
-      doc.body.appendChild(outer);
-
-      if (div.firstChild != null) {
-        doc.body.appendChild(div);
-      }
-
-      if (svg != null) {
-        svg.style.minWidth = '';
-        svg.style.minHeight = '';
-        svg.firstChild.setAttribute(
-          'transform',
-          'translate(' + dx + ',' + dy + ')',
-        );
-      }
+    if (svg != null) {
+      svg.style.minWidth = '';
+      svg.style.minHeight = '';
+      svg.firstChild.setAttribute(
+        'transform',
+        'translate(' + dx + ',' + dy + ')',
+      );
     }
 
     mxUtils.removeCursors(doc.body);
@@ -4076,11 +3928,7 @@ export const mxUtils = {
       var tmp = document.createElement('p');
       var button = document.createElement('button');
 
-      if (mxClient.IS_IE) {
-        button.style.cssText = 'float:right';
-      } else {
-        button.setAttribute('style', 'float:right');
-      }
+      button.setAttribute('style', 'float:right');
 
       mxEvent.addListener(button, 'click', function (evt) {
         warn.destroy();

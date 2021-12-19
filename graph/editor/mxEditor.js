@@ -379,15 +379,6 @@ function mxEditor(config)
 			// Invokes the <onInit> hook
 			this.onInit();
 		}
-
-		// Automatic deallocation of memory
-		if (mxClient.IS_IE)
-		{
-			mxEvent.addListener(window, 'unload', mxUtils.bind(this, function()
-			{
-				this.destroy();
-			}));
-		}
 	}
 };
 
