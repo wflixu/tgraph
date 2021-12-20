@@ -7,12 +7,13 @@ import { main } from './helloworld';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
-  main(container);
+ debugger;
+ main(container);
 });
 </script>
 
 <template>
-  <div id="graphContainer" style>test</div>
+  <div id="graphContainer" style></div>
 </template>
 
 <style scoped>

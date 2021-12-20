@@ -2,6 +2,7 @@
 
 import { mxEvent } from "../util/mxEvent";
 import { mxPoint } from "../util/mxPoint";
+import { mxRectangle } from "../util/mxRectangle";
 import { mxUtils } from "../util/mxUtils";
 import { mxClient } from './../mxClient';
 

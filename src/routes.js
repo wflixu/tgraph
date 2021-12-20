@@ -12,8 +12,10 @@ import ConstituentVue from './demos/Constituent.vue';
 import ContexticonsVue from './demos/Contexticons.vue';
 import ControlVue from './demos/Control.vue';
 import DragsourceVue from './demos/Dragsource.vue';
-
-
+import DropVue from './demos/Drop.vue';
+import DynamicloadingVue from './demos/Dynamicloading.vue';
+import EdgeToleranceVue from './demos/EdgeTolerance.vue';
+import EditingVue from './demos/Editing.vue';
 
 const demos = [
   HelloWorld,
@@ -28,6 +30,10 @@ const demos = [
   ContexticonsVue,
   ControlVue,
   DragsourceVue,
+  DropVue,
+  DynamicloadingVue,
+  EdgeToleranceVue,
+  EditingVue,
   Shape,
 ].map(item=>{
   let name = item.__file.split('\/').pop().split('.')[0];

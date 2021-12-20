@@ -13,11 +13,16 @@ import { mxClient } from './mxClient';
 import { mxGraphHandler } from './handler/mxGraphHandler';
 import { mxUtils } from './util/mxUtils';
 import { mxImageShape } from './shape/mxImageShape';
-import {mxGuide} from './util/mxGuide'
-import {mxDragSource} from './util/mxDragSource';
+import { mxGuide } from './util/mxGuide';
+import { mxDragSource } from './util/mxDragSource';
 import { mxCell } from './model/mxCell';
 import { mxGeometry } from './model/mxGeometry';
+import { mxText } from './shape/mxText';
+import { mxPerimeter } from './view/mxPerimeter';
+import { mxKeyHandler } from './handler/mxKeyHandler';
+
 export {
+  mxKeyHandler,
   mxGeometry,
   mxCell,
   mxCellRenderer,
@@ -35,5 +40,7 @@ export {
   mxUtils,
   mxImageShape,
   mxGuide,
-  mxDragSource
+  mxDragSource,
+  mxText,
+  mxPerimeter,
 };

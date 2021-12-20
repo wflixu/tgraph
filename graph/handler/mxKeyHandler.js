@@ -2,6 +2,10 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxEvent } from "..";
+import { mxUtils } from "..";
+
 /**
  * Class: mxKeyHandler
  *
@@ -63,7 +67,8 @@
  * element is used as the event target, that is, the object where the key
  * event listener is installed.
  */
-function mxKeyHandler(graph, target)
+
+export function mxKeyHandler(graph, target)
 {
 	if (graph != null)
 	{
