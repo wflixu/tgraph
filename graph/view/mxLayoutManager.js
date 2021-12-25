@@ -33,7 +33,10 @@
  * 
  * graph - Reference to the enclosing graph. 
  */
-function mxLayoutManager(graph)
+
+import { mxEventSource } from "../util/mxEventSource";
+
+export function mxLayoutManager(graph)
 {
 	// Executes the layout before the changes are dispatched
 	this.undoHandler = mxUtils.bind(this, function(sender, evt)

@@ -32,7 +32,7 @@ import { mxDictionary } from '../util/mxDictionary';
 import { mxPoint } from '../util/mxPoint';
 import { mxCellHighlight } from './mxCellHighlight';
 import { mxRectangleShape } from '../shape/mxRectangleShape';
-
+import { mxGuide } from '../util/mxGuide';
 
  
 export function mxGraphHandler(graph)
@@ -152,7 +152,7 @@ mxGraphHandler.prototype.graph = null;
  * cells in the graph is limited to a small number, eg.
  * 500.
  */
-mxGraphHandler.prototype.maxCells = (mxClient.IS_IE) ? 20 : 50;
+mxGraphHandler.prototype.maxCells =  50;
 
 /**
  * Variable: enabled

@@ -36,7 +36,6 @@
  * state - Optional <mxCellState> under the mouse.
  * 
  */
- import { mxClient } from "../mxClient";
 import { mxEvent } from "./mxEvent";
  import { mxUtils } from "./mxUtils";
 
@@ -237,12 +236,7 @@ mxMouseEvent.prototype.consume = function(preventDefault)
 		this.evt.preventDefault();
 	}
 
-	// Workaround for images being dragged in IE
-	// Does not change returnValue in Opera
-	if (mxClient.IS_IE)
-	{
-		this.evt.returnValue = true;
-	}
+
 
 	// Sets local consumed state
 	this.consumed = true;

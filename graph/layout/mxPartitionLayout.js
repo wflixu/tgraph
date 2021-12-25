@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxGraphLayout } from "./mxGraphLayout";
+
 /**
  * Class: mxPartitionLayout
  * 
@@ -24,7 +27,8 @@
  * Constructs a new stack layout layout for the specified graph,
  * spacing, orientation and offset.
  */
-function mxPartitionLayout(graph, horizontal, spacing, border)
+
+export function mxPartitionLayout(graph, horizontal, spacing, border)
 {
 	mxGraphLayout.call(this, graph);
 	this.horizontal = (horizontal != null) ? horizontal : true;

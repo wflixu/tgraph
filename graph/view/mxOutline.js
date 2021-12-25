@@ -54,7 +54,10 @@
  * source - <mxGraph> to create the outline for.
  * container - DOM node that will contain the outline.
  */
-function mxOutline(source, container)
+
+import { mxConstants } from "../util";
+
+export function mxOutline(source, container)
 {
 	this.source = source;
 
@@ -565,7 +568,7 @@ mxOutline.prototype.mouseDown = function(sender, me)
 	if (this.enabled && this.showViewport)
 	{
 		var tol = (!mxEvent.isMouseEvent(me.getEvent())) ? this.source.tolerance : 0;
-		var hit = (this.source.allowHandleBoundsCheck && (mxClient.IS_IE || tol > 0)) ?
+		var hit = (this.source.allowHandleBoundsCheck && (tol > 0)) ?
 				new mxRectangle(me.getGraphX() - tol, me.getGraphY() - tol, 2 * tol, 2 * tol) : null;
 		this.zoom = me.isSource(this.sizer) || (hit != null && mxUtils.intersects(shape.bounds, hit));
 		this.startX = me.getX();

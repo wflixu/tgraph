@@ -8,9 +8,16 @@ import Shape from './demos/Shape.vue';
 import Clipboard from './demos/Clipboard.vue';
 import CodecVue from './demos/Codec.vue';
 import CollapseVue from './demos/Collapse.vue';
-
-
-
+import ConstituentVue from './demos/Constituent.vue';
+import ContexticonsVue from './demos/Contexticons.vue';
+import ControlVue from './demos/Control.vue';
+import DragsourceVue from './demos/Dragsource.vue';
+import DropVue from './demos/Drop.vue';
+import DynamicloadingVue from './demos/Dynamicloading.vue';
+import EdgeToleranceVue from './demos/EdgeTolerance.vue';
+import EditingVue from './demos/Editing.vue';
+import WrappingVue from './demos/Wrapping.vue';
+import WireVue from './demos/Wire.vue';
 
 const demos = [
   HelloWorld,
@@ -21,6 +28,16 @@ const demos = [
   Clipboard,
   CodecVue,
   CollapseVue,
+  ConstituentVue,
+  ContexticonsVue,
+  ControlVue,
+  DragsourceVue,
+  DropVue,
+  DynamicloadingVue,
+  EdgeToleranceVue,
+  EditingVue,
+  WrappingVue,
+  WireVue,
   Shape,
 ].map(item=>{
   let name = item.__file.split('\/').pop().split('.')[0];

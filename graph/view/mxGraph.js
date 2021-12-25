@@ -33,7 +33,7 @@ import { mxPoint } from './../util/mxPoint';
 import { mxRectangleShape } from '../shape/mxRectangleShape';
 import { mxDictionary } from '../util/mxDictionary';
 
-import {mxValueChange,mxStyleChange} from './../model/mxGraphModel';
+import { mxValueChange, mxStyleChange } from './../model/mxGraphModel';
 
 import expandedGif from './../assets/expand.gif';
 import collapsedGif from './../assets/collapse.gif';
@@ -667,6 +667,8 @@ import collapsedGif from './../assets/collapse.gif';
  * renderHint - Optional string that specifies the display accuracy and
  * performance. Default is mxConstants.DIALECT_MIXEDHTML (for IE).
  * stylesheet - Optional <mxStylesheet> to be used in the graph.
+ *
+ * @constructor
  */
 export function mxGraph(container, model, renderHint, stylesheet) {
   // Initializes the variable in case the prototype has been
@@ -1617,11 +1619,7 @@ mxGraph.prototype.panDy = 0;
  * Specifies the <mxImage> to indicate a collapsed state.
  * Default value is mxClient.imageBasePath + '/collapsed.gif'
  */
-mxGraph.prototype.collapsedImage = new mxImage(
-  collapsedGif,
-  9,
-  9,
-);
+mxGraph.prototype.collapsedImage = new mxImage(collapsedGif, 9, 9);
 
 /**
  * Variable: expandedImage
@@ -1629,11 +1627,7 @@ mxGraph.prototype.collapsedImage = new mxImage(
  * Specifies the <mxImage> to indicate a expanded state.
  * Default value is mxClient.imageBasePath + '/expanded.gif'
  */
-mxGraph.prototype.expandedImage = new mxImage(
-  expandedGif,
-  9,
-  9,
-);
+mxGraph.prototype.expandedImage = new mxImage(expandedGif, 9, 9);
 
 /**
  * Variable: warningImage
@@ -1716,42 +1710,6 @@ mxGraph.prototype.init = function (container) {
       }
     }),
   );
-
-  // Automatic deallocation of memory
-  if (mxClient.IS_IE) {
-    mxEvent.addListener(
-      window,
-      'unload',
-      mxUtils.bind(this, function () {
-        this.destroy();
-      }),
-    );
-
-    // Disable shift-click for text
-    mxEvent.addListener(
-      container,
-      'selectstart',
-      mxUtils.bind(this, function (evt) {
-        return (
-          this.isEditing() || (!this.isMouseDown && !mxEvent.isShiftDown(evt))
-        );
-      }),
-    );
-  }
-
-  // Workaround for missing last shape and connect preview in IE8 standards
-  // mode if no initial graph displayed or no label for shape defined
-  if (document.documentMode == 8) {
-    container.insertAdjacentHTML(
-      'beforeend',
-      '<' +
-        mxClient.VML_PREFIX +
-        ':group' +
-        ' style="DISPLAY: none;"></' +
-        mxClient.VML_PREFIX +
-        ':group>',
-    );
-  }
 };
 
 /**
@@ -7759,11 +7717,8 @@ mxGraph.prototype.panGraph = function (dx, dy) {
       // can be moved without changing the state of the container
       if (dx == 0 && dy == 0) {
         // Workaround for ignored removeAttribute on SVG element in IE9 standards
-        if (mxClient.IS_IE) {
-          canvas.setAttribute('transform', 'translate(' + dx + ',' + dy + ')');
-        } else {
-          canvas.removeAttribute('transform');
-        }
+
+        canvas.removeAttribute('transform');
 
         if (this.shiftPreview1 != null) {
           var child = this.shiftPreview1.firstChild;

@@ -538,7 +538,7 @@ mxVertexHandler.prototype.getHandleForEvent = function(me)
 {
 	// Connection highlight may consume events before they reach sizer handle
 	var tol = (!mxEvent.isMouseEvent(me.getEvent())) ? this.tolerance : 1;
-	var hit = (this.allowHandleBoundsCheck && (mxClient.IS_IE || tol > 0)) ?
+	var hit = (this.allowHandleBoundsCheck && ( tol > 0)) ?
 		new mxRectangle(me.getGraphX() - tol, me.getGraphY() - tol, 2 * tol, 2 * tol) : null;
 
 	var checkShape = mxUtils.bind(this, function(shape)

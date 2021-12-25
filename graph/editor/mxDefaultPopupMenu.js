@@ -30,7 +30,7 @@
  *
  * config - XML node that contains the configuration data.
  */
-function mxDefaultPopupMenu(config)
+export function mxDefaultPopupMenu(config)
 {
 	this.config = config;
 };

@@ -43,7 +43,7 @@
  * 
  * editor - Reference to the enclosing <mxEditor>.
  */
-function mxDefaultKeyHandler(editor)
+export function mxDefaultKeyHandler(editor)
 {
 	if (editor != null)
 	{

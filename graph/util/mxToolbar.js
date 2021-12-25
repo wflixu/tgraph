@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxEventSource } from "./mxEventSource";
+
 /**
  * Class: mxToolbar
  * 
@@ -21,7 +24,8 @@
  *
  * container - DOM node that contains the toolbar.
  */
-function mxToolbar(container)
+
+export function mxToolbar(container)
 {
 	this.container = container;
 };

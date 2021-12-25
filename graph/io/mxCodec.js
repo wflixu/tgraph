@@ -3,7 +3,8 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxGraphModel } from "../model/mxGraphModel";
+
+import { mxConstants } from "../util/mxConstants";
 import { mxLog } from "../util/mxLog";
 import { mxUtils } from "../util/mxUtils";
 import { mxCodecRegistry } from "./mxCodecRegistry";

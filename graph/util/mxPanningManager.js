@@ -7,7 +7,7 @@
  *
  * Implements a handler for panning.
  */
-function mxPanningManager(graph)
+export function mxPanningManager(graph)
 {
 	this.thread = null;
 	this.active = false;

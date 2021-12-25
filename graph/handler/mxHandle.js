@@ -15,7 +15,7 @@
  * 
  * state - <mxCellState> of the cell to be handled.
  */
-function mxHandle(state, cursor, image, shape)
+export function mxHandle(state, cursor, image, shape)
 {
 	this.graph = state.view.graph;
 	this.state = state;

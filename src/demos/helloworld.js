@@ -29,5 +29,7 @@ export function main(container) {
       // Updates the display
       graph.getModel().endUpdate();
     }
+    
+    console.log(graph,graph.getModel());
   }
 }

@@ -1,9 +1,12 @@
 {
-  "name": "tgraph",
+  "name": "@wflixu/mxGraph",
   "version": "0.0.1",
-  "description": "学习 jgraph/mxgraph 源码，TS 重构，面向现代浏览器",
+  "description": "mxgraph  graph svg editor",
   "main": "/graph/index.js",
   "type": "module",
+  "files": [
+    "graph"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -32,7 +35,14 @@
     "type": "git",
     "url": "https://gitee.com/wflixu/tgraph.git"
   },
-  "keywords": ["mxGraph","jgraph","svg","editor","es6","TypeScript"],
+  "keywords": [
+    "mxGraph",
+    "jgraph",
+    "svg",
+    "editor",
+    "es6",
+    "TypeScript"
+  ],
   "author": "wflixu",
   "license": "MIT"
 }

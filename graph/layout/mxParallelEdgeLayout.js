@@ -45,7 +45,8 @@
  * 
  * Constructs a new parallel edge layout for the specified graph.
  */
-function mxParallelEdgeLayout(graph)
+ import { mxGraphLayout } from "./mxGraphLayout";
+export function mxParallelEdgeLayout(graph)
 {
 	mxGraphLayout.call(this, graph);
 };

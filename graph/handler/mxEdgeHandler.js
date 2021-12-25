@@ -3,7 +3,20 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
+import { mxConstraintHandler } from ".";
+import { mxRectangleShape } from "../shape/mxRectangleShape";
+import { mxConstants } from "../util/mxConstants";
+import { mxEvent } from "../util/mxEvent";
+import { mxRectangle } from "../util/mxRectangle";
+import { mxCellMarker } from "./mxCellMarker";
+import { mxGraphHandler } from "./mxGraphHandler";
 import { mxVertexHandler } from "./mxVertexHandler";
+import {mxClient } from './../mxClient';
+import { mxPoint } from "../util";
+import { mxUtils } from "../util/mxUtils";
+
+
+
 
 /**
  * Class: mxEdgeHandler
@@ -30,6 +43,7 @@ import { mxVertexHandler } from "./mxVertexHandler";
  * 
  * state - <mxCellState> of the cell to be handled.
  */
+
 
 export function mxEdgeHandler(state)
 {
@@ -792,7 +806,7 @@ mxEdgeHandler.prototype.getHandleForEvent = function(me)
 	{
 		// Connection highlight may consume events before they reach sizer handle
 		var tol = (!mxEvent.isMouseEvent(me.getEvent())) ? this.tolerance : 1;
-		var hit = (this.allowHandleBoundsCheck && (mxClient.IS_IE || tol > 0)) ?
+		var hit = (this.allowHandleBoundsCheck && tol > 0) ?
 			new mxRectangle(me.getGraphX() - tol, me.getGraphY() - tol, 2 * tol, 2 * tol) : null;
 		var minDistSq = null;
 	
@@ -1540,11 +1554,6 @@ mxEdgeHandler.prototype.mouseMove = function(sender, me)
 		this.drawPreview();
 		mxEvent.consume(me.getEvent());
 		me.consume();
-	}
-	// Workaround for disabling the connect highlight when over handle
-	else if (mxClient.IS_IE && this.getHandleForEvent(me) != null)
-	{
-		me.consume(false);
 	}
 };
 

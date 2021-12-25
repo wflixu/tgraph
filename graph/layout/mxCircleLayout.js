@@ -25,7 +25,9 @@
  * graph - <mxGraph> that contains the cells.
  * radius - Optional radius as an int. Default is 100.
  */
-function mxCircleLayout(graph, radius)
+
+ import { mxGraphLayout } from "./mxGraphLayout";
+export function mxCircleLayout(graph, radius)
 {
 	mxGraphLayout.call(this, graph);
 	this.radius = (radius != null) ? radius : 100;

@@ -58,6 +58,7 @@
  import {mxAbstractCanvas2D} from './mxAbstractCanvas2D';
  import { mxClient } from './../mxClient';
  import { mxConstants } from './../util/mxConstants';
+ 
 export function mxSvgCanvas2D(root, styleEnabled)
 {
 	mxAbstractCanvas2D.call(this);
