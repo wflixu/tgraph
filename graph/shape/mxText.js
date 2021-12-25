@@ -3,6 +3,8 @@ import { mxShape } from './mxShape';
 import { mxConstants } from './../util/mxConstants';
 import { mxPoint } from './../util/mxPoint';
 import { mxVmlCanvas2D } from './../util/mxVmlCanvas2D';
+import { mxRectangle } from '../util/mxRectangle';
+
 
 /**
  * Class: mxText

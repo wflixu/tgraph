@@ -167,6 +167,8 @@ import { mxClient } from './../mxClient';
 import { mxCellMarker } from './mxCellMarker';
 import { mxConstraintHandler } from './mxConstraintHandler';
 import { mxEventObject } from "../util/mxEventObject";
+import { mxPolyline } from '../shape/mxPolyline';
+
 export function mxConnectionHandler(graph, factoryMethod) {
 	mxEventSource.call(this);
 

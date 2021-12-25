@@ -72,7 +72,10 @@
  * funct - Optional JavaScript function that is used to override
  * <mxCellMarker.getCell>.
  */
-function mxCellTracker(graph, color, funct)
+
+import { mxCellMarker } from "./mxCellMarker";
+import { mxUtils } from "../util/mxUtils";
+export function mxCellTracker(graph, color, funct)
 {
 	mxCellMarker.call(this, graph, color);
 

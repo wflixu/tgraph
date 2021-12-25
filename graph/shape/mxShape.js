@@ -552,7 +552,6 @@ mxShape.prototype.createVmlGroup = function()
  */
 mxShape.prototype.redrawShape = function()
 {
-	debugger;
 	var canvas = this.createCanvas();
 	
 	if (canvas != null)

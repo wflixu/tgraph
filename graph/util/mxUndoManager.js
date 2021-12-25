@@ -70,7 +70,12 @@
  * Constructs a new undo manager with the given history size. If no history
  * size is given, then a default size of 100 steps is used.
  */
-function mxUndoManager(size)
+
+import { mxEvent } from "./mxEvent";
+import { mxEventObject } from "./mxEventObject";
+import { mxEventSource } from "./mxEventSource";
+
+export function mxUndoManager(size)
 {
 	this.size = (size != null) ? size : 100;
 	this.clear();

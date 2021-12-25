@@ -2,7 +2,18 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
-function mxEdgeSegmentHandler(state)
+
+import { mxUtils } from "../util/mxUtils";
+import {mxEdgeHandler} from './mxEdgeHandler';
+import {mxElbowEdgeHandler} from './mxElbowEdgeHandler';
+
+import { mxConstants } from "../util/mxConstants";
+
+import { mxRectangle } from "../util/mxRectangle";
+import { mxPoint } from "../util";
+
+
+export function mxEdgeSegmentHandler(state)
 {
 	mxEdgeHandler.call(this, state);
 };

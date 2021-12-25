@@ -16,6 +16,8 @@ import DropVue from './demos/Drop.vue';
 import DynamicloadingVue from './demos/Dynamicloading.vue';
 import EdgeToleranceVue from './demos/EdgeTolerance.vue';
 import EditingVue from './demos/Editing.vue';
+import WrappingVue from './demos/Wrapping.vue';
+import WireVue from './demos/Wire.vue';
 
 const demos = [
   HelloWorld,
@@ -34,6 +36,8 @@ const demos = [
   DynamicloadingVue,
   EdgeToleranceVue,
   EditingVue,
+  WrappingVue,
+  WireVue,
   Shape,
 ].map(item=>{
   let name = item.__file.split('\/').pop().split('.')[0];
