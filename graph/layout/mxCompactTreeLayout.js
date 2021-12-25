@@ -21,7 +21,8 @@
  * Constructs a new compact tree layout for the specified graph
  * and orientation.
  */
-function mxCompactTreeLayout(graph, horizontal, invert)
+ import { mxGraphLayout } from "./mxGraphLayout";
+export function mxCompactTreeLayout(graph, horizontal, invert)
 {
 	mxGraphLayout.call(this, graph);
 	this.horizontal = (horizontal != null) ? horizontal : true;

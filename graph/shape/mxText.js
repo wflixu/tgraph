@@ -2,7 +2,6 @@ import { mxUtils } from './../util/mxUtils';
 import { mxShape } from './mxShape';
 import { mxConstants } from './../util/mxConstants';
 import { mxPoint } from './../util/mxPoint';
-import { mxVmlCanvas2D } from './../util/mxVmlCanvas2D';
 import { mxRectangle } from '../util/mxRectangle';
 
 
@@ -287,7 +286,7 @@ mxText.prototype.paint = function (c, update) {
       this.dialect == mxConstants.DIALECT_STRICTHTML;
 
     // Always renders labels as HTML in VML
-    var fmt = realHtml || c instanceof mxVmlCanvas2D ? 'html' : '';
+    var fmt = realHtml ? 'html' : '';
     var val = this.value;
 
     if (!realHtml && fmt == 'html') {

@@ -548,10 +548,7 @@ export class mxShape {
   // 	if (this.node.ownerSVGElement != null) {
   // 		canvas = this.createSvgCanvas();
   // 	}
-  // 	else if (mxClient.IS_VML) {
-  // 		this.updateVmlContainer();
-  // 		canvas = this.createVmlCanvas();
-  // 	}
+
 
   // 	if (canvas != null && this.outline) {
   // 		canvas.setStrokeWidth(this.strokewidth);

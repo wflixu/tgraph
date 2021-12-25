@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxUtils } from "../util";
+
 /**
  * Class: mxMultiplicity
  * 
@@ -46,7 +49,8 @@
  * validNeighborsAllowed - Optional boolean indicating if the array of
  * opposite types should be valid or invalid.
  */
-function mxMultiplicity(source, type, attr, value, min, max,
+
+export function mxMultiplicity(source, type, attr, value, min, max,
 	validNeighbors, countError, typeError, validNeighborsAllowed)
 {
 	this.source = source;

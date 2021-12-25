@@ -47,7 +47,7 @@
  * support data URIs, but the maximum size is limited to 32 KB, which means
  * all data URIs should be limited to 32 KB.
  */
-function mxImageBundle(alt)
+export function mxImageBundle(alt)
 {
 	this.images = [];
 	this.alt = (alt != null) ? alt : false;

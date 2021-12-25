@@ -39,7 +39,7 @@
  * container - DOM node that contains the toolbar.
  * editor - Reference to the enclosing <mxEditor>.
  */
-function mxDefaultToolbar(container, editor) {
+export function mxDefaultToolbar(container, editor) {
   this.editor = editor;
 
   if (container != null && editor != null) {

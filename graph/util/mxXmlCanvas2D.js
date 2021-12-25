@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxAbstractCanvas2D, mxUtils } from ".";
+
 /**
  * Class: mxXmlCanvas2D
  *
@@ -28,7 +31,8 @@
  *
  * Constructs a new abstract canvas.
  */
-function mxXmlCanvas2D(root)
+
+export function mxXmlCanvas2D(root)
 {
 	mxAbstractCanvas2D.call(this);
 

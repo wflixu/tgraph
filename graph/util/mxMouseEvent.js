@@ -36,7 +36,6 @@
  * state - Optional <mxCellState> under the mouse.
  * 
  */
- import { mxClient } from "../mxClient";
 import { mxEvent } from "./mxEvent";
  import { mxUtils } from "./mxUtils";
 

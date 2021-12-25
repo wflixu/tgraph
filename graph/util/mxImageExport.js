@@ -32,7 +32,7 @@
  * 
  * Constructs a new image export.
  */
-function mxImageExport() { };
+export function mxImageExport() { };
 
 /**
  * Variable: includeOverlays

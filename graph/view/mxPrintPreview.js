@@ -172,7 +172,7 @@
  * pageSelector - Optional boolean that specifies if the page selector
  * should appear in the window with the print preview. Default is true.
  */
-function mxPrintPreview(
+export function mxPrintPreview(
   graph,
   scale,
   pageFormat,

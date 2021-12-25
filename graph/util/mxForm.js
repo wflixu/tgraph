@@ -11,7 +11,7 @@
  * 
  * Creates a HTML table using the specified classname.
  */
-function mxForm(className)
+export function mxForm(className)
 {
 	this.table = document.createElement('table');
 	this.table.className = className;

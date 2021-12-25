@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxEventSource } from "../util";
+
 /**
  * Class: mxSwimlaneManager
  * 
@@ -18,6 +21,7 @@
  * 
  * graph - Reference to the enclosing graph. 
  */
+
 export function mxSwimlaneManager(graph, horizontal, addEnabled, resizeEnabled)
 {
 	this.horizontal = (horizontal != null) ? horizontal : true;

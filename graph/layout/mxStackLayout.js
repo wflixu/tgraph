@@ -21,7 +21,8 @@
  * Constructs a new stack layout layout for the specified graph,
  * spacing, orientation and offset.
  */
-function mxStackLayout(graph, horizontal, spacing, x0, y0, border)
+ import { mxGraphLayout } from "./mxGraphLayout";
+export function mxStackLayout(graph, horizontal, spacing, x0, y0, border)
 {
 	mxGraphLayout.call(this, graph);
 	this.horizontal = (horizontal != null) ? horizontal : true;

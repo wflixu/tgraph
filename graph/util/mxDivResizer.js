@@ -37,7 +37,7 @@
  * container - Optional Container that contains the div. Default is the
  * window.
  */
-function mxDivResizer(div, container)
+export function mxDivResizer(div, container)
 {
 	if (div.nodeName.toLowerCase() == 'div')
 	{

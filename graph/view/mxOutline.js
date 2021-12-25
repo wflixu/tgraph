@@ -54,7 +54,10 @@
  * source - <mxGraph> to create the outline for.
  * container - DOM node that will contain the outline.
  */
-function mxOutline(source, container)
+
+import { mxConstants } from "../util";
+
+export function mxOutline(source, container)
 {
 	this.source = source;
 

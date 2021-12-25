@@ -598,11 +598,7 @@ mxShape.prototype.createCanvas = function()
 	{
 		canvas = this.createSvgCanvas();
 	}
-	else if (mxClient.IS_VML)
-	{
-		this.updateVmlContainer();
-		canvas = this.createVmlCanvas();
-	}
+	
 	
 	if (canvas != null && this.outline)
 	{
@@ -660,32 +656,6 @@ mxShape.prototype.createSvgCanvas = function()
 	return canvas;
 };
 
-/**
- * Function: createVmlCanvas
- * 
- * Creates and returns an <mxVmlCanvas2D> for rendering this shape.
- */
-mxShape.prototype.createVmlCanvas = function()
-{
-	// Workaround for VML rendering bug in IE8 standards mode
-	var node = (document.documentMode == 8 && this.isParseVml()) ? this.createVmlGroup() : this.node;
-	var canvas = new mxVmlCanvas2D(node, false);
-	
-	if (node.tagUrn != '')
-	{
-		var w = Math.max(1, Math.round(this.bounds.width));
-		var h = Math.max(1, Math.round(this.bounds.height));
-		node.coordsize = (w * this.vmlScale) + ',' + (h * this.vmlScale);
-		canvas.scale(this.vmlScale);
-		canvas.vmlScale = this.vmlScale;
-	}
-
-	// Painting relative to top, left shape corner
-	var s = this.scale;
-	canvas.translate(-Math.round(this.bounds.x / s), -Math.round(this.bounds.y / s));
-	
-	return canvas;
-};
 
 /**
  * Function: updateVmlContainer

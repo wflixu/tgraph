@@ -2,6 +2,10 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxConstants } from "../../util";
+import { mxGraphLayout } from "../mxGraphLayout";
+import {mxHierarchicalLayout,mxHierarchicalEdgeStyle} from './mxHierarchicalLayout';
 /**
  * Class: mxSwimlaneLayout
  * 
@@ -19,7 +23,8 @@
  * deterministic - Optional boolean that specifies if this layout should be
  * deterministic. Default is true.
  */
-function mxSwimlaneLayout(graph, orientation, deterministic)
+
+export function mxSwimlaneLayout(graph, orientation, deterministic)
 {
 	mxGraphLayout.call(this, graph);
 	this.orientation = (orientation != null) ? orientation : mxConstants.DIRECTION_NORTH;

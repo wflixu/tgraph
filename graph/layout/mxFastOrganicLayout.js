@@ -20,7 +20,9 @@
  * 
  * Constructs a new fast organic layout for the specified graph.
  */
-function mxFastOrganicLayout(graph)
+
+ import { mxGraphLayout } from "./mxGraphLayout";
+export function mxFastOrganicLayout(graph)
 {
 	mxGraphLayout.call(this, graph);
 };

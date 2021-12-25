@@ -7,7 +7,7 @@ import { mxConstants } from "../util/mxConstants";
 import { mxPoint } from "../util/mxPoint";
 import { mxRectangle } from "../util/mxRectangle";
 import { mxUtils } from "../util/mxUtils";
-import { mxConnectionConstraint } from "./mxConnectionConstraint";
+import { mxConnectionConstraint } from "../view/mxConnectionConstraint";
 import { mxShape } from "./mxShape";
 import { mxStencilRegistry } from "./mxStencilRegistry";
 
