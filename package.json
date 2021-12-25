@@ -1,5 +1,5 @@
 {
-  "name": "@wflixu/mxGraph",
+  "name": "thgraph",
   "version": "0.0.1",
   "description": "mxgraph  graph svg editor",
   "main": "/graph/index.js",
