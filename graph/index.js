@@ -61,6 +61,7 @@ import {
   mxActor,
   mxCylinder,
 } from './shape/index';
+
 import {
   mxAbstractCanvas2D,
   mxAnimation,

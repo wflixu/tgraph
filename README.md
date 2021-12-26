@@ -1,59 +1,26 @@
-# tgraph
+# thgraph
 
 ## 介绍
-mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，TS 重构，去掉旧浏览器的兼容代码，面向现代浏览器。
+mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，去掉旧浏览器的兼容代码，面向现代浏览器。
+因为项目代码是在太多了，一次完成转化不现实，现在的策略是，先转成esmodule 然后，能和主流框架 vue react以及vite/webpack 一起 配合使用.
 
 https://github.com/jgraph/mxgraph-js
 
+## 文档
+
+[mxgraph文档](https://jgraph.github.io/mxgraph/);
+
+
 ## 计划
 
-- [ ] 转化成esmodule 模块
 - [x] 跑通 helloworld 示例
+- [x] 转化成esmodule 模块
 - [ ] 示例网站
 - [ ] 继续重构
-- [ ] 优化TS 类型
+- [ ] 优化TS类型
 
 ### 目录结构
 
-├── LICENSE
-├── README.en.md
-├── README.md
-├── docs  // 文档
-│   ├── API
-│   ├── index.md
-│   └── tutorial
-├── graph  // 源码
-│   ├── assets
-│   ├── editor
-│   ├── handler
-│   ├── index.js
-│   ├── index.ts
-│   ├── io
-│   ├── layout
-│   ├── model
-│   ├── mxClient.js
-│   ├── mxClient.ts
-│   ├── shape
-│   ├── types.ts
-│   ├── util
-│   └── view
-├── graph.svg
-├── index.html
-├── package-lock.json
-├── package.json
-├── public
-│   └── favicon.ico
-├── src  // 测试用例
-│   ├── App.vue
-│   ├── Layout.vue
-│   ├── assets
-│   ├── components
-│   ├── demos
-│   ├── main.js
-│   ├── routes.js
-│   └── style
-├── tsconfig.json
-└── vite.config.js
 
 
 ### 参与贡献

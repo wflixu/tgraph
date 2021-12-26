@@ -8,7 +8,7 @@ import { mxPoint } from '../../graph/util/mxPoint';
 import { mxConnectionConstraint } from '../../graph/view/mxConnectionConstraint';
 
 import { mxEvent } from './../../graph/util/mxEvent';
-import { mxGraph } from './../../graph/view/mxGraph';
+import { mxGraph } from '../../graph/view/mxGraph';
 
 
 onMounted(() => {

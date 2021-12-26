@@ -1,5 +1,5 @@
 import { mxUtils } from './../util/mxUtils';
-import { mxShape } from './../shape/mxShape';
+import { mxShape } from './mxShape';
 import { mxConstants } from "../util/mxConstants";
 
 /**
