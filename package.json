@@ -1,6 +1,6 @@
 {
   "name": "thgraph",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "mxgraph  graph svg editor",
   "main": "graph/index.js",
   "type": "module",
@@ -16,12 +16,13 @@
     "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
+   
+  },
+  "devDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.12"
-  },
-  "devDependencies": {
+    "vue-router": "^4.0.12",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@vitejs/plugin-react": "^1.0.0",
@@ -33,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/wflixu/tgraph.git"
+    "url": "https://github.com/wflixu/tgraph.git"
   },
   "keywords": [
     "mxGraph",
