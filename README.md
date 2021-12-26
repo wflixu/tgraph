@@ -2,7 +2,7 @@
 
 ## 介绍
 mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，去掉旧浏览器的兼容代码，面向现代浏览器。
-因为项目代码是在太多了，一次完成转化不现实，现在的策略是，先转成esmodule 然后，能和主流框架 vue react以及vite/webpack 一起 配合使用.
+因为项目代码是在太多了，一次完成转化不现实，现在的策略是，先转成esmodule 然后，能和主流框架 vue react以及vite/webpack 一起配合使用, 后续重构和优化.
 
 https://github.com/jgraph/mxgraph-js
 
