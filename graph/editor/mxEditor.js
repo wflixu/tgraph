@@ -1756,12 +1756,6 @@ mxEditor.prototype.setGraphContainer = function (container)
 		{
 			mxEvent.disableContextMenu(container);
 		}
-
-		// Workaround for stylesheet directives in IE
-		if (mxClient.IS_QUIRKS)
-		{
-			new mxDivResizer(container);
-		}
 	}
 };
 
@@ -1975,12 +1969,6 @@ mxEditor.prototype.createToolbar = function ()
 mxEditor.prototype.setToolbarContainer = function (container)
 {
 	this.toolbar.init(container);
-
-	// Workaround for stylesheet directives in IE
-	if (mxClient.IS_QUIRKS)
-	{
-		new mxDivResizer(container);
-	}
 };
 
 /**
@@ -2018,12 +2006,6 @@ mxEditor.prototype.setStatusContainer = function (container)
 			this.setStatus((mxResources.get(this.currentFileResource) ||
 				this.currentFileResource)+': '+this.filename);
 		}));
-
-		// Workaround for stylesheet directives in IE
-		if (mxClient.IS_QUIRKS)
-		{
-			new mxDivResizer(container);
-		}
 	}
 };
 
@@ -2061,12 +2043,6 @@ mxEditor.prototype.setTitleContainer = function (container)
 	{
 		container.innerHTML = this.getTitle();
 	}));
-
-	// Workaround for stylesheet directives in IE
-	if (mxClient.IS_QUIRKS)
-	{
-		new mxDivResizer(container);
-	}
 };
 
 /**

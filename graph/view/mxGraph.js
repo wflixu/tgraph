@@ -3128,13 +3128,8 @@ mxGraph.prototype.sizeDidChange = function () {
         root.style.height = '100%';
       }
     } else {
-      if (mxClient.IS_QUIRKS) {
-        // Quirks mode does not support minWidth/-Height
-        this.view.updateHtmlCanvasSize(Math.max(1, width), Math.max(1, height));
-      } else {
-        this.view.canvas.style.minWidth = Math.max(1, width) + 'px';
-        this.view.canvas.style.minHeight = Math.max(1, height) + 'px';
-      }
+      this.view.canvas.style.minWidth = Math.max(1, width) + 'px';
+      this.view.canvas.style.minHeight = Math.max(1, height) + 'px';
     }
 
     this.updatePageBreaks(this.pageBreaksVisible, width, height);
@@ -12666,12 +12661,7 @@ mxGraph.prototype.fireMouseEvent = function (evtName, me, sender) {
     var currentTime = new Date().getTime();
 
     // NOTE: Second mouseDown for double click missing in quirks mode
-    if (
-      (!mxClient.IS_QUIRKS && evtName == mxEvent.MOUSE_DOWN) ||
-      (mxClient.IS_QUIRKS &&
-        evtName == mxEvent.MOUSE_UP &&
-        !this.fireDoubleClick)
-    ) {
+    if (evtName == mxEvent.MOUSE_DOWN) {
       if (
         this.lastTouchEvent != null &&
         this.lastTouchEvent != me.getEvent() &&
@@ -12692,15 +12682,6 @@ mxGraph.prototype.fireMouseEvent = function (evtName, me, sender) {
             var cell = this.lastTouchCell;
             this.lastTouchCell = null;
 
-            // Fires native dblclick event via event source
-            // NOTE: This fires two double click events on edges in quirks mode. While
-            // trying to fix this, we realized that nativeDoubleClick can be disabled for
-            // quirks and IE10+ (or we didn't find the case mentioned above where it
-            // would not work), ie. all double clicks seem to be working without this.
-            if (mxClient.IS_QUIRKS) {
-              me.getSource().fireEvent('ondblclick');
-            }
-
             this.dblClick(me.getEvent(), cell);
             doubleClickFired = true;
           }
@@ -12709,11 +12690,8 @@ mxGraph.prototype.fireMouseEvent = function (evtName, me, sender) {
           this.lastTouchTime = 0;
         }
 
-        // Do not ignore mouse up in quirks in this case
-        if (!mxClient.IS_QUIRKS || doubleClickFired) {
-          mxEvent.consume(me.getEvent());
-          return;
-        }
+        mxEvent.consume(me.getEvent());
+        return;
       } else if (
         this.lastTouchEvent == null ||
         this.lastTouchEvent != me.getEvent()

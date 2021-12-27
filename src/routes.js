@@ -18,6 +18,7 @@ import EdgeToleranceVue from './demos/EdgeTolerance.vue';
 import EditingVue from './demos/Editing.vue';
 import WrappingVue from './demos/Wrapping.vue';
 import WireVue from './demos/Wire.vue';
+import WindowVue from './demos/Window.vue';
 
 const demos = [
   HelloWorld,
@@ -37,6 +38,7 @@ const demos = [
   EdgeToleranceVue,
   EditingVue,
   WrappingVue,
+  WindowVue,
   WireVue,
   Shape,
 ].map(item=>{

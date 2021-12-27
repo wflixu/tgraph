@@ -1,7 +1,7 @@
 {
   "name": "thgraph",
   "version": "0.0.6",
-  "description": "mxgraph  graph svg editor",
+  "description": "a graph editor render with svg base from mxgraph",
   "main": "graph/index.js",
   "type": "module",
   "files": [
@@ -39,6 +39,7 @@
   "keywords": [
     "mxGraph",
     "jgraph",
+    "draw.io",
     "svg",
     "editor",
     "es6",
