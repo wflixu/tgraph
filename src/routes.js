@@ -19,6 +19,8 @@ import EditingVue from './demos/Editing.vue';
 import WrappingVue from './demos/Wrapping.vue';
 import WireVue from './demos/Wire.vue';
 import WindowVue from './demos/Window.vue';
+import VisibleVue from './demos/Visible.vue';
+import ValidationVue from './demos/Validation.vue';
 
 const demos = [
   HelloWorld,
@@ -37,10 +39,12 @@ const demos = [
   DynamicloadingVue,
   EdgeToleranceVue,
   EditingVue,
-  WrappingVue,
+  ValidationVue,
+  VisibleVue,
   WindowVue,
   WireVue,
   Shape,
+  WrappingVue,
 ].map(item=>{
   let name = item.__file.split('\/').pop().split('.')[0];
   return {

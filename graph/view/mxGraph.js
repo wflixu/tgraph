@@ -23,7 +23,7 @@ import { mxTooltipHandler } from './../handler/mxTooltipHandler';
 import { mxSelectionCellsHandler } from './../handler/mxSelectionCellsHandler';
 import { mxConnectionHandler } from './../handler/mxConnectionHandler';
 import { mxGraphHandler } from './../handler/mxGraphHandler';
-import { mxPanningHandler } from './../handler/mxPanningHandler';
+import { mxPanningHandler,mxEdgeHandler } from './../handler/';
 import { mxPopupMenuHandler } from './../handler/mxPopupMenuHandler';
 import { mxVertexHandler } from './../handler/mxVertexHandler';
 import { mxCellEditor } from './mxCellEditor';
@@ -37,6 +37,7 @@ import { mxValueChange, mxStyleChange } from './../model/mxGraphModel';
 
 import expandedGif from './../assets/expand.gif';
 import collapsedGif from './../assets/collapse.gif';
+
 /**
  * Class: mxGraph
  *

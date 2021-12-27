@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxUtils } from "../util";
+import { mxUtils,mxResources } from "../util";
 
 /**
  * Class: mxMultiplicity
@@ -49,6 +49,7 @@ import { mxUtils } from "../util";
  * validNeighborsAllowed - Optional boolean indicating if the array of
  * opposite types should be valid or invalid.
  */
+
 
 export function mxMultiplicity(source, type, attr, value, min, max,
 	validNeighbors, countError, typeError, validNeighborsAllowed)
