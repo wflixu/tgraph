@@ -124,7 +124,14 @@ import {
   mxVertexHandler,
 } from './handler/index.js';
 
+import { mxCodec, mxCodecRegistry } from './io/index.js';
+
 export {
+  //io
+  mxCodec,
+  mxCodecRegistry,
+
+  
   mxDefaultToolbar,
   mxDefaultPopupMenu,
   mxDefaultKeyHandler,

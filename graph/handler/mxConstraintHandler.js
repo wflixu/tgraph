@@ -24,7 +24,7 @@ import { mxImage ,mxConstants,mxUtils,mxEvent,mxRectangle} from "../util/index.j
 import { mxImageShape } from "../shape/mxImageShape.js";
 import { mxRectangleShape } from "../shape/mxRectangleShape.js";
 
-// import pointGif  from './../assets/point.gif';
+import pointGif  from './../assets/point.gif';
 // const pointGif = 
 
 

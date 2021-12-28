@@ -1,6 +1,16 @@
-import { mxGraph, mxEvent, mxClient } from './../../graph/index';
+import { mxGraph, mxEvent, mxClient,mxCodec } from './../../graph/index';
 
 export function main(container) {
+
+
+var obj = new Object();
+obj.foo = "Foo";
+obj.bar = "Bar";
+ var enc = new mxCodec();
+ var node = enc.encode(obj);
+ console.log('#**@'.repeat(10));
+ console.log(node);
+
   // Checks if the browser is supported
   if (!mxClient.isBrowserSupported()) {
     // Displays an error message if the browser is not supported.

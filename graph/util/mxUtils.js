@@ -1,4 +1,4 @@
-/**
+525/**
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
@@ -524,9 +524,7 @@ export const mxUtils = {
 
     if (document.implementation && document.implementation.createDocument) {
       doc = document.implementation.createDocument('', '', null);
-    } else if ('ActiveXObject' in window) {
-      doc = mxUtils.createMsXmlDocument();
-    }
+    } 
 
     return doc;
   },

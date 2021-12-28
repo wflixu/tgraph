@@ -328,12 +328,13 @@ export const  mxLog =
 	 * mxLog.warn('Hello, World!');
 	 * (end)
 	 */
-	warn: function()
+	warn: function(...args)
 	{
-		if (mxLog.WARN)
-		{
-			mxLog.writeln.apply(this, arguments);
-		}
+		console.warn(...args);
+		// if (mxLog.WARN)
+		// {
+		// 	mxLog.writeln.apply(this, arguments);
+		// }
 	},
 
 	/**

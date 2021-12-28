@@ -65,7 +65,7 @@
  * style - Optional formatted string that defines the style.
  */
 
-import { mxUtils } from './../util/mxUtils.js';
+import { mxUtils,mxConstants } from './../util/index.js';
 
 export function mxCell(value, geometry, style)
 {

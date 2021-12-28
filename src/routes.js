@@ -21,7 +21,7 @@ import WireVue from './demos/Wire.vue';
 import WindowVue from './demos/Window.vue';
 import VisibleVue from './demos/Visible.vue';
 import ValidationVue from './demos/Validation.vue';
-
+import UserObjectVue from './demos/UserObject.vue';
 const demos = [
   HelloWorld,
   DemoAnchor,
@@ -39,6 +39,7 @@ const demos = [
   DynamicloadingVue,
   EdgeToleranceVue,
   EditingVue,
+  UserObjectVue,
   ValidationVue,
   VisibleVue,
   WindowVue,

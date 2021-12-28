@@ -48,8 +48,8 @@ import {
 
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 
-// import expandedGif from './../assets/expand.gif';
-// import collapsedGif from './../assets/collapse.gif';
+import expandedGif from './../assets/expand.gif';
+import collapsedGif from './../assets/collapse.gif';
 
 /**
  * Class: mxGraph

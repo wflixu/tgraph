@@ -11,6 +11,9 @@
  * 
  * Creates a HTML table using the specified classname.
  */
+
+import { mxUtils } from "./index.js";
+
 export function mxForm(className)
 {
 	this.table = document.createElement('table');
