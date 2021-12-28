@@ -1,5 +1,5 @@
-import { mxEvent, mxUtils, mxWindow } from ".";
-import { mxClient } from "..";
+import { mxEvent, mxUtils, mxWindow } from "./index.js";
+import { mxClient } from "../index.js";
 
 
 /**

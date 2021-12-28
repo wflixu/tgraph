@@ -1,4 +1,4 @@
-import { mxPoint } from "./mxPoint";
+import { mxPoint } from "./mxPoint.js";
 /**
  * Class: mxRectangle
  *

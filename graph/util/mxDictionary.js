@@ -13,7 +13,7 @@
  * Constructs a new dictionary which allows object to be used as keys.
  */
 
-import  {mxObjectIdentity} from './mxObjectIdentity'
+import  {mxObjectIdentity} from './mxObjectIdentity.js'
 export function mxDictionary()
 {
 	this.clear();

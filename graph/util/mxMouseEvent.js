@@ -36,8 +36,8 @@
  * state - Optional <mxCellState> under the mouse.
  * 
  */
-import { mxEvent } from "./mxEvent";
- import { mxUtils } from "./mxUtils";
+import { mxEvent } from "./mxEvent.js";
+ import { mxUtils } from "./mxUtils.js";
 
 export function mxMouseEvent(evt, state)
 {

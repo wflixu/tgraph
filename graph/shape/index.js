@@ -1,25 +1,25 @@
 
-import { mxActor } from "./mxActor";
-import { mxArrow } from "./mxArrow";
-import { mxArrowConnector } from "./mxArrowConnector";
-import { mxCloud } from "./mxCloud";
-import { mxConnector } from "./mxConnector";
-import { mxCylinder } from "./mxCylinder";
-import { mxDoubleEllipse } from "./mxDoubleEllipse";
-import { mxEllipse } from "./mxEllipse";
-import { mxHexagon } from "./mxHexagon";
-import { mxImageShape } from "./mxImageShape";
-import { mxLabel } from "./mxLabel";
-import { mxLine } from "./mxLine";
-import { mxMarker } from "./mxMarker";
-import { mxPolyline } from "./mxPolyline";
-import { mxRectangleShape } from "./mxRectangleShape";
-import { mxRhombus } from "./mxRhombus";
-import { mxShape } from "./mxShape";
-import { mxStencil } from "./mxStencil";
-import { mxSwimlane } from "./mxSwimlane";
-import { mxText } from "./mxText";
-import { mxTriangle } from "./mxTriangle";
+import { mxActor } from "./mxActor.js";
+import { mxArrow } from "./mxArrow.js";
+import { mxArrowConnector } from "./mxArrowConnector.js";
+import { mxCloud } from "./mxCloud.js";
+import { mxConnector } from "./mxConnector.js";
+import { mxCylinder } from "./mxCylinder.js";
+import { mxDoubleEllipse } from "./mxDoubleEllipse.js";
+import { mxEllipse } from "./mxEllipse.js";
+import { mxHexagon } from "./mxHexagon.js";
+import { mxImageShape } from "./mxImageShape.js";
+import { mxLabel } from "./mxLabel.js";
+import { mxLine } from "./mxLine.js";
+import { mxMarker } from "./mxMarker.js";
+import { mxPolyline } from "./mxPolyline.js";
+import { mxRectangleShape } from "./mxRectangleShape.js";
+import { mxRhombus } from "./mxRhombus.js";
+import { mxShape } from "./mxShape.js";
+import { mxStencil } from "./mxStencil.js";
+import { mxSwimlane } from "./mxSwimlane.js";
+import { mxText } from "./mxText.js";
+import { mxTriangle } from "./mxTriangle.js";
 
 export {
     mxArrowConnector,

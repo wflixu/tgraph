@@ -1,11 +1,11 @@
-import { mxEvent } from "./mxEvent";
-import { mxUtils } from "./mxUtils";
-import {mxClient} from "../mxClient";
-import { mxGuide } from "./mxGuide";
-import { mxCellHighlight } from "../handler/mxCellHighlight";
-import { mxConstants } from "./mxConstants";
-import { mxRectangle } from "./mxRectangle";
-import { mxPoint } from "./mxPoint";
+import { mxEvent } from "./mxEvent.js";
+import { mxUtils } from "./mxUtils.js";
+import {mxClient} from "../mxClient.js";
+import { mxGuide } from "./mxGuide.js";
+import { mxCellHighlight } from "../handler/mxCellHighlight.js";
+import { mxConstants } from "./mxConstants.js";
+import { mxRectangle } from "./mxRectangle.js";
+import { mxPoint } from "./mxPoint.js";
 
 /**
  * Class: mxDragSource

@@ -1,4 +1,4 @@
-import { mxDefaultKeyHandler } from './mxDefaultKeyHandler';
-import { mxDefaultPopupMenu } from './mxDefaultPopupMenu';
-import { mxDefaultToolbar } from './mxDefaultToolbar';
+import { mxDefaultKeyHandler } from './mxDefaultKeyHandler.js';
+import { mxDefaultPopupMenu } from './mxDefaultPopupMenu.js';
+import { mxDefaultToolbar } from './mxDefaultToolbar.js';
 export { mxDefaultToolbar, mxDefaultPopupMenu, mxDefaultKeyHandler };

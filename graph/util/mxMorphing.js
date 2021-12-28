@@ -1,6 +1,6 @@
-import { mxAnimation } from "./mxAnimation";
-import {mxCellStatePreview} from './../view/mxCellStatePreview';
-import { mxPoint } from "./mxPoint";
+import { mxAnimation } from "./mxAnimation.js";
+import {mxCellStatePreview} from './../view/mxCellStatePreview.js';
+import { mxPoint } from "./mxPoint.js";
 
 /**
  *

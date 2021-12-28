@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxEventSource } from "./mxEventSource";
+import { mxEventSource } from "./mxEventSource.js";
 
 /**
  * Class: mxToolbar

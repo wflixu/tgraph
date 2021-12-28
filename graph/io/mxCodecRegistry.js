@@ -1,4 +1,4 @@
-import { mxUtils } from "../util/mxUtils";
+import { mxUtils } from "../util/mxUtils.js";
 
 
 export const mxCodecRegistry = {

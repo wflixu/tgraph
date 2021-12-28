@@ -12,8 +12,8 @@
  *
  * Constructs a new abstract canvas.
  */
-import {mxUrlConverter} from './mxUrlConverter'
-import { mxConstants } from './../util/mxConstants';
+import {mxUrlConverter} from './mxUrlConverter.js'
+import { mxConstants } from './../util/mxConstants.js';
 
 export function mxAbstractCanvas2D()
 {

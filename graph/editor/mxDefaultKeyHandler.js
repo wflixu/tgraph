@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxKeyHandler } from "../index.js";
+
 /**
  * Class: mxDefaultKeyHandler
  *
@@ -43,6 +46,7 @@
  * 
  * editor - Reference to the enclosing <mxEditor>.
  */
+
 export function mxDefaultKeyHandler(editor)
 {
 	if (editor != null)

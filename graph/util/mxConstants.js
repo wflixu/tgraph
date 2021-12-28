@@ -1,7 +1,5 @@
 
-import {mxClient} from './../mxClient';
-
-import {mxRectangle} from './mxRectangle';
+import {mxRectangle} from './mxRectangle.js';
 
 export const  mxConstants =
  {

@@ -3,14 +3,14 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxClient } from './../mxClient';
-import { mxObjectIdentity } from './mxObjectIdentity';
-import { mxConstants } from './../util/mxConstants';
-import { mxPoint } from './../util/mxPoint';
-import { mxDictionary } from './mxDictionary';
-import { mxRectangle } from './mxRectangle';
-import { mxEvent } from '..';
-import { mxDragSource } from '..';
+import { mxClient } from './../mxClient.js';
+import { mxObjectIdentity } from './mxObjectIdentity.js';
+import { mxConstants } from './../util/mxConstants.js';
+import { mxPoint } from './../util/mxPoint.js';
+import { mxDictionary } from './mxDictionary.js';
+import { mxRectangle } from './mxRectangle.js';
+import { mxEvent } from '../index.js';
+import { mxDragSource } from '../index.js';
 
 export const mxUtils = {
   /**

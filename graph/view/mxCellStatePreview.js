@@ -17,9 +17,9 @@
  * graph - Reference to the enclosing <mxGraph>.
  */
 
-import { mxDictionary } from "../util/mxDictionary";
-import { mxPoint } from "../util/mxPoint";
-import { mxUtils } from "../util/mxUtils";
+import { mxDictionary } from "../util/mxDictionary.js";
+import { mxPoint } from "../util/mxPoint.js";
+import { mxUtils } from "../util/mxUtils.js";
 
 export function mxCellStatePreview(graph)
 {

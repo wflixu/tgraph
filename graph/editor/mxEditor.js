@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2019, JGraph Ltd
  * Copyright (c) 2006-2019, draw.io AG
  */
+
+import { mxResources } from "../index.js";
+
 /**
  * Class: mxEditor
  *
@@ -345,6 +348,7 @@
  *
  * config - Optional XML node that contains the configuration.
  */
+
 function mxEditor(config)
 {
 	this.actions = [];

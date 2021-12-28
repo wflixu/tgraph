@@ -26,8 +26,8 @@
  * graph - <mxGraph> that contains the cells.
  */
 
-import { mxUtils } from '../util';
-import { mxGraphLayout } from './mxGraphLayout';
+import { mxUtils } from '../util/index.js';
+import { mxGraphLayout } from './mxGraphLayout.js';
 
 export function mxEdgeLabelLayout(graph, radius) {
   mxGraphLayout.call(this, graph);

@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxAbstractCanvas2D, mxUtils } from ".";
+import { mxAbstractCanvas2D, mxUtils } from "./index.js";
 
 /**
  * Class: mxXmlCanvas2D

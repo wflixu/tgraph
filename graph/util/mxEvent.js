@@ -1,5 +1,5 @@
-import { mxClient } from './../mxClient';
-import { mxMouseEvent } from './mxMouseEvent';
+import { mxClient } from './../mxClient.js';
+import { mxMouseEvent } from './mxMouseEvent.js';
 
 
 export const mxEvent =

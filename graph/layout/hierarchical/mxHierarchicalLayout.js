@@ -20,14 +20,14 @@
  * deterministic. Default is true.
  */
 
-import { mxConstants } from '../../util/mxConstants';
-import { mxDictionary } from '../../util/mxDictionary';
-import { mxObjectIdentity } from '../../util/mxObjectIdentity';
-import { mxGraphLayout } from './../mxGraphLayout';
-import { mxGraphHierarchyModel } from './model/mxGraphHierarchyModel';
-import { mxMinimumCycleRemover } from './stage/mxMinimumCycleRemover';
-import { mxMedianHybridCrossingReduction } from './stage/mxMedianHybridCrossingReduction';
-import { mxCoordinateAssignment } from './stage/mxCoordinateAssignment';
+import { mxConstants } from '../../util/mxConstants.js';
+import { mxDictionary } from '../../util/mxDictionary.js';
+import { mxObjectIdentity } from '../../util/mxObjectIdentity.js';
+import { mxGraphLayout } from './../mxGraphLayout.js';
+import { mxGraphHierarchyModel } from './model/mxGraphHierarchyModel.js';
+import { mxMinimumCycleRemover } from './stage/mxMinimumCycleRemover.js';
+import { mxMedianHybridCrossingReduction } from './stage/mxMedianHybridCrossingReduction.js';
+import { mxCoordinateAssignment } from './stage/mxCoordinateAssignment.js';
 export function mxHierarchicalLayout(graph, orientation, deterministic) {
   mxGraphLayout.call(this, graph);
   this.orientation =

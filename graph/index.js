@@ -10,9 +10,9 @@ import {
   mxRadialTreeLayout,
   mxStackLayout,
   mxGraphLayout,
-} from './layout/index';
+} from './layout/index.js';
 
-import { mxClient } from './mxClient';
+import { mxClient } from './mxClient.js';
 
 import {
   mxCellEditor,
@@ -34,9 +34,9 @@ import {
   mxTemporaryCellStates,
   mxGraphView,
   mxConnectionConstraint,
-} from './view/index';
+} from './view/index.js';
 
-import { mxGeometry, mxCellPath, mxCell, mxGraphModel } from './model/index';
+import { mxGeometry, mxCellPath, mxCell, mxGraphModel } from './model/index.js';
 
 import {
   mxArrowConnector,
@@ -60,7 +60,7 @@ import {
   mxTriangle,
   mxActor,
   mxCylinder,
-} from './shape/index';
+} from './shape/index.js';
 
 import {
   mxAbstractCanvas2D,
@@ -97,13 +97,13 @@ import {
   mxXmlCanvas2D,
   mxXmlRequest,
   mxMorphing,
-} from './util/index';
+} from './util/index.js';
 
 import {
   mxDefaultToolbar,
   mxDefaultPopupMenu,
   mxDefaultKeyHandler,
-} from './editor/index';
+} from './editor/index.js';
 
 import {
   mxEdgeHandler,
@@ -122,7 +122,7 @@ import {
   mxSelectionCellsHandler,
   mxTooltipHandler,
   mxVertexHandler,
-} from './handler/index';
+} from './handler/index.js';
 
 export {
   mxDefaultToolbar,

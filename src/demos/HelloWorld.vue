@@ -7,7 +7,6 @@ import { main } from './helloworld';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
- debugger;
  main(container);
 });
 </script>

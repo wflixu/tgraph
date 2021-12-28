@@ -1,7 +1,7 @@
-import { mxGraphModel } from './mxGraphModel';
-import { mxCell } from './mxCell';
-import { mxCellPath } from './mxCellPath';
-import { mxGeometry } from './mxGeometry';
+import { mxGraphModel } from './mxGraphModel.js';
+import { mxCell } from './mxCell.js';
+import { mxCellPath } from './mxCellPath.js';
+import { mxGeometry } from './mxGeometry.js';
 
 export { mxGeometry, mxCellPath, mxCell, mxGraphModel };
 

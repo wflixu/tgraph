@@ -2,6 +2,9 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
+
+import { mxUtils } from "../index.js";
+
 /**
  * Class: mxDefaultToolbar
  *
@@ -205,6 +208,7 @@ mxDefaultToolbar.prototype.addActionCombo = function (title) {
  * title - String that represents the title of the combo.
  * action - Name of the action to execute in <editor>.
  */
+
 mxDefaultToolbar.prototype.addActionOption = function (combo, title, action) {
   var clickHandler = mxUtils.bind(this, function () {
     this.editor.execute(action);

@@ -3,9 +3,9 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxConstants } from "../../util";
-import { mxGraphLayout } from "../mxGraphLayout";
-import {mxHierarchicalLayout,mxHierarchicalEdgeStyle} from './mxHierarchicalLayout';
+import { mxConstants } from "../../util/index.js";
+import { mxGraphLayout } from "../mxGraphLayout.js";
+import {mxHierarchicalLayout,mxHierarchicalEdgeStyle} from './mxHierarchicalLayout.js';
 /**
  * Class: mxSwimlaneLayout
  * 

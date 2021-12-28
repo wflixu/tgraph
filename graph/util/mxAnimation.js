@@ -3,10 +3,10 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxEvent } from "./mxEvent";
-import { mxEventObject } from "./mxEventObject";
-import { mxEventSource } from "./mxEventSource";
-import { mxUtils } from "./mxUtils";
+import { mxEvent } from "./mxEvent.js";
+import { mxEventObject } from "./mxEventObject.js";
+import { mxEventSource } from "./mxEventSource.js";
+import { mxUtils } from "./mxUtils.js";
 
 /**
  *

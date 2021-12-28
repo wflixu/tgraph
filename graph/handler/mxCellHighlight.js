@@ -14,11 +14,11 @@
  * Constructs a cell highlight.
  */
 
- import { mxConstants } from './../util/mxConstants';
- import { mxUtils } from './../util/mxUtils';
- import { mxEvent } from './../util/mxEvent';
-import { mxRectangle } from '../util/mxRectangle';
-import { mxClient } from './../mxClient';
+ import { mxConstants } from './../util/mxConstants.js';
+ import { mxUtils } from './../util/mxUtils.js';
+ import { mxEvent } from './../util/mxEvent.js';
+import { mxRectangle } from '../util/mxRectangle.js';
+
 export function mxCellHighlight(graph, highlightColor, strokeWidth, dashed)
 {
 	if (graph != null)

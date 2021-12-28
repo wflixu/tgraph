@@ -29,10 +29,10 @@
  * Fires after the menu has been shown in <popup>.
  */
 
- import { mxEventSource } from './../util/mxEventSource';
- import { mxClient } from './../mxClient';
- import { mxEvent } from './../util/mxEvent';
-import { mxEventObject } from './mxEventObject';
+ import { mxEventSource } from './../util/mxEventSource.js';
+ import { mxClient } from './../mxClient.js';
+ import { mxEvent } from './../util/mxEvent.js';
+import { mxEventObject } from './mxEventObject.js';
 
 
  

@@ -54,10 +54,10 @@
  * added. The style section sets the default font-size, font-family and
  * stroke-miterlimit globally. Default is false.
  */
- import { mxUtils } from './mxUtils';
- import {mxAbstractCanvas2D} from './mxAbstractCanvas2D';
- import { mxClient } from './../mxClient';
- import { mxConstants } from './../util/mxConstants';
+ import { mxUtils } from './mxUtils.js';
+ import {mxAbstractCanvas2D} from './mxAbstractCanvas2D.js';
+ import { mxClient } from './../mxClient.js';
+ import { mxConstants } from './../util/mxConstants.js';
  
 export function mxSvgCanvas2D(root, styleEnabled)
 {

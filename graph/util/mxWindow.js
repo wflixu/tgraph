@@ -3,10 +3,10 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxEventSource } from './mxEventSource';
-import { mxClient } from './../mxClient';
-import { mxRectangle } from './mxRectangle';
-import { mxUtils, mxEvent, mxEventObject, mxConstants } from '.';
+import { mxEventSource } from './mxEventSource.js';
+import { mxClient } from './../mxClient.js';
+import { mxRectangle } from './mxRectangle.js';
+import { mxUtils, mxEvent, mxEventObject, mxConstants } from './index.js';
 import resizeGif from './../assets/resize.gif';
 import maximizeGif from './../assets/maximize.gif';
 import closeGif from './../assets/close.gif';

@@ -4,10 +4,10 @@
  */
 
 
-import { mxConstants } from "../util/mxConstants";
-import { mxLog } from "../util/mxLog";
-import { mxUtils } from "../util/mxUtils";
-import { mxCodecRegistry } from "./mxCodecRegistry";
+import { mxConstants } from "../util/mxConstants.js";
+import { mxLog } from "../util/mxLog.js";
+import { mxUtils } from "../util/mxUtils.js";
+import { mxCodecRegistry } from "./mxCodecRegistry.js";
 
 
 /**

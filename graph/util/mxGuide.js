@@ -1,8 +1,8 @@
 
 
-import { mxPolyline } from "../shape/mxPolyline";
-import { mxConstants } from "./mxConstants";
-import { mxPoint } from "./mxPoint";
+import { mxPolyline } from "../shape/mxPolyline.js";
+import { mxConstants } from "./mxConstants.js";
+import { mxPoint } from "./mxPoint.js";
 
 /**
  * Class: mxGuide

@@ -30,7 +30,7 @@
  * master - Optional layout that handles moves. If no layout is given then
  * the first layout of the above array is used to handle moves.
  */
- import { mxGraphLayout } from "./mxGraphLayout";
+ import { mxGraphLayout } from "./mxGraphLayout.js";
 export function mxCompositeLayout(graph, layouts, master)
 {
 	mxGraphLayout.call(this, graph);

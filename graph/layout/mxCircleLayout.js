@@ -26,7 +26,7 @@
  * radius - Optional radius as an int. Default is 100.
  */
 
- import { mxGraphLayout } from "./mxGraphLayout";
+ import { mxGraphLayout } from "./mxGraphLayout.js";
 export function mxCircleLayout(graph, radius)
 {
 	mxGraphLayout.call(this, graph);

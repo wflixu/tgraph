@@ -1,22 +1,22 @@
-import { mxGraphView } from "./mxGraphView";
-import {mxGraph} from './mxGraph';
-import {mxEdgeStyle} from './mxEdgeStyle';
-import {mxStyleRegistry} from './mxStyleRegistry';
-import {mxConnectionConstraint} from './mxConnectionConstraint';
-import { mxTemporaryCellStates } from "./mxTemporaryCellStates";
-import { mxSwimlaneManager } from "./mxSwimlaneManager";
-import { mxStylesheet } from "./mxStylesheet";
-import { mxPrintPreview } from "./mxPrintPreview";
-import { mxPerimeter } from "./mxPerimeter";
-import { mxOutline } from "./mxOutline";
-import { mxMultiplicity } from "./mxMultiplicity";
-import { mxLayoutManager } from "./mxLayoutManager";
-import { mxGraphSelectionModel } from "./mxGraphSelectionModel";
-import { mxCellStatePreview } from "./mxCellStatePreview";
-import { mxCellState } from "./mxCellState";
-import {mxCellRenderer} from './mxCellRenderer';
-import { mxCellOverlay } from "./mxCellOverlay";
-import {mxCellEditor} from './mxCellEditor';
+import { mxGraphView } from "./mxGraphView.js";
+import {mxGraph} from './mxGraph.js';
+import {mxEdgeStyle} from './mxEdgeStyle.js';
+import {mxStyleRegistry} from './mxStyleRegistry.js';
+import {mxConnectionConstraint} from './mxConnectionConstraint.js';
+import { mxTemporaryCellStates } from "./mxTemporaryCellStates.js";
+import { mxSwimlaneManager } from "./mxSwimlaneManager.js";
+import { mxStylesheet } from "./mxStylesheet.js";
+import { mxPrintPreview } from "./mxPrintPreview.js";
+import { mxPerimeter } from "./mxPerimeter.js";
+import { mxOutline } from "./mxOutline.js";
+import { mxMultiplicity } from "./mxMultiplicity.js";
+import { mxLayoutManager } from "./mxLayoutManager.js";
+import { mxGraphSelectionModel } from "./mxGraphSelectionModel.js";
+import { mxCellStatePreview } from "./mxCellStatePreview.js";
+import { mxCellState } from "./mxCellState.js";
+import {mxCellRenderer} from './mxCellRenderer.js';
+import { mxCellOverlay } from "./mxCellOverlay.js";
+import {mxCellEditor} from './mxCellEditor.js';
 export {
     mxCellEditor,
     mxCellOverlay,
