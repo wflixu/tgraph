@@ -1,6 +1,6 @@
-import { mxUtils } from './../util/mxUtils';
-import { mxShape } from './mxShape';
-import { mxConstants } from './../util/mxConstants';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxShape } from './mxShape.js';
+import { mxConstants } from './../util/mxConstants.js';
 
 /**
  * Class: mxRectangleShape

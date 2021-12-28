@@ -1,42 +1,55 @@
-import { mxEventSource } from './../util/mxEventSource';
-import { mxConstants } from './../util/mxConstants';
-import { mxImage } from './../util/mxImage';
-import { mxEvent } from './../util/mxEvent';
-import { mxUtils } from './../util/mxUtils';
-import { mxClient } from './../mxClient';
-import { mxEdgeStyle } from './../view/mxEdgeStyle';
-import { mxCellRenderer } from './../view/mxCellRenderer';
-import { mxConnectionConstraint } from './../view/mxConnectionConstraint';
-import { mxGraphSelectionModel } from './../view/mxGraphSelectionModel';
-import { mxStylesheet } from './../view/mxStylesheet';
+import {
+  mxEventSource,
+  mxConstants,
+  mxImage,
+  mxEvent,
+  mxUtils,
+  mxRectangle,
+  mxEventObject,
+  mxPoint,
+  mxDictionary,
+} from './../util/index.js';
+
+import { mxCellEditor } from './mxCellEditor.js';
+
+import {
+  mxEdgeStyle,
+  mxCellRenderer,
+  mxConnectionConstraint,
+  mxGraphSelectionModel,
+  mxStylesheet,
+  mxGraphView,
+} from './index.js';
+
+import { mxClient } from './../mxClient.js';
 import {
   mxGraphModel,
   mxRootChange,
   mxChildChange,
   mxTerminalChange,
   mxGeometryChange,
-} from './../model/mxGraphModel';
-import { mxCell } from './../model/mxCell';
-import { mxGeometry } from './../model/mxGeometry';
-import { mxGraphView } from './mxGraphView';
-import { mxTooltipHandler } from './../handler/mxTooltipHandler';
-import { mxSelectionCellsHandler } from './../handler/mxSelectionCellsHandler';
-import { mxConnectionHandler } from './../handler/mxConnectionHandler';
-import { mxGraphHandler } from './../handler/mxGraphHandler';
-import { mxPanningHandler,mxEdgeHandler } from './../handler/';
-import { mxPopupMenuHandler } from './../handler/mxPopupMenuHandler';
-import { mxVertexHandler } from './../handler/mxVertexHandler';
-import { mxCellEditor } from './mxCellEditor';
-import { mxRectangle } from './../util/mxRectangle';
-import { mxEventObject } from './../util/mxEventObject';
-import { mxPoint } from './../util/mxPoint';
-import { mxRectangleShape } from '../shape/mxRectangleShape';
-import { mxDictionary } from '../util/mxDictionary';
+  mxValueChange,
+  mxStyleChange,
+  mxCell,
+  mxGeometry,
 
-import { mxValueChange, mxStyleChange } from './../model/mxGraphModel';
+} from './../model/index.js';
 
-import expandedGif from './../assets/expand.gif';
-import collapsedGif from './../assets/collapse.gif';
+import {
+  mxPanningHandler,
+  mxEdgeHandler,
+  mxTooltipHandler,
+  mxSelectionCellsHandler,
+  mxConnectionHandler,
+  mxGraphHandler,
+  mxPopupMenuHandler,
+  mxVertexHandler,
+} from './../handler/index.js';
+
+import { mxRectangleShape } from '../shape/mxRectangleShape.js';
+
+// import expandedGif from './../assets/expand.gif';
+// import collapsedGif from './../assets/collapse.gif';
 
 /**
  * Class: mxGraph

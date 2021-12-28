@@ -28,8 +28,8 @@
  * style - Array of key, value pairs that constitute the style.
  */
 
- import { mxRectangle } from './../util/mxRectangle';
- import { mxPoint } from './../util/mxPoint';
+ import { mxRectangle } from './../util/mxRectangle.js';
+ import { mxPoint } from './../util/mxPoint.js';
 
 export function mxCellState(view, cell, style)
 {

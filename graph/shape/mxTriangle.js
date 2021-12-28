@@ -12,10 +12,10 @@
  * Constructs a new triangle shape.
  */
 
-import { mxPoint } from '../util/mxPoint';
-import { mxConstants } from '../util/mxConstants';
-import { mxUtils } from './../util/mxUtils';
-import { mxActor } from './mxActor';
+import { mxPoint } from '../util/mxPoint.js';
+import { mxConstants } from '../util/mxConstants.js';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxActor } from './mxActor.js';
 
 export function mxTriangle() {
   mxActor.call(this);

@@ -1,6 +1,6 @@
-import { mxConstants } from "../util/mxConstants";
-import { mxPoint } from "../util/mxPoint";
-import { mxRectangle } from "../util/mxRectangle";
+import { mxConstants } from "../util/mxConstants.js";
+import { mxPoint } from "../util/mxPoint.js";
+import { mxRectangle } from "../util/mxRectangle.js";
 
 
 /**

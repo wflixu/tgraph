@@ -42,14 +42,14 @@
  * graph - Reference to the enclosing <mxGraph>.
  */
 
- import { mxEventSource } from './../util/mxEventSource';
- import { mxClient } from './../mxClient';
-import { mxUtils } from '../util/mxUtils';
-import { mxResources } from '../util/mxResources';
-import { mxLog } from '../util/mxLog';
-import { mxEventObject } from '../util/mxEventObject';
-import { mxEvent } from '../util/mxEvent';
-import { mxUndoableEdit } from '../util/mxUndoableEdit';
+ import { mxEventSource } from './../util/mxEventSource.js';
+ import { mxClient } from './../mxClient.js';
+import { mxUtils } from '../util/mxUtils.js';
+import { mxResources } from '../util/mxResources.js';
+import { mxLog } from '../util/mxLog.js';
+import { mxEventObject } from '../util/mxEventObject.js';
+import { mxEvent } from '../util/mxEvent.js';
+import { mxUndoableEdit } from '../util/mxUndoableEdit.js';
 
 
  

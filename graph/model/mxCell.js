@@ -64,8 +64,8 @@
  * geometry - Optional <mxGeometry> that specifies the geometry.
  * style - Optional formatted string that defines the style.
  */
- import { mxMouseEvent } from '../util/mxMouseEvent';
-import { mxUtils } from './../util/mxUtils';
+
+import { mxUtils } from './../util/mxUtils.js';
 
 export function mxCell(value, geometry, style)
 {

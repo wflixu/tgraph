@@ -3,17 +3,16 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxConstraintHandler } from '.';
-import { mxRectangleShape } from '../shape/mxRectangleShape';
-import { mxConstants } from '../util/mxConstants';
-import { mxEvent } from '../util/mxEvent';
-import { mxRectangle } from '../util/mxRectangle';
-import { mxCellMarker } from './mxCellMarker';
-import { mxGraphHandler } from './mxGraphHandler';
-import { mxVertexHandler } from './mxVertexHandler';
-import { mxClient } from './../mxClient';
-import { mxPoint } from '../util';
-import { mxUtils } from '../util/mxUtils';
+import { mxConstraintHandler } from './index.js';
+import { mxRectangleShape } from '../shape/mxRectangleShape.js';
+import { mxConstants } from '../util/mxConstants.js';
+import { mxEvent } from '../util/mxEvent.js';
+import { mxRectangle } from '../util/mxRectangle.js';
+import { mxCellMarker } from './mxCellMarker.js';
+import { mxGraphHandler } from './mxGraphHandler.js';
+import { mxVertexHandler } from './mxVertexHandler.js';
+import { mxClient } from './../mxClient.js';
+import { mxPoint, mxUtils } from '../util/index.js';
 
 /**
  * Class: mxEdgeHandler

@@ -23,9 +23,9 @@
  * 1. This is stored in <strokewidth>.
  */
 
-import { mxUtils } from './../util/mxUtils';
-import { mxRectangleShape } from './mxRectangleShape';
-import { mxConstants } from './../util/mxConstants';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxRectangleShape } from './mxRectangleShape.js';
+import { mxConstants } from './../util/mxConstants.js';
 export function mxLabel(bounds, fill, stroke, strokewidth) {
 	mxRectangleShape.call(this, bounds, fill, stroke, strokewidth);
 };

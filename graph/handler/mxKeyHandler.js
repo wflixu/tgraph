@@ -1,10 +1,6 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
 
-import { mxEvent } from "..";
-import { mxUtils } from "..";
+
+import { mxEvent,mxUtils } from "../index.js";
 
 /**
  * Class: mxKeyHandler

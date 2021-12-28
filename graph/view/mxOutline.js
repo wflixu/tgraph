@@ -55,7 +55,7 @@
  * container - DOM node that will contain the outline.
  */
 
-import { mxConstants } from "../util";
+import { mxConstants } from "../util/index.js";
 
 export function mxOutline(source, container)
 {

@@ -21,13 +21,13 @@
  * initialX - the leftmost coordinate node placement starts at
  */
 
-import { mxConstants } from '../../../util/mxConstants';
-import { mxDictionary } from '../../../util/mxDictionary';
-import { mxLog } from '../../../util/mxLog';
-import { WeightedCellSorter } from '../../mxGraphLayout';
-import {mxHierarchicalLayoutStage} from './mxHierarchicalLayoutStage';
-import {mxHierarchicalEdgeStyle} from '../mxHierarchicalLayout';
-import { mxPoint } from '../../../util/mxPoint';
+import { mxConstants } from '../../../util/mxConstants.js';
+import { mxDictionary } from '../../../util/mxDictionary.js';
+import { mxLog } from '../../../util/mxLog.js';
+import { WeightedCellSorter } from '../../mxGraphLayout.js';
+import {mxHierarchicalLayoutStage} from './mxHierarchicalLayoutStage.js';
+import {mxHierarchicalEdgeStyle} from '../mxHierarchicalLayout.js';
+import { mxPoint } from '../../../util/mxPoint.js';
 
 
 export function mxCoordinateAssignment(layout, intraCellSpacing, interRankCellSpacing,

@@ -60,12 +60,12 @@
  *
  * Constructs a new shape.
  */
- import { mxRectangle } from './../util/mxRectangle';
- import { mxPoint } from './../util/mxPoint';
- import { mxUtils } from './../util/mxUtils';
- import { mxConstants } from './../util/mxConstants';
- import { mxEvent } from './../util/mxEvent';
- import { mxSvgCanvas2D } from './../util/mxSvgCanvas2D';
+ import { mxRectangle } from './../util/mxRectangle.js';
+ import { mxPoint } from './../util/mxPoint.js';
+ import { mxUtils } from './../util/mxUtils.js';
+ import { mxConstants } from './../util/mxConstants.js';
+ import { mxEvent } from './../util/mxEvent.js';
+ import { mxSvgCanvas2D } from './../util/mxSvgCanvas2D.js';
 export function mxShape(stencil)
 {
 	this.stencil = stencil;

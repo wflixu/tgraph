@@ -158,16 +158,13 @@
  * optional cell style from the preview as the third argument. It returns
  * the <mxCell> that represents the new edge.
  */
-import { mxUtils } from './../util/mxUtils';
-import { mxEventSource } from './../util/mxEventSource';
-import { mxEvent } from './../util/mxEvent';
-import { mxPoint } from './../util/mxPoint';
-import { mxConstants } from './../util/mxConstants';
-import { mxClient } from './../mxClient';
-import { mxCellMarker } from './mxCellMarker';
-import { mxConstraintHandler } from './mxConstraintHandler';
-import { mxEventObject } from "../util/mxEventObject";
-import { mxPolyline } from '../shape/mxPolyline';
+import { mxUtils ,mxEventSource,mxEvent,mxPoint , mxEventObject,mxConstants} from './../util/index.js';
+
+
+import { mxClient } from './../mxClient.js';
+import { mxCellMarker } from './mxCellMarker.js';
+import { mxConstraintHandler } from './mxConstraintHandler.js';
+import { mxPolyline } from '../shape/mxPolyline.js';
 
 export function mxConnectionHandler(graph, factoryMethod) {
 	mxEventSource.call(this);

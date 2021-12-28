@@ -18,17 +18,14 @@
  * returns the <mxCell> that represents the new edge.
  */
 
-import { mxImage } from "../util/mxImage";
-import { mxClient } from './../mxClient';
-import { mxConstants } from './../util/mxConstants';
-import { mxUtils } from './../util/mxUtils';
-import { mxEvent } from './../util/mxEvent';
-import { mxRectangle } from "../util/mxRectangle";
-import { mxImageShape } from "../shape/mxImageShape";
-import { mxRectangleShape } from "../shape/mxRectangleShape";
+import { mxImage ,mxConstants,mxUtils,mxEvent,mxRectangle} from "../util/index.js";
 
-import pointGif  from './../assets/point.gif';
 
+import { mxImageShape } from "../shape/mxImageShape.js";
+import { mxRectangleShape } from "../shape/mxRectangleShape.js";
+
+// import pointGif  from './../assets/point.gif';
+// const pointGif = 
 
 
 

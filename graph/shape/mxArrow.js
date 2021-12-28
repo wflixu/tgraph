@@ -31,8 +31,8 @@
  * is <mxConstants.ARROW_SIZE>. This is stored in <endSize>.
  */
 
- import { mxShape } from './mxShape';
- import { mxUtils } from './../util/mxUtils';
+ import { mxShape } from './mxShape.js';
+ import { mxUtils } from './../util/mxUtils.js';
 export function mxArrow(points, fill, stroke, strokewidth, arrowWidth, spacing, endSize)
 {
 	mxShape.call(this);

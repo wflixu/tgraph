@@ -1,7 +1,6 @@
-import { mxDictionary } from "../../../util/mxDictionary";
-import { mxUtils } from "../../../util/mxUtils";
-import { mxGraphHierarchyEdge } from "./mxGraphHierarchyEdge";
-import {mxGraphHierarchyNode} from './mxGraphHierarchyNode';
+import { mxDictionary,mxUtils } from "../../../util/index.js";
+import { mxGraphHierarchyEdge } from "./mxGraphHierarchyEdge.js";
+import {mxGraphHierarchyNode} from './mxGraphHierarchyNode.js';
 
 /**
  * Class: mxGraphHierarchyModel

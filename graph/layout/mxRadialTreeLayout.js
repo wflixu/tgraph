@@ -21,9 +21,9 @@
  * Constructs a new radial tree layout for the specified graph
  */
 
-import { mxCompactTreeLayout } from './mxCompactTreeLayout';
-import { mxUtils } from '../util';
-import { mxGraphLayout } from './mxGraphLayout';
+import { mxCompactTreeLayout } from './mxCompactTreeLayout.js';
+import { mxUtils } from '../util/index.js';
+import { mxGraphLayout } from './mxGraphLayout.js';
 
 
 export function mxRadialTreeLayout(graph) {

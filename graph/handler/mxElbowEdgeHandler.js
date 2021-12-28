@@ -19,13 +19,13 @@
  * state - <mxCellState> of the cell to be modified.
  */
 
-import { mxUtils } from "../util/mxUtils";
-import {mxEdgeHandler} from './mxEdgeHandler';
-import {mxClient} from './../mxClient';
-import { mxConstants } from "../util/mxConstants";
-import { mxEvent } from "../util/mxEvent";
-import { mxRectangle } from "../util/mxRectangle";
-import { mxEdgeStyle } from "../view";
+import { mxUtils } from "../util/mxUtils.js";
+import {mxEdgeHandler} from './mxEdgeHandler.js';
+import {mxClient} from './../mxClient.js';
+import { mxConstants } from "../util/mxConstants.js";
+import { mxEvent } from "../util/mxEvent.js";
+import { mxRectangle } from "../util/mxRectangle.js";
+import { mxEdgeStyle } from "../view/index.js";
 
 
 export function mxElbowEdgeHandler(state)

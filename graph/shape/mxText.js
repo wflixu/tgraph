@@ -1,8 +1,8 @@
-import { mxUtils } from './../util/mxUtils';
-import { mxShape } from './mxShape';
-import { mxConstants } from './../util/mxConstants';
-import { mxPoint } from './../util/mxPoint';
-import { mxRectangle } from '../util/mxRectangle';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxShape } from './mxShape.js';
+import { mxConstants } from './../util/mxConstants.js';
+import { mxPoint } from './../util/mxPoint.js';
+import { mxRectangle } from '../util/mxRectangle.js';
 
 /**
  * Class: mxText

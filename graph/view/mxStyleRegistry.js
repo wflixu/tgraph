@@ -1,7 +1,7 @@
 
-import { mxConstants } from './../util/mxConstants';
-import { mxEdgeStyle } from './mxEdgeStyle';
-import { mxPerimeter } from './mxPerimeter';
+import { mxConstants } from './../util/mxConstants.js';
+import { mxEdgeStyle } from './mxEdgeStyle.js';
+import { mxPerimeter } from './mxPerimeter.js';
 
 export const  mxStyleRegistry =
 {

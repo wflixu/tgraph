@@ -44,8 +44,8 @@
  * 1. This is stored in <strokewidth>.
  */
 
- import { mxUtils } from './../util/mxUtils';
- import { mxShape } from './mxShape';
+ import { mxUtils } from './../util/mxUtils.js';
+ import { mxShape } from './mxShape.js';
 export function mxDoubleEllipse(bounds, fill, stroke, strokewidth)
 {
 	mxShape.call(this);

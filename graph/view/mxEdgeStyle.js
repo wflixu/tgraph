@@ -1,6 +1,6 @@
-import { mxConstants } from "../util/mxConstants";
-import { mxPoint } from "../util/mxPoint";
-import { mxUtils } from "../util/mxUtils";
+import { mxConstants } from "../util/mxConstants.js";
+import { mxPoint } from "../util/mxPoint.js";
+import { mxUtils } from "../util/mxUtils.js";
 
 
 export const mxEdgeStyle =

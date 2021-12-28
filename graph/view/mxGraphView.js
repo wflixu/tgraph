@@ -52,24 +52,24 @@
  *
  * graph - Reference to the enclosing <mxGraph>.
  */
-import { mxEventSource } from './../util/mxEventSource';
-import { mxPoint } from './../util/mxPoint';
-import { mxRectangle } from './../util/mxRectangle';
-import { mxDictionary } from './../util/mxDictionary';
-import { mxClient } from './../mxClient';
-import { mxEvent } from './../util/mxEvent';
+import { mxEventSource } from './../util/mxEventSource.js';
+import { mxPoint } from './../util/mxPoint.js';
+import { mxRectangle } from './../util/mxRectangle.js';
+import { mxDictionary } from './../util/mxDictionary.js';
+import { mxClient } from './../mxClient.js';
+import { mxEvent } from './../util/mxEvent.js';
 
-import { mxConstants } from './../util/mxConstants';
+import { mxConstants } from './../util/mxConstants.js';
 
-import { mxUtils } from './../util/mxUtils';
-import { mxLog } from './../util/mxLog';
-import { mxResources } from './../util/mxResources';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxLog } from './../util/mxLog.js';
+import { mxResources } from './../util/mxResources.js';
 
-import { mxCellState } from './mxCellState';
-import { mxMouseEvent } from '../util/mxMouseEvent';
+import { mxCellState } from './mxCellState.js';
+import { mxMouseEvent } from '../util/mxMouseEvent.js';
 
-import { mxStyleRegistry } from './mxStyleRegistry';
-import { mxEventObject } from '../util/mxEventObject';
+import { mxStyleRegistry } from './mxStyleRegistry.js';
+import { mxEventObject } from '../util/mxEventObject.js';
 
 export function mxGraphView(graph) {
   this.graph = graph;

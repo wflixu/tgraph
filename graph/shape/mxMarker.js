@@ -1,4 +1,4 @@
-import { mxConstants } from "../util/mxConstants";
+import { mxConstants } from "../util/mxConstants.js";
 
 export const  mxMarker =
 {

@@ -191,15 +191,15 @@
  * root - <mxCell> that represents the root cell.
  */
 
- import { mxEventSource } from './../util/mxEventSource';
- import { mxUndoableEdit } from './../util/mxUndoableEdit';
- import { mxUtils } from './../util/mxUtils';
- import { mxEventObject } from './../util/mxEventObject';
- import { mxEvent } from './../util/mxEvent';
- import { mxCell } from './mxCell';
- import { mxCellPath } from "./mxCellPath";
-import { mxDictionary } from '../util/mxDictionary';
-import { mxObjectIdentity } from '../util/mxObjectIdentity';
+ import { mxEventSource } from './../util/mxEventSource.js';
+ import { mxUndoableEdit } from './../util/mxUndoableEdit.js';
+ import { mxUtils } from './../util/mxUtils.js';
+ import { mxEventObject } from './../util/mxEventObject.js';
+ import { mxEvent } from './../util/mxEvent.js';
+ import { mxCell } from './mxCell.js';
+ import { mxCellPath } from "./mxCellPath.js";
+import { mxDictionary } from '../util/mxDictionary.js';
+import { mxObjectIdentity } from '../util/mxObjectIdentity.js';
 
 
 

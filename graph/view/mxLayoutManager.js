@@ -34,7 +34,7 @@
  * graph - Reference to the enclosing graph. 
  */
 
-import { mxEventSource } from "../util/mxEventSource";
+import { mxEventSource } from "../util/mxEventSource.js";
 
 export function mxLayoutManager(graph)
 {

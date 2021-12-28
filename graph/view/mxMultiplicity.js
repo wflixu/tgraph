@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxUtils,mxResources } from "../util";
+import { mxUtils,mxResources } from "../util/index.js";
 
 /**
  * Class: mxMultiplicity

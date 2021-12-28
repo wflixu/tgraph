@@ -16,8 +16,8 @@
  * cell - the real graph cell this node represents
  */
 
-import { mxObjectIdentity } from '../../../util/mxObjectIdentity';
-import { mxGraphAbstractHierarchyCell } from './mxGraphAbstractHierarchyCell';
+import { mxObjectIdentity } from '../../../util/mxObjectIdentity.js';
+import { mxGraphAbstractHierarchyCell } from './mxGraphAbstractHierarchyCell.js';
 
 export function mxGraphHierarchyNode(cell) {
   mxGraphAbstractHierarchyCell.apply(this, arguments);

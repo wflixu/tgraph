@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "test":"node test/index.js --experimental-vm-modules"
   },
   "dependencies": {
    

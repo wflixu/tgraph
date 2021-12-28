@@ -20,7 +20,7 @@
  * orientation - the position of the root node(s) relative to the graph
  * initialX - the leftmost coordinate node placement starts at
  */
-import { mxHierarchicalLayoutStage } from './mxHierarchicalLayoutStage';
+import { mxHierarchicalLayoutStage } from './mxHierarchicalLayoutStage.js';
 export function mxMedianHybridCrossingReduction(layout) {
   this.layout = layout;
 }

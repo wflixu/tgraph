@@ -1,10 +1,10 @@
 
 
-import { mxConstants } from "../util/mxConstants";
+import { mxConstants } from "../util/mxConstants.js";
 
-import { mxEventSource } from "../util/mxEventSource";
-import { mxPoint } from "../util/mxPoint";
-import { mxRectangle } from "../util/mxRectangle";
+import { mxEventSource } from "../util/mxEventSource.js";
+import { mxPoint } from "../util/mxPoint.js";
+import { mxRectangle } from "../util/mxRectangle.js";
 
 
 

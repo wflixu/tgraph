@@ -11,8 +11,8 @@
  *
  * Constructs a new hexagon shape.
  */
- import { mxUtils } from './../util/mxUtils';
- import {mxActor} from './mxActor';
+ import { mxUtils } from './../util/mxUtils.js';
+ import {mxActor} from './mxActor.js';
 export function mxHexagon()
 {
 	mxActor.call(this);

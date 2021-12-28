@@ -21,10 +21,10 @@
  * 0. This is stored in <strokewidth>.
  */
 
- import { mxUtils } from './../util/mxUtils';
- import { mxShape } from './mxShape';
- import { mxRectangleShape } from './mxRectangleShape';
- import { mxConstants } from './../util/mxConstants';
+ import { mxUtils } from './../util/mxUtils.js';
+ import { mxShape } from './mxShape.js';
+ import { mxRectangleShape } from './mxRectangleShape.js';
+ import { mxConstants } from './../util/mxConstants.js';
 export function mxImageShape(bounds, image, fill, stroke, strokewidth)
 {
 	mxShape.call(this);

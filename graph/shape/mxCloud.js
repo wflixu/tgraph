@@ -24,8 +24,8 @@
  * 1. This is stored in <strokewidth>.
  */
 
- import { mxUtils } from './../util/mxUtils';
- import { mxActor } from './mxActor';
+ import { mxUtils } from './../util/mxUtils.js';
+ import { mxActor } from './mxActor.js';
 export function mxCloud(bounds, fill, stroke, strokewidth)
 {
 	mxActor.call(this);

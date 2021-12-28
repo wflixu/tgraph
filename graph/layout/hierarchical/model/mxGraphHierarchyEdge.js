@@ -15,8 +15,8 @@
  * 
  * edges - a list of real graph edges this abstraction represents
  */
- import { mxObjectIdentity } from '../../../util/mxObjectIdentity';
-import { mxGraphAbstractHierarchyCell } from './mxGraphAbstractHierarchyCell';
+ import { mxObjectIdentity } from '../../../util/mxObjectIdentity.js';
+import { mxGraphAbstractHierarchyCell } from './mxGraphAbstractHierarchyCell.js';
  
 export function mxGraphHierarchyEdge(edges)
 {

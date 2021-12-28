@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxGraphLayout } from "./mxGraphLayout";
+import { mxGraphLayout } from "./mxGraphLayout.js";
 
 /**
  * Class: mxPartitionLayout

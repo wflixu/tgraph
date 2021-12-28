@@ -28,10 +28,10 @@
  * 1. This is stored in <strokewidth>.
  */
 
-import { mxConstants } from '../util/mxConstants';
-import { mxRectangle } from '../util/mxRectangle';
-import { mxUtils } from './../util/mxUtils';
-import { mxShape } from './mxShape';
+import { mxConstants } from '../util/mxConstants.js';
+import { mxRectangle } from '../util/mxRectangle.js';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxShape } from './mxShape.js';
 
 
 export function mxSwimlane(bounds, fill, stroke, strokewidth) {

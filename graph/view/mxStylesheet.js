@@ -49,9 +49,9 @@
  * Constructs a new stylesheet and assigns default styles.
  */
 
- import { mxUtils } from '../util/mxUtils';
-import { mxConstants } from './../util/mxConstants';
- import {mxPerimeter} from './mxPerimeter';
+ import { mxUtils } from '../util/mxUtils.js';
+import { mxConstants } from './../util/mxConstants.js';
+ import {mxPerimeter} from './mxPerimeter.js';
  
 export function mxStylesheet()
 {

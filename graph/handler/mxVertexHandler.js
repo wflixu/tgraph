@@ -3,15 +3,12 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxRectangleShape } from "../shape/mxRectangleShape";
-import { mxRectangle } from "../util/mxRectangle";
-import { mxConstants } from './../util/mxConstants';
-import { mxEvent } from './../util/mxEvent';
-import { mxGraphHandler } from "./mxGraphHandler";
-import { mxUtils } from './../util/mxUtils';
-import { mxPoint } from "../util/mxPoint";
-import { mxClient } from "../mxClient";
-import { mxImageShape } from "../shape/mxImageShape";
+import { mxRectangleShape } from "../shape/mxRectangleShape.js";
+import { mxRectangle,mxConstants,mxEvent,mxUtils,mxPoint } from "../util/index.js";
+
+import { mxClient } from "../mxClient.js";
+import { mxGraphHandler } from "./mxGraphHandler.js";
+import { mxImageShape } from "../shape/mxImageShape.js";
 
 
 /**

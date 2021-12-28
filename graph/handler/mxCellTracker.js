@@ -73,8 +73,8 @@
  * <mxCellMarker.getCell>.
  */
 
-import { mxCellMarker } from "./mxCellMarker";
-import { mxUtils } from "../util/mxUtils";
+import { mxCellMarker } from "./mxCellMarker.js";
+import { mxUtils } from "../util/mxUtils.js";
 export function mxCellTracker(graph, color, funct)
 {
 	mxCellMarker.call(this, graph, color);

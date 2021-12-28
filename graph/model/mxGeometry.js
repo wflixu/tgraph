@@ -71,8 +71,8 @@
  * the control points of an edge.
  */
 
- import { mxUtils } from '../util/mxUtils';
-import { mxRectangle } from './../util/mxRectangle';
+ import { mxUtils } from '../util/mxUtils.js';
+import { mxRectangle } from './../util/mxRectangle.js';
  
 
 export function mxGeometry(x, y, width, height)

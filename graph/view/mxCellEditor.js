@@ -105,12 +105,12 @@
  * graph - Reference to the enclosing <mxGraph>.
  */
 
-import { mxConstants } from './../util/mxConstants';
+import { mxConstants } from './../util/mxConstants.js';
 
-import { mxEvent } from './../util/mxEvent';
-import { mxUtils } from './../util/mxUtils';
-import { mxClient } from './../mxClient';
-import { mxRectangle } from './../util/mxRectangle';
+import { mxEvent } from './../util/mxEvent.js';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxClient } from './../mxClient.js';
+import { mxRectangle } from './../util/mxRectangle.js';
 
 export function mxCellEditor(graph) {
   this.graph = graph;

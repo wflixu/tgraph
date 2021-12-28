@@ -33,9 +33,8 @@
  */
 
 
- import { mxUtils } from './../util/mxUtils';
- import { mxEvent } from './../util/mxEvent';
- import { mxEventSource } from './../util/mxEventSource';
+ import { mxUtils,mxEvent,mxEventSource } from './../util/index.js';
+
 export function mxPanningHandler(graph)
 {
 	if (graph != null)

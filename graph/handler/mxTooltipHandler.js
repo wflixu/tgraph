@@ -1,11 +1,7 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
 
-import { mxConstants } from "../util/mxConstants";
-import { mxEvent } from "../util/mxEvent";
-import { mxUtils } from "../util/mxUtils";
+
+import { mxConstants,mxEvent,mxUtils } from "../util/index.js";
+
 
 /**
  * Class: mxTooltipHandler

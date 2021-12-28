@@ -21,11 +21,11 @@
  * strokewidth - Optional integer that defines the stroke width. Default is
  * 1. This is stored in <strokewidth>.
  */
- import { mxUtils } from './../util/mxUtils';
- import {mxPolyline} from './mxPolyline';
-import { mxShape } from "./mxShape";
-import { mxConstants } from "../util/mxConstants";
-import { mxMarker } from "./mxMarker";
+ import { mxUtils } from './../util/mxUtils.js';
+ import {mxPolyline} from './mxPolyline.js';
+import { mxShape } from "./mxShape.js";
+import { mxConstants } from "../util/mxConstants.js";
+import { mxMarker } from "./mxMarker.js";
 
 
 export function mxConnector(points, stroke, strokewidth)

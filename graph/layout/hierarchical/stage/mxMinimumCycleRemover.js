@@ -13,8 +13,8 @@
  * Creates a cycle remover for the given internal model.
  */
 
-import { mxUtils } from '../../../util/mxUtils';
-import { mxHierarchicalLayoutStage } from './mxHierarchicalLayoutStage';
+import { mxUtils } from '../../../util/mxUtils.js';
+import { mxHierarchicalLayoutStage } from './mxHierarchicalLayoutStage.js';
 
 export function mxMinimumCycleRemover(layout) {
   this.layout = layout;

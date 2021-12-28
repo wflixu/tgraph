@@ -39,12 +39,12 @@
  * given coordinate pair. A value of 0 means always highlight. Default is
  * <mxConstants.DEFAULT_HOTSPOT>.
  */
-import { mxUtils } from './../util/mxUtils';
-import { mxEventSource } from './../util/mxEventSource';
-import { mxConstants } from './../util/mxConstants';
-import { mxCellHighlight } from './mxCellHighlight';
-import { mxEventObject } from '../util/mxEventObject';
-import { mxEvent } from '../util/mxEvent';
+import { mxUtils } from './../util/mxUtils.js';
+import { mxEventSource } from './../util/mxEventSource.js';
+import { mxConstants } from './../util/mxConstants.js';
+import { mxCellHighlight } from './mxCellHighlight.js';
+import { mxEventObject } from '../util/mxEventObject.js';
+import { mxEvent } from '../util/mxEvent.js';
 
 
 export function mxCellMarker(graph, validColor, invalidColor, hotspot) {
