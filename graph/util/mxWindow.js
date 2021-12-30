@@ -204,31 +204,32 @@ export function mxWindow(
   y,
   width,
   height,
-  minimizable,
-  movable,
+  minimizable = true,
+  movable = true,
   replaceNode,
   style,
 ) {
-  if (content != null) {
-    minimizable = minimizable != null ? minimizable : true;
-    this.content = content;
-    this.init(x, y, width, height, style);
+  if (!content) {
+    return;
+  }
 
-    this.installMaximizeHandler();
-    this.installMinimizeHandler();
-    this.installCloseHandler();
-    this.setMinimizable(minimizable);
-    this.setTitle(title);
+  this.content = content;
+  this.init(x, y, width, height, style);
 
-    if (movable == null || movable) {
-      this.installMoveHandler();
-    }
+  this.installMaximizeHandler();
+  this.installMinimizeHandler();
+  this.installCloseHandler();
+  this.setMinimizable(minimizable);
+  this.setTitle(title);
 
-    if (replaceNode != null && replaceNode.parentNode != null) {
-      replaceNode.parentNode.replaceChild(this.div, replaceNode);
-    } else {
-      document.body.appendChild(this.div);
-    }
+  if ( movable) {
+    this.installMoveHandler();
+  }
+
+  if (replaceNode != null && replaceNode.parentNode != null) {
+    replaceNode.parentNode.replaceChild(this.div, replaceNode);
+  } else {
+    document.body.appendChild(this.div);
   }
 }
 

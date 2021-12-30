@@ -5,7 +5,8 @@ import {
   mxGeometryChange,
   mxValueChange,
   mxStyleChange,
-  mxRootChange
+  mxRootChange,
+  mxCellAttributeChange,
 } from './mxGraphModel.js';
 import { mxCell } from './mxCell.js';
 import { mxCellPath } from './mxCellPath.js';
@@ -21,5 +22,6 @@ export {
   mxGeometryChange,
   mxValueChange,
   mxStyleChange,
-  mxRootChange
+  mxRootChange,
+  mxCellAttributeChange
 };

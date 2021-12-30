@@ -36,7 +36,13 @@ import {
   mxConnectionConstraint,
 } from './view/index.js';
 
-import { mxGeometry, mxCellPath, mxCell, mxGraphModel } from './model/index.js';
+import {
+  mxGeometry,
+  mxCellPath,
+  mxCell,
+  mxGraphModel,
+  mxCellAttributeChange,
+} from './model/index.js';
 
 import {
   mxArrowConnector,
@@ -130,8 +136,6 @@ export {
   //io
   mxCodec,
   mxCodecRegistry,
-
-  
   mxDefaultToolbar,
   mxDefaultPopupMenu,
   mxDefaultKeyHandler,
@@ -157,6 +161,7 @@ export {
   mxCellPath,
   mxCell,
   mxGraphModel,
+  mxCellAttributeChange,
   // shape
   mxArrowConnector,
   mxArrow,
