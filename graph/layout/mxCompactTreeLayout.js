@@ -21,7 +21,9 @@
  * Constructs a new compact tree layout for the specified graph
  * and orientation.
  */
- import { mxGraphLayout } from "./mxGraphLayout.js";
+ import { mxCellPath, mxRectangle, mxUtils } from "../index.js";
+import { mxGraphLayout } from "./mxGraphLayout.js";
+
 export function mxCompactTreeLayout(graph, horizontal, invert)
 {
 	mxGraphLayout.call(this, graph);

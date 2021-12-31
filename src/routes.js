@@ -1,7 +1,7 @@
 import HelloWorld from './demos/HelloWorld.vue';
 import Home from './components/Home.vue';
 import DemoAnchor from './demos/DemoAnchor.vue';
-import DemoAnimation from './demos/DemoAnimation.vue'; 
+import DemoAnimation from './demos/DemoAnimation.vue';
 import AutoLayout from './demos/AutoLayout.vue';
 import Boundary from './demos/Boundary.vue';
 import Shape from './demos/Shape.vue';
@@ -22,7 +22,17 @@ import WindowVue from './demos/Window.vue';
 import VisibleVue from './demos/Visible.vue';
 import ValidationVue from './demos/Validation.vue';
 import UserObjectVue from './demos/UserObject.vue';
+import UIConfigVue from './demos/UIConfig.vue';
+import TreeVue from './demos/Tree.vue';
+import ThreadVue from './demos/Thread.vue';
+import TemplateVue from './demos/Template.vue';
+
+
 const demos = [
+  TemplateVue,
+  ThreadVue,
+  TreeVue,
+  UIConfigVue,
   HelloWorld,
   DemoAnchor,
   DemoAnimation,
@@ -46,19 +56,13 @@ const demos = [
   WireVue,
   Shape,
   WrappingVue,
-].map(item=>{
-  let name = item.__file.split('\/').pop().split('.')[0];
+].map((item) => {
+  let name = item.__file.split('/').pop().split('.')[0];
   return {
     name,
-    path:`/${name}`,
-    component:item,
-  }
+    path: `/${name}`,
+    component: item,
+  };
 });
 
-export const routes = [
-  { path: '/', component: Home, name: 'Home' },
-  ...demos
-];
-
-
-
+export const routes = [{ path: '/', component: Home, name: 'Home' }, ...demos];

@@ -3,7 +3,10 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
+import { mxClient } from "../mxClient.js";
+import { mxEvent } from "./mxEvent.js";
 import { mxEventSource } from "./mxEventSource.js";
+import { mxUtils } from "./mxUtils.js";
 
 /**
  * Class: mxToolbar
@@ -24,6 +27,8 @@ import { mxEventSource } from "./mxEventSource.js";
  *
  * container - DOM node that contains the toolbar.
  */
+
+
 
 export function mxToolbar(container)
 {

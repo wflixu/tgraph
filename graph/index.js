@@ -41,6 +41,7 @@ import {
   mxCellPath,
   mxCell,
   mxGraphModel,
+  mxRootChange,
   mxCellAttributeChange,
 } from './model/index.js';
 
@@ -109,6 +110,7 @@ import {
   mxDefaultToolbar,
   mxDefaultPopupMenu,
   mxDefaultKeyHandler,
+  mxEditor
 } from './editor/index.js';
 
 import {
@@ -130,12 +132,15 @@ import {
   mxVertexHandler,
 } from './handler/index.js';
 
-import { mxCodec, mxCodecRegistry } from './io/index.js';
+import { mxCodec, mxCodecRegistry,mxObjectCodec } from './io/index.js';
 
 export {
   //io
   mxCodec,
   mxCodecRegistry,
+  mxObjectCodec,
+  //editor
+  mxEditor,
   mxDefaultToolbar,
   mxDefaultPopupMenu,
   mxDefaultKeyHandler,
@@ -161,6 +166,7 @@ export {
   mxCellPath,
   mxCell,
   mxGraphModel,
+  mxRootChange,
   mxCellAttributeChange,
   // shape
   mxArrowConnector,

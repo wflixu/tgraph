@@ -47,10 +47,10 @@ import {
 } from './../handler/index.js';
 
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
-
+import {mxCellOverlay} from './mxCellOverlay.js'
+import warning from './../assets/warning.png';
 import expandedGif from './../assets/expand.gif';
 import collapsedGif from './../assets/collapse.gif';
-
 /**
  * Class: mxGraph
  *
@@ -1652,7 +1652,7 @@ mxGraph.prototype.expandedImage = new mxImage(expandedGif, 9, 9);
  * '.png' on the Mac and '.gif' on all other platforms.
  */
 mxGraph.prototype.warningImage = new mxImage(
-  mxClient.imageBasePath + '/warning' + (mxClient.IS_MAC ? '.png' : '.gif'),
+  warning,
   16,
   16,
 );

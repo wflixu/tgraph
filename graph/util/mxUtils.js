@@ -1,4 +1,5 @@
-525/**
+525;
+/**
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
@@ -9,8 +10,8 @@ import { mxConstants } from './../util/mxConstants.js';
 import { mxPoint } from './../util/mxPoint.js';
 import { mxDictionary } from './mxDictionary.js';
 import { mxRectangle } from './mxRectangle.js';
-import { mxEvent } from '../index.js';
-import { mxDragSource } from '../index.js';
+import { mxCellPath, mxEvent } from '../index.js';
+import { mxDragSource, mxXmlRequest } from '../index.js';
 
 export const mxUtils = {
   /**
@@ -524,7 +525,7 @@ export const mxUtils = {
 
     if (document.implementation && document.implementation.createDocument) {
       doc = document.implementation.createDocument('', '', null);
-    } 
+    }
 
     return doc;
   },
@@ -566,24 +567,11 @@ export const mxUtils = {
    *
    * xml - String that contains the XML data.
    */
-  parseXml: (function () {
-    if (window.DOMParser) {
-      return function (xml) {
-        var parser = new DOMParser();
+  parseXml: function (xml) {
+    var parser = new DOMParser();
 
-        return parser.parseFromString(xml, 'text/xml');
-      };
-    } // IE<=9
-    else {
-      return function (xml) {
-        var doc = mxUtils.createMsXmlDocument();
-        doc.loadXML(xml);
-
-        return doc;
-      };
-    }
-  })(),
-
+    return parser.parseFromString(xml, 'text/xml');
+  },
   /**
    * Function: clearSelection
    *
@@ -3385,7 +3373,7 @@ export const mxUtils = {
     // Disables block layout and outside wrapping and hides the div
     div.style.position = 'absolute';
     div.style.visibility = 'hidden';
-    div.style.display =  'inline-block';
+    div.style.display = 'inline-block';
     div.style.zoom = '1';
 
     if (textWidth != null) {

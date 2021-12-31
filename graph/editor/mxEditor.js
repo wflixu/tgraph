@@ -3,7 +3,12 @@
  * Copyright (c) 2006-2019, draw.io AG
  */
 
-import { mxResources } from "../index.js";
+import { mxCodec, mxEvent, mxEventSource, mxGraph, mxLayoutManager, mxResources, mxSwimlaneManager, mxUndoManager, mxUtils } from "../index.js";
+import { mxClient } from "../mxClient.js";
+import {mxDefaultPopupMenu} from './mxDefaultPopupMenu.js';
+import {mxDefaultToolbar} from './mxDefaultToolbar.js';
+import {mxDefaultKeyHandler} from './mxDefaultKeyHandler.js';
+
 
 /**
  * Class: mxEditor
@@ -349,7 +354,7 @@ import { mxResources } from "../index.js";
  * config - Optional XML node that contains the configuration.
  */
 
-function mxEditor(config)
+export function mxEditor(config)
 {
 	this.actions = [];
 	this.addActions();
@@ -390,7 +395,7 @@ function mxEditor(config)
  * Installs the required language resources at class
  * loading time.
  */
-if (mxLoadResources)
+if (window.mxLoadResources)
 {
 	mxResources.add(mxClient.basePath + '/resources/editor');
 }

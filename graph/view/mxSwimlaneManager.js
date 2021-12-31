@@ -3,7 +3,8 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxEventSource } from "../util/index.js";
+import { mxEventSource,mxUtils } from "../util/index.js";
+import { mxEvent } from "../index.js";
 
 /**
  * Class: mxSwimlaneManager

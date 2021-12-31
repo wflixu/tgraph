@@ -322,7 +322,7 @@ mxXmlRequest.prototype.send = function (onload, onerror, timeout, ontimeout) {
       this.request.withCredentials = 'true';
     }
 
-    this.request.timeout = timeout;
+    // this.request.timeout = timeout;
     this.request.ontimeout = ontimeout;
 
     this.request.send(this.params);

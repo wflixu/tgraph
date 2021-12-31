@@ -197,7 +197,7 @@
  * references.
  * mapping - Optional mapping from field- to attributenames.
  */
-function mxObjectCodec(template, exclude, idrefs, mapping)
+export function mxObjectCodec(template, exclude, idrefs, mapping)
 {
 	this.template = template;
 	

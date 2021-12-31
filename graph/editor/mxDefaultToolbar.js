@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxUtils } from "../index.js";
+import { mxEvent, mxToolbar, mxUtils } from "../index.js";
 
 /**
  * Class: mxDefaultToolbar
@@ -42,6 +42,8 @@ import { mxUtils } from "../index.js";
  * container - DOM node that contains the toolbar.
  * editor - Reference to the enclosing <mxEditor>.
  */
+
+
 export function mxDefaultToolbar(container, editor) {
   this.editor = editor;
 
