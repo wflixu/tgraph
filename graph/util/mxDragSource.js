@@ -347,12 +347,7 @@ mxDragSource.prototype.mouseDown = function(evt)
 		this.mouseMoveHandler = mxUtils.bind(this, this.mouseMove);
 		this.mouseUpHandler = mxUtils.bind(this, this.mouseUp);		
 		mxEvent.addGestureListeners(document, null, this.mouseMoveHandler, this.mouseUpHandler);
-		
-		if (mxClient.IS_TOUCH && !mxEvent.isMouseEvent(evt))
-		{
-			this.eventSource = mxEvent.getSource(evt);
-			mxEvent.addGestureListeners(this.eventSource, null, this.mouseMoveHandler, this.mouseUpHandler);
-		}
+	
 	}
 };
 

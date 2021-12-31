@@ -773,25 +773,19 @@ mxCellEditor.prototype.getBackgroundColor = function (state) {
  * of the SVG element is not absolute.
  */
 mxCellEditor.prototype.isLegacyEditor = function () {
-  if (mxClient.IS_VML) {
-    return true;
-  } else {
-    var absoluteRoot = false;
+  var absoluteRoot = false;
+  if (mxClient.IS_SVG) {
+    var root = this.graph.view.getDrawPane().ownerSVGElement;
 
-    if (mxClient.IS_SVG) {
-      var root = this.graph.view.getDrawPane().ownerSVGElement;
+    if (root != null) {
+      var css = mxUtils.getCurrentStyle(root);
 
-      if (root != null) {
-        var css = mxUtils.getCurrentStyle(root);
-
-        if (css != null) {
-          absoluteRoot = css.position == 'absolute';
-        }
+      if (css != null) {
+        absoluteRoot = css.position == 'absolute';
       }
     }
-
-    return !absoluteRoot;
   }
+  return !absoluteRoot;
 };
 
 /**

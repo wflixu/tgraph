@@ -150,23 +150,6 @@ export const mxEvent =
 			mxEvent.addListener(node, (mxClient.IS_POINTER) ? 'pointerup' : 'mouseup', endListener);
 		}
 		
-		if (!mxClient.IS_POINTER && mxClient.IS_TOUCH)
-		{
-			if (startListener != null)
-			{
-				mxEvent.addListener(node, 'touchstart', startListener);
-			}
-			
-			if (moveListener != null)
-			{
-				mxEvent.addListener(node, 'touchmove', moveListener);
-			}
-			
-			if (endListener != null)
-			{
-				mxEvent.addListener(node, 'touchend', endListener);
-			}
-		}
 	},
 	
 	/**
@@ -192,23 +175,6 @@ export const mxEvent =
 			mxEvent.removeListener(node, (mxClient.IS_POINTER) ? 'pointerup' : 'mouseup', endListener);
 		}
 		
-		if (!mxClient.IS_POINTER && mxClient.IS_TOUCH)
-		{
-			if (startListener != null)
-			{
-				mxEvent.removeListener(node, 'touchstart', startListener);
-			}
-			
-			if (moveListener != null)
-			{
-				mxEvent.removeListener(node, 'touchmove', moveListener);
-			}
-			
-			if (endListener != null)
-			{
-				mxEvent.removeListener(node, 'touchend', endListener);
-			}
-		}
 	},
 	
 	/**
@@ -371,7 +337,7 @@ export const mxEvent =
 	
 			target = target != null ? target : window;
 					
-			if (mxClient.IS_SF && !mxClient.IS_TOUCH)
+			if (mxClient.IS_SF)
 			{
 				var scale = 1;
 				

@@ -123,10 +123,6 @@ mxToolbar.prototype.addItem = function(title, icon, funct, pressedIcon, style, f
 	{
 		mxEvent.addListener(img, 'click', funct);
 		
-		if (mxClient.IS_TOUCH)
-		{
-			mxEvent.addListener(img, 'touchend', funct);
-		}
 	}
 
 	var mouseHandler = mxUtils.bind(this, function(evt)

@@ -704,28 +704,6 @@ mxGraphView.prototype.validateBackgroundImage = function () {
       this.backgroundImage.dialect = this.graph.dialect;
       this.backgroundImage.init(this.backgroundPane);
       this.backgroundImage.redraw();
-
-      // Workaround for ignored event on background in IE8 standards mode
-      if (document.documentMode == 8 && !mxClient.IS_EM) {
-        mxEvent.addGestureListeners(
-          this.backgroundImage.node,
-          mxUtils.bind(this, function (evt) {
-            this.graph.fireMouseEvent(
-              mxEvent.MOUSE_DOWN,
-              new mxMouseEvent(evt),
-            );
-          }),
-          mxUtils.bind(this, function (evt) {
-            this.graph.fireMouseEvent(
-              mxEvent.MOUSE_MOVE,
-              new mxMouseEvent(evt),
-            );
-          }),
-          mxUtils.bind(this, function (evt) {
-            this.graph.fireMouseEvent(mxEvent.MOUSE_UP, new mxMouseEvent(evt));
-          }),
-        );
-      }
     }
 
     this.redrawBackgroundImage(this.backgroundImage, bg);
@@ -2493,34 +2471,7 @@ mxGraphView.prototype.installListeners = function () {
   if (container != null) {
     // Support for touch device gestures (eg. pinch to zoom)
     // Double-tap handling is implemented in mxGraph.fireMouseEvent
-    if (mxClient.IS_TOUCH) {
-      mxEvent.addListener(
-        container,
-        'gesturestart',
-        mxUtils.bind(this, function (evt) {
-          graph.fireGestureEvent(evt);
-          mxEvent.consume(evt);
-        }),
-      );
-
-      mxEvent.addListener(
-        container,
-        'gesturechange',
-        mxUtils.bind(this, function (evt) {
-          graph.fireGestureEvent(evt);
-          mxEvent.consume(evt);
-        }),
-      );
-
-      mxEvent.addListener(
-        container,
-        'gestureend',
-        mxUtils.bind(this, function (evt) {
-          graph.fireGestureEvent(evt);
-          mxEvent.consume(evt);
-        }),
-      );
-    }
+    
 
     // Fires event only for one pointer per gesture
     var pointerId = null;
@@ -2574,19 +2525,6 @@ mxGraphView.prototype.installListeners = function () {
     // mouse for the move and up events are not detected.
     var getState = function (evt) {
       var state = null;
-
-      // Workaround for touch events which started on some DOM node
-      // on top of the container, in which case the cells under the
-      // mouse for the move and up events are not detected.
-      if (mxClient.IS_TOUCH) {
-        var x = mxEvent.getClientX(evt);
-        var y = mxEvent.getClientY(evt);
-
-        // Dispatches the drop event to the graph which
-        // consumes and executes the source function
-        var pt = mxUtils.convertPoint(container, x, y);
-        state = graph.view.getState(graph.getCellAt(pt.x, pt.y));
-      }
 
       return state;
     };

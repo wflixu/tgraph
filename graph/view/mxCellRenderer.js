@@ -479,7 +479,7 @@ mxCellRenderer.prototype.createLabel = function(state, value)
 		{
 			var result = state;
 
-			if (mxClient.IS_TOUCH || forceGetCell)
+			if ( forceGetCell)
 			{
 				var x = mxEvent.getClientX(evt);
 				var y = mxEvent.getClientY(evt);
@@ -663,15 +663,6 @@ mxCellRenderer.prototype.installCellOverlayListeners = function(state, overlay, 
 			graph.fireMouseEvent(mxEvent.MOUSE_MOVE,
 				new mxMouseEvent(evt, state));
 		});
-	
-	if (mxClient.IS_TOUCH)
-	{
-		mxEvent.addListener(shape.node, 'touchend', function (evt)
-		{
-			overlay.fireEvent(new mxEventObject(mxEvent.CLICK,
-					'event', evt, 'cell', state.cell));
-		});
-	}
 };
 
 /**
@@ -873,7 +864,7 @@ mxCellRenderer.prototype.installListeners = function(state)
 	{
 		var result = state;
 		
-		if ((graph.dialect != mxConstants.DIALECT_SVG && mxEvent.getSource(evt).nodeName == 'IMG') || mxClient.IS_TOUCH)
+		if ((graph.dialect != mxConstants.DIALECT_SVG && mxEvent.getSource(evt).nodeName == 'IMG') )
 		{
 			var x = mxEvent.getClientX(evt);
 			var y = mxEvent.getClientY(evt);

@@ -184,8 +184,7 @@ mxText.prototype.ignoreStringSize = false;
  * This is needed to make sure no clipping is applied to borders. Default is 4
  * for IE 8 standards mode and 3 for all others.
  */
-mxText.prototype.textWidthPadding =
-  document.documentMode == 8 && !mxClient.IS_EM ? 4 : 3;
+mxText.prototype.textWidthPadding = 3;
 
 /**
  * Variable: lastValue
@@ -218,7 +217,7 @@ mxText.prototype.isParseVml = function () {
  * true if the browser is not in IE8 standards mode.
  */
 mxText.prototype.isHtmlAllowed = function () {
-  return document.documentMode != 8 || mxClient.IS_EM;
+  return false;
 };
 
 /**
@@ -663,37 +662,7 @@ mxText.prototype.updateBoundingBox = function () {
 
         var sizeDiv = node;
 
-        if (document.documentMode == 8 && !mxClient.IS_EM) {
-          var w = Math.round(this.bounds.width / this.scale);
-
-          if (this.wrap && w > 0) {
-            node.style.wordWrap = mxConstants.WORD_WRAP;
-            node.style.whiteSpace = 'normal';
-
-            if (node.style.wordWrap != 'break-word') {
-              // Innermost DIV is used for measuring text
-              var divs = sizeDiv.getElementsByTagName('div');
-
-              if (divs.length > 0) {
-                sizeDiv = divs[divs.length - 1];
-              }
-
-              ow = sizeDiv.offsetWidth + 2;
-              divs = this.node.getElementsByTagName('div');
-
-              if (this.clipped) {
-                ow = Math.min(w, ow);
-              }
-
-              // Second last DIV width must be updated in DOM tree
-              if (divs.length > 1) {
-                divs[divs.length - 2].style.width = ow + 'px';
-              }
-            }
-          } else {
-            node.style.whiteSpace = 'nowrap';
-          }
-        } else if (
+        if (
           sizeDiv.firstChild != null &&
           sizeDiv.firstChild.nodeName == 'DIV'
         ) {
@@ -1243,8 +1212,6 @@ mxText.prototype.updateHtmlFilter = function () {
 
   // Workaround for rendering offsets
   var dy = 0;
-
-
 
   style.zoom = s;
   style.left = Math.round(this.bounds.x + left_fix - w / 2) + 'px';

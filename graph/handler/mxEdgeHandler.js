@@ -793,10 +793,6 @@ mxEdgeHandler.prototype.initBend = function (bend, dblClick) {
     null,
     dblClick,
   );
-
-  if (mxClient.IS_TOUCH) {
-    bend.node.setAttribute('pointer-events', 'none');
-  }
 };
 
 /**

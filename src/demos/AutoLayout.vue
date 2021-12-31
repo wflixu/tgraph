@@ -47,13 +47,6 @@ function main() {
       },
     );
 
-    if (!mxClient.IS_POINTER && mxClient.IS_TOUCH) {
-      mxEvent.addListener(shape.node, 'touchstart', function (evt) {
-        overlay.fireEvent(
-          new mxEventObject('pointerdown', 'event', evt, 'state', state),
-        );
-      });
-    }
   };
 
   // Creates the graph inside the given container

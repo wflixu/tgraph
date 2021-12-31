@@ -2,7 +2,7 @@
   <div>
     <h2>jsgraph 测试用例集合，为测试库的所有功能</h2> 
     <section>
-       开始吧！ <router-link to="/helloworld">HelloWorld</router-link>
+       开始吧！ <router-link to="/demos/helloworld">HelloWorld</router-link>
     </section>
   </div>
 </template>

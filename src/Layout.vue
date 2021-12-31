@@ -2,26 +2,30 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from '@vue/reactivity';
-import HelloWorld from './components/HelloWorld.vue';
-const demos = ref([HelloWorld]);
+import { useRouter } from 'vue-router';
+import {routes} from './routes';
+let router = useRouter();
+const onClick =  (item)=>{
+   console.log(item);
+   router.push(item.path);
+}
 
 
 </script>
 
 <template>
   <header class="header">
-    <button>demos</button>
-    <button>apps</button>
+    测试用例
   </header>
   <aside class="sidebar">
-    <ul>
-      <li v-for="demo in demos" :key="demo.name">
+    <ul class="router-list">
+      <li v-for="demo in routes[1].children" :key="demo.name" class="item" @click="onClick(demo)">
         {{demo.name}}
       </li>
     </ul>
   </aside>
   <section class="content">
-    <HelloWorld />
+    <router-view></router-view>
   </section>
 </template>
 
@@ -39,14 +43,27 @@ const demos = ref([HelloWorld]);
 }
 .header {
   height: 48px;
-  background-color: gainsboro;
   display: flex;
   align-items: center;
   grid-column-start: 1;
   grid-column-end: 3;
+  border:1px solid #ddd;
+  padding: 0 20px;
 }
 .sidebar {
+  border:1px solid #ddd;
   width: 300px;
-  background-color: gainsboro;
+  .router-list {
+    padding:10px;
+    .item {
+      border-bottom:1px solid #eee;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 </style>

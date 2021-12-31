@@ -33,14 +33,6 @@ export const mxClient = {
     navigator.userAgent != null && navigator.userAgent.indexOf('MSIE') >= 0,
 
   /**
-   * Variable: IS_IE6
-   *
-   * True if the current browser is Internet Explorer 6.x.
-   */
-  IS_IE6:
-    navigator.userAgent != null && navigator.userAgent.indexOf('MSIE 6') >= 0,
-
-  /**
    * Variable: IS_IE11
    *
    * True if the current browser is Internet Explorer 11.x.
@@ -54,25 +46,6 @@ export const mxClient = {
    * True if the current browser is Microsoft Edge.
    */
   IS_EDGE: navigator.userAgent != null && !!navigator.userAgent.match(/Edge\//),
-
-  /**
-   * Variable: IS_QUIRKS
-   *
-   * True if the current browser is Internet Explorer and it is in quirks mode.
-   */
-  IS_QUIRKS:
-    navigator.userAgent != null &&
-    navigator.userAgent.indexOf('MSIE') >= 0 &&
-    (document.documentMode == null || document.documentMode == 5),
-
-  /**
-   * Variable: IS_EM
-   *
-   * True if the browser is IE11 in enterprise mode (IE8 standards mode).
-   */
-  IS_EM:
-    'spellcheck' in document.createElement('textarea') &&
-    document.documentMode == 8,
 
   /**
    * Variable: VML_PREFIX
@@ -270,7 +243,7 @@ export const mxClient = {
    * Function: isBrowserSupported
    *
    * Returns true if the current browser is supported, that is, if
-   * <mxClient.IS_VML> or <mxClient.IS_SVG> is true.
+   *  <mxClient.IS_SVG> is true.
    *
    * Example:
    *
@@ -282,7 +255,7 @@ export const mxClient = {
    * (end)
    */
   isBrowserSupported: function () {
-    return mxClient.IS_VML || mxClient.IS_SVG;
+    return  mxClient.IS_SVG;
   },
 
   /**
@@ -308,30 +281,20 @@ export const mxClient = {
   link: function (rel, href, doc, id) {
     doc = doc || document;
 
-    // Workaround for Operation Aborted in IE6 if base tag is used in head
-    if (mxClient.IS_IE6) {
-      doc.write(
-        '<link rel="' +
-          rel +
-          '" href="' +
-          href +
-          '" charset="UTF-8" type="text/css"/>',
-      );
-    } else {
-      var link = doc.createElement('link');
+    var link = doc.createElement('link');
 
-      link.setAttribute('rel', rel);
-      link.setAttribute('href', href);
-      link.setAttribute('charset', 'UTF-8');
-      link.setAttribute('type', 'text/css');
+    link.setAttribute('rel', rel);
+    link.setAttribute('href', href);
+    link.setAttribute('charset', 'UTF-8');
+    link.setAttribute('type', 'text/css');
 
-      if (id) {
-        link.setAttribute('id', id);
-      }
-
-      var head = doc.getElementsByTagName('head')[0];
-      head.appendChild(link);
+    if (id) {
+      link.setAttribute('id', id);
     }
+
+    var head = doc.getElementsByTagName('head')[0];
+    head.appendChild(link);
+
   },
 
   /**

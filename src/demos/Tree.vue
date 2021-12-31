@@ -109,10 +109,6 @@ function main(container) {
   container.style.right = '0px';
   container.style.bottom = '0px';
 
-  if (mxClient.IS_IE) {
-    new mxDivResizer(container);
-  }
-
   document.body.appendChild(container);
 
   // Creates the graph inside the given container

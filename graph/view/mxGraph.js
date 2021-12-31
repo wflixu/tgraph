@@ -3111,7 +3111,7 @@ mxGraph.prototype.sizeDidChange = function () {
       this.doResizeContainer(width, height);
     }
 
-    if (this.preferPageSize || (!mxClient.IS_IE && this.pageVisible)) {
+    if (this.preferPageSize || (this.pageVisible)) {
       var size = this.getPreferredPageSize(
         bounds,
         Math.max(1, width),
@@ -12490,34 +12490,7 @@ mxGraph.prototype.isEventIgnored = function (evtName, me, sender) {
     me.getSource() != this.eventSource
   ) {
     result = true;
-  } else if (
-    mxClient.IS_TOUCH &&
-    evtName == mxEvent.MOUSE_DOWN &&
-    !mouseEvent &&
-    !mxEvent.isPenEvent(me.getEvent())
-  ) {
-    this.eventSource = me.getSource();
-
-    this.mouseMoveRedirect = mxUtils.bind(this, function (evt) {
-      this.fireMouseEvent(
-        mxEvent.MOUSE_MOVE,
-        new mxMouseEvent(evt, this.getStateForTouchEvent(evt)),
-      );
-    });
-    this.mouseUpRedirect = mxUtils.bind(this, function (evt) {
-      this.fireMouseEvent(
-        mxEvent.MOUSE_UP,
-        new mxMouseEvent(evt, this.getStateForTouchEvent(evt)),
-      );
-    });
-
-    mxEvent.addGestureListeners(
-      this.eventSource,
-      null,
-      this.mouseMoveRedirect,
-      this.mouseUpRedirect,
-    );
-  }
+  } 
 
   // Factored out the workarounds for FF to make it easier to override/remove
   // Note this method has side-effects!
@@ -12666,11 +12639,7 @@ mxGraph.prototype.fireMouseEvent = function (evtName, me, sender) {
   // two mouse ups, one of which without a cell but no mousedown for the second click which means we cannot
   // detect which mouseup(s) are part of the first click, ie we do not know when the first click ends.
   if (
-    (!this.nativeDblClickEnabled && !mxEvent.isPopupTrigger(me.getEvent())) ||
-    (this.doubleTapEnabled &&
-      mxClient.IS_TOUCH &&
-      (mxEvent.isTouchEvent(me.getEvent()) ||
-        mxEvent.isPenEvent(me.getEvent())))
+    (!this.nativeDblClickEnabled && !mxEvent.isPopupTrigger(me.getEvent())) 
   ) {
     var currentTime = new Date().getTime();
 
@@ -12764,8 +12733,6 @@ mxGraph.prototype.fireMouseEvent = function (evtName, me, sender) {
       mxClient.IS_OP ||
       mxClient.IS_SF ||
       mxClient.IS_GC ||
-      mxClient.IS_IE11 ||
-      (mxClient.IS_IE && mxClient.IS_SVG) ||
       me.getEvent().target != this.container
     ) {
       if (

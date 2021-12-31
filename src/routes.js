@@ -26,7 +26,7 @@ import UIConfigVue from './demos/UIConfig.vue';
 import TreeVue from './demos/Tree.vue';
 import ThreadVue from './demos/Thread.vue';
 import TemplateVue from './demos/Template.vue';
-
+import LayoutVue from './Layout.vue';
 
 const demos = [
   TemplateVue,
@@ -60,9 +60,22 @@ const demos = [
   let name = item.__file.split('/').pop().split('.')[0];
   return {
     name,
-    path: `/${name}`,
+    path: `/demos/${name}`,
     component: item,
   };
 });
 
-export const routes = [{ path: '/', component: Home, name: 'Home' }, ...demos];
+import EditorVue from './page/Editor.vue';
+
+export const routes = [
+  { path: '/', component: Home, name: 'Home' },
+  {
+    path: '/demos',
+    component:LayoutVue,
+    children: [...demos],
+  },
+  {
+    path:'/editor',
+    component:EditorVue
+  }
+];
