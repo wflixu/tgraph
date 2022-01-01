@@ -1,20 +1,17 @@
 {
-  "name": "tgraph",
-  "private":"true",
+  "name": "thgraph",
   "version": "0.0.7",
   "description": "a graph editor render with svg base from mxgraph",
-  "workspaces": [
-    "packages/*"
-  ],
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "lerna exec --scope demos yarn dev",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "test": "jest",
-    "do":"node script/append.mjs"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

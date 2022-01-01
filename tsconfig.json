@@ -22,7 +22,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src",
+    "packages/demos/src",
     "./graph"
   ]
 }
