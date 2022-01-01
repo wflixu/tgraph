@@ -1,8 +1,4 @@
 /**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
-/**
  * Class: mxGenericChangeCodec
  *
  * Codec for <mxValueChange>s, <mxStyleChange>s, <mxGeometryChange>s,
@@ -18,7 +14,7 @@
  * Reference Fields:
  *
  * - cell
- * 
+ *
  * Constructor: mxGenericChangeCodec
  *
  * Factory function that creates a <mxObjectCodec> for
@@ -29,36 +25,54 @@
  * obj - An instance of the change object.
  * variable - The fieldname for the change data.
  */
-var mxGenericChangeCodec = function(obj, variable)
-{
-	var codec = new mxObjectCodec(obj,  ['model', 'previous'], ['cell']);
 
-	/**
-	 * Function: afterDecode
-	 *
-	 * Restores the state by assigning the previous value.
-	 */
-	codec.afterDecode = function(dec, node, obj)
-	{
-		// Allows forward references in sessions. This is a workaround
-		// for the sequence of edits in mxGraph.moveCells and cellsAdded.
-		if (mxUtils.isNode(obj.cell))
-		{
-			obj.cell = dec.decodeCell(obj.cell, false);
-		}
+import {
+  mxValueChange,
+  mxStyleChange,
+  mxGeometryChange,
+  mxCollapseChange,
+  mxVisibleChange,
+  mxCellAttributeChange,
+} from '../model/mxGraphModel.js';
+import { mxCodecRegistry } from './mxCodecRegistry.js';
+import { mxObjectCodec } from './mxObjectCodec.js';
+import { mxUtils } from './../util/mxUtils.js';
 
-		obj.previous = obj[variable];
+var mxGenericChangeCodec = function (obj, variable) {
+  var codec = new mxObjectCodec(obj, ['model', 'previous'], ['cell']);
 
-		return obj;
-	};
-	
-	return codec;
+  /**
+   * Function: afterDecode
+   *
+   * Restores the state by assigning the previous value.
+   */
+  codec.afterDecode = function (dec, node, obj) {
+    // Allows forward references in sessions. This is a workaround
+    // for the sequence of edits in mxGraph.moveCells and cellsAdded.
+    if (mxUtils.isNode(obj.cell)) {
+      obj.cell = dec.decodeCell(obj.cell, false);
+    }
+
+    obj.previous = obj[variable];
+
+    return obj;
+  };
+
+  return codec;
 };
 
 // Registers the codecs
 mxCodecRegistry.register(mxGenericChangeCodec(new mxValueChange(), 'value'));
 mxCodecRegistry.register(mxGenericChangeCodec(new mxStyleChange(), 'style'));
-mxCodecRegistry.register(mxGenericChangeCodec(new mxGeometryChange(), 'geometry'));
-mxCodecRegistry.register(mxGenericChangeCodec(new mxCollapseChange(), 'collapsed'));
-mxCodecRegistry.register(mxGenericChangeCodec(new mxVisibleChange(), 'visible'));
-mxCodecRegistry.register(mxGenericChangeCodec(new mxCellAttributeChange(), 'value'));
+mxCodecRegistry.register(
+  mxGenericChangeCodec(new mxGeometryChange(), 'geometry'),
+);
+mxCodecRegistry.register(
+  mxGenericChangeCodec(new mxCollapseChange(), 'collapsed'),
+);
+mxCodecRegistry.register(
+  mxGenericChangeCodec(new mxVisibleChange(), 'visible'),
+);
+mxCodecRegistry.register(
+  mxGenericChangeCodec(new mxCellAttributeChange(), 'value'),
+);
