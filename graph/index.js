@@ -259,3 +259,4 @@ export {
   mxGraphLayout,
   mxClient,
 };
+console.log(index.js)

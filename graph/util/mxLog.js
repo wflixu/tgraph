@@ -2,11 +2,6 @@ import { mxEvent, mxUtils, mxWindow } from "./index.js";
 import { mxClient } from "../index.js";
 
 
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
-
 export const  mxLog =
 {
 	/**

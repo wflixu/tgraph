@@ -13,6 +13,8 @@ import { mxCell } from './mxCell.js';
 import { mxCellPath } from './mxCellPath.js';
 import { mxGeometry } from './mxGeometry.js';
 
+console.warn('thgrpah--model')
+
 export {
   mxGeometry,
   mxCellPath,
@@ -27,3 +29,5 @@ export {
   mxVisibleChange,
   mxCellAttributeChange
 };
+
+
