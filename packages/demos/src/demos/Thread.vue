@@ -18,7 +18,7 @@ import {
   mxLayoutManager,
   mxRectangle,
   mxPoint,
-} from '../../graph/index';
+} from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');

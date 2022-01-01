@@ -3,18 +3,13 @@
 import { ref, onMounted } from 'vue';
 
 import {
-  mxCellRenderer,
   mxEvent,
   mxGraph,
   mxGraphHandler,
-  mxCellOverlay,
-  mxImage,
-  mxHierarchicalLayout,
-  mxEdgeHandler,
-  mxMorphing,
+  mxRubberband
 } from 'thgraph';
 
-import { mxRubberband } from '../../graph/handler/mxRubberband';
+
 
 /**
  * Redirects start drag to parent.

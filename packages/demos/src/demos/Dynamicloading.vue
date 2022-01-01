@@ -3,39 +3,15 @@
 import { ref, onMounted } from 'vue';
 
 import {
-  mxCellRenderer,
   mxEvent,
   mxGraph,
-  mxVertexHandler,
-  mxGraphHandler,
-  mxCellOverlay,
-  mxImage,
-  mxHierarchicalLayout,
-  mxEdgeHandler,
-  mxMorphing,
   mxUtils,
-  mxImageShape,
-  mxGuide,
-  mxDragSource,
-  mxCell,
-  mxGeometry,
   mxText,
   mxPerimeter,
+  mxConstants,
+  mxCodec
 } from 'thgraph';
-import { mxClient } from './../../graph/mxClient';
-import { mxRubberband } from '../../graph/handler/mxRubberband';
-import { mxEventObject } from '../../graph/util/mxEventObject';
-import { mxConstants } from '../../graph/util/mxConstants';
-import forbiddenPng from './../assets/images/forbidden.png';
-import grid from './../assets/images/grid.gif';
-import gear from './../assets/images/gear.png';
-import delete2 from './../assets/images/delete2.png';
-import { mxPoint } from '../../graph/util/mxPoint';
-import { mxCylinder } from '../../graph/shape/mxCylinder';
-import { mxClipboard } from '../../graph/util/mxClipboard';
-import { mxCodec } from '../../graph/io/mxCodec';
-import { mxGraphModel } from '../../graph/model/mxGraphModel';
-import { mxRectangle } from '../../graph/util/mxRectangle';
+
 
 let requestId = 0;
 

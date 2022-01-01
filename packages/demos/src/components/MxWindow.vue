@@ -2,10 +2,10 @@
 
 <script setup>
 import { ref, onMounted, defineProps, reactive } from 'vue';
-import closeGif from './../assets/close.gif';
-import minimizeGif from './../assets/minimize.gif';
-import maximizeGif from './../assets/maximize.gif';
-import normalizeGif from './../assets/normalize.gif';
+// import closeGif from './../assets/close.gif';
+// import minimizeGif from './../assets/minimize.gif';
+// import maximizeGif from './../assets/maximize.gif';
+// import normalizeGif from './../assets/normalize.gif';
 
 const props = defineProps({
   title: {

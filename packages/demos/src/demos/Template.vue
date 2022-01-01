@@ -21,7 +21,7 @@ import {
   mxPoint,
   mxUtils,
   mxCodec,
-} from '../../graph/index';
+} from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');

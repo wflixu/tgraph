@@ -3,32 +3,19 @@
 import { ref, onMounted } from 'vue';
 
 import {
-  mxCellRenderer,
   mxEvent,
   mxGraph,
   mxVertexHandler,
-  mxGraphHandler,
-  mxCellOverlay,
-  mxImage,
-  mxHierarchicalLayout,
-  mxEdgeHandler,
-  mxMorphing,
-  mxUtils
+  mxClient,
+  mxUtils,
+  mxRubberband,
 } from 'thgraph';
-import { mxClient } from './../../graph/mxClient';
-import { mxRubberband } from '../../graph/handler/mxRubberband';
-import { mxEventObject } from '../../graph/util/mxEventObject';
-import { mxConstants } from '../../graph/util/mxConstants';
+
 import fit_to_size from './../assets/images/fit_to_size.png';
 import plus from './../assets/images/plus.png';
 import check from './../assets/images/check.png';
 import delete2 from './../assets/images/delete2.png';
-import { mxPoint } from '../../graph/util/mxPoint';
-import { mxCylinder } from '../../graph/shape/mxCylinder';
-import { mxClipboard } from '../../graph/util/mxClipboard';
-import { mxCodec } from '../../graph/io/mxCodec';
-import { mxGraphModel } from '../../graph/model/mxGraphModel';
-import { mxRectangle } from '../../graph/util/mxRectangle';
+
 
 // Defines a subclass for mxVertexHandler that adds a set of clickable
 // icons to every selected vertex.

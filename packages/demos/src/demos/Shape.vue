@@ -11,15 +11,11 @@ import {
   mxHierarchicalLayout,
   mxEdgeHandler,
   mxMorphing,
+  mxConstants,
+  mxUtils,
+  mxCylinder
 } from 'thgraph';
-import { mxClient } from './../../graph/mxClient';
-import { mxRubberband } from '../../graph/handler/mxRubberband';
-import { mxEventObject } from '../../graph/util/mxEventObject';
-import { mxConstants } from '../../graph/util/mxConstants';
-import addPng from './../assets/images/add.png';
-import { mxUtils } from '../../graph/util/mxUtils';
-import { mxPoint } from '../../graph/util/mxPoint';
-import { mxCylinder } from '../../graph/shape/mxCylinder';
+
 
 
 /*

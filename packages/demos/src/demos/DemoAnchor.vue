@@ -1,14 +1,17 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { mxRubberband } from '../../graph/handler/mxRubberband';
-import { mxPolyline } from '../../graph/shape/mxPolyline';
-import { mxShape } from '../../graph/shape/mxShape';
-import { mxPoint } from '../../graph/util/mxPoint';
-import { mxConnectionConstraint } from '../../graph/view/mxConnectionConstraint';
+import {
+  mxRubberband ,
+  mxPolyline,
+  mxShape,
+  mxPoint,
+  mxConnectionConstraint,
+  mxEvent,
+  mxGraph
+} from 'thgraph';
 
-import { mxEvent } from './../../graph/util/mxEvent';
-import { mxGraph } from '../../graph/view/mxGraph';
+
 
 
 onMounted(() => {

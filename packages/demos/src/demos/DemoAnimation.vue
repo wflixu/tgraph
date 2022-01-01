@@ -2,8 +2,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import { mxGraph } from '../../graph/view/mxGraph';
-import { mxPoint } from '../../graph/util/mxPoint';
+import { mxGraph, mxPoint } from 'thgraph';
 
 
 onMounted(() => {

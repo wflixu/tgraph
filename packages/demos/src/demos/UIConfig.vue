@@ -10,7 +10,7 @@ import {
   mxObjectCodec,
   mxEditor,
   mxDefaultToolbar
-} from '../../graph/index';
+} from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');

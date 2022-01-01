@@ -6,10 +6,10 @@ import {
   mxEvent,
   mxGraph,
   mxUtils,
+  mxKeyHandler
 } from 'thgraph';
 
 
-import { mxKeyHandler } from '../../graph/handler/mxKeyHandler';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');

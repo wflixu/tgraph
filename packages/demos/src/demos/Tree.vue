@@ -19,7 +19,7 @@ import {
   mxRectangle,
   mxPoint,
   
-} from '../../graph/index';
+} from 'thgraph';
 
 /*Defines a custom shape for the tree node that includes the
 			upper half of the outgoing edge(s).

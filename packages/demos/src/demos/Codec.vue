@@ -3,26 +3,12 @@
 import { ref, onMounted } from 'vue';
 
 import {
-  mxCellRenderer,
   mxEvent,
   mxGraph,
-  mxCellOverlay,
-  mxImage,
-  mxHierarchicalLayout,
-  mxEdgeHandler,
-  mxMorphing,
+  mxConstants,
+  mxUtils,
+  mxCodec,
 } from 'thgraph';
-import { mxClient } from './../../graph/mxClient';
-import { mxRubberband } from '../../graph/handler/mxRubberband';
-import { mxEventObject } from '../../graph/util/mxEventObject';
-import { mxConstants } from '../../graph/util/mxConstants';
-import addPng from './../assets/images/add.png';
-import { mxUtils } from '../../graph/util/mxUtils';
-import { mxPoint } from '../../graph/util/mxPoint';
-import { mxCylinder } from '../../graph/shape/mxCylinder';
-import { mxClipboard } from '../../graph/util/mxClipboard';
-import { mxCodec } from '../../graph/io/mxCodec';
-import { mxGraphModel } from '../../graph/model/mxGraphModel';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
