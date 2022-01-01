@@ -1,11 +1,12 @@
 
 
 <script setup>
-import { ref, onMounted, defineProps, reactive } from 'vue';
-// import closeGif from './../assets/close.gif';
-// import minimizeGif from './../assets/minimize.gif';
-// import maximizeGif from './../assets/maximize.gif';
-// import normalizeGif from './../assets/normalize.gif';
+import { ref, onMounted, reactive, watch } from 'vue';
+import closeGif from './../assets/images/close.gif';
+import minimizeGif from './../assets/images/minimize.gif';
+import maximizeGif from './../assets/images/maximize.gif';
+import normalizeGif from './../assets/images/normalize.gif';
+import { useMouseInElement, useMouse } from '@vueuse/core';
 
 const props = defineProps({
   title: {
@@ -16,49 +17,71 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  // x: {
+  //   type:Number,
+  //   default: 200,
+  // },
+  // y: {
+  //   type:Number,
+  //   default: 200,
+  // },
+  // width: {
+  //   type:Number,
+  //   default: 600,
+  // },
+  // height: {
+  //   type:Number,
+  //   default: 400,
+  // },
 });
 
-const css = {
+const sheet = reactive({
   left: '50%',
   top: '50%',
   color: 'red',
-};
-const cl = ref('red');
+});
+
 const mxwin = ref();
 const moving = ref(false);
-const onMove = (evt) => {
-  if (!moving.value) {
-    return;
-  }
-  const { clientX, clientY,x,y } = evt;
-  css.left = clientX;
-  css.top = clientY;
-  // mxwin.value.style.left = clientX;
-  
-  console.log(mxwin.value.style, clientX, clientY,x,y);
-};
+const pos = reactive({
+   offsetX:0,
+   offsetY:0,
+})
 const onMouseDown = (evt) => {
+  pos.offsetX  = evt.offsetX;
+  pos.offsetY = evt.offsetY;
   moving.value = true;
 };
 const onMouseup = (evt) => {
   moving.value = false;
 };
+const { x, y, isOutside, elementX, elementY } = useMouseInElement(mxwin);
 
-onMounted(() => {
-  console.log(css);
+watch([x, y], () => {
+  if (moving.value && mxwin.value) {
+    let left = x.value - pos.offsetX + 'px';
+    let top = y.value - pos.offsetY + 'px';
+
+    mxwin.value?.style.left = left;
+    mxwin.value?.style.top = top;
+  }
 });
+
+// onMounted(() => {
+//   mxwin.value?.style.width = props.width + 'px';
+//   mxwin.value?.style.height =  props.height +'px';
+// });
 </script>
 
 <template>
   <teleport to="body">
     <div class="mx-window" ref="mxwin">
-      <div class="mx-window-header">
-        <div
-          class="mx-window-header-title"
-          @mousedown="onMouseDown"
-          @mouseup="onMouseup"
-          @mousemove="onMove"
-        >
+      <div
+        class="mx-window-header"
+        @mousedown="onMouseDown"
+        @mouseup="onMouseup"
+      >
+        <div class="mx-window-header-title">
           {{ props.title }}
         </div>
         <div class="mx-window-header-actions">
@@ -79,16 +102,15 @@ onMounted(() => {
 body {
   --mxleft: v-bind(css.left);
 }
-   
+
 .mx-window {
   box-shadow: 3px 3px 12px #c0c0c0;
   background: url(data:image/gif;base64,R0lGODlhGgAUAIAAAOzs7PDw8CH5BAAAAAAALAAAAAAaABQAAAIijI+py70Ao5y02lud3lzhD4ZUR5aPiKajyZbqq7YyB9dhAQA7);
   border: 1px solid #c3c3c3;
   position: fixed;
-
-  top:  v-bind('css.top');
-  left: v-bind('css.left');
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  // transform: translate(-50%, -50%);
   overflow: hidden;
   z-index: 1;
   width: 600px;
@@ -106,7 +128,7 @@ body {
       align-items: center;
       cursor: move;
       user-select: none;
-      color: v-bind('cl');
+      color: v-bind('sheet.color');
     }
     .mx-window-header-actions {
       img {
