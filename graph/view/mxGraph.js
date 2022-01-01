@@ -48,9 +48,10 @@ import {
 
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import {mxCellOverlay} from './mxCellOverlay.js'
-import warning from './../assets/warning.png';
-import expandedGif from './../assets/expand.gif';
-import collapsedGif from './../assets/collapse.gif';
+
+const  warning  =  '/graph/assets/warning.png';
+const  expandedGif  =  '/graph/assets/expand.gif';
+const  collapsedGif  =  '/graph/assets/collapse.gif';
 /**
  * Class: mxGraph
  *

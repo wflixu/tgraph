@@ -1,4 +1,3 @@
-
 export const mxClient = {
   /**
    * Class: mxClient
@@ -19,13 +18,14 @@ export const mxClient = {
    * Current version is 4.2.2.
    */
   VERSION: '4.2.2',
-
+  imageBasePath: '/graph/assets/',
   /**
    * Variable: IS_IE
    *
    * True if the current browser is Internet Explorer 10 or below. Use <mxClient.IS_IE11>
    * to detect IE 11.
    */
+
   IS_IE:
     navigator.userAgent != null && navigator.userAgent.indexOf('MSIE') >= 0,
 
@@ -252,7 +252,7 @@ export const mxClient = {
    * (end)
    */
   isBrowserSupported: function () {
-    return  mxClient.IS_SVG;
+    return mxClient.IS_SVG;
   },
 
   /**
@@ -291,7 +291,6 @@ export const mxClient = {
 
     var head = doc.getElementsByTagName('head')[0];
     head.appendChild(link);
-
   },
 
   /**
