@@ -1,76 +1,74 @@
 
 
-<script setup>
-import { ref, onMounted, reactive, watch } from 'vue';
+<script >
+import { ref, onMounted, defineProps, reactive, watch } from 'vue';
 import closeGif from './../assets/images/close.gif';
 import minimizeGif from './../assets/images/minimize.gif';
 import maximizeGif from './../assets/images/maximize.gif';
 import normalizeGif from './../assets/images/normalize.gif';
 import { useMouseInElement, useMouse } from '@vueuse/core';
-
-const props = defineProps({
-  title: {
-    type: String,
-    default: '窗口',
+export default {
+  props: {
+    title: {
+      type: String,
+      default: '窗口',
+    },
+    minimizable: {
+      type: Boolean,
+      default: true,
+    }
   },
-  minimizable: {
-    type: Boolean,
-    default: true,
+  data() {},
+  setup() {
+    
+
+    const mxwin = ref();
+
+    const moving = ref(false);
+
+    const pos = reactive({
+      offsetX: 0,
+      offsetY: 0,
+    });
+
+    const onMouseDown = (evt) => {
+      pos.offsetX = evt.offsetX;
+      pos.offsetY = evt.offsetY;
+      moving.value = true;
+    };
+    const onMouseup = (evt) => {
+      moving.value = false;
+    };
+    // const { x, y } = useMouseInElement(mxwin);
+
+    // watchEffect(() => {
+    //   if (moving.value && mxwin.value) {
+    //     let left = x.value - pos.offsetX + 'px';
+    //     let top = y.value - pos.offsetY + 'px';
+
+    //     mxwin.value.style = {
+    //       left,
+    //       top,
+    //     };
+    //   }
+    // });
+    // watch([x, y, pos, mxwin], () => {
+
+    // });
+
+    // onMounted(() => {
+    //   mxwin.value?.style.width = props.width + 'px';
+    //   mxwin.value?.style.height =  props.height +'px';
+    // });
+
+    return {
+      mxwin,
+      onMouseup,
+      onMouseDown
+
+    }
   },
-  // x: {
-  //   type:Number,
-  //   default: 200,
-  // },
-  // y: {
-  //   type:Number,
-  //   default: 200,
-  // },
-  // width: {
-  //   type:Number,
-  //   default: 600,
-  // },
-  // height: {
-  //   type:Number,
-  //   default: 400,
-  // },
-});
-
-const sheet = reactive({
-  left: '50%',
-  top: '50%',
-  color: 'red',
-});
-
-const mxwin = ref();
-const moving = ref(false);
-const pos = reactive({
-   offsetX:0,
-   offsetY:0,
-})
-const onMouseDown = (evt) => {
-  pos.offsetX  = evt.offsetX;
-  pos.offsetY = evt.offsetY;
-  moving.value = true;
-};
-const onMouseup = (evt) => {
-  moving.value = false;
-};
-const { x, y, isOutside, elementX, elementY } = useMouseInElement(mxwin);
-
-watch([x, y], () => {
-  if (moving.value && mxwin.value) {
-    let left = x.value - pos.offsetX + 'px';
-    let top = y.value - pos.offsetY + 'px';
-
-    mxwin.value?.style.left = left;
-    mxwin.value?.style.top = top;
-  }
-});
-
-// onMounted(() => {
-//   mxwin.value?.style.width = props.width + 'px';
-//   mxwin.value?.style.height =  props.height +'px';
-// });
+}
 </script>
 
 <template>
@@ -82,7 +80,7 @@ watch([x, y], () => {
         @mouseup="onMouseup"
       >
         <div class="mx-window-header-title">
-          {{ props.title }}
+          {{ title }}
         </div>
         <div class="mx-window-header-actions">
           <img :src="maximizeGif" alt="" class="action" />
@@ -128,7 +126,6 @@ body {
       align-items: center;
       cursor: move;
       user-select: none;
-      color: v-bind('sheet.color');
     }
     .mx-window-header-actions {
       img {
