@@ -34,3 +34,4 @@ mxHexagon.prototype.redrawPath = function(c, x, y, w, h)
 	this.addPoints(c, [new mxPoint(0.25 * w, 0), new mxPoint(0.75 * w, 0), new mxPoint(w, 0.5 * h), new mxPoint(0.75 * w, h),
 	                   new mxPoint(0.25 * w, h), new mxPoint(0, 0.5 * h)], this.isRounded, arcSize, true);
 };
+console.log('graph/shape/mxHexagon.js');

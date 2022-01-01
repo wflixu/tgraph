@@ -64,3 +64,4 @@ codec.decodeRoot = function (dec, root, model) {
 };
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxModelCodec.js');

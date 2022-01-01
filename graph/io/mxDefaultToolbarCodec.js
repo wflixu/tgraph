@@ -291,3 +291,4 @@ const mxDefaultToolbarCodec = mxCodecRegistry.register(codec);
  * may contain user input
  */
 mxDefaultToolbarCodec.allowEval = true;
+console.log('graph/io/mxDefaultToolbarCodec.js');

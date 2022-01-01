@@ -204,3 +204,4 @@ export const  mxMarker =
 	mxMarker.addMarker('diamond', diamond);
 	mxMarker.addMarker('diamondThin', diamond);
 })();
+console.log('graph/shape/mxMarker.js');

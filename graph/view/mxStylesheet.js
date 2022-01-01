@@ -266,3 +266,4 @@ mxStylesheet.prototype.getCellStyle = function(name, defaultStyle)
 
 	return style;
 };
+console.log('graph/view/mxStylesheet.js');

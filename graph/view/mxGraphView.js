@@ -2872,3 +2872,4 @@ mxCurrentRootChange.prototype.execute = function () {
   );
   this.isUp = !this.isUp;
 };
+console.log('graph/view/mxGraphView.js');

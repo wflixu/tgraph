@@ -181,3 +181,4 @@ mxImageExport.prototype.drawOverlays = function(state, canvas)
 	}
 };
 
+console.log('graph/util/mxImageExport.js');

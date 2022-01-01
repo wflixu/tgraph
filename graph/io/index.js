@@ -23,3 +23,4 @@ export {
     mxCodec,
     mxCodecRegistry,
 }
+;console.log('graph/io/index.js');

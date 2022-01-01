@@ -121,3 +121,4 @@ export const mxCodecRegistry = {
     return codec;
   },
 };
+console.log('graph/io/mxCodecRegistry.js');

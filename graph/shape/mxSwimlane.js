@@ -445,3 +445,4 @@ mxSwimlane.prototype.getImageBounds = function (x, y, w, h) {
 		return new mxRectangle(x, y, this.imageSize, this.imageSize);
 	}
 };
+console.log('graph/shape/mxSwimlane.js');

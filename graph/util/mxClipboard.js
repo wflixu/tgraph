@@ -216,3 +216,4 @@ export const mxClipboard =
 	}
 
 };
+console.log('graph/util/mxClipboard.js');

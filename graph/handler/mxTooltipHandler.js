@@ -353,3 +353,4 @@ mxTooltipHandler.prototype.destroy = function()
 		this.div = null;
 	}
 };
+console.log('graph/handler/mxTooltipHandler.js');

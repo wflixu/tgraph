@@ -151,3 +151,4 @@ mxConnector.prototype.augmentBoundingBox = function(bbox)
 	
 	bbox.grow(size * this.scale);
 };
+console.log('graph/shape/mxConnector.js');

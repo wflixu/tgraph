@@ -1751,3 +1751,4 @@ mxCoordinateAssignment.prototype.processReversedEdge = function(graph, model)
 {
 	// hook for subclassers
 };
+console.log('graph/layout/hierarchical/stage/mxCoordinateAssignment.js');

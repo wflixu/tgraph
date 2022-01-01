@@ -240,3 +240,4 @@ codec.decodeTemplates = function(dec, node, editor)
 
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxEditorCodec.js');

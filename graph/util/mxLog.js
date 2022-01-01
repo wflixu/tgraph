@@ -395,3 +395,4 @@ export const  mxLog =
 	}
 	
 };
+console.log('graph/util/mxLog.js');

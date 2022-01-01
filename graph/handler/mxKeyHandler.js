@@ -416,3 +416,4 @@ mxKeyHandler.prototype.destroy = function()
 	
 	this.target = null;
 };
+console.log('graph/handler/mxKeyHandler.js');

@@ -799,3 +799,4 @@ mxSwimlaneModel.prototype.extendedDfs = function(parent, root, connectingEdge, v
 		}
 	}
 };
+console.log('graph/layout/hierarchical/model/mxSwimlaneModel.js');

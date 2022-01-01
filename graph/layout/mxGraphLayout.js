@@ -591,3 +591,4 @@ WeightedCellSorter.prototype.compare = function(a, b)
 		return 0;
 	}
 };
+console.log('graph/layout/mxGraphLayout.js');

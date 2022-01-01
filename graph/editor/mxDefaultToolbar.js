@@ -528,3 +528,4 @@ mxDefaultToolbar.prototype.destroy = function () {
     this.toolbar = null;
   }
 };
+console.log('graph/editor/mxDefaultToolbar.js');

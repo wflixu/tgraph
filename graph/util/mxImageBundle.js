@@ -101,3 +101,4 @@ mxImageBundle.prototype.getImage = function(key)
 	
 	return result;
 };
+console.log('graph/util/mxImageBundle.js');

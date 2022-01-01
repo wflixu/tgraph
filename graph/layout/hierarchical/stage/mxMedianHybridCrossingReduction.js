@@ -627,3 +627,4 @@ MedianCellSorter.prototype.compare = function (a, b) {
     return 0;
   }
 };
+console.log('graph/layout/hierarchical/stage/mxMedianHybridCrossingReduction.js');

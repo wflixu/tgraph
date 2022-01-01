@@ -2081,3 +2081,4 @@ mxSvgCanvas2D.prototype.fill = function () {
 mxSvgCanvas2D.prototype.fillAndStroke = function () {
   this.addNode(true, true);
 };
+console.log('graph/util/mxSvgCanvas2D.js');

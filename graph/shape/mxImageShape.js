@@ -242,3 +242,4 @@ mxImageShape.prototype.redrawHtmlShape = function()
 		this.setTransparentBackgroundImage(this.node);
 	}
 };
+console.log('graph/shape/mxImageShape.js');

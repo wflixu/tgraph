@@ -680,3 +680,4 @@ mxGraphHierarchyModel.prototype.extendedDfs = function(parent, root, connectingE
 		}
 	}
 };
+console.log('graph/layout/hierarchical/model/mxGraphHierarchyModel.js');

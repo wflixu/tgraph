@@ -763,3 +763,4 @@ mxOutline.prototype.destroy = function()
 		this.sizer = null;
 	}
 };
+console.log('graph/view/mxOutline.js');

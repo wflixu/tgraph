@@ -97,3 +97,4 @@ mxAnimation.prototype.stopAnimation = function()
 		this.fireEvent(new mxEventObject(mxEvent.DONE));
 	}
 };
+console.log('graph/util/mxAnimation.js');

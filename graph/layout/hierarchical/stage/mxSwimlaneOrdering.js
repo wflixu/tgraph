@@ -93,3 +93,4 @@ mxSwimlaneOrdering.prototype.execute = function(parent)
 		delete unseenNodes[cellId];
 	}, rootsArray, true, null);
 };
+console.log('graph/layout/hierarchical/stage/mxSwimlaneOrdering.js');

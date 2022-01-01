@@ -602,3 +602,4 @@ mxStackLayout.prototype.updateParentGeometry = function(parent, pgeo, last)
 		model.setGeometry(parent, pgeo2);
 	}
 };
+console.log('graph/layout/mxStackLayout.js');

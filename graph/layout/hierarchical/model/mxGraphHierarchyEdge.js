@@ -188,3 +188,4 @@ mxGraphHierarchyEdge.prototype.getCoreCell = function()
 	
 	return null;
 };
+console.log('graph/layout/hierarchical/model/mxGraphHierarchyEdge.js');

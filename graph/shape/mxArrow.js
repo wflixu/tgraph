@@ -116,3 +116,4 @@ mxArrow.prototype.paintEdgeShape = function(c, pts)
 
 	c.fillAndStroke();
 };
+console.log('graph/shape/mxArrow.js');

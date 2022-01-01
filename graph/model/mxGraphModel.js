@@ -2713,3 +2713,4 @@ mxCellAttributeChange.prototype.execute = function()
 		this.previous = tmp;
 	}
 };
+console.log('graph/model/mxGraphModel.js');

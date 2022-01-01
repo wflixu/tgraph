@@ -38,3 +38,5 @@ export {
     mxGraphView,
     mxConnectionConstraint
 }
+
+;console.log('graph/view/index.js');

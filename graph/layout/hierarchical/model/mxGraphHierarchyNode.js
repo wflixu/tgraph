@@ -207,3 +207,4 @@ mxGraphHierarchyNode.prototype.isAncestor = function (otherNode) {
 mxGraphHierarchyNode.prototype.getCoreCell = function () {
   return this.cell;
 };
+console.log('graph/layout/hierarchical/model/mxGraphHierarchyNode.js');

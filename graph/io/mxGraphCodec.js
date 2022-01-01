@@ -30,3 +30,4 @@ const codec = new mxObjectCodec(new mxGraph(), [
 ]);
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxGraphCodec.js');

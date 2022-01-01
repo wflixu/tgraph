@@ -1656,3 +1656,4 @@ mxCellRenderer.prototype.destroy = function(state)
 		state.shape = null;
 	}
 };
+console.log('graph/view/mxCellRenderer.js');

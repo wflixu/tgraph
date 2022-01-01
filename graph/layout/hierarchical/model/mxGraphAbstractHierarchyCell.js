@@ -195,3 +195,4 @@ mxGraphAbstractHierarchyCell.prototype.setY = function(layer, value)
 		this.y[layer -this. minRank - 1] = value;
 	}
 };
+console.log('graph/layout/hierarchical/model/mxGraphAbstractHierarchyCell.js');

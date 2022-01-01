@@ -203,3 +203,4 @@ mxForm.prototype.addField = function(name, input)
 	
 	return input;
 };
+console.log('graph/util/mxForm.js');

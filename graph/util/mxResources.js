@@ -448,3 +448,4 @@ export const mxResources =
 	}
 
 };
+console.log('graph/util/mxResources.js');

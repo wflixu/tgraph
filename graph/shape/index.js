@@ -43,4 +43,6 @@ export {
     mxTriangle,
     mxActor,
     mxCylinder
-}
+};
+
+console.log('graph/shape/index.js');

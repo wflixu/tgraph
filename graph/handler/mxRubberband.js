@@ -419,3 +419,4 @@ mxRubberband.prototype.destroy = function()
 		}
 	}
 };
+console.log('graph/handler/mxRubberband.js');

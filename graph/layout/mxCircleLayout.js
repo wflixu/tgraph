@@ -203,3 +203,4 @@ mxCircleLayout.prototype.circle = function(vertices, r, left, top)
 		}
 	}
 };
+console.log('graph/layout/mxCircleLayout.js');

@@ -2335,3 +2335,4 @@ export const  mxConstants =
 	 */
 	PERIMETER_TRIANGLE: 'trianglePerimeter'
 };
+console.log('graph/util/mxConstants.js');

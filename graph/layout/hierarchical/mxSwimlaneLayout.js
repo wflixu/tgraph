@@ -936,3 +936,4 @@ mxSwimlaneLayout.prototype.placementStage = function(initialX, parent)
 	
 	return placementStage.limitX + this.interHierarchySpacing;
 };
+console.log('graph/layout/hierarchical/mxSwimlaneLayout.js');

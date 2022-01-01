@@ -77,3 +77,4 @@ codec.decode = function (dec, node, into) {
 };
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxDefaultKeyHandlerCodec.js');

@@ -61,3 +61,4 @@ export const mxObjectIdentity = {
     }
   },
 };
+console.log('graph/util/mxObjectIdentity.js');

@@ -248,3 +248,4 @@ mxMorphing.prototype.getOriginForCell = function(cell)
 	
 	return result;
 };
+console.log('graph/util/mxMorphing.js');

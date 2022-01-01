@@ -241,3 +241,4 @@ mxCellOverlay.prototype.toString = function()
 {
 	return this.tooltip;
 };
+console.log('graph/view/mxCellOverlay.js');

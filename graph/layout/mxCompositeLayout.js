@@ -100,3 +100,4 @@ mxCompositeLayout.prototype.execute = function(parent)
 		model.endUpdate();
 	}
 };
+console.log('graph/layout/mxCompositeLayout.js');

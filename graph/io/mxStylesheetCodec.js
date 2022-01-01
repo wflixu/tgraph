@@ -214,3 +214,4 @@ const mxStylesheetCodec = mxCodecRegistry.register(codec);
  * may contain user input.
  */
 mxStylesheetCodec.allowEval = true;
+console.log('graph/io/mxStylesheetCodec.js');

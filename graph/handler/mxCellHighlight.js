@@ -298,3 +298,4 @@ mxCellHighlight.prototype.destroy = function()
 		this.shape = null;
 	}
 };
+console.log('graph/handler/mxCellHighlight.js');

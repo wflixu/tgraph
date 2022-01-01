@@ -130,3 +130,4 @@ mxDictionary.prototype.visit = function(visitor)
 		visitor(key, this.map[key]);
 	}
 };
+console.log('graph/util/mxDictionary.js');

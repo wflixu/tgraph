@@ -142,3 +142,4 @@ mxEdgeLabelLayout.prototype.avoid = function (edge, vertex) {
     }
   }
 };
+console.log('graph/layout/mxEdgeLabelLayout.js');

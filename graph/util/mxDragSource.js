@@ -724,3 +724,4 @@ mxDragSource.prototype.drop = function(graph, evt, dropTarget, x, y)
 		graph.container.focus();
 	}
 };
+console.log('graph/util/mxDragSource.js');

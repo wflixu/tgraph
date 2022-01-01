@@ -1064,3 +1064,4 @@ mxWindow.prototype.destroy = function () {
   this.content = null;
   this.contentWrapper = null;
 };
+console.log('graph/util/mxWindow.js');

@@ -2259,3 +2259,4 @@ mxVertexHandler.prototype.destroy = function()
 		this.customHandles = null;
 	}
 };
+console.log('graph/handler/mxVertexHandler.js');

@@ -1292,3 +1292,4 @@ mxCellEditor.prototype.destroy = function () {
     this.zoomHandler = null;
   }
 };
+console.log('graph/view/mxCellEditor.js');

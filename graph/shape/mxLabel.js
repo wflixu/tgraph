@@ -253,3 +253,4 @@ mxLabel.prototype.redrawHtmlShape = function () {
 		this.node.appendChild(node);
 	}
 };
+console.log('graph/shape/mxLabel.js');

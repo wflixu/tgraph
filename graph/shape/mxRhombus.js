@@ -64,3 +64,4 @@ mxRhombus.prototype.paintVertexShape = function(c, x, y, w, h)
 	     new mxPoint(x, y + hh)], this.isRounded, arcSize, true);
 	c.fillAndStroke();
 };
+console.log('graph/shape/mxRhombus.js');

@@ -137,3 +137,4 @@ mxCellTracker.prototype.destroy = function()
 		mxCellMarker.prototype.destroy.apply(this);
 	}
 };
+console.log('graph/handler/mxCellTracker.js');

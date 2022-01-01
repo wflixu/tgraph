@@ -206,3 +206,4 @@ mxCellStatePreview.prototype.addEdges = function(state)
 		}
 	}
 };
+console.log('graph/view/mxCellStatePreview.js');

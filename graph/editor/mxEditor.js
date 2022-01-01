@@ -3092,3 +3092,4 @@ mxEditor.prototype.destroy = function ()
 		this.templates = null;
 	}
 };
+console.log('graph/editor/mxEditor.js');

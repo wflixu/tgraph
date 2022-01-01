@@ -76,3 +76,4 @@ mxCodecRegistry.register(
 mxCodecRegistry.register(
   mxGenericChangeCodec(new mxCellAttributeChange(), 'value'),
 );
+console.log('graph/io/mxGenericChangeCodec.js');

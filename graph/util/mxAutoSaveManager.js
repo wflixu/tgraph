@@ -211,3 +211,4 @@ mxAutoSaveManager.prototype.destroy = function()
 {
 	this.setGraph(null);
 };
+console.log('graph/util/mxAutoSaveManager.js');

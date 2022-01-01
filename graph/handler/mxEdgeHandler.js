@@ -2540,3 +2540,4 @@ mxEdgeHandler.prototype.destroy = function () {
 
   this.removeHint();
 };
+console.log('graph/handler/mxEdgeHandler.js');

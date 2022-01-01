@@ -400,3 +400,4 @@ mxCellMarker.prototype.destroy = function () {
 	this.graph.getModel().removeListener(this.resetHandler);
 	this.highlight.destroy();
 };
+console.log('graph/handler/mxCellMarker.js');

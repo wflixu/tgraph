@@ -260,3 +260,4 @@ mxMultiplicity.prototype.checkType = function(graph, value, type, attr, attrValu
 	
 	return false;
 };
+console.log('graph/view/mxMultiplicity.js');

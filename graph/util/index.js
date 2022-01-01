@@ -69,3 +69,4 @@ export {
   mxXmlCanvas2D,
   mxXmlRequest,
 };
+console.log('graph/util/index.js');

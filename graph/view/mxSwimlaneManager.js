@@ -453,3 +453,4 @@ mxSwimlaneManager.prototype.destroy = function()
 {
 	this.setGraph(null);
 };
+console.log('graph/view/mxSwimlaneManager.js');

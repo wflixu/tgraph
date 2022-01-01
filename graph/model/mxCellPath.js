@@ -158,3 +158,4 @@ export const  mxCellPath =
 	}
 
 };
+console.log('graph/model/mxCellPath.js');

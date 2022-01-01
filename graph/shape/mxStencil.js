@@ -869,3 +869,4 @@ mxStencil.prototype.drawNode = function(canvas, shape, node, aspect, disableShad
 		}
 	}
 };
+console.log('graph/shape/mxStencil.js');

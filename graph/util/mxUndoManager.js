@@ -232,3 +232,4 @@ mxUndoManager.prototype.trim = function()
 		}
 	}
 };
+console.log('graph/util/mxUndoManager.js');

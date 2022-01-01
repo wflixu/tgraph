@@ -2030,3 +2030,4 @@ mxConnectionHandler.prototype.destroy = function () {
 		this.escapeHandler = null;
 	}
 };
+console.log('graph/handler/mxConnectionHandler.js');

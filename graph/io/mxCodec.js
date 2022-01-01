@@ -624,3 +624,4 @@ mxCodec.prototype.setAttribute = function(node, attribute, value)
 		node.setAttribute(attribute, value);
 	}
 };
+console.log('graph/io/mxCodec.js');

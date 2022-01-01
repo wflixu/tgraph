@@ -219,3 +219,4 @@ mxPopupMenuHandler.prototype.destroy = function () {
   // Supercall
   mxPopupMenu.prototype.destroy.apply(this);
 };
+console.log('graph/handler/mxPopupMenuHandler.js');

@@ -151,3 +151,4 @@ mxUrlConverter.prototype.convert = function(url)
 	
 	return url;
 };
+console.log('graph/util/mxUrlConverter.js');

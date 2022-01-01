@@ -496,3 +496,4 @@ mxPanningHandler.prototype.destroy = function()
 	this.graph.removeListener(this.gestureHandler);
 	mxEvent.removeListener(document, 'mouseup', this.mouseUpListener);
 };
+console.log('graph/handler/mxPanningHandler.js');

@@ -312,3 +312,4 @@ mxSelectionCellsHandler.prototype.destroy = function () {
     this.refreshHandler = null;
   }
 };
+console.log('graph/handler/mxSelectionCellsHandler.js');

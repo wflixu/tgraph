@@ -1827,3 +1827,4 @@ mxGraphHandler.prototype.destroy = function () {
   this.destroyShapes();
   this.removeHint();
 };
+console.log('graph/handler/mxGraphHandler.js');

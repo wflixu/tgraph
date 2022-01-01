@@ -427,3 +427,4 @@ mxXmlRequest.prototype.simulate = function (doc, target) {
     window.onbeforeunload = old;
   }
 };
+console.log('graph/util/mxXmlRequest.js');

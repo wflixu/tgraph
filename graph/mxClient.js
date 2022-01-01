@@ -318,3 +318,4 @@ export const mxClient = {
     }
   },
 };
+console.log('graph/mxClient.js');

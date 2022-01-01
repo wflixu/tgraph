@@ -350,3 +350,4 @@ mxHandle.prototype.destroy = function()
 		this.shape = null;
 	}
 };
+console.log('graph/handler/mxHandle.js');

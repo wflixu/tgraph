@@ -31,3 +31,4 @@ export {
 };
 
 
+console.log('graph/model/index.js');

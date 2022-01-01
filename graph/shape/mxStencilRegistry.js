@@ -51,3 +51,4 @@ export const  mxStencilRegistry =
 	}
 
 };
+console.log('graph/shape/mxStencilRegistry.js');

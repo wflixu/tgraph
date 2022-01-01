@@ -128,3 +128,4 @@ mxDefaultKeyHandler.prototype.destroy = function ()
 	this.handler.destroy();
 	this.handler = null;
 };
+console.log('graph/editor/mxDefaultKeyHandler.js');

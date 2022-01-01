@@ -161,3 +161,4 @@ codec.encodeCell = function (enc, view, cell) {
 };
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxGraphViewCodec.js');

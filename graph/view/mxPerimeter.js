@@ -921,3 +921,4 @@ export const  mxPerimeter =
 		return result;
 	}
 };
+console.log('graph/view/mxPerimeter.js');

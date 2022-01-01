@@ -473,3 +473,4 @@ mxLayoutManager.prototype.executeLayout = function (cell, bubble) {
 mxLayoutManager.prototype.destroy = function () {
   this.setGraph(null);
 };
+console.log('graph/view/mxLayoutManager.js');

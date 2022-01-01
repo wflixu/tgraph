@@ -1468,3 +1468,4 @@ mxText.prototype.getSpacing = function () {
 
   return new mxPoint(dx, dy);
 };
+console.log('graph/shape/mxText.js');

@@ -241,3 +241,4 @@ mxMouseEvent.prototype.consume = function(preventDefault)
 	// Sets local consumed state
 	this.consumed = true;
 };
+console.log('graph/util/mxMouseEvent.js');

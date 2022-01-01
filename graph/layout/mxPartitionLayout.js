@@ -242,3 +242,4 @@ mxPartitionLayout.prototype.execute = function(parent)
 		}
 	}
 };
+console.log('graph/layout/mxPartitionLayout.js');

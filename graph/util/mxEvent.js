@@ -1435,3 +1435,4 @@ export const mxEvent =
 	PINCH_THRESHOLD: 10
 
 };
+console.log('graph/util/mxEvent.js');

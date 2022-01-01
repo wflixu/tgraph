@@ -155,3 +155,4 @@ codec.afterDecode = function (dec, node, obj) {
 };
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxChildChangeCodec.js');

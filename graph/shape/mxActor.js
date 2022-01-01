@@ -79,3 +79,4 @@ mxActor.prototype.redrawPath = function (c, x, y, w, h) {
   c.curveTo(w, (2 * h) / 5, w, (3 * h) / 5, w, h);
   c.close();
 };
+console.log('graph/shape/mxActor.js');

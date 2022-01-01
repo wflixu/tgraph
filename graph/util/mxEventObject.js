@@ -109,3 +109,4 @@ mxEventObject.prototype.consume = function()
 {
 	this.consumed = true;
 };
+console.log('graph/util/mxEventObject.js');

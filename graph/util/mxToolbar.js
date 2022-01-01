@@ -530,3 +530,4 @@ mxToolbar.prototype.destroy = function ()
 		this.menu.destroy();
 	}
 };
+console.log('graph/util/mxToolbar.js');

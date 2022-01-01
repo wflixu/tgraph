@@ -33,3 +33,4 @@ export {
   mxTooltipHandler,
   mxVertexHandler
 };
+console.log('graph/handler/index.js');

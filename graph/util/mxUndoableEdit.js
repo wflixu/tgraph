@@ -211,3 +211,4 @@ mxUndoableEdit.prototype.redo = function()
 	
 	this.notify();
 };
+console.log('graph/util/mxUndoableEdit.js');

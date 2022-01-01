@@ -514,3 +514,4 @@ mxConstraintHandler.prototype.destroy = function()
 		this.mouseleaveHandler = null;
 	}
 };
+console.log('graph/handler/mxConstraintHandler.js');

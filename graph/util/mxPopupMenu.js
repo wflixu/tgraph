@@ -621,3 +621,4 @@ mxPopupMenu.prototype.destroy = function()
 		this.div = null;
 	}
 };
+console.log('graph/util/mxPopupMenu.js');

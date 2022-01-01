@@ -149,3 +149,4 @@ mxDivResizer.prototype.getDocumentHeight = function()
 {
 	return document.body.clientHeight;
 };
+console.log('graph/util/mxDivResizer.js');

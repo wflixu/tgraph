@@ -12945,3 +12945,4 @@ mxGraph.prototype.destroy = function () {
     this.container = null;
   }
 };
+console.log('graph/view/mxGraph.js');

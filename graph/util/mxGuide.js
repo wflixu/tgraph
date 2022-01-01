@@ -450,3 +450,4 @@ mxGuide.prototype.destroy = function()
 		this.guideY = null;
 	}
 };
+console.log('graph/util/mxGuide.js');

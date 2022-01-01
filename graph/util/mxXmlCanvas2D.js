@@ -1219,3 +1219,4 @@ mxXmlCanvas2D.prototype.fillAndStroke = function()
 {
 	this.root.appendChild(this.createElement('fillstroke'));
 };
+console.log('graph/util/mxXmlCanvas2D.js');

@@ -1062,3 +1062,4 @@ mxObjectCodec.prototype.beforeDecode = function (dec, node, obj) {
 mxObjectCodec.prototype.afterDecode = function (dec, node, obj) {
   return obj;
 };
+console.log('graph/io/mxObjectCodec.js');

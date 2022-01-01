@@ -307,3 +307,4 @@ mxDefaultPopupMenu.prototype.createConditions = function(editor, cell, evt)
 	
 	return conditions;
 };
+console.log('graph/editor/mxDefaultPopupMenu.js');

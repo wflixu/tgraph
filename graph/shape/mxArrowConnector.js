@@ -494,4 +494,4 @@ mxArrowConnector.prototype.isMarkerStart = function()
 mxArrowConnector.prototype.isMarkerEnd = function()
 {
 	return (mxUtils.getValue(this.style, mxConstants.STYLE_ENDARROW, mxConstants.NONE) != mxConstants.NONE);
-};
+};console.log('graph/shape/mxArrowConnector.js');

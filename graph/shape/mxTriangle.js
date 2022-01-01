@@ -55,3 +55,4 @@ mxTriangle.prototype.redrawPath = function (c, x, y, w, h) {
     true,
   );
 };
+console.log('graph/shape/mxTriangle.js');

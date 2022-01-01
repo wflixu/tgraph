@@ -69,3 +69,4 @@ mxLine.prototype.paintVertexShape = function(c, x, y, w, h)
 
 	c.stroke();
 };
+console.log('graph/shape/mxLine.js');

@@ -1116,4 +1116,4 @@ mxCompactTreeLayout.prototype.processNodeOutgoing = function(node)
 
 		maxYOffset = Math.max(maxYOffset, currentYOffset);
 	}
-};
+};console.log('graph/layout/mxCompactTreeLayout.js');

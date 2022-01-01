@@ -173,3 +173,4 @@ codec.beforeDecode = function (dec, node, obj) {
 };
 
 mxCodecRegistry.register(codec);
+console.log('graph/io/mxCellCodec.js');

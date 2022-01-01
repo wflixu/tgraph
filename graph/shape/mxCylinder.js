@@ -118,3 +118,4 @@ mxCylinder.prototype.redrawPath = function(c, x, y, w, h, isForeground)
 		c.close();
 	}
 };
+console.log('graph/shape/mxCylinder.js');

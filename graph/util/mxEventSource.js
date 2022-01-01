@@ -187,3 +187,4 @@ mxEventSource.prototype.fireEvent = function(evt, sender)
 		}
 	}
 };
+console.log('graph/util/mxEventSource.js');

@@ -414,3 +414,4 @@ mxEdgeSegmentHandler.prototype.redrawInnerBends = function (p0, pe) {
     }
   }
 };
+console.log('graph/handler/mxEdgeSegmentHandler.js');

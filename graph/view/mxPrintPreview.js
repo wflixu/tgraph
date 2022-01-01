@@ -1173,3 +1173,4 @@ mxPrintPreview.prototype.close = function () {
     this.wnd = null;
   }
 };
+console.log('graph/view/mxPrintPreview.js');

@@ -446,3 +446,4 @@ mxSelectionChange.prototype.execute = function()
 	this.selectionModel.fireEvent(new mxEventObject(mxEvent.CHANGE,
 			'added', this.added, 'removed', this.removed));
 };
+console.log('graph/view/mxGraphSelectionModel.js');

@@ -132,3 +132,4 @@ mxPolyline.prototype.paintCurvedLine = function(c, pts)
 	c.quadTo(p0.x, p0.y, p1.x, p1.y);
 	c.stroke();
 };
+console.log('graph/shape/mxPolyline.js');

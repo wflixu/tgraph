@@ -176,3 +176,4 @@ mxRectangle.fromRectangle = function(rect)
 {
 	return new mxRectangle(rect.x, rect.y, rect.width, rect.height);
 };
+console.log('graph/util/mxRectangle.js');

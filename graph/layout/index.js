@@ -24,3 +24,5 @@ export {
     mxStackLayout,
     mxGraphLayout
 }
+
+console.log('graph/layout/index.js');

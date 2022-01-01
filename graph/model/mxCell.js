@@ -826,3 +826,4 @@ mxCell.prototype.cloneValue = function()
 	
 	return value;
 };
+console.log('graph/model/mxCell.js');

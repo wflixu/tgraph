@@ -834,3 +834,4 @@ mxHierarchicalLayout.prototype.placementStage = function (initialX, parent) {
 
   return placementStage.limitX + this.interHierarchySpacing;
 };
+console.log('graph/layout/hierarchical/mxHierarchicalLayout.js');

@@ -65,3 +65,4 @@ mxConnectionConstraint.prototype.dx = null;
  */
 mxConnectionConstraint.prototype.dy = null;
 
+console.log('graph/view/mxConnectionConstraint.js');

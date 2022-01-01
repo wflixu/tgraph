@@ -322,3 +322,4 @@ mxRadialTreeLayout.prototype.calcRowDims = function (row, rowNum) {
     this.calcRowDims(this.row[rowNum], rowNum + 1);
   }
 };
+console.log('graph/layout/mxRadialTreeLayout.js');

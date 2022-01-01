@@ -643,3 +643,4 @@ mxAbstractCanvas2D.prototype.close = function(x1, y1, x2, y2, x3, y3)
  * Empty implementation for backwards compatibility. This will be removed.
  */
 mxAbstractCanvas2D.prototype.end = function() { };
+console.log('graph/util/mxAbstractCanvas2D.js');

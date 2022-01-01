@@ -20,3 +20,4 @@ export function mxHierarchicalLayoutStage() { };
  * use.
  */
 mxHierarchicalLayoutStage.prototype.execute = function(parent) { };
+console.log('graph/layout/hierarchical/stage/mxHierarchicalLayoutStage.js');
