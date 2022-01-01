@@ -16,12 +16,18 @@ export default {
     minimizable: {
       type: Boolean,
       default: true,
-    }
+    },
   },
-  data() {},
+  data() {
+    return {
+      moving: false,
+      pos: {
+        offsetX: 0,
+        offsetY: 0,
+      },
+    };
+  },
   setup() {
-    
-
     const mxwin = ref();
 
     const moving = ref(false);
@@ -64,11 +70,10 @@ export default {
     return {
       mxwin,
       onMouseup,
-      onMouseDown
-
-    }
+      onMouseDown,
+    };
   },
-}
+};
 </script>
 
 <template>

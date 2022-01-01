@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "dev": "lerna exec --scope demos yarn dev",
+    "det": "lerna exec --scope react-demos yarn ",
     "build": "vite build",
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
