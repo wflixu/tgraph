@@ -304,8 +304,7 @@ mxWindow.prototype.destroyOnClose = true;
  * Defines the correction factor for computing the height of the contentWrapper.
  * Default is 6 for IE 7/8 standards mode and 2 for all other browsers and modes.
  */
-mxWindow.prototype.contentHeightCorrection =
-  document.documentMode == 8 || document.documentMode == 7 ? 6 : 2;
+mxWindow.prototype.contentHeightCorrection = 2;
 
 /**
  * Variable: title

@@ -7,8 +7,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import { mxEvent, mxGraph, mxUtils, mxRectangle } from 'thgraph';
-
+import { mxGraph } from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
@@ -71,12 +70,11 @@ function main(container) {
 </script>
 
 <template>
- <p>
+  <p>
     Wrapping example for mxGraph. This example demonstrates using HTML markup
     and word-wrapping in vertex and edge labels.
   </p>
   <div id="graphContainer"></div>
- 
 </template>
 
 <style  lang="less">

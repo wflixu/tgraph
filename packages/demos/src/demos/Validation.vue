@@ -8,9 +8,6 @@ import {
   mxGraph,
   mxRubberband,
   mxKeyHandler,
-  mxLog,
-  mxClient,
-  mxWindow,
   mxUtils,
   mxMultiplicity,
 } from 'thgraph';

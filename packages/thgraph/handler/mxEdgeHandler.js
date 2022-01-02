@@ -14,6 +14,8 @@ import { mxVertexHandler } from './mxVertexHandler.js';
 import { mxClient } from '../mxClient.js';
 import { mxPoint, mxUtils } from '../util/index.js';
 
+import {mxEdgeStyle } from './../view/index.js';
+
 /**
  * Class: mxEdgeHandler
  *

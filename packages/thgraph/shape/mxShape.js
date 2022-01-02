@@ -66,6 +66,7 @@
  import { mxConstants } from '../util/mxConstants.js';
  import { mxEvent } from '../util/mxEvent.js';
  import { mxSvgCanvas2D } from '../util/mxSvgCanvas2D.js';
+ import {mxText} from './mxText.js';
 export function mxShape(stencil)
 {
 	this.stencil = stencil;

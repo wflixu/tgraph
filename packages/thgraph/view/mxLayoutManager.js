@@ -35,13 +35,16 @@
  */
 
 import { mxEventSource } from '../util/mxEventSource.js';
-import { mxUtils, mxEvent, mxEventObject } from '../util/index.js';
+import { mxUtils, mxEvent, mxEventObject,mxRectangle, } from '../util/index.js';
+
+
 import {
   mxRootChange,
   mxChildChange,
   mxTerminalChange,
   mxGeometryChange,
   mxVisibleChange,
+  mxStyleChange,
 } from '../model/index.js';
 
 export function mxLayoutManager(graph) {

@@ -27,8 +27,18 @@ import TreeVue from './demos/Tree.vue';
 import ThreadVue from './demos/Thread.vue';
 import TemplateVue from './demos/Template.vue';
 import LayoutVue from './Layout.vue';
-
+import EditorVue from './page/Editor.vue';
+import SwimlanesVue from './demos/Swimlanes.vue';
+import SheetstyleVue from './demos/Sheetstyle.vue';
+import StencilsVue from './demos/Stencils.vue';
+import ShowregionVue from './demos/Showregion.vue';
+import SecondlabelVue from './demos/Secondlabel.vue';
 const demos = [
+  SecondlabelVue,
+  ShowregionVue,
+  StencilsVue,
+  SheetstyleVue,
+  SwimlanesVue,
   TemplateVue,
   ThreadVue,
   TreeVue,
@@ -65,17 +75,15 @@ const demos = [
   };
 });
 
-import EditorVue from './page/Editor.vue';
-
 export const routes = [
   { path: '/', component: Home, name: 'Home' },
   {
     path: '/demos',
-    component:LayoutVue,
+    component: LayoutVue,
     children: [...demos],
   },
   {
-    path:'/editor',
-    component:EditorVue
-  }
+    path: '/editor',
+    component: EditorVue,
+  },
 ];

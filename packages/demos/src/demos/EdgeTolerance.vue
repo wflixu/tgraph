@@ -3,22 +3,10 @@
 import { ref, onMounted } from 'vue';
 
 import {
-  mxCellRenderer,
   mxEvent,
   mxGraph,
-  mxVertexHandler,
-  mxGraphHandler,
-  mxCellOverlay,
-  mxImage,
-  mxHierarchicalLayout,
-  mxEdgeHandler,
-  mxMorphing,
   mxUtils,
-  mxImageShape,
-  mxGuide,
-  mxDragSource,
-  mxCell,
-  mxGeometry,
+
 } from 'thgraph';
 
 

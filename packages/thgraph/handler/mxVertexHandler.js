@@ -8,7 +8,7 @@ import { mxRectangle,mxConstants,mxEvent,mxUtils,mxPoint } from "../util/index.j
 
 import { mxClient } from "../mxClient.js";
 import { mxGraphHandler } from "./mxGraphHandler.js";
-import { mxImageShape } from "../shape/mxImageShape.js";
+import { mxImageShape,mxEllipse } from "../shape/index.js";
 
 
 /**

@@ -42,5 +42,8 @@
     "TypeScript"
   ],
   "author": "wflixu",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@vueuse/core": "^7.5.1"
+  }
 }

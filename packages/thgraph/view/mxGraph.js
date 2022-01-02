@@ -44,14 +44,15 @@ import {
   mxGraphHandler,
   mxPopupMenuHandler,
   mxVertexHandler,
+  mxEdgeSegmentHandler,
 } from './../handler/index.js';
 
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import {mxCellOverlay} from './mxCellOverlay.js'
 
 const  warning  =  '/graph/assets/warning.png';
-const  expandedGif  =  '/graph/assets/expand.gif';
-const  collapsedGif  =  '/graph/assets/collapse.gif';
+import  expandedGif from  '../assets/expand.gif';
+import  collapsedGif  from   '../assets/collapse.gif';
 /**
  * Class: mxGraph
  *

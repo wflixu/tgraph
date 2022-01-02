@@ -1,67 +1,121 @@
 
 
-<script setup>
-import { ref, onMounted, defineProps, reactive } from 'vue';
-// import closeGif from './../assets/close.gif';
-// import minimizeGif from './../assets/minimize.gif';
-// import maximizeGif from './../assets/maximize.gif';
-// import normalizeGif from './../assets/normalize.gif';
+<script >
+import { ref, onMounted, defineProps, reactive, watch } from 'vue';
+import closeGif from './../assets/images/close.gif';
+import minimizeGif from './../assets/images/minimize.gif';
+import maximizeGif from './../assets/images/maximize.gif';
+import normalizeGif from './../assets/images/normalize.gif';
 
-const props = defineProps({
-  title: {
-    type: String,
-    default: '窗口',
+import { useMouseInElement, useMouse } from '@vueuse/core';
+export default {
+  props: {
+    title: {
+      type: String,
+      default: '窗口',
+    },
+    minimizable: {
+      type: Boolean,
+      default: true,
+    },
+    movable: {
+      type: Boolean,
+      default: true,
+    },
+    x: {
+      type: Number,
+      default: 200,
+    },
+    y: {
+      type: Number,
+      default: 100,
+    },
+    width: {
+      type: Number,
+      default: 600,
+    },
+    height: {
+      type: Number,
+      default: 300,
+    },
+    classes: {
+      type: String,
+      default: '',
+    },
+    visible: {
+      type: Boolean,
+      default: true,
+    },
   },
-  minimizable: {
-    type: Boolean,
-    default: true,
+  data() {
+    return {
+      moving: false,
+      pos: {
+        offsetX: 0,
+        offsetY: 0,
+      },
+      closeGif,
+      maximizeGif,
+      minimizeGif,
+      normalizeGif,
+    };
   },
-});
-
-const css = {
-  left: '50%',
-  top: '50%',
-  color: 'red',
+  mounted() {
+    this.initStyle();
+    if (this.movable) {
+      this.installMoveHandler();
+    }
+  },
+  unmounted() {
+    window.removeEventListener('mousemove', this.onMousemove);
+  },
+  methods: {
+    hide() {},
+    initStyle() {
+      this.$refs.mxwin.style.left = this.x + 'px';
+      this.$refs.mxwin.style.top = this.y + 'px';
+      this.$refs.mxwin.style.width = this.width + 'px';
+      this.$refs.mxwin.style.height = this.height + 'px';
+    },
+    installMoveHandler() {
+      window.addEventListener('mousemove', this.onMousemove);
+    },
+    onMouseDown(evt) {
+      this.pos.offsetX = evt.offsetX;
+      this.pos.offsetY = evt.offsetY;
+      this.moving = true;
+    },
+    onMouseup(evt) {
+      this.moving = false;
+    },
+    onMousemove(e) {
+      if (this.moving) {
+        let { clientX, clientY } = e;
+        this.$refs.mxwin.style.left = clientX - this.pos.offsetX + 'px';
+        this.$refs.mxwin.style.top = clientY - this.pos.offsetY + 'px';
+      }
+    },
+  },
 };
-const cl = ref('red');
-const mxwin = ref();
-const moving = ref(false);
-const onMove = (evt) => {
-  if (!moving.value) {
-    return;
-  }
-  const { clientX, clientY,x,y } = evt;
-  css.left = clientX;
-  css.top = clientY;
-  // mxwin.value.style.left = clientX;
-  
-  console.log(mxwin.value.style, clientX, clientY,x,y);
-};
-const onMouseDown = (evt) => {
-  moving.value = true;
-};
-const onMouseup = (evt) => {
-  moving.value = false;
-};
-
-onMounted(() => {
-  console.log(css);
-});
 </script>
 
 <template>
   <teleport to="body">
-    <div class="mx-window" ref="mxwin">
-      <div class="mx-window-header">
-        <div
-          class="mx-window-header-title"
-          @mousedown="onMouseDown"
-          @mouseup="onMouseup"
-          @mousemove="onMove"
-        >
-          {{ props.title }}
+    <div
+      class="mx-window"
+      ref="mxwin"
+      :class="classes"
+      :style="{ display: visible ? 'block' : 'none' }"
+    >
+      <div
+        class="mx-window-header"
+        @mousedown="onMouseDown"
+        @mouseup="onMouseup"
+      >
+        <div class="mx-window-header-title">
+          {{ title }}
         </div>
-        <div class="mx-window-header-actions">
+        <div class="mx-window-header-actions mr-2">
           <img :src="maximizeGif" alt="" class="action" />
           <img :src="normalizeGif" alt="" class="action" />
           <img :src="minimizeGif" alt="" class="action" />
@@ -76,19 +130,14 @@ onMounted(() => {
 </template>
 
 <style lang="less">
-body {
-  --mxleft: v-bind(css.left);
-}
-   
 .mx-window {
   box-shadow: 3px 3px 12px #c0c0c0;
   background: url(data:image/gif;base64,R0lGODlhGgAUAIAAAOzs7PDw8CH5BAAAAAAALAAAAAAaABQAAAIijI+py70Ao5y02lud3lzhD4ZUR5aPiKajyZbqq7YyB9dhAQA7);
   border: 1px solid #c3c3c3;
   position: fixed;
-
-  top:  v-bind('css.top');
-  left: v-bind('css.left');
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  // transform: translate(-50%, -50%);
   overflow: hidden;
   z-index: 1;
   width: 600px;
@@ -106,9 +155,9 @@ body {
       align-items: center;
       cursor: move;
       user-select: none;
-      color: v-bind('cl');
     }
     .mx-window-header-actions {
+      margin-right: 8px;
       img {
         margin-left: 6px;
         &:hover {
