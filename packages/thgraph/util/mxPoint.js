@@ -1,56 +1,52 @@
 /**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
-/**
  * Class: mxPoint
  *
  * Implements a 2-dimensional vector with double precision coordinates.
- * 
+ *
  * Constructor: mxPoint
  *
  * Constructs a new point for the optional x and y coordinates. If no
  * coordinates are given, then the default values for <x> and <y> are used.
  */
- import { mxUtils } from './mxUtils.js';
-export function mxPoint(x, y)
-{
-	this.x = (x != null) ? x : 0;
-	this.y = (y != null) ? y : 0;
-};
 
-/**
- * Variable: x
- *
- * Holds the x-coordinate of the point. Default is 0.
- */
-mxPoint.prototype.x = null;
+import { mxUtils } from './mxUtils.js';
+export class mxPoint {
+  /**
+   * Variable: x
+   *
+   * Holds the x-coordinate of the point. Default is 0.
+   */
+  x;
+  /**
+   * Variable: y
+   *
+   * Holds the y-coordinate of the point. Default is 0.
+   */
+  y;
 
-/**
- * Variable: y
- *
- * Holds the y-coordinate of the point. Default is 0.
- */
-mxPoint.prototype.y = null;
+  constructor(x = 0, y = 0) {
+    this.x = x;
+    this.y = y;
+  }
 
-/**
- * Function: equals
- * 
- * Returns true if the given object equals this point.
- */
-mxPoint.prototype.equals = function(obj)
-{
-	return obj != null && obj.x == this.x && obj.y == this.y;
-};
+  /**
+   * Function: equals
+   *
+   * Returns true if the given object equals this point.
+   */
+  equals(obj) {
+    return obj != null && obj.x == this.x && obj.y == this.y;
+  }
 
-/**
- * Function: clone
- *
- * Returns a clone of this <mxPoint>.
- */
-mxPoint.prototype.clone = function()
-{
-	// Handles subclasses as well
-	return mxUtils.clone(this);
-};
+  /**
+   * Function: clone
+   *
+   * Returns a clone of this <mxPoint>.
+   */
+  clone() {
+    // Handles subclasses as well
+    return mxUtils.clone(this);
+  }
+}
+
 console.log('graph/util/mxPoint.js');

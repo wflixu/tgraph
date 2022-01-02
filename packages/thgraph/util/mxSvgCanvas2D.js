@@ -59,106 +59,96 @@ import { mxAbstractCanvas2D } from './mxAbstractCanvas2D.js';
 import { mxClient } from '../mxClient.js';
 import { mxConstants } from './mxConstants.js';
 
-export function mxSvgCanvas2D(root, styleEnabled) {
-  mxAbstractCanvas2D.call(this);
-
-  /**
-   * Variable: root
-   *
-   * Reference to the container for the SVG content.
-   */
-  this.root = root;
-
-  /**
-   * Variable: gradients
-   *
-   * Local cache of gradients for quick lookups.
-   */
-  this.gradients = [];
-
-  /**
-   * Variable: defs
-   *
-   * Reference to the defs section of the SVG document. Only for export.
-   */
-  this.defs = null;
-
-  /**
-   * Variable: styleEnabled
-   *
-   * Stores the value of styleEnabled passed to the constructor.
-   */
-  this.styleEnabled = styleEnabled != null ? styleEnabled : false;
-
-  var svg = null;
-
-  // Adds optional defs section for export
-  if (root.ownerDocument != document) {
-    var node = root;
-
-    // Finds owner SVG element in XML DOM
-    while (node != null && node.nodeName != 'svg') {
-      node = node.parentNode;
+export class mxSvgCanvas2D extends mxAbstractCanvas2D {
+  useDomParser = typeof DOMParser === 'function' && typeof XMLSerializer === 'function';
+  useAbsoluteIds =  !mxClient.IS_CHROMEAPP &&
+  !mxClient.IS_EDGE &&
+  document.getElementsByTagName('base').length > 0;
+  constructor(root, styleEnabled) {
+    super();
+    /**
+     * Variable: root
+     *
+     * Reference to the container for the SVG content.
+     */
+    this.root = root;
+  
+    /**
+     * Variable: gradients
+     *
+     * Local cache of gradients for quick lookups.
+     */
+    this.gradients = [];
+  
+    /**
+     * Variable: defs
+     *
+     * Reference to the defs section of the SVG document. Only for export.
+     */
+    this.defs = null;
+  
+    /**
+     * Variable: styleEnabled
+     *
+     * Stores the value of styleEnabled passed to the constructor.
+     */
+    this.styleEnabled = styleEnabled != null ? styleEnabled : false;
+  
+    var svg = null;
+  
+    // Adds optional defs section for export
+    if (root.ownerDocument != document) {
+      var node = root;
+  
+      // Finds owner SVG element in XML DOM
+      while (node != null && node.nodeName != 'svg') {
+        node = node.parentNode;
+      }
+  
+      svg = node;
     }
-
-    svg = node;
-  }
-
-  if (svg != null) {
-    // Tries to get existing defs section
-    var tmp = svg.getElementsByTagName('defs');
-
-    if (tmp.length > 0) {
-      this.defs = svg.getElementsByTagName('defs')[0];
-    }
-
-    // Adds defs section if none exists
-    if (this.defs == null) {
-      this.defs = this.createElement('defs');
-
-      if (svg.firstChild != null) {
-        svg.insertBefore(this.defs, svg.firstChild);
-      } else {
-        svg.appendChild(this.defs);
+  
+    if (svg != null) {
+      // Tries to get existing defs section
+      var tmp = svg.getElementsByTagName('defs');
+  
+      if (tmp.length > 0) {
+        this.defs = svg.getElementsByTagName('defs')[0];
+      }
+  
+      // Adds defs section if none exists
+      if (this.defs == null) {
+        this.defs = this.createElement('defs');
+  
+        if (svg.firstChild != null) {
+          svg.insertBefore(this.defs, svg.firstChild);
+        } else {
+          svg.appendChild(this.defs);
+        }
+      }
+  
+      // Adds stylesheet
+      if (this.styleEnabled) {
+        this.defs.appendChild(this.createStyle());
       }
     }
 
-    // Adds stylesheet
-    if (this.styleEnabled) {
-      this.defs.appendChild(this.createStyle());
+
+    if (this.useDomParser) {
+      // Checks using a generic test text if the parsing actually works. This is a workaround
+      // for older browsers where the capability check returns true but the parsing fails.
+      try {
+        var doc = new DOMParser().parseFromString('test text', 'text/html');
+        this.useDomParser = doc != null;
+      } catch (e) {
+       this.useDomParser = false;
+      }
     }
   }
+
+
 }
 
-/**
- * Extends mxAbstractCanvas2D
- */
-mxUtils.extend(mxSvgCanvas2D, mxAbstractCanvas2D);
-
-/**
- * Capability check for DOM parser and checks if base tag is used.
- */
-(function () {
-  mxSvgCanvas2D.prototype.useDomParser =
-    typeof DOMParser === 'function' && typeof XMLSerializer === 'function';
-
-  if (mxSvgCanvas2D.prototype.useDomParser) {
-    // Checks using a generic test text if the parsing actually works. This is a workaround
-    // for older browsers where the capability check returns true but the parsing fails.
-    try {
-      var doc = new DOMParser().parseFromString('test text', 'text/html');
-      mxSvgCanvas2D.prototype.useDomParser = doc != null;
-    } catch (e) {
-      mxSvgCanvas2D.prototype.useDomParser = false;
-    }
-  }
-
-  // Activates workaround for gradient ID resolution if base tag is used.
-  mxSvgCanvas2D.prototype.useAbsoluteIds =
-    !mxClient.IS_CHROMEAPP &&
-    !mxClient.IS_EDGE &&
-    document.getElementsByTagName('base').length > 0;
-})();
 
 /**
  * Variable: path

@@ -4,13 +4,9 @@ import { ref, onMounted } from 'vue';
 
 import {
   mxCellRenderer,
-  mxEvent,
+
   mxGraph,
-  mxCellOverlay,
-  mxImage,
-  mxHierarchicalLayout,
-  mxEdgeHandler,
-  mxMorphing,
+
   mxConstants,
   mxUtils,
   mxCylinder

@@ -6,6 +6,7 @@ import closeGif from './../assets/images/close.gif';
 import minimizeGif from './../assets/images/minimize.gif';
 import maximizeGif from './../assets/images/maximize.gif';
 import normalizeGif from './../assets/images/normalize.gif';
+
 import { useMouseInElement, useMouse } from '@vueuse/core';
 export default {
   props: {
@@ -17,6 +18,30 @@ export default {
       type: Boolean,
       default: true,
     },
+    movable: {
+      type: Boolean,
+      default: true,
+    },
+    x: {
+      type: Number,
+      default: 200,
+    },
+    y: {
+      type: Number,
+      default: 100,
+    },
+    width: {
+      type: Number,
+      default: 600,
+    },
+    height: {
+      type: Number,
+      default: 300,
+    },
+    classes: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -25,60 +50,59 @@ export default {
         offsetX: 0,
         offsetY: 0,
       },
+      closeGif,
+      maximizeGif,
+      minimizeGif,
+      normalizeGif,
+      visible:false,
+
     };
   },
-  setup() {
-    const mxwin = ref();
+  mounted() {
+    this.initStyle();
+    if (this.movable) {
+      this.installMoveHandler();
+    }
+  },
+  unmounted() {
+    window.removeEventListener('mousemove', this.onMousemove);
+  },
 
-    const moving = ref(false);
+  methods: {
+    hide(){
 
-    const pos = reactive({
-      offsetX: 0,
-      offsetY: 0,
-    });
-
-    const onMouseDown = (evt) => {
-      pos.offsetX = evt.offsetX;
-      pos.offsetY = evt.offsetY;
-      moving.value = true;
-    };
-    const onMouseup = (evt) => {
-      moving.value = false;
-    };
-    // const { x, y } = useMouseInElement(mxwin);
-
-    // watchEffect(() => {
-    //   if (moving.value && mxwin.value) {
-    //     let left = x.value - pos.offsetX + 'px';
-    //     let top = y.value - pos.offsetY + 'px';
-
-    //     mxwin.value.style = {
-    //       left,
-    //       top,
-    //     };
-    //   }
-    // });
-    // watch([x, y, pos, mxwin], () => {
-
-    // });
-
-    // onMounted(() => {
-    //   mxwin.value?.style.width = props.width + 'px';
-    //   mxwin.value?.style.height =  props.height +'px';
-    // });
-
-    return {
-      mxwin,
-      onMouseup,
-      onMouseDown,
-    };
+    },
+    initStyle() {
+      this.$refs.mxwin.style.left = this.x + 'px';
+      this.$refs.mxwin.style.top = this.y + 'px';
+      this.$refs.mxwin.style.width = this.width + 'px';
+      this.$refs.mxwin.style.height = this.height + 'px';
+    },
+    installMoveHandler() {
+      window.addEventListener('mousemove', this.onMousemove);
+    },
+    onMouseDown(evt) {
+      this.pos.offsetX = evt.offsetX;
+      this.pos.offsetY = evt.offsetY;
+      this.moving = true;
+    },
+    onMouseup(evt) {
+      this.moving = false;
+    },
+    onMousemove(e) {
+      if (this.moving) {
+        let { clientX, clientY } = e;
+        this.$refs.mxwin.style.left = clientX - this.pos.offsetX + 'px';
+        this.$refs.mxwin.style.top = clientY - this.pos.offsetY + 'px';
+      }
+    },
   },
 };
 </script>
 
 <template>
   <teleport to="body">
-    <div class="mx-window" ref="mxwin">
+    <div class="mx-window" ref="mxwin" :class="classes">
       <div
         class="mx-window-header"
         @mousedown="onMouseDown"
@@ -87,7 +111,7 @@ export default {
         <div class="mx-window-header-title">
           {{ title }}
         </div>
-        <div class="mx-window-header-actions">
+        <div class="mx-window-header-actions mr-2">
           <img :src="maximizeGif" alt="" class="action" />
           <img :src="normalizeGif" alt="" class="action" />
           <img :src="minimizeGif" alt="" class="action" />
@@ -102,10 +126,6 @@ export default {
 </template>
 
 <style lang="less">
-body {
-  --mxleft: v-bind(css.left);
-}
-
 .mx-window {
   box-shadow: 3px 3px 12px #c0c0c0;
   background: url(data:image/gif;base64,R0lGODlhGgAUAIAAAOzs7PDw8CH5BAAAAAAALAAAAAAaABQAAAIijI+py70Ao5y02lud3lzhD4ZUR5aPiKajyZbqq7YyB9dhAQA7);
@@ -133,6 +153,7 @@ body {
       user-select: none;
     }
     .mx-window-header-actions {
+      margin-right: 8px;
       img {
         margin-left: 6px;
         &:hover {

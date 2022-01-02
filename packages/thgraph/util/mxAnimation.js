@@ -23,9 +23,9 @@ import { mxUtils } from "./mxUtils.js";
  * graph - Reference to the enclosing <mxGraph>.
  */
 
-export function mxAnimation(delay)
+export function mxAnimation(delay = 20)
 {
-	this.delay = (delay != null) ? delay : 20;
+	this.delay = delay ;
 };
 
 /**
