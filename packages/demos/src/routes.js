@@ -27,8 +27,11 @@ import TreeVue from './demos/Tree.vue';
 import ThreadVue from './demos/Thread.vue';
 import TemplateVue from './demos/Template.vue';
 import LayoutVue from './Layout.vue';
+import EditorVue from './page/Editor.vue';
+import SwimlanesVue from './demos/Swimlanes.vue';
 
 const demos = [
+  SwimlanesVue,
   TemplateVue,
   ThreadVue,
   TreeVue,
@@ -65,7 +68,7 @@ const demos = [
   };
 });
 
-import EditorVue from './page/Editor.vue';
+
 
 export const routes = [
   { path: '/', component: Home, name: 'Home' },

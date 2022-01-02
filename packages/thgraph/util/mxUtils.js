@@ -90,7 +90,7 @@ export const mxUtils = {
    * element - DOM node whose current style should be returned.
    */
   getCurrentStyle: function (element) {
-    return element != null ? window.getComputedStyle(element, '') : null;
+    return element  ? window.getComputedStyle(element, '') : null;
   },
 
   /**

@@ -32,8 +32,10 @@ import { mxDictionary } from './mxDictionary.js';
 import { mxConstants } from './mxConstants.js';
 import { mxClipboard } from './mxClipboard.js';
 import { mxMorphing } from './mxMorphing.js';
+import {mxAutoSaveManager} from './mxAutoSaveManager.js'
 
 export {
+  mxAutoSaveManager,
   mxMorphing,
   mxAbstractCanvas2D,
   mxAnimation,

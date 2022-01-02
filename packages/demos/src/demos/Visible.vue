@@ -4,28 +4,11 @@
 import { ref, onMounted } from 'vue';
 
 import {
-  mxEvent,
+
   mxGraph,
-  mxRectangle,
-  mxConnectionHandler,
-  mxConstants,
-  mxImage,
-  mxConstraintHandler,
-  mxGraphHandler,
-  mxGuide,
-  mxEdgeHandler,
-  mxGraphView,
-  mxEdgeSegmentHandler,
-  mxCylinder,
-  mxCellRenderer,
-  mxEdgeStyle,
-  mxStyleRegistry,
-  mxCellHighlight,
+
   mxRubberband,
-  mxKeyHandler,
-  mxLog,
-  mxClient,
-  mxWindow,
+
   mxUtils,
 } from 'thgraph';
 

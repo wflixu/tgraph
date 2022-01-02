@@ -3,7 +3,7 @@
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
 
-import { mxEventSource,mxUtils } from "../util/index.js";
+import { mxEventSource,mxUtils,mxRectangle,mxConstants } from "../util/index.js";
 import { mxEvent } from "../index.js";
 
 /**

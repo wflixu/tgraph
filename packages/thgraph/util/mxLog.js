@@ -141,14 +141,7 @@ export const  mxLog =
 
 			mxLog.addButton('Show', function (evt)
 			{
-				try
-				{
-					mxUtils.popup(mxLog.textarea.value);
-				}
-				catch (err)
-				{
-					mxUtils.alert(err);
-				}
+				
 			});	
 			
 			mxLog.addButton('Clear', function (evt)

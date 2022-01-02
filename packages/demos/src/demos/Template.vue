@@ -5,20 +5,10 @@ import { ref, onMounted } from 'vue';
 import collapsed from './../assets/images/collapsed.gif';
 import expanded from './../assets/images/expanded.gif';
 import {
-  mxCylinder,
-  mxCellRenderer,
-  mxGraphView,
+
   mxGraph,
-  mxImage,
-  mxClient,
-  mxConstants,
-  mxEdgeStyle,
-  mxKeyHandler,
-  mxCompactTreeLayout,
-  mxLayoutManager,
-  mxRectangle,
+
   mxRubberband,
-  mxPoint,
   mxUtils,
   mxCodec,
 } from 'thgraph';

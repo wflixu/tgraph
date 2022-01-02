@@ -22,6 +22,8 @@
  * spacing, orientation and offset.
  */
  import { mxGraphLayout } from "./mxGraphLayout.js";
+ import { mxRectangle ,mxUtils,mxConstants} from "../util/index.js";
+
 export function mxStackLayout(graph, horizontal, spacing, x0, y0, border)
 {
 	mxGraphLayout.call(this, graph);

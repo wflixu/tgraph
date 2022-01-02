@@ -42,6 +42,10 @@ export default {
       type: String,
       default: '',
     },
+    visible: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -54,8 +58,6 @@ export default {
       maximizeGif,
       minimizeGif,
       normalizeGif,
-      visible:false,
-
     };
   },
   mounted() {
@@ -67,11 +69,8 @@ export default {
   unmounted() {
     window.removeEventListener('mousemove', this.onMousemove);
   },
-
   methods: {
-    hide(){
-
-    },
+    hide() {},
     initStyle() {
       this.$refs.mxwin.style.left = this.x + 'px';
       this.$refs.mxwin.style.top = this.y + 'px';
@@ -102,7 +101,12 @@ export default {
 
 <template>
   <teleport to="body">
-    <div class="mx-window" ref="mxwin" :class="classes">
+    <div
+      class="mx-window"
+      ref="mxwin"
+      :class="classes"
+      :style="{ display: visible ? 'block' : 'none' }"
+    >
       <div
         class="mx-window-header"
         @mousedown="onMouseDown"
