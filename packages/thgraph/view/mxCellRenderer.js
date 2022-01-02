@@ -57,6 +57,8 @@ import { mxMouseEvent } from '../util/mxMouseEvent.js';
 import { mxDictionary } from "../util/mxDictionary.js";
 import { mxEventObject } from '../util/mxEventObject.js';
 import { mxPoint } from '../util/mxPoint.js';
+import { mxShape } from '../shape/mxShape.js';
+
 
 
 

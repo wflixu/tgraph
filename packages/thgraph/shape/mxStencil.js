@@ -202,7 +202,7 @@
  * desc - XML node that contains the stencil description.
  */
 
-import { mxUtils } from "../util/mxUtils.js";
+import { mxUtils,mxConstants,mxRectangle } from "../util/index.js";
 import { mxShape } from "./mxShape.js";
 
 export function mxStencil(desc)

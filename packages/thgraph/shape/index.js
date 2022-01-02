@@ -20,7 +20,7 @@ import { mxStencil } from "./mxStencil.js";
 import { mxSwimlane } from "./mxSwimlane.js";
 import { mxText } from "./mxText.js";
 import { mxTriangle } from "./mxTriangle.js";
-
+import {mxStencilRegistry} from './mxStencilRegistry.js'
 export {
     mxArrowConnector,
     mxArrow,
@@ -38,6 +38,7 @@ export {
     mxRhombus,
     mxShape,
     mxStencil,
+    mxStencilRegistry,
     mxSwimlane,
     mxText,
     mxTriangle,

@@ -44,6 +44,7 @@ import {
   mxGraphHandler,
   mxPopupMenuHandler,
   mxVertexHandler,
+  mxEdgeSegmentHandler,
 } from './../handler/index.js';
 
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
