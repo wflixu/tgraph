@@ -1,5 +1,6 @@
+import Home from './pages/Home.vue';
+
 import HelloWorld from './demos/HelloWorld.vue';
-import Home from './components/Home.vue';
 import DemoAnchor from './demos/DemoAnchor.vue';
 import DemoAnimation from './demos/DemoAnimation.vue';
 import AutoLayout from './demos/AutoLayout.vue';
@@ -27,13 +28,17 @@ import TreeVue from './demos/Tree.vue';
 import ThreadVue from './demos/Thread.vue';
 import TemplateVue from './demos/Template.vue';
 import LayoutVue from './Layout.vue';
-import EditorVue from './page/Editor.vue';
+import EditorVue from './pages/editor/Editor.vue';
 import SwimlanesVue from './demos/Swimlanes.vue';
 import SheetstyleVue from './demos/Sheetstyle.vue';
 import StencilsVue from './demos/Stencils.vue';
 import ShowregionVue from './demos/Showregion.vue';
 import SecondlabelVue from './demos/Secondlabel.vue';
+import RadialtreeVue from './demos/Radialtree.vue';
+import PortsVue from './demos/Ports.vue';
 const demos = [
+  PortsVue,
+  RadialtreeVue,
   SecondlabelVue,
   ShowregionVue,
   StencilsVue,

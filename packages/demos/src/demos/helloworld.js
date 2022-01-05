@@ -9,6 +9,8 @@ export function main(container) {
   //  console.log('#**@'.repeat(10));
   //  console.log(node);
 
+
+
   // Creates the graph inside the given container
   var graph = new mxGraph(container);
 

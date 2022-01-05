@@ -22,10 +22,7 @@ const onClick = (item) => {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 52px 1fr;
+  min-height: 100vh;
 }
 .header {
   height: 48px;

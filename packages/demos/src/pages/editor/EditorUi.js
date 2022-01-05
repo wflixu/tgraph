@@ -2,7 +2,8 @@
  * Copyright (c) 2006-2012, JGraph Ltd
  */
 
-import { mxEventSource } from 'thgraph';
+import { mxEventSource,mxUtils,mxClient, } from 'thgraph';
+import { Editor } from './Editor.js';
 
 /**
  * Constructs a new graph editor

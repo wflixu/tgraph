@@ -9,6 +9,8 @@ onMounted(() => {
   const container = document.getElementById('graphContainer');
  main(container);
 });
+
+
 </script>
 
 <template>

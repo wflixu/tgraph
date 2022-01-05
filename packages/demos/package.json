@@ -44,6 +44,8 @@
   "author": "wflixu",
   "license": "MIT",
   "dependencies": {
-    "@vueuse/core": "^7.5.1"
+    "@vueuse/core": "^7.5.1",
+    "pako": "^2.0.4",
+    "sanitizer": "^0.1.3"
   }
 }

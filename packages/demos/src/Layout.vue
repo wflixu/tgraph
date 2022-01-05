@@ -3,34 +3,37 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
-import {routes} from './routes';
+import { routes } from './routes';
 let router = useRouter();
-const onClick =  (item)=>{
-   console.log(item);
-   router.push(item.path);
-}
-
-
+const onClick = (item) => {
+  console.log(item);
+  router.push(item.path);
+};
 </script>
 
 <template>
-  <header class="header">
-    测试用例
-  </header>
-  <aside class="sidebar">
-    <ul class="router-list">
-      <li v-for="demo in routes[1].children" :key="demo.name" class="item" @click="onClick(demo)">
-        {{demo.name}}
-      </li>
-    </ul>
-  </aside>
-  <section class="content">
-    <router-view></router-view>
-  </section>
+  <div class="demos">
+    <header class="header">测试用例</header>
+    <aside class="sidebar">
+      <ul class="router-list">
+        <li
+          v-for="demo in routes[1].children"
+          :key="demo.name"
+          class="item"
+          @click="onClick(demo)"
+        >
+          {{ demo.name }}
+        </li>
+      </ul>
+    </aside>
+    <section class="content">
+      <router-view></router-view>
+    </section>
+  </div>
 </template>
 
-<style lang="less" >
-#app {
+<style lang="less" scoped>
+.demos {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -47,16 +50,16 @@ const onClick =  (item)=>{
   align-items: center;
   grid-column-start: 1;
   grid-column-end: 3;
-  border:1px solid #ddd;
+  border: 1px solid #ddd;
   padding: 0 20px;
 }
 .sidebar {
-  border:1px solid #ddd;
+  border: 1px solid #ddd;
   width: 300px;
   .router-list {
-    padding:10px;
+    padding: 10px;
     .item {
-      border-bottom:1px solid #eee;
+      border-bottom: 1px solid #eee;
       height: 36px;
       display: flex;
       align-items: center;

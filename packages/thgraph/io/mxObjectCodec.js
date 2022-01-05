@@ -198,12 +198,12 @@
  * mapping - Optional mapping from field- to attributenames.
  */
 import { mxUtils } from '../util/index.js';
-export function mxObjectCodec(template, exclude, idrefs, mapping) {
+export function mxObjectCodec(template, exclude = [], idrefs = [], mapping = []) {
   this.template = template;
 
-  this.exclude = exclude != null ? exclude : [];
-  this.idrefs = idrefs != null ? idrefs : [];
-  this.mapping = mapping != null ? mapping : [];
+  this.exclude = exclude ;
+  this.idrefs = idrefs ;
+  this.mapping = mapping ;
 
   this.reverse = new Object();
 
