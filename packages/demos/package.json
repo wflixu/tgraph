@@ -45,7 +45,9 @@
   "license": "MIT",
   "dependencies": {
     "@vueuse/core": "^7.5.1",
+    "ant-design-vue": "^2.2.8",
     "pako": "^2.0.4",
-    "sanitizer": "^0.1.3"
+    "sanitizer": "^0.1.3",
+    "vue-devui": "^1.0.0-beta.14"
   }
 }

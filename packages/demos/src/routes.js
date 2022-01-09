@@ -1,8 +1,8 @@
 import Home from './pages/Home.vue';
 
 import HelloWorld from './demos/HelloWorld.vue';
-import DemoAnchor from './demos/DemoAnchor.vue';
-import DemoAnimation from './demos/DemoAnimation.vue';
+import AnchorVue from './demos/Anchor.vue';
+import AnimationVue from './demos/Animation.vue';
 import AutoLayout from './demos/AutoLayout.vue';
 import Boundary from './demos/Boundary.vue';
 import Shape from './demos/Shape.vue';
@@ -36,7 +36,27 @@ import ShowregionVue from './demos/Showregion.vue';
 import SecondlabelVue from './demos/Secondlabel.vue';
 import RadialtreeVue from './demos/Radialtree.vue';
 import PortsVue from './demos/Ports.vue';
+import DynamicStyleVue from './demos/DynamicStyle.vue';
+import DynamicToobarVue from './demos/DynamicToobar.vue';
+
 const demos = [
+  AnchorVue,
+  AnimationVue,
+  AutoLayout,
+  Boundary,
+  Clipboard,
+  CodecVue,
+  CollapseVue,
+  ConstituentVue,
+  ContexticonsVue,
+  ControlVue,
+  DragsourceVue,
+  DropVue,
+  DynamicloadingVue,
+  DynamicStyleVue,
+  DynamicToobarVue,
+  EdgeToleranceVue,
+  EditingVue,
   PortsVue,
   RadialtreeVue,
   SecondlabelVue,
@@ -49,21 +69,6 @@ const demos = [
   TreeVue,
   UIConfigVue,
   HelloWorld,
-  DemoAnchor,
-  DemoAnimation,
-  AutoLayout,
-  Boundary,
-  Clipboard,
-  CodecVue,
-  CollapseVue,
-  ConstituentVue,
-  ContexticonsVue,
-  ControlVue,
-  DragsourceVue,
-  DropVue,
-  DynamicloadingVue,
-  EdgeToleranceVue,
-  EditingVue,
   UserObjectVue,
   ValidationVue,
   VisibleVue,

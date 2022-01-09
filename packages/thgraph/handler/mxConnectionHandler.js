@@ -164,7 +164,8 @@ import { mxUtils ,mxEventSource,mxEvent,mxPoint , mxEventObject,mxConstants} fro
 import { mxClient } from '../mxClient.js';
 import { mxCellMarker } from './mxCellMarker.js';
 import { mxConstraintHandler } from './mxConstraintHandler.js';
-import { mxPolyline } from '../shape/mxPolyline.js';
+import { mxPolyline,mxImageShape } from '../shape/index.js';
+import {mxRectangle,mxMouseEvent} from '../util/index.js';
 
 export function mxConnectionHandler(graph, factoryMethod) {
 	mxEventSource.call(this);
