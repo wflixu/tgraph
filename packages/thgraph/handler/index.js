@@ -14,6 +14,7 @@ import { mxRubberband } from './mxRubberband.js';
 import { mxSelectionCellsHandler } from './mxSelectionCellsHandler.js';
 import { mxTooltipHandler } from './mxTooltipHandler.js';
 import { mxVertexHandler } from './mxVertexHandler.js';
+import { mxElbowEdgeHandler } from './mxElbowEdgeHandler.js';
 
 export {
   mxEdgeHandler,
@@ -23,6 +24,7 @@ export {
   mxConstraintHandler,
   mxConnectionHandler,
   mxEdgeSegmentHandler,
+  mxElbowEdgeHandler,
   mxGraphHandler,
   mxHandle,
   mxKeyHandler,

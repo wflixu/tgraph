@@ -56,6 +56,8 @@ const onClick = (item) => {
 .sidebar {
   border: 1px solid #ddd;
   width: 300px;
+  max-height: 100%;
+  overflow: auto;
   .router-list {
     padding: 10px;
     .item {

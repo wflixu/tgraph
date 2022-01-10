@@ -2,13 +2,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import {
-  mxEvent,
-  mxGraph,
-  mxUtils,
-
-} from 'thgraph';
-
+import { mxEvent, mxGraph, mxUtils } from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
@@ -103,6 +97,10 @@ function main(container) {
 </script>
 
 <template>
+  <p>
+    Edge tolerance example for mxGraph. This example demonstrates increasing the
+    tolerance for hit detection on edges.
+  </p>
   <div id="graphContainer"></div>
 </template>
 

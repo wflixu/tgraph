@@ -2,14 +2,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import {
-  mxEvent,
-  mxGraph,
-  mxUtils,
-  mxKeyHandler
-} from 'thgraph';
-
-
+import { mxEvent, mxGraph, mxUtils, mxKeyHandler } from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
@@ -134,6 +127,12 @@ function main(container) {
 </script>
 
 <template>
+  <p>
+    Editing example for mxGraph. This example demonstrates using the in-place
+    editor trigger to specify the editing value and write the new value into a
+    specific field of the user object. Wrapping and DOM nodes as labels are also
+    demonstrated here.
+  </p>
   <div id="graphContainer"></div>
 </template>
 

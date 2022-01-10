@@ -111,6 +111,7 @@ import { mxEvent } from '../util/mxEvent.js';
 import { mxUtils } from '../util/mxUtils.js';
 import { mxClient } from '../mxClient.js';
 import { mxRectangle } from '../util/mxRectangle.js';
+import { mxText } from '../shape/index.js';
 
 export function mxCellEditor(graph) {
   this.graph = graph;

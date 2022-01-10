@@ -38,6 +38,8 @@ import RadialtreeVue from './demos/Radialtree.vue';
 import PortsVue from './demos/Ports.vue';
 import DynamicStyleVue from './demos/DynamicStyle.vue';
 import DynamicToobarVue from './demos/DynamicToobar.vue';
+import EventsVue from './demos/Events.vue';
+import ExtendCanvasVue from './demos/ExtendCanvas.vue';
 
 const demos = [
   AnchorVue,
@@ -57,6 +59,8 @@ const demos = [
   DynamicToobarVue,
   EdgeToleranceVue,
   EditingVue,
+  EventsVue,
+  ExtendCanvasVue,
   PortsVue,
   RadialtreeVue,
   SecondlabelVue,
