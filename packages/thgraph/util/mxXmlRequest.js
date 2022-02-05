@@ -85,6 +85,9 @@
  * username - String specifying the username to be used for the request.
  * password - String specifying the password to be used for the request.
  */
+
+import { mxUtils } from './mxUtils.js';
+
 export function mxXmlRequest(url, params, method, async, username, password) {
   this.url = url;
   this.params = params;

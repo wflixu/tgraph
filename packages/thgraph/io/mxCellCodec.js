@@ -41,6 +41,7 @@
 import { mxCell } from '../model/mxCell.js';
 import { mxCodecRegistry } from './mxCodecRegistry.js';
 import { mxObjectCodec } from './mxObjectCodec.js';
+import { mxConstants,  } from '../util/index.js';
 
 const codec = new mxObjectCodec(
   new mxCell(),

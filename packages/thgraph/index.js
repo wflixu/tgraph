@@ -10,6 +10,7 @@ import {
   mxRadialTreeLayout,
   mxStackLayout,
   mxGraphLayout,
+  mxCircleLayout,
 } from './layout/index.js';
 
 import { mxClient } from './mxClient.js';
@@ -259,6 +260,7 @@ export {
   mxRadialTreeLayout,
   mxStackLayout,
   mxGraphLayout,
+  mxCircleLayout,
+  // other
   mxClient,
 };
-console.log('graph/index.js');

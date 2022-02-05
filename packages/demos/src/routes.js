@@ -40,6 +40,18 @@ import DynamicStyleVue from './demos/DynamicStyle.vue';
 import DynamicToobarVue from './demos/DynamicToobar.vue';
 import EventsVue from './demos/Events.vue';
 import ExtendCanvasVue from './demos/ExtendCanvas.vue';
+import LayersVue from './demos/Layers.vue';
+import GroupsVue from './demos/Groups.vue';
+import ImagesVue from './demos/Images.vue';
+import MarkersVue from './demos/Markers.vue';
+import IndicatorsVue from './demos/Indicators.vue';
+import HtmlLabelVue from './demos/HtmlLabel.vue';
+import HandlesVue from './demos/Handles.vue';
+import FileIoVue from './demos/FileIo.vue';
+import JsonDataVue from './demos/JsonData.vue';
+import LayoutHierarchicalVue from './demos/LayoutHierarchical.vue';
+import LayoutGraphVue from './demos/LayoutGraph.vue';
+
 
 const demos = [
   AnchorVue,
@@ -61,9 +73,22 @@ const demos = [
   EditingVue,
   EventsVue,
   ExtendCanvasVue,
+  FileIoVue,
+  GroupsVue,
+  HandlesVue,
+  HelloWorld,
+  HtmlLabelVue,
+  ImagesVue,
+  IndicatorsVue,
+  JsonDataVue,
+  LayersVue,
+  LayoutGraphVue,
+  LayoutHierarchicalVue,
+  MarkersVue,
   PortsVue,
   RadialtreeVue,
   SecondlabelVue,
+  Shape,
   ShowregionVue,
   StencilsVue,
   SheetstyleVue,
@@ -72,13 +97,11 @@ const demos = [
   ThreadVue,
   TreeVue,
   UIConfigVue,
-  HelloWorld,
   UserObjectVue,
   ValidationVue,
   VisibleVue,
   WindowVue,
   WireVue,
-  Shape,
   WrappingVue,
 ].map((item) => {
   let name = item.__file.split('/').pop().split('.')[0];

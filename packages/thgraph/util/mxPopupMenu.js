@@ -31,7 +31,7 @@
  import { mxEvent } from './mxEvent.js';
 import { mxEventObject } from './mxEventObject.js';
 
-
+import { mxUtils } from './mxUtils.js';
  
 export function mxPopupMenu(factoryMethod)
 {
