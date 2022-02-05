@@ -1,7 +1,7 @@
 {
   "name": "thgraph",
   "version": "0.0.11",
-  "description": "a graph editor render with svg base from mxgraph",
+  "description": "A graph editor render with svg base from mxgraph",
   "main": "index.js",
   "type": "module",
   "scripts": {
