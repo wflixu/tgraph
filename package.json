@@ -18,6 +18,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "test": "jest",
+    "pub:core": "zx ./script/pub-core.mjs",
     "do":"zx ./script/start.mjs"
   },
   "devDependencies": {
