@@ -22,6 +22,7 @@
  */
 
  import { mxGraphLayout } from "./mxGraphLayout.js";
+ import {mxObjectIdentity} from '../util/index.js'
 export function mxFastOrganicLayout(graph)
 {
 	mxGraphLayout.call(this, graph);

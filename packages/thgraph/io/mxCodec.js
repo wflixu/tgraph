@@ -1,5 +1,6 @@
 
 
+import { mxCell } from "../index.js";
 import { mxConstants } from "../util/mxConstants.js";
 import { mxLog } from "../util/mxLog.js";
 import { mxUtils } from "../util/mxUtils.js";

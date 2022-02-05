@@ -70,6 +70,7 @@ import { mxMouseEvent } from '../util/mxMouseEvent.js';
 
 import { mxStyleRegistry } from './mxStyleRegistry.js';
 import { mxEventObject } from '../util/mxEventObject.js';
+import { mxImageShape } from '../shape/index.js';
 
 export function mxGraphView(graph) {
   this.graph = graph;

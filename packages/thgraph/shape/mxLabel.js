@@ -26,6 +26,9 @@
 import { mxUtils } from '../util/mxUtils.js';
 import { mxRectangleShape } from './mxRectangleShape.js';
 import { mxConstants } from '../util/mxConstants.js';
+import { mxShape } from './mxShape.js';
+import { mxRectangle } from '../index.js';
+
 export function mxLabel(bounds, fill, stroke, strokewidth) {
 	mxRectangleShape.call(this, bounds, fill, stroke, strokewidth);
 };

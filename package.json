@@ -3,9 +3,12 @@
   "private":"true",
   "version": "0.0.7",
   "description": "a graph editor render with svg base from mxgraph",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces":{
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
   "scripts": {
     "dev": "lerna exec --scope demos yarn dev",
     "det": "lerna exec --scope react-demos yarn ",
@@ -15,7 +18,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "test": "jest",
-    "do":"node script/append.mjs"
+    "do":"zx ./script/start.mjs"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

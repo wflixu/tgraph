@@ -33,6 +33,8 @@
 
  import { mxShape } from './mxShape.js';
  import { mxUtils } from '../util/mxUtils.js';
+import { mxConstants } from '../index.js';
+ 
 export function mxArrow(points, fill, stroke, strokewidth, arrowWidth, spacing, endSize)
 {
 	mxShape.call(this);
