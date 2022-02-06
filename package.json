@@ -1,9 +1,9 @@
 {
   "name": "tgraph",
-  "private":"true",
+  "private": "true",
   "version": "0.0.7",
   "description": "a graph editor render with svg base from mxgraph",
-  "workspaces":{
+  "workspaces": {
     "packages": [
       "packages/*"
     ],
@@ -13,10 +13,10 @@
     "dev": "yarn install &&  yarn workspace demos run dev",
     "det": "lerna exec --scope react-demos yarn ",
     "pub:core": "zx ./script/pub-core.mjs",
-    "do":"zx ./script/start.mjs"
+    "do": "zx ./script/start.mjs"
   },
   "devDependencies": {
-
+    "turbo": "^1.1.2"
   },
   "repository": {
     "type": "git",

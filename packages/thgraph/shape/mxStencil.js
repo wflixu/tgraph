@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxStencil
  *
@@ -280,8 +277,9 @@ export class mxStencil extends mxShape {
   strokewidth = null;
 
   constructor(desc) {
-	
+    //extends mxShape
     super();
+    this.stencil = this;
     this.desc = desc;
     this.parseDescription();
     this.parseConstraints();

@@ -1,6 +1,5 @@
-import { mxUtils } from '../util/mxUtils.js';
+import { mxUtils, mxConstants } from '../util/index.js';
 import { mxShape } from './mxShape.js';
-import { mxConstants } from '../util/mxConstants.js';
 
 /**
  * Class: mxRectangleShape
@@ -8,13 +7,13 @@ import { mxConstants } from '../util/mxConstants.js';
  * Extends <mxShape> to implement a rectangle shape.
  * This shape is registered under <mxConstants.SHAPE_RECTANGLE>
  * in <mxCellRenderer>.
- * 
+ *
  * Constructor: mxRectangleShape
  *
  * Constructs a new rectangle shape.
- * 
+ *
  * Parameters:
- * 
+ *
  * bounds - <mxRectangle> that defines the bounds. This is stored in
  * <mxShape.bounds>.
  * fill - String that defines the fill color. This is stored in <fill>.
@@ -22,107 +21,130 @@ import { mxConstants } from '../util/mxConstants.js';
  * strokewidth - Optional integer that defines the stroke width. Default is
  * 1. This is stored in <strokewidth>.
  */
-export function mxRectangleShape(bounds, fill, stroke, strokewidth)
-{
-	mxShape.call(this);
-	this.bounds = bounds;
-	this.fill = fill;
-	this.stroke = stroke;
-	this.strokewidth = (strokewidth != null) ? strokewidth : 1;
-};
+export class mxRectangleShape extends mxShape {
+  constructor(bounds, fill, stroke, strokewidth) {
+    // Extends mxShape.
+    super();
+    this.stencil = this;
+    this.bounds = bounds;
+    this.fill = fill;
+    this.stroke = stroke;
+    this.strokewidth = strokewidth != null ? strokewidth : 1;
+  }
 
-/**
- * Extends mxShape.
- */
-mxUtils.extend(mxRectangleShape, mxShape);
+  /**
+   * Function: isHtmlAllowed
+   *
+   * Returns true for non-rounded, non-rotated shapes with no glass gradient.
+   */
+  isHtmlAllowed() {
+    var events = true;
 
-/**
- * Function: isHtmlAllowed
- *
- * Returns true for non-rounded, non-rotated shapes with no glass gradient.
- */
-mxRectangleShape.prototype.isHtmlAllowed = function()
-{
-	var events = true;
-	
-	if (this.style != null)
-	{
-		events = mxUtils.getValue(this.style, mxConstants.STYLE_POINTER_EVENTS, '1') == '1';		
-	}
-	
-	return !this.isRounded && !this.glass && this.rotation == 0 && (events ||
-		(this.fill != null && this.fill != mxConstants.NONE));
-};
+    if (this.style != null) {
+      events =
+        mxUtils.getValue(this.style, mxConstants.STYLE_POINTER_EVENTS, '1') ==
+        '1';
+    }
 
-/**
- * Function: paintBackground
- * 
- * Generic background painting implementation.
- */
-mxRectangleShape.prototype.paintBackground = function(c, x, y, w, h)
-{
-	var events = true;
-	
-	if (this.style != null)
-	{
-		events = mxUtils.getValue(this.style, mxConstants.STYLE_POINTER_EVENTS, '1') == '1';
-	}
-	
-	if (events || (this.fill != null && this.fill != mxConstants.NONE) ||
-		(this.stroke != null && this.stroke != mxConstants.NONE))
-	{
-		if (!events && (this.fill == null || this.fill == mxConstants.NONE))
-		{
-			c.pointerEvents = false;
-		}
-		
-		if (this.isRounded)
-		{
-			var r = 0;
-			
-			if (mxUtils.getValue(this.style, mxConstants.STYLE_ABSOLUTE_ARCSIZE, 0) == '1')
-			{
-				r = Math.min(w / 2, Math.min(h / 2, mxUtils.getValue(this.style,
-					mxConstants.STYLE_ARCSIZE, mxConstants.LINE_ARCSIZE) / 2));
-			}
-			else
-			{
-				var f = mxUtils.getValue(this.style, mxConstants.STYLE_ARCSIZE,
-					mxConstants.RECTANGLE_ROUNDING_FACTOR * 100) / 100;
-				r = Math.min(w * f, h * f);
-			}
-			
-			c.roundrect(x, y, w, h, r, r);
-		}
-		else
-		{
-			c.rect(x, y, w, h);
-		}
-			
-		c.fillAndStroke();
-	}
-};
+    return (
+      !this.isRounded &&
+      !this.glass &&
+      this.rotation == 0 &&
+      (events || (this.fill != null && this.fill != mxConstants.NONE))
+    );
+  }
 
-/**
- * Function: isRoundable
- * 
- * Adds roundable support.
- */
-mxRectangleShape.prototype.isRoundable = function(c, x, y, w, h)
-{
-	return true;
-};
+  /**
+   * Function: paintBackground
+   *
+   * Generic background painting implementation.
+   */
+  paintBackground(c, x, y, w, h) {
+    var events = true;
 
-/**
- * Function: paintForeground
- * 
- * Generic background painting implementation.
- */
-mxRectangleShape.prototype.paintForeground = function(c, x, y, w, h)
-{
-	if (this.glass && !this.outline && this.fill != null && this.fill != mxConstants.NONE)
-	{
-		this.paintGlassEffect(c, x, y, w, h, this.getArcSize(w + this.strokewidth, h + this.strokewidth));
-	}
-};
+    if (this.style != null) {
+      events =
+        mxUtils.getValue(this.style, mxConstants.STYLE_POINTER_EVENTS, '1') ==
+        '1';
+    }
+
+    if (
+      events ||
+      (this.fill != null && this.fill != mxConstants.NONE) ||
+      (this.stroke != null && this.stroke != mxConstants.NONE)
+    ) {
+      if (!events && (this.fill == null || this.fill == mxConstants.NONE)) {
+        c.pointerEvents = false;
+      }
+
+      if (this.isRounded) {
+        var r = 0;
+
+        if (
+          mxUtils.getValue(this.style, mxConstants.STYLE_ABSOLUTE_ARCSIZE, 0) ==
+          '1'
+        ) {
+          r = Math.min(
+            w / 2,
+            Math.min(
+              h / 2,
+              mxUtils.getValue(
+                this.style,
+                mxConstants.STYLE_ARCSIZE,
+                mxConstants.LINE_ARCSIZE,
+              ) / 2,
+            ),
+          );
+        } else {
+          var f =
+            mxUtils.getValue(
+              this.style,
+              mxConstants.STYLE_ARCSIZE,
+              mxConstants.RECTANGLE_ROUNDING_FACTOR * 100,
+            ) / 100;
+          r = Math.min(w * f, h * f);
+        }
+
+        c.roundrect(x, y, w, h, r, r);
+      } else {
+        c.rect(x, y, w, h);
+      }
+
+      c.fillAndStroke();
+    }
+  }
+
+  /**
+   * Function: isRoundable
+   *
+   * Adds roundable support.
+   */
+  isRoundable(c, x, y, w, h) {
+    return true;
+  }
+
+  /**
+   * Function: paintForeground
+   *
+   * Generic background painting implementation.
+   */
+  paintForeground(c, x, y, w, h) {
+    if (
+      this.glass &&
+      !this.outline &&
+      this.fill != null &&
+      this.fill != mxConstants.NONE
+    ) {
+      this.paintGlassEffect(
+        c,
+        x,
+        y,
+        w,
+        h,
+        this.getArcSize(w + this.strokewidth, h + this.strokewidth),
+      );
+    }
+  }
+}
+
 console.log('graph/shape/mxRectangleShape.js');
