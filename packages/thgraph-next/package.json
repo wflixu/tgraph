@@ -1,0 +1,14 @@
+{
+  "name": "thgraph-next",
+  "version": "0.0.1",
+  "description": "Typescript mxgraph",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "doc":"typedoc"
+  },
+  "devDependencies": {
+    "typedoc": "^0.22.11",
+    "typescript": "^4.5.5"
+  }
+}

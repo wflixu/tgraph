@@ -10,7 +10,6 @@ import {
   mxDictionary,
 } from './../util/index.js';
 
-import { mxCellEditor } from './mxCellEditor.js';
 
 import {
   mxEdgeStyle,
@@ -19,6 +18,7 @@ import {
   mxGraphSelectionModel,
   mxStylesheet,
   mxGraphView,
+  mxCellEditor,
 } from './index.js';
 
 import { mxClient } from './../mxClient.js';
