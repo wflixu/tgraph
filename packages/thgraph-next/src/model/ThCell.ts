@@ -1,4 +1,5 @@
 
+
 /**
  * Class: mxCell
  *
@@ -68,14 +69,14 @@ export class ThCell {
      *
      * Holds the Id. Default is null.
      */
-    id = null;
+    id = '';
 
     /**
      * Variable: value
      *
      * Holds the user object. Default is null.
      */
-    value : Optional<ThOjbect>;
+    value: Optional<ThOjbect>;
     /**
      * 
      * @param value Optional object that represents the cell value.
@@ -140,7 +141,7 @@ export class ThCell {
      *
      * Reference to the parent cell.
      */
-    parent = null;
+    parent: Optional<ThCell>;
 
     /**
      * Variable: source
@@ -161,14 +162,14 @@ export class ThCell {
      *
      * Holds the child cells.
      */
-    children = null;
+    children:ThCell[] = [];
 
     /**
      * Variable: edges
      *
      * Holds the edges.
      */
-    edges = null;
+    edges = [];
 
     /**
      * Variable: mxTransient
@@ -223,4 +224,159 @@ export class ThCell {
     setStyle(style: Optional<string>) {
         this.style = style
     }
+    /**
+     * Function: getId
+     *
+     * Returns the Id of the cell as a string.
+     */
+    getId() {
+        return this.id;
+    }
+
+    /**
+     * Function: setId
+     *
+     * Sets the Id of the cell to the given string.
+     */
+    setId(id: string) {
+        this.id = id;
+    }
+
+    /**
+     * Function: getChildCount
+     *
+     * Returns the number of child cells.
+     */
+    getChildCount(): number {
+        return this.children?.length ?? 0;
+    }
+
+    /**
+     * Function: getChildAt
+     *
+     * Returns the child at the specified index.
+     *
+     * Parameters:
+     *
+     * index - Integer that specifies the child to be returned.
+     */
+    getChildAt(index: number):Optional<ThCell> {
+        return this.children[index];
+    }
+
+
+    /**
+     * Function: insert
+     *
+     * Inserts the specified child into the child array at the specified index
+     * and updates the parent reference of the child. If not childIndex is
+     * specified then the child is appended to the child array. Returns the
+     * inserted child.
+     *
+     * Parameters:
+     *
+     * child - <mxCell> to be inserted or appended to the child array.
+     * index - Optional integer that specifies the index at which the child
+     * should be inserted into the child array.
+     */
+    insert(child: ThCell, index?: number) {
+        if (child) {
+            if (index == null) {
+                index = this.getChildCount();
+
+                if (child.getParent() == this) {
+                    index--;
+                }
+            }
+
+            child.removeFromParent();
+            child.setParent(this);
+
+            if (this.children == null) {
+                this.children = [];
+                this.children.push(child);
+            } else {
+                this.children.splice(index, 0, child);
+            }
+        }
+
+        return child;
+    }
+
+    /**
+   * Function: removeFromParent
+   *
+   * Removes the cell from its parent.
+   */
+    removeFromParent() {
+        if (this.parent != null) {
+            var index = this.parent.getIndex(this);
+            this.parent.remove(index);
+        }
+    }
+
+    /**
+     * Function: remove
+     *
+     * Removes the child at the specified index from the child array and
+     * returns the child that was removed. Will remove the parent reference of
+     * the child.
+     *
+     * Parameters:
+     *
+     * index - Integer that specifies the index of the child to be
+     * removed.
+     */
+    remove(index: number) {
+        var child = null;
+
+        if (this.children != null && index >= 0) {
+            child = this.getChildAt(index);
+
+            if (child != null) {
+                this.children.splice(index, 1);
+                child.setParent(undefined);
+            }
+        }
+
+        return child;
+    }
+
+    /**
+     * Function: setParent
+     *
+     * Sets the parent cell.
+     *
+     * Parameters:
+     *
+     * parent - <mxCell> that represents the new parent.
+     */
+    setParent(parent: Optional<ThCell>) {
+        this.parent = parent;
+    }
+
+    /**
+     * Function: getIndex
+     *
+     * Returns the index of the specified child in the child array.
+     *
+     * Parameters:
+     *
+     * child - Child whose index should be returned.
+     */
+    getIndex(child: ThCell): number {
+        return this.children.findIndex(item => item == child);
+    }
+
+    /**
+     * Function: getParent
+     *
+     * Returns the cell's parent.
+     */
+    getParent() {
+        return this.parent;
+    }
+
+
+
 }

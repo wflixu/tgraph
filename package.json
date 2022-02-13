@@ -10,7 +10,7 @@
     "nohoist": []
   },
   "scripts": {
-    "dev": "yarn install &&  yarn workspace demos run dev",
+    "dev": "yarn workspace demos run dev ",
     "det": "lerna exec --scope react-demos yarn ",
     "doc": "yarn workspace thgraph-next run doc",
     "pub:core": "zx ./script/pub-core.mjs",

@@ -690,7 +690,7 @@ export class mxGraphModel extends mxEventSource {
    *
    * cell - <mxCell> to create the Id for.
    */
-  createId = function (cell) {
+  createId  (cell) {
     var id = this.nextId;
     this.nextId++;
 
@@ -972,7 +972,7 @@ export class mxGraphModel extends mxEventSource {
    *
    * cell - <mxCell> whose number of children should be returned.
    */
-  getChildCount = function (cell) {
+  getChildCount  (cell) {
     return cell != null ? cell.getChildCount() : 0;
   };
 

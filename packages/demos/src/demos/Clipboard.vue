@@ -10,9 +10,8 @@ import {
   mxUtils,
   mxClipboard,
   mxCodec,
-  mxGraphModel
+  mxGraphModel,
 } from 'thgraph';
-
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
@@ -165,8 +164,8 @@ function main(container) {
 
   // Merges XML into existing graph and layers
   var importXml = function (xml, dx, dy) {
-    dx = dx != null ? dx : 0;
-    dy = dy != null ? dy : 0;
+    dx = dx ?? 0;
+    dy = dy ?? 0;
     var cells = [];
 
     try {
@@ -257,26 +256,21 @@ function main(container) {
     var data = null;
 
     if (evt != null) {
-      var provider =
-        evt.dataTransfer != null ? evt.dataTransfer : evt.clipboardData;
+      var provider = evt.dataTransfer ?? evt.clipboardData;
 
       if (provider != null) {
-        if (document.documentMode == 10 || document.documentMode == 11) {
-          data = provider.getData('Text');
-        } else {
-          data =
-            mxUtils.indexOf(provider.types, 'text/html') >= 0
-              ? provider.getData('text/html')
-              : null;
+        data =
+          mxUtils.indexOf(provider.types, 'text/html') >= 0
+            ? provider.getData('text/html')
+            : null;
 
-          if (
-            mxUtils.indexOf(
-              provider.types,
-              'text/plain' && (data == null || data.length == 0),
-            )
-          ) {
-            data = provider.getData('text/plain');
-          }
+        if (
+          mxUtils.indexOf(
+            provider.types,
+            'text/plain' && (data == null || data.length == 0),
+          )
+        ) {
+          data = provider.getData('text/plain');
         }
       }
     }

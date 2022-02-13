@@ -1,4 +1,3 @@
-
 /**
  * Class: mxStylesheet
  *
@@ -49,221 +48,196 @@
  * Constructs a new stylesheet and assigns default styles.
  */
 
- import { mxUtils } from '../util/mxUtils.js';
-import { mxConstants } from '../util/mxConstants.js';
- import {mxPerimeter} from './mxPerimeter.js';
- 
-export function mxStylesheet()
-{
-	this.styles = new Object();
+import { mxUtils, mxConstants } from '../util/index.js';
+import { mxPerimeter } from './mxPerimeter.js';
 
-	this.putDefaultVertexStyle(this.createDefaultVertexStyle());
-	this.putDefaultEdgeStyle(this.createDefaultEdgeStyle());
-};
+export class mxStylesheet {
+  /**
+   * Function: styles
+   *
+   * Maps from names to cell styles. Each cell style is a map of key,
+   * value pairs.
+   */
+  styles = {};
 
-/**
- * Function: styles
- *
- * Maps from names to cell styles. Each cell style is a map of key,
- * value pairs.
- */
-mxStylesheet.prototype.styles;
+  constructor() {
+    console.log('graph/view/mxStylesheet.js');
 
-/**
- * Function: createDefaultVertexStyle
- *
- * Creates and returns the default vertex style.
- */
-mxStylesheet.prototype.createDefaultVertexStyle = function()
-{
-	var style = new Object();
+    this.putDefaultVertexStyle(this.createDefaultVertexStyle());
+    this.putDefaultEdgeStyle(this.createDefaultEdgeStyle());
+  }
 
-	style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
-	style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
-	style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_MIDDLE;
-	style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
-	style[mxConstants.STYLE_FILLCOLOR] = '#C3D9FF';
-	style[mxConstants.STYLE_STROKECOLOR] = '#6482B9';
-	style[mxConstants.STYLE_FONTCOLOR] = '#774400';
+  /**
+   * Function: createDefaultVertexStyle
+   *
+   * Creates and returns the default vertex style.
+   */
+  createDefaultVertexStyle() {
+    var style = {};
 
-	return style;
-};
+    style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
+    style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
+    style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_MIDDLE;
+    style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
+    style[mxConstants.STYLE_FILLCOLOR] = '#C3D9FF';
+    style[mxConstants.STYLE_STROKECOLOR] = '#6482B9';
+    style[mxConstants.STYLE_FONTCOLOR] = '#774400';
 
-/**
- * Function: createDefaultEdgeStyle
- *
- * Creates and returns the default edge style.
- */
-mxStylesheet.prototype.createDefaultEdgeStyle = function()
-{
-	var style = new Object();
+    return style;
+  }
 
-	style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_CONNECTOR;
-	style[mxConstants.STYLE_ENDARROW] = mxConstants.ARROW_CLASSIC;
-	style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_MIDDLE;
-	style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
-	style[mxConstants.STYLE_STROKECOLOR] = '#6482B9';
-	style[mxConstants.STYLE_FONTCOLOR] = '#446299';
+  /**
+   * Function: createDefaultEdgeStyle
+   *
+   * Creates and returns the default edge style.
+   */
+  createDefaultEdgeStyle() {
+    var style = {};
 
-	return style;
-};
+    style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_CONNECTOR;
+    style[mxConstants.STYLE_ENDARROW] = mxConstants.ARROW_CLASSIC;
+    style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_MIDDLE;
+    style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
+    style[mxConstants.STYLE_STROKECOLOR] = '#6482B9';
+    style[mxConstants.STYLE_FONTCOLOR] = '#446299';
 
-/**
- * Function: putDefaultVertexStyle
- *
- * Sets the default style for vertices using defaultVertex as the
- * stylename.
- *
- * Parameters:
- * style - Key, value pairs that define the style.
- */
-mxStylesheet.prototype.putDefaultVertexStyle = function(style)
-{
-	this.putCellStyle('defaultVertex', style);
-};
+    return style;
+  }
 
-/**
- * Function: putDefaultEdgeStyle
- *
- * Sets the default style for edges using defaultEdge as the stylename.
- */
-mxStylesheet.prototype.putDefaultEdgeStyle = function(style)
-{
-	this.putCellStyle('defaultEdge', style);
-};
+  /**
+   * Function: putDefaultVertexStyle
+   *
+   * Sets the default style for vertices using defaultVertex as the
+   * stylename.
+   *
+   * Parameters:
+   * style - Key, value pairs that define the style.
+   */
+  putDefaultVertexStyle(style) {
+    this.putCellStyle('defaultVertex', style);
+  }
 
-/**
- * Function: getDefaultVertexStyle
- *
- * Returns the default style for vertices.
- */
-mxStylesheet.prototype.getDefaultVertexStyle = function()
-{
-	return this.styles['defaultVertex'];
-};
+  /**
+   * Function: putDefaultEdgeStyle
+   *
+   * Sets the default style for edges using defaultEdge as the stylename.
+   */
+  putDefaultEdgeStyle(style) {
+    this.putCellStyle('defaultEdge', style);
+  }
 
-/**
- * Function: getDefaultEdgeStyle
- *
- * Sets the default style for edges.
- */
-mxStylesheet.prototype.getDefaultEdgeStyle = function()
-{
-	return this.styles['defaultEdge'];
-};
+  /**
+   * Function: getDefaultVertexStyle
+   *
+   * Returns the default style for vertices.
+   */
+  getDefaultVertexStyle() {
+    return this.styles['defaultVertex'];
+  }
 
-/**
- * Function: putCellStyle
- *
- * Stores the given map of key, value pairs under the given name in
- * <styles>.
- *
- * Example:
- *
- * The following example adds a new style called 'rounded' into an
- * existing stylesheet:
- *
- * (code)
- * var style = new Object();
- * style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
- * style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
- * style[mxConstants.STYLE_ROUNDED] = true;
- * graph.getStylesheet().putCellStyle('rounded', style);
- * (end)
- *
- * In the above example, the new style is an object. The possible keys of
- * the object are all the constants in <mxConstants> that start with STYLE
- * and the values are either JavaScript objects, such as
- * <mxPerimeter.RightAngleRectanglePerimeter> (which is in fact a function)
- * or expressions, such as true. Note that not all keys will be
- * interpreted by all shapes (eg. the line shape ignores the fill color).
- * The final call to this method associates the style with a name in the
- * stylesheet. The style is used in a cell with the following code:
- *
- * (code)
- * model.setStyle(cell, 'rounded');
- * (end)
- *
- * Parameters:
- *
- * name - Name for the style to be stored.
- * style - Key, value pairs that define the style.
- */
-mxStylesheet.prototype.putCellStyle = function(name, style)
-{
-	this.styles[name] = style;
-};
+  /**
+   * Function: getDefaultEdgeStyle
+   *
+   * Sets the default style for edges.
+   */
+  getDefaultEdgeStyle() {
+    return this.styles['defaultEdge'];
+  }
 
-/**
- * Function: getCellStyle
- *
- * Returns the cell style for the specified stylename or the given
- * defaultStyle if no style can be found for the given stylename.
- *
- * Parameters:
- *
- * name - String of the form [(stylename|key=value);] that represents the
- * style.
- * defaultStyle - Default style to be returned if no style can be found.
- */
-mxStylesheet.prototype.getCellStyle = function(name, defaultStyle)
-{
-	var style = defaultStyle;
+  /**
+   * Function: putCellStyle
+   *
+   * Stores the given map of key, value pairs under the given name in
+   * <styles>.
+   *
+   * Example:
+   *
+   * The following example adds a new style called 'rounded' into an
+   * existing stylesheet:
+   *
+   * (code)
+   * var style = new Object();
+   * style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
+   * style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
+   * style[mxConstants.STYLE_ROUNDED] = true;
+   * graph.getStylesheet().putCellStyle('rounded', style);
+   * (end)
+   *
+   * In the above example, the new style is an object. The possible keys of
+   * the object are all the constants in <mxConstants> that start with STYLE
+   * and the values are either JavaScript objects, such as
+   * <mxPerimeter.RightAngleRectanglePerimeter> (which is in fact a function)
+   * or expressions, such as true. Note that not all keys will be
+   * interpreted by all shapes (eg. the line shape ignores the fill color).
+   * The final call to this method associates the style with a name in the
+   * stylesheet. The style is used in a cell with the following code:
+   *
+   * (code)
+   * model.setStyle(cell, 'rounded');
+   * (end)
+   *
+   * Parameters:
+   *
+   * name - Name for the style to be stored.
+   * style - Key, value pairs that define the style.
+   */
+  putCellStyle(name, style) {
+    this.styles[name] = style;
+  }
 
-	if (name != null && name.length > 0)
-	{
-		var pairs = name.split(';');
+  /**
+   * Function: getCellStyle
+   *
+   * Returns the cell style for the specified stylename or the given
+   * defaultStyle if no style can be found for the given stylename.
+   *
+   * Parameters:
+   *
+   * name - String of the form [(stylename|key=value);] that represents the
+   * style.
+   * defaultStyle - Default style to be returned if no style can be found.
+   */
+  getCellStyle(name, defaultStyle) {
+    var style = defaultStyle;
 
-		if (style != null &&
-			name.charAt(0) != ';')
-		{
-			style = mxUtils.clone(style);
-		}
-		else
-		{
-			style = new Object();
-		}
+    if (name != null && name.length > 0) {
+      var pairs = name.split(';');
 
-		// Parses each key, value pair into the existing style
-	 	for (var i = 0; i < pairs.length; i++)
-	 	{
-	 		var tmp = pairs[i];
-	 		var pos = tmp.indexOf('=');
+      if (style != null && name.charAt(0) != ';') {
+        style = mxUtils.clone(style);
+      } else {
+        style = new Object();
+      }
 
-	 		if (pos >= 0)
-	 		{
-		 		var key = tmp.substring(0, pos);
-		 		var value = tmp.substring(pos + 1);
+      // Parses each key, value pair into the existing style
+      for (var i = 0; i < pairs.length; i++) {
+        var tmp = pairs[i];
+        var pos = tmp.indexOf('=');
 
-		 		if (value == mxConstants.NONE)
-		 		{
-		 			delete style[key];
-		 		}
-		 		else if (mxUtils.isNumeric(value))
-		 		{
-		 			style[key] = parseFloat(value);
-		 		}
-		 		else
-		 		{
-			 		style[key] = value;
-		 		}
-			}
-	 		else
-	 		{
-	 			// Merges the entries from a named style
-				var tmpStyle = this.styles[tmp];
+        if (pos >= 0) {
+          var key = tmp.substring(0, pos);
+          var value = tmp.substring(pos + 1);
 
-				if (tmpStyle != null)
-				{
-					for (var key in tmpStyle)
-					{
-						style[key] = tmpStyle[key];
-					}
-				}
-	 		}
-		}
-	}
+          if (value == mxConstants.NONE) {
+            delete style[key];
+          } else if (mxUtils.isNumeric(value)) {
+            style[key] = parseFloat(value);
+          } else {
+            style[key] = value;
+          }
+        } else {
+          // Merges the entries from a named style
+          var tmpStyle = this.styles[tmp];
 
-	return style;
-};
-console.log('graph/view/mxStylesheet.js');
+          if (tmpStyle != null) {
+            for (var key in tmpStyle) {
+              style[key] = tmpStyle[key];
+            }
+          }
+        }
+      }
+    }
+
+    return style;
+  }
+}

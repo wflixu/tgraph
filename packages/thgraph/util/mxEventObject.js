@@ -11,7 +11,7 @@
  * 
  * (code)
  * evt.consume();
- * INV: evt.isConsumed() == true
+ * INV: evt.isConsumed() ==   
  * (end)
  * 
  * Constructor: mxEventObject
@@ -21,7 +21,7 @@
  * 
  * Example:
  *
- * (code)
+ * (code)   
  * new mxEventObject("eventName", key1, val1, .., keyN, valN)
  * (end)
  */

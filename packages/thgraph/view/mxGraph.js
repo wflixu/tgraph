@@ -1661,13 +1661,13 @@ export class mxGraph extends mxEventSource {
     }
 
     // Initializes the main members that do not require a container
-    this.model = model != null ? model : new mxGraphModel();
+    this.model = model ?? new mxGraphModel();
     this.multiplicities = [];
     this.imageBundles = [];
     this.cellRenderer = this.createCellRenderer();
     this.setSelectionModel(this.createSelectionModel());
     this.setStylesheet(
-      stylesheet != null ? stylesheet : this.createStylesheet(),
+      stylesheet ?? this.createStylesheet(),
     );
     this.view = this.createGraphView();
 
@@ -1682,7 +1682,7 @@ export class mxGraph extends mxEventSource {
     this.createHandlers();
 
     // Initializes the display if a container was specified
-    if (container != null) {
+    if (container) {
       this.init(container);
     }
 
