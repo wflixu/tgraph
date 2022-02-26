@@ -1,6 +1,7 @@
 import { mxEvent, mxUtils, mxWindow } from "./index.js";
 import { mxClient } from "../index.js";
 
+let navigator = window?.navigator ?? {};
 
 export const  mxLog =
 {

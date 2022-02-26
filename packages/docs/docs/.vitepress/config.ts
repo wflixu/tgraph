@@ -5,10 +5,10 @@ export default defineConfig({
   title: 'TGrahp',
   description: 'a svg editor',
   lastUpdated: true,
-  base: '/thgraph/',
+  base: '/tgraph/',
 
   themeConfig: {
-    repo: 'thgraph',
+    repo: 'tgraph',
     docsDir: 'docs',
     docsBranch: 'gh-pages',
     editLinks: true,

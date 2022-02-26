@@ -2,7 +2,8 @@
  * Copyright (c) 2006-2015, JGraph Ltd
  * Copyright (c) 2006-2015, Gaudenz Alder
  */
-
+ let navigator = window?.navigator ?? {};
+ 
 import { mxEventSource } from './mxEventSource.js';
 import { mxClient } from '../mxClient.js';
 import { mxRectangle } from './mxRectangle.js';

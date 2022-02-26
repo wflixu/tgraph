@@ -1,6 +1,5 @@
 {
   "name": "tgraph",
-  "private": "true",
   "version": "0.0.7",
   "description": "a graph editor render with svg base from mxgraph",
   "workspaces": {
@@ -13,6 +12,7 @@
     "dev": "yarn workspace demos run dev ",
     "det": "lerna exec --scope react-demos yarn ",
     "doc": "yarn workspace thgraph-next run doc",
+    "docs": "yarn workspace docs run docs:build",
     "pub:core": "zx ./script/pub-core.mjs",
     "do": "zx ./script/start.mjs"
   },
@@ -23,7 +23,6 @@
     "type": "git",
     "url": "https://github.com/wflixu/tgraph.git"
   },
-  
   "keywords": [
     "mxGraph",
     "jgraph",

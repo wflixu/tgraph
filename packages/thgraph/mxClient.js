@@ -1,3 +1,4 @@
+let navigator = window?.navigator ?? {};
 export const mxClient = {
   /**
    * Class: mxClient

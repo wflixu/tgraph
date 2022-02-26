@@ -1,6 +1,16 @@
 #!/usr/bin/env zx
 
 
+await `set -e`
+await $`yarn docs`
+await $`cd  packages/docs/docs/.vitepress/dist`
+$`git init`
+$`git add -A`
+$`git commit -m 'deploy'`
+await $`git push -f git@github.com:wflixu/tgraph.git master:gh-pages`
+
+$`cd -`
+
 
 
 
