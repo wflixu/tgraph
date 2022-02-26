@@ -19,6 +19,8 @@ mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，�
 # 文档
 目前只是把mxgraph 转换成esmodule，所以之前全局变量，引入后就能用了。
 
+[新文档](https://wflixu.github.io/tgraph/)
+
 ## helloworld
 
 ``` javascript

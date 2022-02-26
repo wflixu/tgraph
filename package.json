@@ -14,10 +14,11 @@
     "doc": "yarn workspace thgraph-next run doc",
     "docs": "yarn workspace docs run docs:build",
     "pub:doc": "zx ./script/docs.mjs",
-    "do": "zx ./script/start.mjs"
+    "do": "zx ./script/docs.mjs"
   },
   "devDependencies": {
-    "turbo": "^1.1.2"
+    "turbo": "^1.1.2",
+    "zx": "^5.1.0"
   },
   "repository": {
     "type": "git",

@@ -2,15 +2,20 @@
 
 
 await `set -e`
-await $`cd  packages/docs/docs/.vitepress/ && rm -rf dist`
-await $`yarn docs`
-await $`cd  packages/docs/docs/.vitepress/dist`
+cd('packages/docs/docs/.vitepress/')
+await $`pwd`
+await $`rm -rf dist`
+cd('packages/docs');
+await $`yarn docs:build`
+cd('packages/docs/docs/.vitepress/dist/')
 await $`git init`
 await $`git add -A`
 await $`git commit -m 'deploy'`
 await $`git push -f git@github.com:wflixu/tgraph.git master:gh-pages`
 
-$`cd -`
+cd('packages/docs/docs/.vitepress/')
+await $`pwd`
+await $`rm -rf dist`
 
 
 
