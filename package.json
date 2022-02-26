@@ -13,7 +13,7 @@
     "det": "lerna exec --scope react-demos yarn ",
     "doc": "yarn workspace thgraph-next run doc",
     "docs": "yarn workspace docs run docs:build",
-    "pub:core": "zx ./script/pub-core.mjs",
+    "pub:doc": "zx ./script/docs.mjs",
     "do": "zx ./script/start.mjs"
   },
   "devDependencies": {
