@@ -1,23 +1,5 @@
 
 <script setup>
-import HelloWord  from './HelloWorld.vue'
-</script>
-
-
-## 说明
-
-  Hello, World! example for mxGraph. This example demonstrates using
-  a DOM node to create a graph and adding vertices and edges.
-
-## 效果
-
-
-<HelloWorld/>
-
-## 代码
-
-```vue
-<script setup>
 import { ref, onMounted } from 'vue';
 
 import {
@@ -26,8 +8,10 @@ import {
   mxRubberband,
   mxConstants,
   mxUtils,
-  mxPoint,
+  mxPoint
 } from 'thgraph';
+
+
 
 onMounted(() => {
   main();
@@ -230,9 +214,5 @@ function main() {
   <div id="graphContainer"></div>
 </template>
 
-<style lang="less"></style>
-```
-
-
-
-
+<style  >
+</style>

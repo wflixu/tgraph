@@ -11,8 +11,8 @@
   "scripts": {
     "dev": "yarn workspace demos run dev ",
     "det": "lerna exec --scope react-demos yarn ",
-    "doc": "yarn workspace thgraph-next run doc",
-    "docs": "yarn workspace docs run docs:build",
+    "doc": "yarn workspace thgraph run docs:dev",
+    "docs": "yarn workspace thgraph run docs:build",
     "pub:doc": "zx ./script/docs.mjs",
     "do": "zx ./script/docs.mjs"
   },

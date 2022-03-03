@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitepress'
 
-export default defineConfig({
+
+export default {
   title: 'TGraph',
   description: 'a svg editor',
   lastUpdated: true,
@@ -43,7 +43,7 @@ export default defineConfig({
     //   '/': getGuideSidebar()
     }
   }
-})
+}
 
 function getGuideSidebar() {
   return [

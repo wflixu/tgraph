@@ -5717,8 +5717,8 @@ __metadata:
     react-dom: ^17.0.0
     typescript: ^4.3.2
     vite: ^2.7.2
-    vitepress: ^0.20.9
-    vue: ^3.2.25
+    vitepress: ^0.22.3
+    vue: 3
     vue-router: ^4.0.12
   languageName: unknown
   linkType: soft
@@ -6071,7 +6071,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^2.7.0, vite@npm:^2.7.2":
+"vite@npm:^2.7.2":
   version: 2.7.10
   resolution: "vite@npm:2.7.10"
   dependencies:
@@ -6126,22 +6126,6 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 0531ea17d354c35026c87e732d28c777492cc5165c4abdaa507c4894535ecbbfcf447fa3f270bbb160cd7cba8ad319cc86a221be18b2ccd40d8be139f9d7381d
-  languageName: node
-  linkType: hard
-
-"vitepress@npm:^0.20.9":
-  version: 0.20.10
-  resolution: "vitepress@npm:0.20.10"
-  dependencies:
-    "@docsearch/css": ^3.0.0-alpha.41
-    "@docsearch/js": ^3.0.0-alpha.41
-    "@vitejs/plugin-vue": ^2.0.0
-    prismjs: ^1.25.0
-    vite: ^2.7.0
-    vue: ^3.2.26
-  bin:
-    vitepress: bin/vitepress.js
-  checksum: d5ed42c91ec9f783cc73a66d7d47d809b83a02ec1887291c6be3ec7781b3f39b4560a8438e8b23c3ba94e39bd096647161fc453af4c497cd6d677b38ba209fdd
   languageName: node
   linkType: hard
 
@@ -6228,20 +6212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^3.1.1, vue@npm:^3.2.25, vue@npm:^3.2.26":
-  version: 3.2.26
-  resolution: "vue@npm:3.2.26"
-  dependencies:
-    "@vue/compiler-dom": 3.2.26
-    "@vue/compiler-sfc": 3.2.26
-    "@vue/runtime-dom": 3.2.26
-    "@vue/server-renderer": 3.2.26
-    "@vue/shared": 3.2.26
-  checksum: e9423c5eb106b0c821f43eb4a0c8c1e2f42b78861a8b488479108641b46a19fd88cff278e9645a6e2fcaa6a2865cfe5c63044a936a4a2876963789634740230c
-  languageName: node
-  linkType: hard
-
-"vue@npm:^3.2.31":
+"vue@npm:3, vue@npm:^3.2.31":
   version: 3.2.31
   resolution: "vue@npm:3.2.31"
   dependencies:
@@ -6251,6 +6222,19 @@ __metadata:
     "@vue/server-renderer": 3.2.31
     "@vue/shared": 3.2.31
   checksum: 2d66b563e60ce01ff4872f425b1acaf9a9f9d36f48eb986c89962d9b324c6bf566868503811462317052273b53056bbc58be3ceb06ea39dff174bb0fa62db3a2
+  languageName: node
+  linkType: hard
+
+"vue@npm:^3.1.1, vue@npm:^3.2.25":
+  version: 3.2.26
+  resolution: "vue@npm:3.2.26"
+  dependencies:
+    "@vue/compiler-dom": 3.2.26
+    "@vue/compiler-sfc": 3.2.26
+    "@vue/runtime-dom": 3.2.26
+    "@vue/server-renderer": 3.2.26
+    "@vue/shared": 3.2.26
+  checksum: e9423c5eb106b0c821f43eb4a0c8c1e2f42b78861a8b488479108641b46a19fd88cff278e9645a6e2fcaa6a2865cfe5c63044a936a4a2876963789634740230c
   languageName: node
   linkType: hard
 

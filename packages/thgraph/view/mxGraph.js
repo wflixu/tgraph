@@ -51,8 +51,8 @@ import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import { mxCellOverlay } from './mxCellOverlay.js';
 
 const warning = '/graph/assets/warning.png';
-import expandedGif from '../assets/expand.gif';
-import collapsedGif from '../assets/collapse.gif';
+import expandedGif from '../assets/expand.gif' assert { type: 'image/gif'};
+import collapsedGif from '../assets/collapse.gif' assert { type: 'image/gif'};
 /**
  * Class: mxGraph
  *

@@ -20,10 +20,7 @@ import { mxCellEditor } from './mxCellEditor.js';
 
 
 
-
-
-
-export {
+export default {
   mxCellEditor,
   mxCellOverlay,
   mxCellRenderer,

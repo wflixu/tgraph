@@ -3,6 +3,7 @@
   "version": "0.0.11",
   "description": "A graph editor render with svg base from mxgraph",
   "main": "index.js",
+  "module": "index.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -24,8 +25,8 @@
     "react-dom": "^17.0.0",
     "typescript": "^4.3.2",
     "vite": "^2.7.2",
-    "vitepress": "^0.20.9",
-    "vue": "^3.2.25",
+    "vitepress": "^0.22.3",
+    "vue": "3",
     "vue-router": "^4.0.12"
   },
   "repository": {
