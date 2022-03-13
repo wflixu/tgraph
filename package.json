@@ -10,10 +10,8 @@
   },
   "scripts": {
     "dev": "pnpm run dev --filter demos",
-    "tdv": " pnpm run  docs:dev --filter thgraph",
-    "docs": "yarn workspace thgraph run docs:build",
-    "pub:doc": "zx ./script/docs.mjs",
-    "do": "zx ./script/docs.mjs"
+    "dev:doc": "pnpm --filter thgraph run docs:build",
+    "pub:doc": "zx ./script/docs.mjs"
   },
   "devDependencies": {
     "zx": "^5.1.0"

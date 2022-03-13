@@ -20,7 +20,7 @@ mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，�
 ### 简单示例
 
 ``` javascript
-    // 引入以来 （只支持esm，cjs需要打包工具转换）
+    // 引入依赖 （只支持esm，cjs需要打包工具转换）
     import { mxGraph ,mxRubberband} from 'thgraph';
 
 

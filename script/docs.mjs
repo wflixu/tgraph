@@ -2,50 +2,21 @@
 
 
 await `set -e`
-cd('packages/docs/docs/.vitepress/')
+cd('packages/thgraph/docs/.vitepress/')
 await $`pwd`
 await $`rm -rf dist`
-cd('packages/docs');
-await $`yarn docs:build`
-cd('packages/docs/docs/.vitepress/dist/')
+cd('../../');
+await $`pwd`
+await $`pnpm docs:build`
+cd('./docs/.vitepress/dist/')
 await $`git init`
 await $`git add -A`
 await $`git commit -m 'deploy'`
 await $`git push -f git@github.com:wflixu/tgraph.git master:gh-pages`
 
-cd('packages/docs/docs/.vitepress/')
+cd('../')
 await $`pwd`
 await $`rm -rf dist`
 
-
-
-
-// await $`cat package.json | grep name`
-
-// let branch = await $`git branch --show-current`
-
-
-// await Promise.all([
-//   $`sleep 1; echo 1`,
-//   $`sleep 2; echo 2`,
-//   $`sleep 3; echo 3`,
-// ])
-
-// let name = 'foo bar'
-// await $`mv /tmp/${name}`
-
-// await $`cat package.json`.pipe(process.stdout);
-
-
-// let resp = await fetch('http://wttr.in')
-// if (resp.ok) {
-//   console.log(await resp.text())
-// }
-
-
-// let bear = await question('What kind of bear is best? ')
-// let token = await question('Choose env variable: ', {
-//   choices: Object.keys(process.env)
-// })
 
 
