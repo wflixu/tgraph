@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as t,a as r}from"./app.edf3bf51.js";var o="/tgraph/assets/img-1.4f9b9d07.png";const u='{"title":"\u6982\u89C8","description":"","frontmatter":{},"headers":[],"relativePath":"tutorial/index.md","lastUpdated":1646319264000}',_={},s=r("",6),d=[s];function i(n,c,p,h,l,f){return t(),e("div",null,d)}var x=a(_,[["render",i]]);export{u as __pageData,x as default};
