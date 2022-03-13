@@ -10,8 +10,7 @@
   },
   "scripts": {
     "dev": "pnpm run dev --filter demos",
-    "det": "lerna exec --scope react-demos yarn ",
-    "doc": "yarn workspace thgraph run docs:dev",
+    "tdv": " pnpm run  docs:dev --filter thgraph",
     "docs": "yarn workspace thgraph run docs:build",
     "pub:doc": "zx ./script/docs.mjs",
     "do": "zx ./script/docs.mjs"
