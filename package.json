@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "pnpm run dev --filter demos",
-    "dev:doc": "pnpm --filter thgraph run docs:build",
+    "dev:doc": "pnpm --filter thgraph run docs:dev",
     "pub:doc": "zx ./script/docs.mjs"
   },
   "devDependencies": {

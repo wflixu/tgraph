@@ -4,7 +4,6 @@
   "description": "A graph editor render with svg base from mxgraph",
   "main": "index.js",
   "module": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
