@@ -9,7 +9,7 @@
     "nohoist": []
   },
   "scripts": {
-    "dev": "yarn workspace demos run dev ",
+    "dev": "pnpm run dev --filter demos",
     "det": "lerna exec --scope react-demos yarn ",
     "doc": "yarn workspace thgraph run docs:dev",
     "docs": "yarn workspace thgraph run docs:build",
@@ -17,7 +17,6 @@
     "do": "zx ./script/docs.mjs"
   },
   "devDependencies": {
-    "turbo": "^1.1.2",
     "zx": "^5.1.0"
   },
   "repository": {

@@ -18,8 +18,8 @@
     "ant-design-vue": "^2.2.8",
     "pako": "^2.0.4",
     "sanitizer": "^0.1.3",
+    "thgraph": "workspace:^0.0.11",
     "vue": "^3.2.25",
-    "vue-devui": "^1.0.0-beta.14",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
