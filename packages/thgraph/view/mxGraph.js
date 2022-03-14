@@ -1733,15 +1733,16 @@ export class mxGraph extends mxEventSource {
    * order). This is called in the constructor before <init> is called.
    */
   createHandlers() {
-    this.tooltipHandler = this.createTooltipHandler();
-    this.tooltipHandler.setEnabled(false);
+    // TODO!
+    // this.tooltipHandler = this.createTooltipHandler();
+    // this.tooltipHandler.setEnabled(false);
     this.selectionCellsHandler = this.createSelectionCellsHandler();
-    this.connectionHandler = this.createConnectionHandler();
-    this.connectionHandler.setEnabled(false);
+    // this.connectionHandler = this.createConnectionHandler();
+    // this.connectionHandler.setEnabled(false);
     this.graphHandler = this.createGraphHandler();
-    this.panningHandler = this.createPanningHandler();
-    this.panningHandler.panningEnabled = false;
-    this.popupMenuHandler = this.createPopupMenuHandler();
+    // this.panningHandler = this.createPanningHandler();
+    // this.panningHandler.panningEnabled = false;
+    // this.popupMenuHandler = this.createPopupMenuHandler();
   }
 
   /**

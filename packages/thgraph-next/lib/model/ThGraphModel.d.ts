@@ -1,9 +1,6 @@
 import { ThCell } from './ThCell';
-import { ThEvent, ThEventObject, ThEventSource, ThRootChange } from "../event";
-import { mxUndoableEdit } from "../util";
-
-export class ThGraphModel extends ThEventSource {
-
+import { ThEventSource } from "../event";
+export declare class ThGraphModel extends ThEventSource {
     /**
      * Variable: currentEdit
      *
@@ -11,8 +8,7 @@ export class ThGraphModel extends ThEventSource {
      * closed then a new object is created for this variable using
      * <createUndoableEdit>.
      */
-    currentEdit: any = null;
-
+    currentEdit: any;
     /**
      * Variable: root
      *
@@ -21,7 +17,6 @@ export class ThGraphModel extends ThEventSource {
      * diagram are supposed to live in the third generation of cells and below.
      */
     root?: ThCell;
-
     /**
      * Variable: updateLevel
      *
@@ -30,83 +25,57 @@ export class ThGraphModel extends ThEventSource {
      * it. When the counter reaches 0, the transaction is closed and the
      * respective events are fired. Initial value is 0.
      */
-    updateLevel = 0;
-
+    updateLevel: number;
     /**
      * Variable: endingUpdate
      *
      * True if the program flow is currently inside endUpdate.
      */
-    endingUpdate = false;
-
+    endingUpdate: boolean;
     /**
      * Variable: cells
      *
      * Maps from Ids to cells.
      */
-    cells: ThOjbect = {};
-
+    cells: ThOjbect;
     /**
      * Variable: nextId
      *
      * Specifies the next Id to be created. Initial value is 0.
      */
-    nextId = 0;
-
-
+    nextId: number;
     /**
      * Variable: createIds
      *
      * Specifies if the model should automatically create Ids for new cells.
      * Default is true.
      */
-    createIds = true;
-
+    createIds: boolean;
     /**
      * Variable: prefix
      *
      * Defines the prefix of new Ids. Default is an empty string.
      */
-    prefix = '';
-
+    prefix: string;
     /**
      * Variable: postfix
      *
      * Defines the postfix of new Ids. Default is an empty string.
      */
-    postfix = '';
-
-    constructor(root?: any) {
-        super();
-        // this.currentEdit = this.createUndoableEdit();
-        if (root) {
-            this.setRoot(root);
-        } else {
-            this.clear();
-        }
-    }
-
+    postfix: string;
+    constructor(root?: any);
     /**
      * Function: clear
      *
      * Sets a new root using <createRoot>.
      */
-    clear() {
-        this.setRoot(this.createRoot());
-    };
-
+    clear(): void;
     /**
      * Function: createRoot
      *
      * Creates a new root cell with a default layer (child 0).
      */
-    createRoot() {
-        var cell = new ThCell();
-        cell.insert(new ThCell());
-        return cell;
-    };
-
-
+    createRoot(): ThCell;
     /**
      * Function: setRoot
      *
@@ -127,11 +96,7 @@ export class ThGraphModel extends ThEventSource {
      *
      * root - <mxCell> that specifies the new root.
      */
-    setRoot(root: ThCell) {
-        this.execute(new ThRootChange(this, root));
-        return root;
-    };
-
+    setRoot(root: ThCell): ThCell;
     /**
      * Function: rootChanged
      *
@@ -142,20 +107,7 @@ export class ThGraphModel extends ThEventSource {
      *
      * root - <mxCell> that specifies the new root.
      */
-    rootChanged(root: ThCell) {
-        var oldRoot = this.root;
-        this.root = root;
-
-        // Resets counters and datastructures
-        this.nextId = 0;
-        this.cells = {};
-        this.cellAdded(root);
-
-        return oldRoot;
-    };
-
-
-
+    rootChanged(root: ThCell): ThCell | undefined;
     /**
      * Function: cellAdded
      *
@@ -178,46 +130,7 @@ export class ThGraphModel extends ThEventSource {
      *
      * cell - <mxCell> that specifies the cell that has been added.
      */
-    cellAdded(cell: ThCell) {
-        if (cell) {
-            // Creates an Id for the cell if not Id exists
-            if (cell.getId() == null && this.createIds) {
-                cell.setId(this.createId(cell));
-            }
-
-            if (cell.getId() != null) {
-                var collision = this.getCell(cell.getId());
-
-                if (collision != cell) {
-                    // Creates new Id for the cell
-                    // as long as there is a collision
-                    while (collision != null) {
-                        cell.setId(this.createId(cell));
-                        collision = this.getCell(cell.getId());
-                    }
-
-                    // Lazily creates the cells dictionary
-                    if (this.cells == null) {
-                        this.cells = {};
-                    }
-
-                    this.cells[cell.getId()] = cell;
-                }
-            }
-
-
-            // Recursively processes child cells
-            var childCount = this.getChildCount(cell);
-
-            for (var i = 0; i < childCount; i++) {
-                let curCell = this.getChildAt(cell, i);
-                if (curCell) {
-                    this.cellAdded(curCell);
-                }
-            }
-        }
-    };
-
+    cellAdded(cell: ThCell): void;
     /**
      * Function: getChildAt
      *
@@ -228,14 +141,8 @@ export class ThGraphModel extends ThEventSource {
      * cell - <mxCell> that represents the parent.
      * index - Integer that specifies the index of the child to be returned.
      */
-    getChildAt(cell: ThCell, index: number) {
-        return cell?.getChildAt(index);
-    };
-
-    getChildCount(cell: ThCell) {
-        return cell?.getChildCount() ?? 0;
-    };
-
+    getChildAt(cell: ThCell, index: number): Optional<ThCell>;
+    getChildCount(cell: ThCell): number;
     /**
      * Function: getCell
      *
@@ -246,11 +153,7 @@ export class ThGraphModel extends ThEventSource {
      *
      * id - A string representing the Id of the cell.
      */
-    getCell(id: string) {
-        return this.cells?.[id];
-    };
-
-
+    getCell(id: string): any;
     /**
      * Function: createId
      *
@@ -263,15 +166,7 @@ export class ThGraphModel extends ThEventSource {
      *
      * cell - <mxCell> to create the Id for.
      */
-    createId(cell: ThCell): string {
-        var id = this.nextId;
-        this.nextId++;
-
-        return this.prefix + id + this.postfix;
-    };
-
-
-
+    createId(cell: ThCell): string;
     /**
      * Function: execute
      *
@@ -287,15 +182,7 @@ export class ThGraphModel extends ThEventSource {
      *
      * change - Object that described the change.
      */
-    execute(change: any) {
-        change.execute();
-        this.beginUpdate();
-        this.currentEdit.add(change);
-        this.fireEvent(new ThEventObject(ThEvent.EXECUTE, 'change', change));
-        // New global executed event
-        this.fireEvent(new ThEventObject(ThEvent.EXECUTED, 'change', change));
-        this.endUpdate();
-    };
+    execute(change: any): void;
     /**
      * Function: beginUpdate
      *
@@ -335,17 +222,7 @@ export class ThGraphModel extends ThEventSource {
      * graph.addCells([v1, v2]).
      * (end)
      */
-    beginUpdate() {
-        this.updateLevel++;
-        this.fireEvent(new ThEventObject(ThEvent.BEGIN_UPDATE));
-
-        if (this.updateLevel == 1) {
-            this.fireEvent(new ThEventObject(ThEvent.START_EDIT));
-        }
-    };
-
-
-
+    beginUpdate(): void;
     /**
      * Function: endUpdate
      *
@@ -360,36 +237,7 @@ export class ThGraphModel extends ThEventSource {
      * function is invoked, that is, on undo and redo of
      * the edit.
      */
-    endUpdate() {
-        this.updateLevel--;
-
-        if (this.updateLevel == 0) {
-            this.fireEvent(new ThEventObject(ThEvent.END_EDIT));
-        }
-
-        if (!this.endingUpdate) {
-            this.endingUpdate = this.updateLevel == 0;
-            this.fireEvent(
-                new ThEventObject(ThEvent.END_UPDATE, 'edit', this.currentEdit),
-            );
-
-            try {
-                if (this.endingUpdate && !this.currentEdit.isEmpty()) {
-                    this.fireEvent(
-                        new ThEventObject(ThEvent.BEFORE_UNDO, 'edit', this.currentEdit),
-                    );
-                    var tmp = this.currentEdit;
-                    this.currentEdit = this.createUndoableEdit();
-                    tmp.notify();
-                    this.fireEvent(new ThEventObject(ThEvent.UNDO, 'edit', tmp));
-                }
-            } finally {
-                this.endingUpdate = false;
-            }
-        }
-    };
-
-
+    endUpdate(): void;
     /**
      * Function: createUndoableEdit
      *
@@ -402,34 +250,5 @@ export class ThGraphModel extends ThEventSource {
      * significant - Optional boolean that specifies if the edit to be created is
      * significant. Default is true.
      */
-    createUndoableEdit(significant?: boolean) {
-        var edit = new mxUndoableEdit(
-            this,
-            significant ?? true,
-        );
-
-        edit.notify = function () {
-            // LATER: Remove changes property (deprecated)
-            edit.source.fireEvent(
-                new ThEventObject(
-                    ThEvent.CHANGE,
-                    'edit',
-                    edit,
-                    'changes',
-                    edit.changes,
-                ),
-            );
-            edit.source.fireEvent(
-                new ThEventObject(
-                    ThEvent.NOTIFY,
-                    'edit',
-                    edit,
-                    'changes',
-                    edit.changes,
-                ),
-            );
-        };
-
-        return edit;
-    };
+    createUndoableEdit(significant?: boolean): any;
 }

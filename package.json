@@ -11,6 +11,8 @@
   "scripts": {
     "dev": "pnpm run dev --filter demos",
     "dev:doc": "pnpm --filter thgraph run docs:dev",
+    "next:dev": "pnpm run dev --filter thgraph-next-demo",
+    "next:build": "pnpm run build --filter thgraph-next",
     "pub:doc": "zx ./script/docs.mjs"
   },
   "devDependencies": {

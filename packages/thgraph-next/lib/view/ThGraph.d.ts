@@ -1,9 +1,6 @@
 import { ThCellRenderer } from './ThCellRenderer';
 import { ThGraphModel } from './../model/ThGraphModel';
-import { ThConstants } from '../util';
 import { ThEventSource } from './../event/ThEventSource';
-
-
 /**
  * Class: ThGraph
  *
@@ -637,27 +634,22 @@ import { ThEventSource } from './../event/ThEventSource';
  *
  * @constructor
  */
-
 /**
  * Extends mxEventSource.
  */
-
-export class mxGraph extends ThEventSource {
+export declare class mxGraph extends ThEventSource {
     /**
      * Variable: mouseListeners
      *
      * Holds the mouse event listeners. See <fireMouseEvent>.
      */
-    mouseListeners: any[] = [];
-
+    mouseListeners: any[];
     /**
      * Variable: renderHint
      *
      * RenderHint as it was passed to the constructor.
      */
     renderHint: string;
-
-
     /**
      * Variable: dialect
      *
@@ -665,86 +657,36 @@ export class mxGraph extends ThEventSource {
      * constants in <ThConstants> with a DIALECT-prefix.
      */
     dialect: string;
-
-
     /**
      * Variable: model
      *
      * Holds the <ThGraphModel> that contains the cells to be displayed.
      */
     model: Optional<ThGraphModel>;
-
     /**
      * Variable: multiplicities
      *
      * An array of <mxMultiplicities> describing the allowed
      * connections in a graph.
      */
-    multiplicities: any[] = [];
-
+    multiplicities: any[];
     /**
      * Variable: imageBundles
      *
      * Holds the list of image bundles.
      */
-    imageBundles: any[] = [];
-
+    imageBundles: any[];
     /**
      * Variable: cellRenderer
      *
      * Holds the <mxCellRenderer> for rendering the cells in the graph.
      */
     cellRenderer: ThCellRenderer;
-
-    constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?:string) {
-        super();
-        // Initializes the variable in case the prototype has been
-        // modified to hold some listeners (which is possible because
-        // the createHandlers call is executed regardless of the
-        // arguments passed into the ctor).
-        this.mouseListeners = [];
-
-        // Converts the renderHint into a dialect
-        this.renderHint = renderHint ?? '';
-
-        this.dialect = ThConstants.DIALECT_SVG;
-
-
-        // Initializes the main members that do not require a container
-        this.model = model ?? new ThGraphModel();
-
-        this.cellRenderer = this.createCellRenderer();
-        this.setSelectionModel(this.createSelectionModel());
-        this.setStylesheet(
-            stylesheet ?? this.createStylesheet(),
-        );
-        this.view = this.createGraphView();
-
-        // Adds a graph model listener to update the view
-        this.graphModelChangeListener = mxUtils.bind(this, function (sender, evt) {
-            this.graphModelChanged(evt.getProperty('edit').changes);
-        });
-
-        this.model.addListener(mxEvent.CHANGE, this.graphModelChangeListener);
-
-        // Installs basic event handlers with disabled default settings.
-        this.createHandlers();
-
-        // Initializes the display if a container was specified
-        if (container) {
-            this.init(container);
-        }
-
-        this.view.revalidate();
-    }
-
+    constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?: string);
     /**
      * Function: createCellRenderer
      *
      * Creates a new <ThCellRenderer> to be used in this graph.
      */
-    createCellRenderer():ThCellRenderer {
-        return new ThCellRenderer();
-    }
-
+    createCellRenderer(): ThCellRenderer;
 }

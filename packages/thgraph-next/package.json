@@ -2,10 +2,13 @@
   "name": "thgraph-next",
   "version": "0.0.1",
   "description": "Typescript mxgraph",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
   "license": "MIT",
   "scripts": {
-    "doc": "typedoc"
+    "doc": "typedoc",
+    "build": "tsc"
   },
   "devDependencies": {
     "typedoc": "^0.22.11",
