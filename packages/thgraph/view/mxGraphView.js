@@ -922,7 +922,7 @@ export class mxGraphView extends mxEventSource {
 
           // Repaint happens immediately after the cell is validated
           if (cell != this.currentRoot && !state.invalid) {
-            this.graph.cellRenderer.,(state, false, this.isRendering());
+            this.graph.cellRenderer.redraw(state, false, this.isRendering());
 
             // Handles changes to invertex paintbounds after update of rendering shape
             state.updateCachedBounds();

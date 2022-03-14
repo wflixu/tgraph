@@ -87,26 +87,6 @@ export const  mxConstants =
 	 */
 	DIALECT_STRICTHTML: 'strictHtml',
 
-	/**
-	 * Variable: NS_SVG
-	 * 
-	 * Defines the SVG namespace.
-	 */
-	NS_SVG: 'http://www.w3.org/2000/svg',
-
-	/**
-	 * Variable: NS_XHTML
-	 * 
-	 * Defines the XHTML namespace.
-	 */
-	NS_XHTML: 'http://www.w3.org/1999/xhtml',
-
-	/**
-	 * Variable: NS_XLINK
-	 * 
-	 * Defines the XLink namespace.
-	 */
-	NS_XLINK: 'http://www.w3.org/1999/xlink',
 
 	/**
 	 * Variable: SHADOWCOLOR

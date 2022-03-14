@@ -1,8 +1,4 @@
-525;
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 
 import { mxClient } from './../mxClient.js';
 import { mxObjectIdentity } from './mxObjectIdentity.js';
@@ -2665,16 +2661,7 @@ export const mxUtils = {
     return String(parseInt(n)) === String(n);
   },
 
-  /**
-   * Function: mod
-   *
-   * Returns the remainder of division of n by m. You should use this instead
-   * of the built-in operation as the built-in operation does not properly
-   * handle negative numbers.
-   */
-  mod: function (n, m) {
-    return ((n % m) + m) % m;
-  },
+
 
   /**
    * Function: intersection

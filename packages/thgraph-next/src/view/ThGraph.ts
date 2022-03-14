@@ -1,6 +1,6 @@
 import { ThCellRenderer } from './ThCellRenderer';
 import { ThGraphModel } from './../model/ThGraphModel';
-import { ThConstants } from '../util';
+import { ThConstants } from '../util/ThConstants';
 import { ThEventSource } from './../event/ThEventSource';
 
 
@@ -702,7 +702,7 @@ export class mxGraph extends ThEventSource {
         // modified to hold some listeners (which is possible because
         // the createHandlers call is executed regardless of the
         // arguments passed into the ctor).
-        this.mouseListeners = [];
+     
 
         // Converts the renderHint into a dialect
         this.renderHint = renderHint ?? '';
