@@ -1,8 +1,3 @@
-import { ThCellRenderer } from './ThCellRenderer';
-import { ThGraphModel } from './../model/ThGraphModel';
-import { ThConstants } from '../util/ThConstants';
-import { ThEventSource } from './../event/ThEventSource';
-
 
 /**
  * Class: ThGraph
@@ -121,7 +116,7 @@ import { ThEventSource } from './../event/ThEventSource';
  * }
  * (end)
  *
- * When using a config file, the function is overridden in the mxGraph section
+ * When using a config file, the function is overridden in the ThGraph section
  * using the following entry:
  *
  * (code)
@@ -139,8 +134,8 @@ import { ThEventSource } from './../event/ThEventSource';
  *
  * For replacing the default implementation of <getTooltipForCell> (rather than
  * replacing the function on a specific instance), the following code should be
- * used after loading the JavaScript files, but before creating a new mxGraph
- * instance using <mxGraph>:
+ * used after loading the JavaScript files, but before creating a new ThGraph
+ * instance using <ThGraph>:
  *
  * (code)
  * getTooltipForCell = function(cell)
@@ -240,7 +235,7 @@ import { ThEventSource } from './../event/ThEventSource';
  *
  * Multiplicities and Validation:
  *
- * To control the possible connections in mxGraph, <getEdgeValidationError> is
+ * To control the possible connections in ThGraph, <getEdgeValidationError> is
  * used. The default implementation of the function uses <multiplicities>,
  * which is an array of <mxMultiplicity>. Using this class allows to establish
  * simple multiplicities, which are enforced by the graph.
@@ -274,7 +269,7 @@ import { ThEventSource } from './../event/ThEventSource';
  *
  * For certain multiplicities, such as a minimum of 1 connection, which cannot
  * be enforced at cell creation time (unless the cell is created together with
- * the connection), mxGraph offers <validate> which checks all multiplicities
+ * the connection), ThGraph offers <validate> which checks all multiplicities
  * for all cells and displays the respective error messages in an overlay icon
  * on the cells.
  *
@@ -358,7 +353,7 @@ import { ThEventSource } from './../event/ThEventSource';
  *
  * Resources:
  *
- * resources/graph - Language resources for mxGraph
+ * resources/graph - Language resources for ThGraph
  *
  * Group: Events
  *
@@ -578,9 +573,9 @@ import { ThEventSource } from './../event/ThEventSource';
  * the <code>overlay</code> property contains the <mxCellOverlay> that was
  * removed.
  *
- * Constructor: mxGraph
+ * Constructor: ThGraph
  *
- * Constructs a new mxGraph in the specified container. Model is an optional
+ * Constructs a new ThGraph in the specified container. Model is an optional
  * ThGraphModel. If no model is provided, a new ThGraphModel instance is
  * used as the model. The container must have a valid owner document prior
  * to calling this function in Internet Explorer. RenderHint is a string to
@@ -622,7 +617,7 @@ import { ThEventSource } from './../event/ThEventSource';
  * To create a graph inside a DOM node with an id of graph:
  * (code)
  * var container = document.getElementById('graph');
- * var graph = new mxGraph(container);
+ * var graph = new ThGraph(container);
  * (end)
  *
  * Parameters:
@@ -633,7 +628,7 @@ import { ThEventSource } from './../event/ThEventSource';
  * model - Optional <ThGraphModel> that constitutes the graph data.
  * renderHint - Optional string that specifies the display accuracy and
  * performance. Default is ThConstants.DIALECT_MIXEDHTML (for IE).
- * stylesheet - Optional <mxStylesheet> to be used in the graph.
+ * stylesheet - Optional <ThStylesheet> to be used in the graph.
  *
  * @constructor
  */
@@ -642,7 +637,14 @@ import { ThEventSource } from './../event/ThEventSource';
  * Extends mxEventSource.
  */
 
-export class mxGraph extends ThEventSource {
+import { ThCellRenderer } from './ThCellRenderer';
+import { ThGraphModel } from './../model/ThGraphModel';
+import { ThConstants } from '../util/ThConstants';
+import { ThEventSource } from './../event/ThEventSource';
+import { ThGraphSelectionModel } from './ThGraphSelectionModel'
+
+
+export class ThGraph extends ThEventSource {
     /**
      * Variable: mouseListeners
      *
@@ -696,13 +698,16 @@ export class mxGraph extends ThEventSource {
      */
     cellRenderer: ThCellRenderer;
 
-    constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?:string) {
+    selectionModel!: ThGraphSelectionModel;
+    stylesheet: any;
+
+    constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?: string) {
         super();
         // Initializes the variable in case the prototype has been
         // modified to hold some listeners (which is possible because
         // the createHandlers call is executed regardless of the
         // arguments passed into the ctor).
-     
+
 
         // Converts the renderHint into a dialect
         this.renderHint = renderHint ?? '';
@@ -743,8 +748,43 @@ export class mxGraph extends ThEventSource {
      *
      * Creates a new <ThCellRenderer> to be used in this graph.
      */
-    createCellRenderer():ThCellRenderer {
+    createCellRenderer(): ThCellRenderer {
         return new ThCellRenderer();
+    }
+
+
+    /**
+     * Function: createSelectionModel
+     *
+     * Creates a new <ThGraphSelectionModel> to be used in this graph.
+     */
+    createSelectionModel() {
+        return new ThGraphSelectionModel(this);
+    }
+    /**
+     * Function: setSelectionModel
+     *
+     * Sets the <mxSelectionModel> that contains the selection.
+     */
+    setSelectionModel(selectionModel: ThGraphSelectionModel) {
+        this.selectionModel = selectionModel;
+    }
+
+    /**
+     * Function: setStylesheet
+     *
+     * Sets the <ThStylesheet> that defines the style.
+     */
+    setStylesheet(stylesheet) {
+        this.stylesheet = stylesheet;
+    }
+    /**
+     * Function: createStylesheet
+     *
+     * Creates a new <mxGraphSelectionModel> to be used in this graph.
+     */
+    createStylesheet() {
+        return new ThStylesheet();
     }
 
 }
