@@ -357,202 +357,202 @@
  *
  * Group: Events
  *
- * Event: mxEvent.ROOT
+ * Event: ThEvent.ROOT
  *
  * Fires if the root in the model has changed. This event has no properties.
  *
- * Event: mxEvent.ALIGN_CELLS
+ * Event: ThEvent.ALIGN_CELLS
  *
  * Fires between begin- and endUpdate in <alignCells>. The <code>cells</code>
  * and <code>align</code> properties contain the respective arguments that were
  * passed to <alignCells>.
  *
- * Event: mxEvent.FLIP_EDGE
+ * Event: ThEvent.FLIP_EDGE
  *
  * Fires between begin- and endUpdate in <flipEdge>. The <code>edge</code>
  * property contains the edge passed to <flipEdge>.
  *
- * Event: mxEvent.ORDER_CELLS
+ * Event: ThEvent.ORDER_CELLS
  *
  * Fires between begin- and endUpdate in <orderCells>. The <code>cells</code>
  * and <code>back</code> properties contain the respective arguments that were
  * passed to <orderCells>.
  *
- * Event: mxEvent.CELLS_ORDERED
+ * Event: ThEvent.CELLS_ORDERED
  *
  * Fires between begin- and endUpdate in <cellsOrdered>. The <code>cells</code>
  * and <code>back</code> arguments contain the respective arguments that were
  * passed to <cellsOrdered>.
  *
- * Event: mxEvent.GROUP_CELLS
+ * Event: ThEvent.GROUP_CELLS
  *
  * Fires between begin- and endUpdate in <groupCells>. The <code>group</code>,
  * <code>cells</code> and <code>border</code> arguments contain the respective
  * arguments that were passed to <groupCells>.
  *
- * Event: mxEvent.UNGROUP_CELLS
+ * Event: ThEvent.UNGROUP_CELLS
  *
  * Fires between begin- and endUpdate in <ungroupCells>. The <code>cells</code>
  * property contains the array of cells that was passed to <ungroupCells>.
  *
- * Event: mxEvent.REMOVE_CELLS_FROM_PARENT
+ * Event: ThEvent.REMOVE_CELLS_FROM_PARENT
  *
  * Fires between begin- and endUpdate in <removeCellsFromParent>. The
  * <code>cells</code> property contains the array of cells that was passed to
  * <removeCellsFromParent>.
  *
- * Event: mxEvent.ADD_CELLS
+ * Event: ThEvent.ADD_CELLS
  *
  * Fires between begin- and endUpdate in <addCells>. The <code>cells</code>,
  * <code>parent</code>, <code>index</code>, <code>source</code> and
  * <code>target</code> properties contain the respective arguments that were
  * passed to <addCells>.
  *
- * Event: mxEvent.CELLS_ADDED
+ * Event: ThEvent.CELLS_ADDED
  *
  * Fires between begin- and endUpdate in <cellsAdded>. The <code>cells</code>,
  * <code>parent</code>, <code>index</code>, <code>source</code>,
  * <code>target</code> and <code>absolute</code> properties contain the
  * respective arguments that were passed to <cellsAdded>.
  *
- * Event: mxEvent.REMOVE_CELLS
+ * Event: ThEvent.REMOVE_CELLS
  *
  * Fires between begin- and endUpdate in <removeCells>. The <code>cells</code>
  * and <code>includeEdges</code> arguments contain the respective arguments
  * that were passed to <removeCells>.
  *
- * Event: mxEvent.CELLS_REMOVED
+ * Event: ThEvent.CELLS_REMOVED
  *
  * Fires between begin- and endUpdate in <cellsRemoved>. The <code>cells</code>
  * argument contains the array of cells that was removed.
  *
- * Event: mxEvent.SPLIT_EDGE
+ * Event: ThEvent.SPLIT_EDGE
  *
  * Fires between begin- and endUpdate in <splitEdge>. The <code>edge</code>
  * property contains the edge to be splitted, the <code>cells</code>,
  * <code>newEdge</code>, <code>dx</code> and <code>dy</code> properties contain
  * the respective arguments that were passed to <splitEdge>.
  *
- * Event: mxEvent.TOGGLE_CELLS
+ * Event: ThEvent.TOGGLE_CELLS
  *
  * Fires between begin- and endUpdate in <toggleCells>. The <code>show</code>,
  * <code>cells</code> and <code>includeEdges</code> properties contain the
  * respective arguments that were passed to <toggleCells>.
  *
- * Event: mxEvent.FOLD_CELLS
+ * Event: ThEvent.FOLD_CELLS
  *
  * Fires between begin- and endUpdate in <foldCells>. The
  * <code>collapse</code>, <code>cells</code> and <code>recurse</code>
  * properties contain the respective arguments that were passed to <foldCells>.
  *
- * Event: mxEvent.CELLS_FOLDED
+ * Event: ThEvent.CELLS_FOLDED
  *
  * Fires between begin- and endUpdate in cellsFolded. The
  * <code>collapse</code>, <code>cells</code> and <code>recurse</code>
  * properties contain the respective arguments that were passed to
  * <cellsFolded>.
  *
- * Event: mxEvent.UPDATE_CELL_SIZE
+ * Event: ThEvent.UPDATE_CELL_SIZE
  *
  * Fires between begin- and endUpdate in <updateCellSize>. The
  * <code>cell</code> and <code>ignoreChildren</code> properties contain the
  * respective arguments that were passed to <updateCellSize>.
  *
- * Event: mxEvent.RESIZE_CELLS
+ * Event: ThEvent.RESIZE_CELLS
  *
  * Fires between begin- and endUpdate in <resizeCells>. The <code>cells</code>
  * and <code>bounds</code> properties contain the respective arguments that
  * were passed to <resizeCells>.
  *
- * Event: mxEvent.CELLS_RESIZED
+ * Event: ThEvent.CELLS_RESIZED
  *
  * Fires between begin- and endUpdate in <cellsResized>. The <code>cells</code>
  * and <code>bounds</code> properties contain the respective arguments that
  * were passed to <cellsResized>.
  *
- * Event: mxEvent.MOVE_CELLS
+ * Event: ThEvent.MOVE_CELLS
  *
  * Fires between begin- and endUpdate in <moveCells>. The <code>cells</code>,
  * <code>dx</code>, <code>dy</code>, <code>clone</code>, <code>target</code>
  * and <code>event</code> properties contain the respective arguments that
  * were passed to <moveCells>.
  *
- * Event: mxEvent.CELLS_MOVED
+ * Event: ThEvent.CELLS_MOVED
  *
  * Fires between begin- and endUpdate in <cellsMoved>. The <code>cells</code>,
  * <code>dx</code>, <code>dy</code> and <code>disconnect</code> properties
  * contain the respective arguments that were passed to <cellsMoved>.
  *
- * Event: mxEvent.CONNECT_CELL
+ * Event: ThEvent.CONNECT_CELL
  *
  * Fires between begin- and endUpdate in <connectCell>. The <code>edge</code>,
  * <code>terminal</code> and <code>source</code> properties contain the
  * respective arguments that were passed to <connectCell>.
  *
- * Event: mxEvent.CELL_CONNECTED
+ * Event: ThEvent.CELL_CONNECTED
  *
  * Fires between begin- and endUpdate in <cellConnected>. The
  * <code>edge</code>, <code>terminal</code> and <code>source</code> properties
  * contain the respective arguments that were passed to <cellConnected>.
  *
- * Event: mxEvent.REFRESH
+ * Event: ThEvent.REFRESH
  *
  * Fires after <refresh> was executed. This event has no properties.
  *
- * Event: mxEvent.CLICK
+ * Event: ThEvent.CLICK
  *
  * Fires in <click> after a click event. The <code>event</code> property
  * contains the original mouse event and <code>cell</code> property contains
  * the cell under the mouse or null if the background was clicked.
  *
- * Event: mxEvent.DOUBLE_CLICK
+ * Event: ThEvent.DOUBLE_CLICK
  *
  * Fires in <dblClick> after a double click. The <code>event</code> property
  * contains the original mouse event and the <code>cell</code> property
  * contains the cell under the mouse or null if the background was clicked.
  *
- * Event: mxEvent.GESTURE
+ * Event: ThEvent.GESTURE
  *
  * Fires in <fireGestureEvent> after a touch gesture. The <code>event</code>
  * property contains the original gesture end event and the <code>cell</code>
  * property contains the optional cell associated with the gesture.
  *
- * Event: mxEvent.TAP_AND_HOLD
+ * Event: ThEvent.TAP_AND_HOLD
  *
  * Fires in <tapAndHold> if a tap and hold event was detected. The <code>event</code>
  * property contains the initial touch event and the <code>cell</code> property
  * contains the cell under the mouse or null if the background was clicked.
  *
- * Event: mxEvent.FIRE_MOUSE_EVENT
+ * Event: ThEvent.FIRE_MOUSE_EVENT
  *
  * Fires in <fireMouseEvent> before the mouse listeners are invoked. The
  * <code>eventName</code> property contains the event name and the
  * <code>event</code> property contains the <mxMouseEvent>.
  *
- * Event: mxEvent.SIZE
+ * Event: ThEvent.SIZE
  *
  * Fires after <sizeDidChange> was executed. The <code>bounds</code> property
  * contains the new graph bounds.
  *
- * Event: mxEvent.START_EDITING
+ * Event: ThEvent.START_EDITING
  *
  * Fires before the in-place editor starts in <startEditingAtCell>. The
  * <code>cell</code> property contains the cell that is being edited and the
  * <code>event</code> property contains the optional event argument that was
  * passed to <startEditingAtCell>.
  *
- * Event: mxEvent.EDITING_STARTED
+ * Event: ThEvent.EDITING_STARTED
  *
  * Fires after the in-place editor starts in <startEditingAtCell>. The
  * <code>cell</code> property contains the cell that is being edited and the
  * <code>event</code> property contains the optional event argument that was
  * passed to <startEditingAtCell>.
  *
- * Event: mxEvent.EDITING_STOPPED
+ * Event: ThEvent.EDITING_STOPPED
  *
  * Fires after the in-place editor stops in <stopEditing>.
  *
- * Event: mxEvent.LABEL_CHANGED
+ * Event: ThEvent.LABEL_CHANGED
  *
  * Fires between begin- and endUpdate in <cellLabelChanged>. The
  * <code>cell</code> property contains the cell, the <code>value</code>
@@ -560,13 +560,13 @@
  * contains the old value and the optional <code>event</code> property contains
  * the mouse event that started the edit.
  *
- * Event: mxEvent.ADD_OVERLAY
+ * Event: ThEvent.ADD_OVERLAY
  *
  * Fires after an overlay is added in <addCellOverlay>. The <code>cell</code>
  * property contains the cell and the <code>overlay</code> property contains
  * the <mxCellOverlay> that was added.
  *
- * Event: mxEvent.REMOVE_OVERLAY
+ * Event: ThEvent.REMOVE_OVERLAY
  *
  * Fires after an overlay is removed in <removeCellOverlay> and
  * <removeCellOverlays>. The <code>cell</code> property contains the cell and
@@ -642,6 +642,7 @@ import { ThGraphModel } from './../model/ThGraphModel';
 import { ThConstants } from '../util/ThConstants';
 import { ThEventSource } from './../event/ThEventSource';
 import { ThGraphSelectionModel } from './ThGraphSelectionModel'
+import { ThStylesheet } from './ThStylesheet';
 
 
 export class ThGraph extends ThEventSource {
@@ -699,9 +700,10 @@ export class ThGraph extends ThEventSource {
     cellRenderer: ThCellRenderer;
 
     selectionModel!: ThGraphSelectionModel;
-    stylesheet: any;
+    stylesheet!: ThStylesheet;
+    view: any;
 
-    constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?: string) {
+    constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?: ThStylesheet) {
         super();
         // Initializes the variable in case the prototype has been
         // modified to hold some listeners (which is possible because
@@ -730,7 +732,7 @@ export class ThGraph extends ThEventSource {
             this.graphModelChanged(evt.getProperty('edit').changes);
         });
 
-        this.model.addListener(mxEvent.CHANGE, this.graphModelChangeListener);
+        this.model.addListener(ThEvent.CHANGE, this.graphModelChangeListener);
 
         // Installs basic event handlers with disabled default settings.
         this.createHandlers();
@@ -741,6 +743,15 @@ export class ThGraph extends ThEventSource {
         }
 
         this.view.revalidate();
+    }
+
+    /**
+     * Function: createGraphView
+     *
+     * Creates a new <mxGraphView> to be used in this graph.
+     */
+    createGraphView() {
+        return new mxGraphView(this);
     }
 
     /**
@@ -775,7 +786,7 @@ export class ThGraph extends ThEventSource {
      *
      * Sets the <ThStylesheet> that defines the style.
      */
-    setStylesheet(stylesheet) {
+    setStylesheet(stylesheet: ThStylesheet) {
         this.stylesheet = stylesheet;
     }
     /**
