@@ -703,6 +703,11 @@ export class ThGraph extends ThEventSource {
     stylesheet!: ThStylesheet;
     view: any;
 
+
+    graphModelChangeListener = (sender, evt) => {
+        this.graphModelChanged(evt.getProperty('edit').changes);
+    }
+
     constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?: ThStylesheet) {
         super();
         // Initializes the variable in case the prototype has been
@@ -744,6 +749,123 @@ export class ThGraph extends ThEventSource {
 
         this.view.revalidate();
     }
+
+    /**
+     * Function: graphModelChanged
+     *
+     * Called when the graph model changes. Invokes <processChange> on each
+     * item of the given array to update the view accordingly.
+     *
+     * Parameters:
+     *
+     * changes - Array that contains the individual changes.
+     */
+    graphModelChanged(changes: any[]) {
+        for (var i = 0; i < changes.length; i++) {
+            this.processChange(changes[i]);
+        }
+
+        this.updateSelection();
+        this.view.validate();
+        this.sizeDidChange();
+    }
+
+    /**
+   * Function: processChange
+   *
+   * Processes the given change and invalidates the respective cached data
+   * in <view>. This fires a <root> event if the root has changed in the
+   * model.
+   *
+   * Parameters:
+   *
+   * change - Object that represents the change on the model.
+   */
+    processChange(change) {
+        // Resets the view settings, removes all cells and clears
+        // the selection if the root changes.
+        if (change instanceof mxRootChange) {
+            this.clearSelection();
+            this.setDefaultParent(null);
+            this.removeStateForCell(change.previous);
+
+            if (this.resetViewOnRootChange) {
+                this.view.scale = 1;
+                this.view.translate.x = 0;
+                this.view.translate.y = 0;
+            }
+
+            this.fireEvent(new mxEventObject(mxEvent.ROOT));
+        }
+
+        // Adds or removes a child to the view by online invaliding
+        // the minimal required portions of the cache, namely, the
+        // old and new parent and the child.
+        else if (change instanceof mxChildChange) {
+            var newParent = this.model.getParent(change.child);
+            this.view.invalidate(change.child, true, true);
+
+            if (!this.model.contains(newParent) || this.isCellCollapsed(newParent)) {
+                this.view.invalidate(change.child, true, true);
+                this.removeStateForCell(change.child);
+
+                // Handles special case of current root of view being removed
+                if (this.view.currentRoot == change.child) {
+                    this.home();
+                }
+            }
+
+            if (newParent != change.previous) {
+                // Refreshes the collapse/expand icons on the parents
+                if (newParent != null) {
+                    this.view.invalidate(newParent, false, false);
+                }
+
+                if (change.previous != null) {
+                    this.view.invalidate(change.previous, false, false);
+                }
+            }
+        }
+
+        // Handles two special cases where the shape does not need to be
+        // recreated from scratch, it only needs to be invalidated.
+        else if (
+            change instanceof mxTerminalChange ||
+            change instanceof mxGeometryChange
+        ) {
+            // Checks if the geometry has changed to avoid unnessecary revalidation
+            if (
+                change instanceof mxTerminalChange ||
+                (change.previous == null && change.geometry != null) ||
+                (change.previous != null && !change.previous.equals(change.geometry))
+            ) {
+                this.view.invalidate(change.cell);
+            }
+        }
+
+        // Handles two special cases where only the shape, but no
+        // descendants need to be recreated
+        else if (change instanceof mxValueChange) {
+            this.view.invalidate(change.cell, false, false);
+        }
+
+        // Requires a new mxShape in JavaScript
+        else if (change instanceof mxStyleChange) {
+            this.view.invalidate(change.cell, true, true);
+            var state = this.view.getState(change.cell);
+
+            if (state != null) {
+                state.invalidStyle = true;
+            }
+        }
+
+        // Removes the state from the cache by default
+        else if (change.cell != null && change.cell instanceof mxCell) {
+            this.removeStateForCell(change.cell);
+        }
+    }
+
+
 
     /**
      * Function: createGraphView

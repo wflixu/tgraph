@@ -10,7 +10,6 @@ import {
   mxDictionary,
 } from './../util/index.js';
 
-
 import {
   mxEdgeStyle,
   mxCellRenderer,
@@ -51,8 +50,8 @@ import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import { mxCellOverlay } from './mxCellOverlay.js';
 
 const warning = '/graph/assets/warning.png';
-import expandedGif from '../assets/expand.gif' ;
-import collapsedGif from '../assets/collapse.gif' ;
+import expandedGif from '../assets/expand.gif';
+import collapsedGif from '../assets/collapse.gif';
 /**
  * Class: mxGraph
  *
@@ -1666,9 +1665,7 @@ export class mxGraph extends mxEventSource {
     this.imageBundles = [];
     this.cellRenderer = this.createCellRenderer();
     this.setSelectionModel(this.createSelectionModel());
-    this.setStylesheet(
-      stylesheet ?? this.createStylesheet(),
-    );
+    this.setStylesheet(stylesheet ?? this.createStylesheet());
     this.view = this.createGraphView();
 
     // Adds a graph model listener to update the view
