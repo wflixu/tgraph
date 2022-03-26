@@ -10,19 +10,43 @@ mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，�
 
 - [x] 跑通 helloworld 示例
 - [x] 转化成esmodule 模块
-- [ ] 示例网站
+- [x] 示例网站
 - [ ] 继续重构
 - [ ] 优化TS类型
+
+# 使用
+
+```
+   # 安装
+
+   # npm
+   npm install thgraph
+  
+   # yarn
+   yarn add thgraph
+
+   # 查看效果
+   pnpm dev
+
+   # 文档
+   pnpm dev:doc
+    
+
+```
+
+
 
 
 
 # 文档
 目前只是把mxgraph 转换成esmodule，所以之前全局变量，引入后就能用了。
 
+[新文档](https://wflixu.github.io/tgraph/)
+
 ## helloworld
 
 ``` javascript
-    //
+    // 导入依赖
     import { mxGraph ,mxRubberband} from 'thgraph';
 
 
@@ -57,5 +81,11 @@ mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，�
 
 
 
+# 参与贡献
+
+1.  Fork 本仓库
+2.  新建 Feat_xxx 分支
+3.  提交代码
+4.  新建 Pull Request
 
 
