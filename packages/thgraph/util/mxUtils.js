@@ -1,5 +1,3 @@
-
-
 import { mxClient } from './../mxClient.js';
 import { mxObjectIdentity } from './mxObjectIdentity.js';
 import { mxConstants } from './../util/mxConstants.js';
@@ -86,7 +84,7 @@ export const mxUtils = {
    * element - DOM node whose current style should be returned.
    */
   getCurrentStyle: function (element) {
-    return element  ? window.getComputedStyle(element, '') : null;
+    return element ? window.getComputedStyle(element, '') : null;
   },
 
   /**
@@ -2106,6 +2104,17 @@ export const mxUtils = {
   },
 
   /**
+   * Function: mod
+   *
+   * Returns the remainder of division of n by m. You should use this instead
+   * of the built-in operation as the built-in operation does not properly
+   * handle negative numbers.
+   */
+  mod: function (n, m) {
+    return ((n % m) + m) % m;
+  },
+
+  /**
    * Function: getDirectedBounds
    *
    * Adds the given margins to the given rectangle and rotates and flips the
@@ -2660,8 +2669,6 @@ export const mxUtils = {
   isInteger: function (n) {
     return String(parseInt(n)) === String(n);
   },
-
-
 
   /**
    * Function: intersection

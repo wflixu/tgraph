@@ -1,6 +1,6 @@
 {
   "name": "thgraph",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A graph editor render with svg base from mxgraph",
   "main": "index.js",
   "module": "index.js",
