@@ -1,13 +1,31 @@
 {
   "name": "thgraph",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A graph editor render with svg base from mxgraph",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/thgraph.js",
+  "module": "dist/thgraph.esm.js",
+  "unpkg": "dist/thgraph.min.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "development": "./dist/floating-ui.core.esm.development.js",
+        "production": "./dist/floating-ui.core.esm.min.js",
+        "default": "./dist/floating-ui.core.esm.js"
+      },
+      "require": "./dist/floating-ui.core.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "assets"
+  ],
+  
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "NODE_ENV=build rollup -c",
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -23,16 +41,30 @@
     "less": "^4.1.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "typescript": "^4.3.2",
     "vite": "^2.7.2",
     "vitepress": "^0.22.3",
     "vue": "3",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "@atomico/rollup-plugin-sizes": "^1.1.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-image": "^2.1.1",
+    "@types/jest": "^27.0.3",
+    "babel-plugin-annotate-pure-calls": "^0.4.0",
+
+    "rollup": "^2.60.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/wflixu/tgraph.git"
   },
+  "browserslist": "> 0.5%, not dead, not IE 11",
   "keywords": [
     "mxGraph",
     "jgraph",

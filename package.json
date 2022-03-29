@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "pnpm run dev --filter demos",
+    "build": "pnpm run build --filter thgraph ",
     "dev:doc": "pnpm --filter thgraph run docs:dev",
     "next:dev": "pnpm run dev --filter thgraph-next-demo",
     "next:build": "pnpm run build --filter thgraph-next",
@@ -34,3 +35,4 @@
   "author": "wflixu",
   "license": "MIT"
 }
+
