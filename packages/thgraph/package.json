@@ -1,6 +1,6 @@
 {
   "name": "thgraph",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A graph editor render with svg base from mxgraph",
   "main": "dist/thgraph.js",
   "module": "dist/thgraph.esm.js",
@@ -9,11 +9,11 @@
   "exports": {
     ".": {
       "import": {
-        "development": "./dist/floating-ui.core.esm.development.js",
-        "production": "./dist/floating-ui.core.esm.min.js",
-        "default": "./dist/floating-ui.core.esm.js"
+        "development": "./dist/thgraph.esm.development.js",
+        "production": "./dist/thgraph.esm.min.js",
+        "default": "./dist/thgraph.esm.js"
       },
-      "require": "./dist/floating-ui.core.cjs"
+      "require": "./dist/thgraph.cjs"
     },
     "./package.json": "./package.json"
   },
