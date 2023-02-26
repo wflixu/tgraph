@@ -10,7 +10,7 @@ mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，�
 
 - [x] 跑通 helloworld 示例
 - [x] 转化成esmodule 模块
-- [ ] 示例网站
+- [x] 示例网站
 - [ ] 继续重构
 - [ ] 优化TS类型
 
