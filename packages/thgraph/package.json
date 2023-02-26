@@ -29,8 +29,7 @@
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

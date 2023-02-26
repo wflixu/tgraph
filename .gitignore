@@ -93,8 +93,10 @@ dist
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
-# vuepress build output
-.vuepress/dist
+# vitepress build output
+
+packages/thgraph/docs/.vitepress/cache/
+packages/thgraph/docs/.vitepress/dist/
 
 # Serverless directories
 .serverless/
@@ -117,3 +119,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+
+
