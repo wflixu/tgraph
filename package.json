@@ -9,7 +9,7 @@
     "nohoist": []
   },
   "scripts": {
-    "dev": "pnpm run dev --filter demos",
+    "dev": "pnpm --filter demos  dev",
     "build": "pnpm run build --filter thgraph ",
     "dev:doc": "pnpm --filter thgraph run docs:dev",
     "next:dev": "pnpm run dev --filter thgraph-next-demo",

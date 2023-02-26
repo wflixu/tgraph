@@ -1,0 +1,38 @@
+name: Deploy docs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: dev
+          fetch-depth: 2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.27.1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      - name: Install
+        run: pnpm --filter=thgraph install
+      - name: Build
+        run:  pnpm --filter=thgraph docs:build
+      - uses: actions/configure-pages@v2
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: packages/thgraph/docs/.vitepress/dist
+      - name: Deploy build page
+        id: deployment
+        uses: actions/deploy-pages@v1
