@@ -28,8 +28,7 @@
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs --port 4040",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
     "@atomico/rollup-plugin-sizes": "^1.1.4",
