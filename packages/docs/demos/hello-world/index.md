@@ -1,10 +1,20 @@
 
 
+
 ## 说明
+
+  Hello, World! example for mxGraph. This example demonstrates using
+  a DOM node to create a graph and adding vertices and edges.
 
 ## 效果
 
+<script setup>
+import HelloWorld from './HelloWorld.vue'
 
+</script>
+
+<HelloWorld />
+   
 
 ## 代码
 
@@ -224,3 +234,7 @@ function main() {
 
 <style lang="less"></style>
 ```
+
+
+
+

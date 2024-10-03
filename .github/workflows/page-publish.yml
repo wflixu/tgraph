@@ -2,7 +2,7 @@ name: Deploy docs
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,13 +26,13 @@ jobs:
           cache: "pnpm"
 
       - name: Install
-        run: pnpm --filter=thgraph install
+        run: pnpm --filter=docs install
       - name: Build
-        run:  pnpm --filter=thgraph docs:build
+        run:  pnpm --filter=docs docs:build
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
-          path: packages/thgraph/docs/.vitepress/dist
+          path: packages/docs/.vitepress/dist
       - name: Deploy build page
         id: deployment
         uses: actions/deploy-pages@v1

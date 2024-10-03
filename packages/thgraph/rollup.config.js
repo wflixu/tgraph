@@ -1,10 +1,13 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 import {babel} from '@rollup/plugin-babel';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-import {terser} from 'rollup-plugin-terser';
-import bundleSize from '@atomico/rollup-plugin-sizes';
+import terser from '@rollup/plugin-terser';
 import image from '@rollup/plugin-image';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const input = path.join(__dirname, './index.js');
 
@@ -85,7 +88,6 @@ const buildExport = bundles.map(({input, output}) => ({
       preventAssignment: true,
     }),
     output.file.includes('.min.') && terser(),
-    bundleSize(),
   ],
 }));
 
