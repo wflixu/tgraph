@@ -3,7 +3,44 @@ on:
   push:
     branches:
       - main
+    
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Not needed if lastUpdated is not enabled
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3 # Uncomment this if you're using pnpm
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm # or pnpm / yarn
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Install dependencies
+        run: pnpm  install
+      - name: Build with Thgraph
+        run: pnpm --filter=docs run build  
+       - name: Build with VitePress
+        run: pnpm --filter=docs docs:build 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: packages/docs/.vitepress/dist
+
+  # Deployment job
   deploy:
     runs-on: ubuntu-latest
     permissions:
@@ -12,27 +49,11 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: dev
-          fetch-depth: 2
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 7.27.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: "pnpm"
-
-      - name: Install
-        run: pnpm --filter=docs install
-      - name: Build
-        run:  pnpm --filter=docs docs:build
-      - uses: actions/configure-pages@v2
-      - uses: actions/upload-pages-artifact@v1
-        with:
-          path: packages/docs/.vitepress/dist
       - name: Deploy build page
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
