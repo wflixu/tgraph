@@ -8,9 +8,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
     "test": "jest"
   },
   "dependencies": {
@@ -23,14 +20,8 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@vitejs/plugin-react": "^1.0.0",
     "@vitejs/plugin-vue": "^2.0.0",
-    "jest": "^27.4.5",
     "less": "^4.1.2",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
     "typescript": "^4.3.2",
     "vite": "^2.7.2",
     "vite-plugin-windicss": "^1.6.3",

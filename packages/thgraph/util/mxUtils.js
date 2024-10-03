@@ -186,20 +186,19 @@ export const mxUtils = {
    * expr - A string that represents a JavaScript expression.
    */
   eval: function (expr) {
-    var result = null;
+    let result = null;
 
     if (expr.indexOf('function') >= 0) {
       try {
-        eval('var _mxJavaScriptExpression=' + expr);
-        result = _mxJavaScriptExpression;
-        // TODO: Use delete here?
-        _mxJavaScriptExpression = null;
+        const code = `return (${expr})`;
+        const fn = new Function(code);
+        result = fn();
       } catch (e) {
         mxLog.warn(e.message + ' while evaluating ' + expr);
       }
     } else {
       try {
-        result = eval(expr);
+        result = new Function('return ' + expr)();
       } catch (e) {
         mxLog.warn(e.message + ' while evaluating ' + expr);
       }
@@ -585,7 +584,7 @@ export const mxUtils = {
         }
       };
     } else {
-      return function () {};
+      return function () { };
     }
   })(),
 
@@ -1693,7 +1692,7 @@ export const mxUtils = {
    * superCtor - Constructor of the superclass.
    */
   extend: function (ctor, superCtor) {
-    var f = function () {};
+    var f = function () { };
     f.prototype = superCtor.prototype;
 
     ctor.prototype = new f();
@@ -2488,18 +2487,18 @@ export const mxUtils = {
       wnd != null && window.pageXOffset !== undefined
         ? window.pageXOffset
         : (
-            document.documentElement ||
-            document.body.parentNode ||
-            document.body
-          ).scrollLeft;
+          document.documentElement ||
+          document.body.parentNode ||
+          document.body
+        ).scrollLeft;
     var y =
       wnd != null && window.pageYOffset !== undefined
         ? window.pageYOffset
         : (
-            document.documentElement ||
-            document.body.parentNode ||
-            document.body
-          ).scrollTop;
+          document.documentElement ||
+          document.body.parentNode ||
+          document.body
+        ).scrollTop;
 
     return new mxPoint(x, y);
   },
