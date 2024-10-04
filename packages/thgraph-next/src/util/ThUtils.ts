@@ -1,5 +1,9 @@
 import { ThObjectIdentity } from "./ThObjectIdentity";
 
+export function sum(a: number, b: number) {
+    return a + b
+}
+
 export class ThUtils {
     /**
    * Function: mod

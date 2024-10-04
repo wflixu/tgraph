@@ -6,13 +6,19 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "license": "MIT",
-  "files": ["dist", "package.json", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "doc": "typedoc",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest"
   },
   "devDependencies": {
     "typedoc": "^0.26.7",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.2"
   }
 }
