@@ -983,8 +983,8 @@ mxConnectionHandler.prototype.isOutlineConnectEvent = function (me) {
 	var clientY = mxEvent.getClientY(evt);
 
 	var doc = document.documentElement;
-	var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
-	var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+	var left = (window?.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+	var top = (window?.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
 	var gridX = this.currentPoint.x - this.graph.container.scrollLeft + offset.x - left;
 	var gridY = this.currentPoint.y - this.graph.container.scrollTop + offset.y - top;

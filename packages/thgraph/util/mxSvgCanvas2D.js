@@ -274,11 +274,11 @@ mxSvgCanvas2D.prototype.format = function (value) {
  *
  * Returns the URL of the page without the hash part. This needs to use href to
  * include any search part with no params (ie question mark alone). This is a
- * workaround for the fact that window.location.search is empty if there is
+ * workaround for the fact that window?.location.search is empty if there is
  * no search string behind the question mark.
  */
 mxSvgCanvas2D.prototype.getBaseUrl = function () {
-  var href = window.location.href;
+  var href = window?.location.href;
   var hash = href.lastIndexOf('#');
 
   if (hash > 0) {

@@ -12,7 +12,7 @@ export const  mxLog =
 	 * 
 	 * Variable: consoleName
 	 * 
-	 * Specifies the name of the console window. Default is 'Console'.
+	 * Specifies the name of the console window?. Default is 'Console'.
 	 */
 	consoleName: 'Console',
 	
@@ -154,10 +154,10 @@ export const  mxLog =
 			var h = 0;
 			var w = 0;
 			
-			if (typeof(window.innerWidth) === 'number')
+			if (typeof(window?.innerWidth) === 'number')
 			{
-				h = window.innerHeight;
-				w = window.innerWidth;
+				h = window?.innerHeight;
+				w = window?.innerWidth;
 			}
 			else
 			{
@@ -166,10 +166,10 @@ export const  mxLog =
 			}
 
 			mxLog.window = new mxWindow(title, table, Math.max(0, w - 320), Math.max(0, h - 210), 300, 160);
-			mxLog.window.setMaximizable(true);
-			mxLog.window.setScrollable(false);
-			mxLog.window.setResizable(true);
-			mxLog.window.setClosable(true);
+			mxLog.window?.setMaximizable(true);
+			mxLog.window?.setScrollable(false);
+			mxLog.window?.setResizable(true);
+			mxLog.window?.setClosable(true);
 			mxLog.window.destroyOnClose = false;
 		
 		}
@@ -207,7 +207,7 @@ export const  mxLog =
 	{
 		if (mxLog.window != null)
 		{
-			return mxLog.window.isVisible();
+			return mxLog.window?.isVisible();
 		}
 		
 		return false;
@@ -238,7 +238,7 @@ export const  mxLog =
 
 		if (mxLog.window != null)
 		{
-			mxLog.window.setVisible(visible);
+			mxLog.window?.setVisible(visible);
 		}
 	},
 

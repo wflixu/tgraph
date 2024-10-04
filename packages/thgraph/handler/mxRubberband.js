@@ -335,7 +335,7 @@ mxRubberband.prototype.reset = function()
 			temp.style.pointerEvents = 'none';
 			temp.style.opacity = 0;
 		    
-		    window.setTimeout(function()
+		    window?.setTimeout(function()
 		    	{
 		    		temp.parentNode.removeChild(temp);
 		    	}, 200);	

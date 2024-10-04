@@ -404,7 +404,7 @@ export function mxEditor(config) {
  * Installs the required language resources at class
  * loading time.
  */
-if (window.mxLoadResources) {
+if (window?.mxLoadResources) {
   mxResources.add(mxClient.basePath + '/resources/editor');
 } else {
   mxClient.defaultBundles.push(mxClient.basePath + '/resources/editor');
@@ -833,7 +833,7 @@ mxEditor.prototype.tasks = null;
 /**
  * Variable: tasksWindowImage
  *
- * Icon for the tasks window.
+ * Icon for the tasks window?.
  */
 mxEditor.prototype.tasksWindowImage = null;
 
@@ -855,7 +855,7 @@ mxEditor.prototype.help = null;
 /**
  * Variable: helpWindowImage
  *
- * Icon for the help window.
+ * Icon for the help window?.
  */
 mxEditor.prototype.helpWindowImage = null;
 
@@ -863,7 +863,7 @@ mxEditor.prototype.helpWindowImage = null;
  * Variable: urlHelp
  *
  * Specifies the URL to be used for the contents of the
- * Online Help window. This is usually specified in the
+ * Online Help window?. This is usually specified in the
  * resources file under urlHelp for language-specific
  * online help support.
  */
@@ -951,8 +951,8 @@ mxEditor.prototype.setModified = function (value) {
  * Adds the built-in actions to the editor instance.
  *
  * save - Saves the graph using <urlPost>.
- * print - Shows the graph in a new print preview window.
- * show - Shows the graph in a new window.
+ * print - Shows the graph in a new print preview window?.
+ * show - Shows the graph in a new window?.
  * exportImage - Shows the graph as a bitmap image using <getUrlImage>.
  * refresh - Refreshes the graph's display.
  * cut - Copies the current selection into the clipboard
@@ -968,7 +968,7 @@ mxEditor.prototype.setModified = function (value) {
  * zoomIn - Zooms into the graph.
  * zoomOut - Zooms out of the graph
  * actualSize - Resets the scale and translation on the graph.
- * fit - Changes the scale so that the graph fits into the window.
+ * fit - Changes the scale so that the graph fits into the window?.
  * showProperties - Shows the properties dialog.
  * selectAll - Selects all cells.
  * selectNone - Clears the selection.
@@ -999,10 +999,10 @@ mxEditor.prototype.setModified = function (value) {
  * alignFontTop - Sets the vertical text alignment to top.
  * alignFontMiddle - Sets the vertical text alignment to middle.
  * alignFontBottom - Sets the vertical text alignment to bottom.
- * toggleTasks - Shows or hides the tasks window.
- * toggleHelp - Shows or hides the help window.
- * toggleOutline - Shows or hides the outline window.
- * toggleConsole - Shows or hides the console window.
+ * toggleTasks - Shows or hides the tasks window?.
+ * toggleHelp - Shows or hides the help window?.
+ * toggleOutline - Shows or hides the outline window?.
+ * toggleConsole - Shows or hides the console window?.
  */
 mxEditor.prototype.addActions = function () {
   this.addAction('save', function (editor) {
@@ -2452,7 +2452,7 @@ mxEditor.prototype.hideProperties = function () {
 /**
  * Function: showTasks
  *
- * Shows the tasks window. The tasks window is created using <createTasks>. The
+ * Shows the tasks window?. The tasks window is created using <createTasks>. The
  * default width of the window is 200 pixels, the y-coordinate of the location
  * can be specifies in <tasksTop> and the x-coordinate is right aligned with a
  * 20 pixel offset from the right border. To change the location of the tasks
@@ -2542,7 +2542,7 @@ mxEditor.prototype.createTasks = function (div) {
 /**
  * Function: showHelp
  *
- * Shows the help window. If the help window does not exist
+ * Shows the help window?. If the help window does not exist
  * then it is created using an iframe pointing to the resource
  * for the <code>urlHelp</code> key or <urlHelp> if the resource
  * is undefined.
@@ -2599,7 +2599,7 @@ mxEditor.prototype.showHelp = function (tasks) {
 /**
  * Function: showOutline
  *
- * Shows the outline window. If the window does not exist, then it is
+ * Shows the outline window?. If the window does not exist, then it is
  * created using an <mxOutline>.
  */
 mxEditor.prototype.showOutline = function () {

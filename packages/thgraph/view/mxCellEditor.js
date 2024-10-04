@@ -446,10 +446,10 @@ mxCellEditor.prototype.installListeners = function (elt) {
       // Asynchronous is needed for keydown and shows better results for input events overall
       // (ie non-blocking and cases where the offsetWidth/-Height was wrong at this time)
       if (this.resizeThread != null) {
-        window.clearTimeout(this.resizeThread);
+        window?.clearTimeout(this.resizeThread);
       }
 
-      this.resizeThread = window.setTimeout(
+      this.resizeThread = window?.setTimeout(
         mxUtils.bind(this, function () {
           this.resizeThread = null;
           this.resize();
@@ -938,7 +938,7 @@ mxCellEditor.prototype.startEditing = function (cell, trigger) {
       (this.graph.model.isEdge(state.cell) ||
         state.style[mxConstants.STYLE_OVERFLOW] != 'fill')
     ) {
-      window.setTimeout(
+      window?.setTimeout(
         mxUtils.bind(this, function () {
           this.resize();
         }),
@@ -984,8 +984,8 @@ mxCellEditor.prototype.isSelectText = function () {
 mxCellEditor.prototype.clearSelection = function () {
   var selection = null;
 
-  if (window.getSelection) {
-    selection = window.getSelection();
+  if (window?.getSelection) {
+    selection = window?.getSelection();
   } else if (document.selection) {
     selection = document.selection;
   }

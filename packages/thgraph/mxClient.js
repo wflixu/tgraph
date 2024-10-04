@@ -1,4 +1,13 @@
 let navigator = window?.navigator ?? {};
+import {detect} from 'detect-browser'
+
+const browser = detect();
+
+// 检查是否在浏览器环境中
+if (typeof window === 'undefined') {
+  throw new Error('This module is only available in the browser environment.');
+}
+
 export const mxClient = {
   /**
    * Class: mxClient
@@ -20,15 +29,7 @@ export const mxClient = {
    */
   VERSION: '4.2.2',
   imageBasePath: '/graph/assets/',
-  /**
-   * Variable: IS_IE
-   *
-   * True if the current browser is Internet Explorer 10 or below. Use <mxClient.IS_IE11>
-   * to detect IE 11.
-   */
-
-  IS_IE:
-    navigator.userAgent != null && navigator.userAgent.indexOf('MSIE') >= 0,
+ 
 
   /**
    * Variable: IS_IE11
@@ -130,7 +131,7 @@ export const mxClient = {
    * True if the this is running inside a Chrome App.
    */
   IS_CHROMEAPP:
-    window.chrome != null && chrome.app != null && chrome.app.runtime != null,
+    window?.chrome != null && chrome.app != null && chrome.app.runtime != null,
 
   /**
    * Variable: IS_FF
@@ -219,7 +220,7 @@ export const mxClient = {
    * True if this device supports Microsoft pointer events (always false on Macs).
    */
   IS_POINTER:
-    window.PointerEvent != null && !(navigator.appVersion.indexOf('Mac') > 0),
+    window?.PointerEvent != null && !(navigator.appVersion.indexOf('Mac') > 0),
 
   /**
    * Variable: IS_LOCAL

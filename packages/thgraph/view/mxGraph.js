@@ -12746,10 +12746,10 @@ export class mxGraph extends mxEventSource {
         };
 
         if (this.tapAndHoldThread) {
-          window.clearTimeout(this.tapAndHoldThread);
+          window?.clearTimeout(this.tapAndHoldThread);
         }
 
-        this.tapAndHoldThread = window.setTimeout(
+        this.tapAndHoldThread = window?.setTimeout(
           mxUtils.bind(this, handler),
           this.tapAndHoldDelay,
         );

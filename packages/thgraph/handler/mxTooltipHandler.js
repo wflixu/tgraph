@@ -226,7 +226,7 @@ mxTooltipHandler.prototype.resetTimer = function()
 {
 	if (this.thread != null)
 	{
-		window.clearTimeout(this.thread);
+		window?.clearTimeout(this.thread);
 		this.thread = null;
 	}
 };
@@ -251,7 +251,7 @@ mxTooltipHandler.prototype.reset = function(me, restart, state)
 			var y = me.getY();
 			var stateSource = me.isSource(state.shape) || me.isSource(state.text);
 	
-			this.thread = window.setTimeout(mxUtils.bind(this, function()
+			this.thread = window?.setTimeout(mxUtils.bind(this, function()
 			{
 				if (!this.graph.isEditing() && !this.graph.popupMenuHandler.isMenuShowing() && !this.graph.isMouseDown)
 				{

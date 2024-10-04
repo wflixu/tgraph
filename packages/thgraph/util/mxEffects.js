@@ -103,7 +103,7 @@ export const  mxEffects =
 			if (step < maxStep && isRequired)
 			{
 				step++;
-				window.setTimeout(animate, delay);
+				window?.setTimeout(animate, delay);
 			}
 			else if (done != null)
 			{
@@ -183,7 +183,7 @@ export const  mxEffects =
 				
 				if (opacity > 0)
 				{
-					window.setTimeout(f, delay);
+					window?.setTimeout(f, delay);
 				}
 				else
 				{
@@ -195,7 +195,7 @@ export const  mxEffects =
 					}
 				}
 			};
-			window.setTimeout(f, delay);
+			window?.setTimeout(f, delay);
 		}
 		else
 		{

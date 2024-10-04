@@ -53,7 +53,7 @@ export function mxPanningManager(graph)
 	    	this.scrollLeft = graph.container.scrollLeft;
 	    	this.scrollTop = graph.container.scrollTop;
 	
-	    	return window.setInterval(mxUtils.bind(this, function()
+	    	return window?.setInterval(mxUtils.bind(this, function()
 		{
 			this.tdx -= this.dx;
 			this.tdy -= this.dy;
@@ -189,7 +189,7 @@ export function mxPanningManager(graph)
 		}
 		else if (this.thread != null)
 		{
-			window.clearInterval(this.thread);
+			window?.clearInterval(this.thread);
 			this.thread = null;
 		}
 	};
@@ -202,7 +202,7 @@ export function mxPanningManager(graph)
 		
 			if (this.thread != null)
 	    	{
-				window.clearInterval(this.thread);
+				window?.clearInterval(this.thread);
 				this.thread = null;
 	    	}
 			

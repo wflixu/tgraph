@@ -22,7 +22,7 @@ const normalizeGif  =  '/graph/assets/normalize.gif';
  *
  * Examples:
  *
- * Creating a simple window.
+ * Creating a simple window?.
  *
  * (code)
  * var tb = document.createElement('div');
@@ -71,25 +71,25 @@ const normalizeGif  =  '/graph/assets/normalize.gif';
  * (code)
  * mxEvent.addListener(window, 'resize', mxUtils.bind(this, function()
  * {
- *   var iw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
- *   var ih = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+ *   var iw = window?.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+ *   var ih = window?.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
  *
- *   var x = this.window.getX();
- *   var y = this.window.getY();
+ *   var x = this.window?.getX();
+ *   var y = this.window?.getY();
  *
- *   if (x + this.window.table.clientWidth > iw)
+ *   if (x + this.window?.table.clientWidth > iw)
  *   {
- *     x = Math.max(0, iw - this.window.table.clientWidth);
+ *     x = Math.max(0, iw - this.window?.table.clientWidth);
  *   }
  *
- *   if (y + this.window.table.clientHeight > ih)
+ *   if (y + this.window?.table.clientHeight > ih)
  *   {
- *     y = Math.max(0, ih - this.window.table.clientHeight);
+ *     y = Math.max(0, ih - this.window?.table.clientHeight);
  *   }
  *
- *   if (this.window.getX() != x || this.window.getY() != y)
+ *   if (this.window?.getX() != x || this.window?.getY() != y)
  *   {
- *     this.window.setLocation(x, y);
+ *     this.window?.setLocation(x, y);
  *   }
  * }));
  * (end)
@@ -143,7 +143,7 @@ const normalizeGif  =  '/graph/assets/normalize.gif';
  * Event: mxEvent.ACTIVATE
  *
  * Fires after a window is activated. The <code>previousWindow</code> property
- * contains the previous window. The event sender is the active window.
+ * contains the previous window?. The event sender is the active window?.
  *
  * Event: mxEvent.SHOW
  *
@@ -170,7 +170,7 @@ const normalizeGif  =  '/graph/assets/normalize.gif';
  * the window title and window pane. The respective postfixes are appended
  * to the given stylename as follows:
  *
- *   style - Base style for the window.
+ *   style - Base style for the window?.
  *   style+Title - Style for the window title.
  *   style+Pane - Style for the window pane.
  *
@@ -183,12 +183,12 @@ const normalizeGif  =  '/graph/assets/normalize.gif';
  *
  * Parameters:
  *
- * title - String that represents the title of the new window.
+ * title - String that represents the title of the new window?.
  * content - DOM node that is used as the window content.
  * x - X-coordinate of the window location.
  * y - Y-coordinate of the window location.
- * width - Width of the window.
- * height - Optional height of the window. Default is to match the height
+ * width - Width of the window?.
+ * height - Optional height of the window?. Default is to match the height
  * of the content at the specified width.
  * minimizable - Optional boolean indicating if the window is minimizable.
  * Default is true.
@@ -279,14 +279,14 @@ mxWindow.prototype.resizeImage = resizeGif;
 /**
  * Variable: visible
  *
- * Boolean flag that represents the visible state of the window.
+ * Boolean flag that represents the visible state of the window?.
  */
 mxWindow.prototype.visible = false;
 
 /**
  * Variable: minimumSize
  *
- * <mxRectangle> that specifies the minimum width and height of the window.
+ * <mxRectangle> that specifies the minimum width and height of the window?.
  * Default is (50, 40).
  */
 mxWindow.prototype.minimumSize = new mxRectangle(0, 0, 50, 40);
@@ -324,7 +324,7 @@ mxWindow.prototype.content = null;
 /**
  * Function: init
  *
- * Initializes the DOM tree that represents the window.
+ * Initializes the DOM tree that represents the window?.
  */
 mxWindow.prototype.init = function (x, y, width, height, style) {
   style = style != null ? style : 'mxWindow';
@@ -480,7 +480,7 @@ mxWindow.prototype.activate = function () {
 /**
  * Function: getElement
  *
- * Returuns the outermost DOM node that makes up the window.
+ * Returuns the outermost DOM node that makes up the window?.
  */
 mxWindow.prototype.getElement = function () {
   return this.div;
@@ -489,7 +489,7 @@ mxWindow.prototype.getElement = function () {
 /**
  * Function: fit
  *
- * Makes sure the window is inside the client area of the window.
+ * Makes sure the window is inside the client area of the window?.
  */
 mxWindow.prototype.fit = function () {
   mxUtils.fit(this.div);
@@ -596,7 +596,7 @@ mxWindow.prototype.setResizable = function (resizable) {
 /**
  * Function: setSize
  *
- * Sets the size of the window.
+ * Sets the size of the window?.
  */
 mxWindow.prototype.setSize = function (width, height) {
   width = Math.max(this.minimumSize.width, width);
@@ -627,7 +627,7 @@ mxWindow.prototype.setMinimizable = function (minimizable) {
 /**
  * Function: getMinimumSize
  *
- * Returns an <mxRectangle> that specifies the size for the minimized window.
+ * Returns an <mxRectangle> that specifies the size for the minimized window?.
  * A width or height of 0 means keep the existing width or height. This
  * implementation returns the height of the window title and keeps the width.
  */
@@ -638,7 +638,7 @@ mxWindow.prototype.getMinimumSize = function () {
 /**
  * Function: installMinimizeHandler
  *
- * Installs the event listeners required for minimizing the window.
+ * Installs the event listeners required for minimizing the window?.
  */
 mxWindow.prototype.installMinimizeHandler = function () {
   this.minimize = document.createElement('img');
@@ -725,7 +725,7 @@ mxWindow.prototype.setMaximizable = function (maximizable) {
 /**
  * Function: installMaximizeHandler
  *
- * Installs the event listeners required for maximizing the window.
+ * Installs the event listeners required for maximizing the window?.
  */
 mxWindow.prototype.installMaximizeHandler = function () {
   this.maximize = document.createElement('img');
@@ -839,7 +839,7 @@ mxWindow.prototype.installMaximizeHandler = function () {
 /**
  * Function: installMoveHandler
  *
- * Installs the event listeners required for moving the window.
+ * Installs the event listeners required for moving the window?.
  */
 mxWindow.prototype.installMoveHandler = function () {
   this.title.style.cursor = 'move';
@@ -888,7 +888,7 @@ mxWindow.prototype.installMoveHandler = function () {
 /**
  * Function: setLocation
  *
- * Sets the upper, left corner of the window.
+ * Sets the upper, left corner of the window?.
  */
 mxWindow.prototype.setLocation = function (x, y) {
   this.div.style.left = x + 'px';
@@ -949,7 +949,7 @@ mxWindow.prototype.installCloseHandler = function () {
 /**
  * Function: setImage
  *
- * Sets the image associated with the window.
+ * Sets the image associated with the window?.
  *
  * Parameters:
  *
@@ -969,7 +969,7 @@ mxWindow.prototype.setImage = function (image) {
 /**
  * Function: setClosable
  *
- * Sets the image associated with the window.
+ * Sets the image associated with the window?.
  *
  * Parameters:
  *
@@ -1014,7 +1014,7 @@ mxWindow.prototype.setVisible = function (visible) {
 /**
  * Function: show
  *
- * Shows the window.
+ * Shows the window?.
  */
 mxWindow.prototype.show = function () {
   this.div.style.display = '';
@@ -1039,7 +1039,7 @@ mxWindow.prototype.show = function () {
 /**
  * Function: hide
  *
- * Hides the window.
+ * Hides the window?.
  */
 mxWindow.prototype.hide = function () {
   this.div.style.display = 'none';
@@ -1050,7 +1050,7 @@ mxWindow.prototype.hide = function () {
  * Function: destroy
  *
  * Destroys the window and removes all associated resources. Fires a
- * <destroy> event prior to destroying the window.
+ * <destroy> event prior to destroying the window?.
  */
 mxWindow.prototype.destroy = function () {
   this.fireEvent(new mxEventObject(mxEvent.DESTROY));

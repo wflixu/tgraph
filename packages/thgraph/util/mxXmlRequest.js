@@ -265,7 +265,7 @@ mxXmlRequest.prototype.getStatus = function () {
  * Creates and returns the inner <request> object.
  */
 mxXmlRequest.prototype.create = (function () {
-  if (window.XMLHttpRequest) {
+  if (window?.XMLHttpRequest) {
     return function () {
       var req = new XMLHttpRequest();
 
@@ -321,7 +321,7 @@ mxXmlRequest.prototype.send = function (onload, onerror, timeout, ontimeout) {
     );
     this.setRequestHeaders(this.request, this.params);
 
-    if (window.XMLHttpRequest && this.withCredentials) {
+    if (window?.XMLHttpRequest && this.withCredentials) {
       this.request.withCredentials = 'true';
     }
 
@@ -381,7 +381,7 @@ mxXmlRequest.prototype.simulate = function (doc, target) {
   var old = null;
 
   if (doc == document) {
-    old = window.onbeforeunload;
+    old = window?.onbeforeunload;
     window.onbeforeunload = null;
   }
 

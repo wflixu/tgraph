@@ -18,7 +18,7 @@ const bundles = [
       file: path.join(__dirname, 'dist/thgraph.esm.js'),
       format: 'esm',
     },
-    plugins: [image()]
+    plugins: []
   },
   {
     input,
@@ -26,7 +26,7 @@ const bundles = [
       file: path.join(__dirname, 'dist/thgraph.esm.min.js'),
       format: 'esm',
     },
-    plugins: [image()]
+    plugins: []
   },
   {
     input,
@@ -34,33 +34,25 @@ const bundles = [
       file: path.join(__dirname, 'dist/thgraph.esm.development.js'),
       format: 'esm',
     },
-    plugins: [image()]
+    plugins: []
   },
   {
     input,
     output: {
       name: 'thgraph',
       file: path.join(__dirname, 'dist/thgraph.js'),
-      format: 'umd',
+      format: 'iife',
     },
-    plugins: [image()]
+    plugins: []
   },
   {
     input,
     output: {
       name: 'thgraph',
       file: path.join(__dirname, 'dist/thgraph.min.js'),
-      format: 'umd',
+      format: 'iife',
     },
-    plugins: [image()]
-  },
-  {
-    input,
-    output: {
-      file: path.join(__dirname, 'dist/thgraph.cjs'),
-      format: 'cjs',
-    },
-    plugins: [image()]
+    plugins: []
   },
 ];
 
@@ -70,23 +62,22 @@ const isMinEnv = (file) => file.includes('.min.');
 const isSpecificEnv = (file) => isMinEnv(file) || isDevEnv(file);
 const isDebugAlways = (file) => isDevEnv(file) || isUMD(file) ? 'true' : 'false';
 
-const buildExport = bundles.map(({input, output}) => ({
+const buildExport = bundles.map(({input, output, plugins}) => ({
   input,
   output,
+  external: ['detect-browser'],
   plugins: [
+    
     image(),
-    nodeResolve({extensions: ['.ts']}),
-    babel({
-      babelHelpers: 'bundled',
-      extensions: ['.ts'],
-      plugins: ['annotate-pure-calls'],
-    }),
+    nodeResolve({extensions: ['.js']}),
     replace({
       __DEV__: isSpecificEnv(output.file)
         ? isDebugAlways(output.file)
         : 'process.env.NODE_ENV !== "production"',
       preventAssignment: true,
     }),
+    
+    ...plugins,
     output.file.includes('.min.') && terser(),
   ],
 }));
@@ -97,14 +88,12 @@ const devExport = {
     file: path.join(__dirname, `dist/thgraph.esm.js`),
     format: 'esm',
   },
+  external: ['detect-browser'],
   plugins: [
     image(),
-    nodeResolve({extensions: ['.ts']}),
-    babel({
-      babelHelpers: 'bundled',
-      extensions: ['.ts'],
-      plugins: ['annotate-pure-calls'],
-    }),
+    nodeResolve({extensions: ['.js']}),
+   
+   
     replace({
       __DEV__: 'true',
       preventAssignment: true,

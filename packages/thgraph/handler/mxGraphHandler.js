@@ -62,11 +62,11 @@ export function mxGraphHandler(graph) {
   this.refreshHandler = mxUtils.bind(this, function (sender, evt) {
     // Merges multiple pending calls
     if (this.refreshThread) {
-      window.clearTimeout(this.refreshThread);
+      window?.clearTimeout(this.refreshThread);
     }
 
     // Waits for the states and handlers to be updated
-    this.refreshThread = window.setTimeout(
+    this.refreshThread = window?.setTimeout(
       mxUtils.bind(this, function () {
         this.refreshThread = null;
 

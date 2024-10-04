@@ -13,9 +13,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "thgraph": "workspace:thgraph@*"
+  
   },
   "devDependencies": {
-    "vitepress": "1.3.4"
+    "vitepress": "1.3.4",
+      "thgraph": "workspace:thgraph@*"
   }
 }

@@ -13,7 +13,7 @@
     "build": "pnpm  --filter=thgraph  run build",
     "docs:build": "pnpm --filter docs run docs:build",
     "next:dev": "pnpm run dev --filter thgraph-next-demo",
-    "next:build": "pnpm run build --filter thgraph-next",
+    "next:build": "pnpm --filter=thgraph-next run build ",
     "pub:doc": "zx ./script/docs.mjs"
   },
   "devDependencies": {

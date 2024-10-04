@@ -63,11 +63,12 @@ export class ThUtils {
      *
      * n - String representing the possibly numeric value.
     */
-    public static isNumeric(n:string) {
-    return (
-        !isNaN(parseFloat(n)) &&
-        isFinite(n as unknown as number) &&
-        (typeof n != 'string' || n.toLowerCase().indexOf('0x') < 0)
-    );
-},
+    public static isNumeric(n: string) {
+
+        return (
+            !Number.isNaN(parseFloat(n)) &&
+            isFinite(n as unknown as number) &&
+            (typeof n != 'string' || n.toLowerCase().indexOf('0x') < 0)
+        );
+    }
 }

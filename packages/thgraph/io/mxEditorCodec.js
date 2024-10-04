@@ -44,11 +44,11 @@
 *
 * as - Key for the UI element (see below).
 * element - ID for the element in the document.
-* style - CSS style to be used for the element or window.
-* x - X coordinate for the new window.
-* y - Y coordinate for the new window.
-* width - Width for the new window.
-* height - Optional height for the new window.
+* style - CSS style to be used for the element or window?.
+* x - X coordinate for the new window?.
+* y - Y coordinate for the new window?.
+* width - Width for the new window?.
+* height - Optional height for the new window?.
 * name - Name of the stylesheet (absolute/relative URL).
 * basename - Basename of the resource bundle (see <mxResources>).
 *

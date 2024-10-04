@@ -301,7 +301,7 @@ mxPrintPreview.prototype.borderColor = null;
 /**
  * Variable: title
  *
- * Holds the title of the preview window.
+ * Holds the title of the preview window?.
  */
 mxPrintPreview.prototype.title = null;
 
@@ -316,7 +316,7 @@ mxPrintPreview.prototype.pageSelector = null;
 /**
  * Variable: wnd
  *
- * Reference to the preview window.
+ * Reference to the preview window?.
  */
 mxPrintPreview.prototype.wnd = null;
 
@@ -404,7 +404,7 @@ mxPrintPreview.prototype.appendGraph = function (
 /**
  * Function: open
  *
- * Shows the print preview window. The window is created here if it does
+ * Shows the print preview window?. The window is created here if it does
  * not exist.
  *
  * Parameters:
@@ -450,7 +450,7 @@ mxPrintPreview.prototype.open = function (
 
     if (this.wnd == null) {
       isNewWindow = true;
-      this.wnd = window.open();
+      this.wnd = window?.open();
     }
 
     var doc = this.wnd.document;
@@ -1165,7 +1165,7 @@ mxPrintPreview.prototype.print = function (css) {
 /**
  * Function: close
  *
- * Closes the print preview window.
+ * Closes the print preview window?.
  */
 mxPrintPreview.prototype.close = function () {
   if (this.wnd != null) {

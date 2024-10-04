@@ -26,7 +26,7 @@ export const mxUtils = {
    *
    * Variable: errorResource
    *
-   * Specifies the resource key for the title of the error window. If the
+   * Specifies the resource key for the title of the error window?. If the
    * resource for this key does not exist then the value is used as
    * the title. Default is 'error'.
    */
@@ -84,7 +84,7 @@ export const mxUtils = {
    * element - DOM node whose current style should be returned.
    */
   getCurrentStyle: function (element) {
-    return element ? window.getComputedStyle(element, '') : null;
+    return element ? window?.getComputedStyle(element, '') : null;
   },
 
   /**
@@ -575,12 +575,12 @@ export const mxUtils = {
       return function () {
         document.selection.empty();
       };
-    } else if (window.getSelection) {
+    } else if (window?.getSelection) {
       return function () {
-        if (window.getSelection().empty) {
-          window.getSelection().empty();
-        } else if (window.getSelection().removeAllRanges) {
-          window.getSelection().removeAllRanges();
+        if (window?.getSelection().empty) {
+          window?.getSelection().empty();
+        } else if (window?.getSelection().removeAllRanges) {
+          window?.getSelection().removeAllRanges();
         }
       };
     } else {
@@ -673,7 +673,7 @@ export const mxUtils = {
     if (!node) {
       return;
     }
-    if (window.XMLSerializer != null) {
+    if (window?.XMLSerializer != null) {
       var xmlSerializer = new XMLSerializer();
       xml = xmlSerializer.serializeToString(node);
     } else if (node.xml != null) {
@@ -1204,7 +1204,7 @@ export const mxUtils = {
   /**
    * Function: fit
    *
-   * Makes sure the given node is inside the visible area of the window. This
+   * Makes sure the given node is inside the visible area of the window?. This
    * is done by setting the left and top in the style.
    */
   fit: function (node) {
@@ -2484,16 +2484,16 @@ export const mxUtils = {
     var wnd = doc.defaultView || doc.parentWindow;
 
     var x =
-      wnd != null && window.pageXOffset !== undefined
-        ? window.pageXOffset
+      wnd != null && window?.pageXOffset !== undefined
+        ? window?.pageXOffset
         : (
           document.documentElement ||
           document.body.parentNode ||
           document.body
         ).scrollLeft;
     var y =
-      wnd != null && window.pageYOffset !== undefined
-        ? window.pageYOffset
+      wnd != null && window?.pageYOffset !== undefined
+        ? window?.pageYOffset
         : (
           document.documentElement ||
           document.body.parentNode ||
@@ -3609,7 +3609,7 @@ export const mxUtils = {
     y0 = y0 != null ? y0 : 0;
 
     if (doc == null) {
-      var wnd = window.open();
+      var wnd = window?.open();
       doc = wnd.document;
     } else {
       doc.open();
@@ -3727,7 +3727,7 @@ export const mxUtils = {
    * graph - <mxGraph> to be printed.
    */
   printScreen: function (graph) {
-    var wnd = window.open();
+    var wnd = window?.open();
     var bounds = graph.getGraphBounds();
     mxUtils.show(graph, wnd.document);
 
@@ -3756,7 +3756,7 @@ export const mxUtils = {
    *
    * content - String that specifies the text to be displayed.
    * isInternalWindow - Optional boolean indicating if an mxWindow should be
-   * used instead of a new browser window. Default is false.
+   * used instead of a new browser window?. Default is false.
    */
   popup: function (content, isInternalWindow) {
     if (isInternalWindow) {
@@ -3795,11 +3795,11 @@ export const mxUtils = {
     } else {
       // Wraps up the XML content in a textarea
       if (mxClient.IS_NS) {
-        var wnd = window.open();
+        var wnd = window?.open();
         wnd.document.writeln('<pre>' + mxUtils.htmlEntities(content) + '</pre');
         wnd.document.close();
       } else {
-        var wnd = window.open();
+        var wnd = window?.open();
         var pre = wnd.document.createElement('pre');
         pre.innerHTML = mxUtils
           .htmlEntities(content, false)
@@ -3858,14 +3858,14 @@ export const mxUtils = {
    * Function: error
    *
    * Displays the given error message in a new <mxWindow> of the given width.
-   * If close is true then an additional close button is added to the window.
-   * The optional icon specifies the icon to be used for the window. Default
+   * If close is true then an additional close button is added to the window?.
+   * The optional icon specifies the icon to be used for the window?. Default
    * is <mxUtils.errorImage>.
    *
    * Parameters:
    *
    * message - String specifying the message to be displayed.
-   * width - Integer specifying the width of the window.
+   * width - Integer specifying the width of the window?.
    * close - Optional boolean indicating whether to add a close button.
    * icon - Optional icon for the window decoration.
    */
