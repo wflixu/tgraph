@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 
 import { mxEventSource,mxUtils,mxRectangle,mxConstants } from "../util/index.js";
 import { mxEvent } from "../index.js";

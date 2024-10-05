@@ -386,8 +386,8 @@ mxRubberband.prototype.repaint = function()
 		this.width = Math.max(this.first.x, x) - this.x;
 		this.height =  Math.max(this.first.y, y) - this.y;
 
-		var dx = (mxClient.IS_VML) ? this.graph.panDx : 0;
-		var dy = (mxClient.IS_VML) ? this.graph.panDy : 0;
+		var dx =  0;
+		var dy =  0;
 		
 		this.div.style.left = (this.x + dx) + 'px';
 		this.div.style.top = (this.y + dy) + 'px';

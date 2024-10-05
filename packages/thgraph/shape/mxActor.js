@@ -39,6 +39,8 @@
  * 1. This is stored in <strokewidth>.
  */
 import { mxShape } from './mxShape.js';
+
+
 export class mxActor extends mxShape {
   constructor(bounds, fill, stroke, strokewidth = 1) {
     super();

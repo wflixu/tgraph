@@ -3,7 +3,7 @@ import { mxClient } from "../index.js";
 
 let navigator = window?.navigator ?? {};
 
-export const  mxLog =
+export const mxLog =
 {
 	/**
 	 * Class: mxLog
@@ -15,7 +15,7 @@ export const  mxLog =
 	 * Specifies the name of the console window?. Default is 'Console'.
 	 */
 	consoleName: 'Console',
-	
+
 	/**
 	 * Variable: TRACE
 	 * 
@@ -46,7 +46,7 @@ export const  mxLog =
 	 * Buffer for pre-initialized content.
 	 */
 	buffer: '',
-	
+
 	/**
 	 * Function: init
 	 *
@@ -54,10 +54,8 @@ export const  mxLog =
 	 * point to a non-null value. This is called from within <setVisible> if the
 	 * log has not yet been initialized.
 	 */
-	init: function()
-	{
-		if (mxLog.window == null && document.body != null)
-		{
+	init: function () {
+		if (mxLog.window == null && document.body != null) {
 			var title = mxLog.consoleName + ' - mxGraph ' + mxClient.VERSION;
 
 			// Creates a table that maintains the layout
@@ -69,7 +67,7 @@ export const  mxLog =
 			var tr = document.createElement('tr');
 			var td = document.createElement('td');
 			td.style.verticalAlign = 'top';
-				
+
 			// Adds the actual console as a textarea
 			mxLog.textarea = document.createElement('textarea');
 			mxLog.textarea.setAttribute('wrap', 'off');
@@ -79,15 +77,10 @@ export const  mxLog =
 			mxLog.textarea.value = mxLog.buffer;
 
 			// Workaround for wrong width in standards mode
-			if (mxClient.IS_NS && document.compatMode != 'BackCompat')
-			{
-				mxLog.textarea.style.width = '99%';
-			}
-			else
-			{
-				mxLog.textarea.style.width = '100%';
-			}
-			
+
+			mxLog.textarea.style.width = '100%';
+
+
 			td.appendChild(mxLog.textarea);
 			tr.appendChild(td);
 			tbody.appendChild(tr);
@@ -97,70 +90,58 @@ export const  mxLog =
 			mxLog.td = document.createElement('td');
 			mxLog.td.style.verticalAlign = 'top';
 			mxLog.td.setAttribute('height', '30px');
-			
+
 			tr.appendChild(mxLog.td);
 			tbody.appendChild(tr);
 			table.appendChild(tbody);
 
 			// Adds various debugging buttons
-			mxLog.addButton('Info', function (evt)
-			{
+			mxLog.addButton('Info', function (evt) {
 				mxLog.info();
 			});
-		
-			mxLog.addButton('DOM', function (evt)
-			{
+
+			mxLog.addButton('DOM', function (evt) {
 				var content = mxUtils.getInnerHtml(document.body);
 				mxLog.debug(content);
 			});
-	
-			mxLog.addButton('Trace', function (evt)
-			{
+
+			mxLog.addButton('Trace', function (evt) {
 				mxLog.TRACE = !mxLog.TRACE;
-				
-				if (mxLog.TRACE)
-				{
+
+				if (mxLog.TRACE) {
 					mxLog.debug('Tracing enabled');
 				}
-				else
-				{
+				else {
 					mxLog.debug('Tracing disabled');
 				}
-			});	
+			});
 
-			mxLog.addButton('Copy', function (evt)
-			{
-				try
-				{
+			mxLog.addButton('Copy', function (evt) {
+				try {
 					mxUtils.copy(mxLog.textarea.value);
 				}
-				catch (err)
-				{
+				catch (err) {
 					mxUtils.alert(err);
 				}
-			});			
+			});
 
-			mxLog.addButton('Show', function (evt)
-			{
-				
-			});	
-			
-			mxLog.addButton('Clear', function (evt)
-			{
+			mxLog.addButton('Show', function (evt) {
+
+			});
+
+			mxLog.addButton('Clear', function (evt) {
 				mxLog.textarea.value = '';
 			});
 
 			// Cross-browser code to get window size
 			var h = 0;
 			var w = 0;
-			
-			if (typeof(window?.innerWidth) === 'number')
-			{
+
+			if (typeof (window?.innerWidth) === 'number') {
 				h = window?.innerHeight;
 				w = window?.innerWidth;
 			}
-			else
-			{
+			else {
 				h = (document.documentElement.clientHeight || document.body.clientHeight);
 				w = document.body.clientWidth;
 			}
@@ -171,56 +152,53 @@ export const  mxLog =
 			mxLog.window?.setResizable(true);
 			mxLog.window?.setClosable(true);
 			mxLog.window.destroyOnClose = false;
-		
+
 		}
+
 	},
-	
+
+
 	/**
 	 * Function: info
 	 * 
 	 * Writes the current navigator information to the console.
 	 */
-	info: function()
-	{
+	info: function () {
 		mxLog.writeln(mxUtils.toString(navigator));
 	},
-			
+
 	/**
 	 * Function: addButton
 	 * 
 	 * Adds a button to the console using the given label and function.
 	 */
-	addButton: function(lab, funct)
-	{
+	addButton: function (lab, funct) {
 		var button = document.createElement('button');
 		mxUtils.write(button, lab);
 		mxEvent.addListener(button, 'click', funct);
 		mxLog.td.appendChild(button);
 	},
-				
+
 	/**
 	 * Function: isVisible
 	 * 
 	 * Returns true if the console is visible.
 	 */
-	isVisible: function()
-	{
-		if (mxLog.window != null)
-		{
+	isVisible: function () {
+		if (mxLog.window != null) {
 			return mxLog.window?.isVisible();
 		}
-		
+
 		return false;
 	},
-	
+
 
 	/**
 	 * Function: show
 	 * 
 	 * Shows the console.
 	 */
-	show: function()
-	{
+	show: function () {
 		mxLog.setVisible(true);
 	},
 
@@ -229,15 +207,12 @@ export const  mxLog =
 	 * 
 	 * Shows or hides the console.
 	 */
-	setVisible: function(visible)
-	{
-		if (mxLog.window == null)
-		{
+	setVisible: function (visible) {
+		if (mxLog.window == null) {
 			mxLog.init();
 		}
 
-		if (mxLog.window != null)
-		{
+		if (mxLog.window != null) {
 			mxLog.window?.setVisible(visible);
 		}
 	},
@@ -258,12 +233,10 @@ export const  mxLog =
 	 * mxLog.leave('World!', t0);
 	 * (end)
 	 */
-	enter: function(string)
-	{
-		if (mxLog.TRACE)
-		{
-			mxLog.writeln('Entering '+string);
-			
+	enter: function (string) {
+		if (mxLog.TRACE) {
+			mxLog.writeln('Entering ' + string);
+
 			return new Date().getTime();
 		}
 	},
@@ -276,15 +249,13 @@ export const  mxLog =
 	 * between the current time and t0 in milliseconds.
 	 * See <enter> for an example.
 	 */
-	leave: function(string, t0)
-	{
-		if (mxLog.TRACE)
-		{
-			var dt = (t0 != 0) ? ' ('+(new Date().getTime() - t0)+' ms)' : '';
-			mxLog.writeln('Leaving '+string+dt);
+	leave: function (string, t0) {
+		if (mxLog.TRACE) {
+			var dt = (t0 != 0) ? ' (' + (new Date().getTime() - t0) + ' ms)' : '';
+			mxLog.writeln('Leaving ' + string + dt);
 		}
 	},
-	
+
 	/**
 	 * Function: debug
 	 * 
@@ -297,14 +268,12 @@ export const  mxLog =
 	 * mxLog.debug('Hello, World!');
 	 * (end)
 	 */
-	debug: function()
-	{
-		if (mxLog.DEBUG)
-		{
+	debug: function () {
+		if (mxLog.DEBUG) {
 			mxLog.writeln.apply(this, arguments);
 		}
 	},
-	
+
 	/**
 	 * Function: warn
 	 * 
@@ -317,8 +286,7 @@ export const  mxLog =
 	 * mxLog.warn('Hello, World!');
 	 * (end)
 	 */
-	warn: function(...args)
-	{
+	warn: function (...args) {
 		console.warn(...args);
 		// if (mxLog.WARN)
 		// {
@@ -331,62 +299,53 @@ export const  mxLog =
 	 * 
 	 * Adds the specified strings to the console.
 	 */
-	write: function()
-	{
+	write: function () {
 		var string = '';
-		
-		for (var i = 0; i < arguments.length; i++)
-		{
+
+		for (var i = 0; i < arguments.length; i++) {
 			string += arguments[i];
-			
-			if (i < arguments.length - 1)
-			{
+
+			if (i < arguments.length - 1) {
 				string += ' ';
 			}
 		}
-		
-		if (mxLog.textarea != null)
-		{
+
+		if (mxLog.textarea != null) {
 			mxLog.textarea.value = mxLog.textarea.value + string;
 
 			// Workaround for no update in Presto 2.5.22 (Opera 10.5)
 			if (navigator.userAgent != null &&
-				navigator.userAgent.indexOf('Presto/2.5') >= 0)
-			{
+				navigator.userAgent.indexOf('Presto/2.5') >= 0) {
 				mxLog.textarea.style.visibility = 'hidden';
 				mxLog.textarea.style.visibility = 'visible';
 			}
-			
+
 			mxLog.textarea.scrollTop = mxLog.textarea.scrollHeight;
 		}
-		else
-		{
+		else {
 			mxLog.buffer += string;
 		}
 	},
-	
+
 	/**
 	 * Function: writeln
 	 * 
 	 * Adds the specified strings to the console, appending a linefeed at the
 	 * end of each string.
 	 */
-	writeln: function()
-	{
+	writeln: function () {
 		var string = '';
-		
-		for (var i = 0; i < arguments.length; i++)
-		{
+
+		for (var i = 0; i < arguments.length; i++) {
 			string += arguments[i];
-			
-			if (i < arguments.length - 1)
-			{
+
+			if (i < arguments.length - 1) {
 				string += ' ';
 			}
 		}
 
 		mxLog.write(string + '\n');
 	}
-	
+
 };
 console.log('graph/util/mxLog.js');

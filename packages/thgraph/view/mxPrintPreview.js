@@ -462,17 +462,10 @@ mxPrintPreview.prototype.open = function (
         doc.writeln(dt);
       }
 
-      if (mxClient.IS_VML) {
-        doc.writeln(
-          '<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">',
-        );
-      } else {
-        if (document.compatMode === 'CSS1Compat') {
-          doc.writeln('<!DOCTYPE html>');
-        }
 
-        doc.writeln('<html>');
-      }
+
+      doc.writeln('<html>');
+
 
       doc.writeln('<head>');
       this.writeHead(doc, css);
@@ -685,12 +678,7 @@ mxPrintPreview.prototype.writeHead = function (doc, css) {
     doc.writeln('<title>' + this.title + '</title>');
   }
 
-  // Adds required namespaces
-  if (mxClient.IS_VML) {
-    doc.writeln(
-      '<style type="text/css">v\\:*{behavior:url(#default#VML)}o\\:*{behavior:url(#default#VML)}</style>',
-    );
-  }
+
 
   // Adds all required stylesheets
   mxClient.link('stylesheet', mxClient.basePath + '/css/common.css', doc);
@@ -708,8 +696,8 @@ mxPrintPreview.prototype.writeHead = function (doc, css) {
   // position (absolute) needs to be updated in IE (see below)
   doc.writeln(
     '  table.mxPageSelector { position: fixed; right: 10px; top: 10px;' +
-      'font-family: Arial; font-size:10pt; border: solid 1px darkgray;' +
-      'background: white; border-collapse:collapse; }',
+    'font-family: Arial; font-size:10pt; border: solid 1px darkgray;' +
+    'background: white; border-collapse:collapse; }',
   );
   doc.writeln(
     '  table.mxPageSelector td { border: solid 1px gray; padding:4px; }',
@@ -755,14 +743,7 @@ mxPrintPreview.prototype.createPageSelector = function (vpages, hpages) {
       var a = doc.createElement('a');
       a.setAttribute('href', '#mxPage-' + pageNum);
 
-      // Workaround for FF where the anchor is appended to the URL of the original document
-      if (mxClient.IS_NS && !mxClient.IS_SF && !mxClient.IS_GC) {
-        var js =
-          "var page = document.getElementById('mxPage-" +
-          pageNum +
-          "');page.scrollIntoView(true);event.preventDefault();";
-        a.setAttribute('onclick', js);
-      }
+
 
       mxUtils.write(a, pageNum, doc);
       cell.appendChild(a);
@@ -953,23 +934,21 @@ mxPrintPreview.prototype.addGraphFragment = function (
       g.setAttribute(
         'transform',
         'scale(' +
-          scale +
-          ',' +
-          scale +
-          ')' +
-          'translate(' +
-          dx +
-          ',' +
-          dy +
-          ')',
+        scale +
+        ',' +
+        scale +
+        ')' +
+        'translate(' +
+        dx +
+        ',' +
+        dy +
+        ')',
       );
 
       scale = 1;
       dx = 0;
       dy = 0;
     }
-  } else if (this.graph.dialect == mxConstants.DIALECT_VML) {
-    view.createVml();
   } else {
     view.createHtml();
   }

@@ -124,13 +124,7 @@ export const mxUtils = {
   setPrefixedStyle: (function () {
     var prefix = null;
 
-    if (mxClient.IS_OT) {
-      prefix = 'O';
-    } else if (mxClient.IS_SF || mxClient.IS_GC) {
-      prefix = 'Webkit';
-    } else if (mxClient.IS_MT) {
-      prefix = 'Moz';
-    }
+ 
 
     return function (style, name, value) {
       style[name] = value;
@@ -3793,20 +3787,15 @@ export const mxUtils = {
       wnd.setClosable(true);
       wnd.setVisible(true);
     } else {
-      // Wraps up the XML content in a textarea
-      if (mxClient.IS_NS) {
-        var wnd = window?.open();
-        wnd.document.writeln('<pre>' + mxUtils.htmlEntities(content) + '</pre');
-        wnd.document.close();
-      } else {
-        var wnd = window?.open();
-        var pre = wnd.document.createElement('pre');
-        pre.innerHTML = mxUtils
-          .htmlEntities(content, false)
-          .replace(/\n/g, '<br>')
-          .replace(/ /g, '&nbsp;');
-        wnd.document.body.appendChild(pre);
-      }
+
+      var wnd = window?.open();
+      var pre = wnd.document.createElement('pre');
+      pre.innerHTML = mxUtils
+        .htmlEntities(content, false)
+        .replace(/\n/g, '<br>')
+        .replace(/ /g, '&nbsp;');
+      wnd.document.body.appendChild(pre);
+
     }
   },
 

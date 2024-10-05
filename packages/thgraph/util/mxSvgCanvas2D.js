@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxSvgCanvas2D
  *
@@ -61,9 +58,8 @@ import { mxConstants } from './mxConstants.js';
 
 export class mxSvgCanvas2D extends mxAbstractCanvas2D {
   useDomParser = typeof DOMParser === 'function' && typeof XMLSerializer === 'function';
-  useAbsoluteIds =  !mxClient.IS_CHROMEAPP &&
-  !mxClient.IS_EDGE &&
-  document.getElementsByTagName('base').length > 0;
+
+  
   constructor(root, styleEnabled) {
     super();
     /**
@@ -72,61 +68,61 @@ export class mxSvgCanvas2D extends mxAbstractCanvas2D {
      * Reference to the container for the SVG content.
      */
     this.root = root;
-  
+
     /**
      * Variable: gradients
      *
      * Local cache of gradients for quick lookups.
      */
     this.gradients = [];
-  
+
     /**
      * Variable: defs
      *
      * Reference to the defs section of the SVG document. Only for export.
      */
     this.defs = null;
-  
+
     /**
      * Variable: styleEnabled
      *
      * Stores the value of styleEnabled passed to the constructor.
      */
     this.styleEnabled = styleEnabled != null ? styleEnabled : false;
-  
+
     var svg = null;
-  
+
     // Adds optional defs section for export
     if (root.ownerDocument != document) {
       var node = root;
-  
+
       // Finds owner SVG element in XML DOM
       while (node != null && node.nodeName != 'svg') {
         node = node.parentNode;
       }
-  
+
       svg = node;
     }
-  
+
     if (svg != null) {
       // Tries to get existing defs section
       var tmp = svg.getElementsByTagName('defs');
-  
+
       if (tmp.length > 0) {
         this.defs = svg.getElementsByTagName('defs')[0];
       }
-  
+
       // Adds defs section if none exists
       if (this.defs == null) {
         this.defs = this.createElement('defs');
-  
+
         if (svg.firstChild != null) {
           svg.insertBefore(this.defs, svg.firstChild);
         } else {
           svg.appendChild(this.defs);
         }
       }
-  
+
       // Adds stylesheet
       if (this.styleEnabled) {
         this.defs.appendChild(this.createStyle());
@@ -141,7 +137,7 @@ export class mxSvgCanvas2D extends mxAbstractCanvas2D {
         var doc = new DOMParser().parseFromString('test text', 'text/html');
         this.useDomParser = doc != null;
       } catch (e) {
-       this.useDomParser = false;
+        this.useDomParser = false;
       }
     }
   }
@@ -309,10 +305,10 @@ mxSvgCanvas2D.prototype.createStyle = function (x) {
   mxUtils.write(
     style,
     'svg{font-family:' +
-      mxConstants.DEFAULT_FONTFAMILY +
-      ';font-size:' +
-      mxConstants.DEFAULT_FONTSIZE +
-      ';fill:none;stroke-miterlimit:10}',
+    mxConstants.DEFAULT_FONTFAMILY +
+    ';font-size:' +
+    mxConstants.DEFAULT_FONTSIZE +
+    ';fill:none;stroke-miterlimit:10}',
   );
 
   return style;
@@ -405,14 +401,14 @@ mxSvgCanvas2D.prototype.createAlternateContent = function (
       valign == mxConstants.ALIGN_TOP
         ? 1
         : valign == mxConstants.ALIGN_BOTTOM
-        ? 0
-        : 0.3;
+          ? 0
+          : 0.3;
     var anchor =
       align == mxConstants.ALIGN_RIGHT
         ? 'end'
         : align == mxConstants.ALIGN_LEFT
-        ? 'start'
-        : 'middle';
+          ? 'start'
+          : 'middle';
 
     var alt = this.createElement('text');
     alt.setAttribute('x', Math.round(x + s.dx));
@@ -706,13 +702,9 @@ mxSvgCanvas2D.prototype.updateFill = function () {
         s.gradientDirection,
       );
 
-      if (this.root.ownerDocument == document && this.useAbsoluteIds) {
-        // Workaround for no fill with base tag in page (escape brackets)
-        var base = this.getBaseUrl().replace(/([\(\)])/g, '\\$1');
-        this.node.setAttribute('fill', 'url(' + base + '#' + id + ')');
-      } else {
-        this.node.setAttribute('fill', 'url(#' + id + ')');
-      }
+
+      this.node.setAttribute('fill', 'url(#' + id + ')');
+
     } else {
       this.node.setAttribute('fill', String(s.fillColor).toLowerCase());
     }
@@ -836,7 +828,7 @@ mxSvgCanvas2D.prototype.createTolerance = function (node) {
   // other browsers need a stroke color to perform the hit-detection but
   // do not ignore the visibility attribute. Side-effect is that Opera's
   // hit detection for horizontal/vertical edges seems to ignore the tol.
-  tol.setAttribute('stroke', mxClient.IS_OT ? 'none' : 'white');
+  tol.setAttribute('stroke',  'white');
 
   return tol;
 };
@@ -865,11 +857,11 @@ mxSvgCanvas2D.prototype.createShadow = function (node) {
   shadow.setAttribute(
     'transform',
     'translate(' +
-      this.format(s.shadowDx * s.scale) +
-      ',' +
-      this.format(s.shadowDy * s.scale) +
-      ')' +
-      (s.transform || ''),
+    this.format(s.shadowDx * s.scale) +
+    ',' +
+    this.format(s.shadowDy * s.scale) +
+    ')' +
+    (s.transform || ''),
   );
   shadow.setAttribute('opacity', s.shadowAlpha);
 
@@ -1364,19 +1356,19 @@ mxSvgCanvas2D.prototype.updateTextNodes = function (
       : null,
     this.state.fontBorderColor != null ? this.state.fontBorderColor : null,
     'display: flex; align-items: unsafe ' +
-      (valign == mxConstants.ALIGN_TOP
-        ? 'flex-start'
-        : valign == mxConstants.ALIGN_BOTTOM
+    (valign == mxConstants.ALIGN_TOP
+      ? 'flex-start'
+      : valign == mxConstants.ALIGN_BOTTOM
         ? 'flex-end'
         : 'center') +
-      '; ' +
-      'justify-content: unsafe ' +
-      (align == mxConstants.ALIGN_LEFT
-        ? 'flex-start'
-        : align == mxConstants.ALIGN_RIGHT
+    '; ' +
+    'justify-content: unsafe ' +
+    (align == mxConstants.ALIGN_LEFT
+      ? 'flex-start'
+      : align == mxConstants.ALIGN_RIGHT
         ? 'flex-end'
         : 'center') +
-      '; ',
+    '; ',
     this.getTextCss(),
     s,
     mxUtils.bind(this, function (dx, dy, flex, item, block) {
@@ -1464,8 +1456,8 @@ mxSvgCanvas2D.createCss = function (
     (align == mxConstants.ALIGN_LEFT
       ? 'left'
       : align == mxConstants.ALIGN_RIGHT
-      ? 'right'
-      : 'center') +
+        ? 'right'
+        : 'center') +
     '; ';
   var pt = mxUtils.getAlignmentAsPoint(align, valign);
   var ofl = 'overflow: hidden; ';
@@ -1794,8 +1786,8 @@ mxSvgCanvas2D.prototype.plainText = function (
     align == mxConstants.ALIGN_RIGHT
       ? 'end'
       : align == mxConstants.ALIGN_CENTER
-      ? 'middle'
-      : 'start';
+        ? 'middle'
+        : 'start';
 
   // Text-anchor start is default in SVG
   if (anchor != 'start') {

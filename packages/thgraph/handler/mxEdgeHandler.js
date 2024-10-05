@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 
 import { mxConstraintHandler } from './index.js';
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';

@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxEventSource
  *
@@ -24,167 +21,70 @@
  *
  * Constructs a new event source.
  */
-export function mxEventSource(eventSource)
-{
-	this.setEventSource(eventSource);
-};
 
-/**
- * Variable: eventListeners
- *
- * Holds the event names and associated listeners in an array. The array
- * contains the event name followed by the respective listener for each
- * registered listener.
- */
-mxEventSource.prototype.eventListeners = null;
+export class mxEventSource {
+    constructor(eventSource) {
+        this.setEventSource(eventSource);
+        this.eventListeners = null;
+        this.eventsEnabled = true;
+        this.eventSource = null;
+    }
 
-/**
- * Variable: eventsEnabled
- *
- * Specifies if events can be fired. Default is true.
- */
-mxEventSource.prototype.eventsEnabled = true;
+    isEventsEnabled() {
+        return this.eventsEnabled;
+    }
 
-/**
- * Variable: eventSource
- *
- * Optional source for events. Default is null.
- */
-mxEventSource.prototype.eventSource = null;
+    setEventsEnabled(value) {
+        this.eventsEnabled = value;
+    }
 
-/**
- * Function: isEventsEnabled
- * 
- * Returns <eventsEnabled>.
- */
-mxEventSource.prototype.isEventsEnabled = function()
-{
-	return this.eventsEnabled;
-};
+    getEventSource() {
+        return this.eventSource;
+    }
 
-/**
- * Function: setEventsEnabled
- * 
- * Sets <eventsEnabled>.
- */
-mxEventSource.prototype.setEventsEnabled = function(value)
-{
-	this.eventsEnabled = value;
-};
+    setEventSource(value) {
+        this.eventSource = value;
+    }
 
-/**
- * Function: getEventSource
- * 
- * Returns <eventSource>.
- */
-mxEventSource.prototype.getEventSource = function()
-{
-	return this.eventSource;
-};
+    addListener(name, funct) {
+        if (!this.eventListeners) {
+            this.eventListeners = [];
+        }
+        this.eventListeners.push(name);
+        this.eventListeners.push(funct);
+    }
 
-/**
- * Function: setEventSource
- * 
- * Sets <eventSource>.
- */
-mxEventSource.prototype.setEventSource = function(value)
-{
-	this.eventSource = value;
-};
+    removeListener(funct) {
+        if (this.eventListeners) {
+            let i = 0;
+            while (i < this.eventListeners.length) {
+                if (this.eventListeners[i + 1] === funct) {
+                    this.eventListeners.splice(i, 2);
+                } else {
+                    i += 2;
+                }
+            }
+        }
+    }
 
-/**
- * Function: addListener
- *
- * Binds the specified function to the given event name. If no event name
- * is given, then the listener is registered for all events.
- * 
- * The parameters of the listener are the sender and an <mxEventObject>.
- */
-mxEventSource.prototype.addListener = function(name, funct)
-{
-	if (this.eventListeners == null)
-	{
-		this.eventListeners = [];
-	}
-	
-	this.eventListeners.push(name);
-	this.eventListeners.push(funct);
-};
-
-/**
- * Function: removeListener
- *
- * Removes all occurrences of the given listener from <eventListeners>.
- */
-mxEventSource.prototype.removeListener = function(funct)
-{
-	if (this.eventListeners != null)
-	{
-		var i = 0;
-		
-		while (i < this.eventListeners.length)
-		{
-			if (this.eventListeners[i+1] == funct)
-			{
-				this.eventListeners.splice(i, 2);
-			}
-			else
-			{
-				i += 2;
-			}
-		}
-	}
-};
-
-/**
- * Function: fireEvent
- *
- * Dispatches the given event to the listeners which are registered for
- * the event. The sender argument is optional. The current execution scope
- * ("this") is used for the listener invocation (see <mxUtils.bind>).
- *
- * Example:
- *
- * (code)
- * fireEvent(new mxEventObject("eventName", key1, val1, .., keyN, valN))
- * (end)
- * 
- * Parameters:
- *
- * evt - <mxEventObject> that represents the event.
- * sender - Optional sender to be passed to the listener. Default value is
- * the return value of <getEventSource>.
- */
-mxEventSource.prototype.fireEvent = function(evt, sender)
-{
-	if (this.eventListeners != null && this.isEventsEnabled())
-	{
-		if (evt == null)
-		{
-			evt = new mxEventObject();
-		}
-		
-		if (sender == null)
-		{
-			sender = this.getEventSource();
-		}
-
-		if (sender == null)
-		{
-			sender = this;
-		}
-
-		var args = [sender, evt];
-		
-		for (var i = 0; i < this.eventListeners.length; i += 2)
-		{
-			var listen = this.eventListeners[i];
-			
-			if (listen == null || listen == evt.getName())
-			{
-				this.eventListeners[i+1].apply(this, args);
-			}
-		}
-	}
-};
-console.log('graph/util/mxEventSource.js');
+    fireEvent(evt, sender) {
+        if (this.eventListeners && this.isEventsEnabled()) {
+            if (!evt) {
+                evt = new mxEventObject();
+            }
+            if (!sender) {
+                sender = this.getEventSource();
+            }
+            if (!sender) {
+                sender = this;
+            }
+            const args = [sender, evt];
+            for (let i = 0; i < this.eventListeners.length; i += 2) {
+                const listen = this.eventListeners[i];
+                if (!listen || listen === evt.getName()) {
+                    this.eventListeners[i + 1].apply(this, args);
+                }
+            }
+        }
+    }
+}

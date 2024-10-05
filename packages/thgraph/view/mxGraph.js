@@ -1643,21 +1643,8 @@ export class mxGraph extends mxEventSource {
     // Converts the renderHint into a dialect
     this.renderHint = renderHint;
 
-    if (mxClient.IS_SVG) {
-      this.dialect = mxConstants.DIALECT_SVG;
-    } else if (
-      renderHint == mxConstants.RENDERING_HINT_EXACT &&
-      mxClient.IS_VML
-    ) {
-      this.dialect = mxConstants.DIALECT_VML;
-    } else if (renderHint == mxConstants.RENDERING_HINT_FASTEST) {
-      this.dialect = mxConstants.DIALECT_STRICTHTML;
-    } else if (renderHint == mxConstants.RENDERING_HINT_FASTER) {
-      this.dialect = mxConstants.DIALECT_PREFERHTML;
-    } // default for VML
-    else {
-      this.dialect = mxConstants.DIALECT_MIXEDHTML;
-    }
+    this.dialect = mxConstants.DIALECT_SVG;
+
 
     // Initializes the main members that do not require a container
     this.model = model ?? new mxGraphModel();
@@ -1669,9 +1656,9 @@ export class mxGraph extends mxEventSource {
     this.view = this.createGraphView();
 
     // Adds a graph model listener to update the view
-    this.graphModelChangeListener = mxUtils.bind(this, function (sender, evt) {
+    this.graphModelChangeListener =  (sender, evt) => {
       this.graphModelChanged(evt.getProperty('edit').changes);
-    });
+    };
 
     this.model.addListener(mxEvent.CHANGE, this.graphModelChangeListener);
 
@@ -1711,7 +1698,7 @@ export class mxGraph extends mxEventSource {
     mxEvent.addListener(
       container,
       'mouseleave',
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         if (
           this.tooltipHandler != null &&
           this.tooltipHandler.div != null &&
@@ -1719,7 +1706,7 @@ export class mxGraph extends mxEventSource {
         ) {
           this.tooltipHandler.hide();
         }
-      }),
+      },
     );
   }
 
@@ -2895,21 +2882,21 @@ export class mxGraph extends mxEventSource {
 
     return new mxRectangle(
       mxUtils.parseCssNumber(css.paddingLeft) +
-        (css.borderLeftStyle != 'none'
-          ? mxUtils.parseCssNumber(css.borderLeftWidth)
-          : 0),
+      (css.borderLeftStyle != 'none'
+        ? mxUtils.parseCssNumber(css.borderLeftWidth)
+        : 0),
       mxUtils.parseCssNumber(css.paddingTop) +
-        (css.borderTopStyle != 'none'
-          ? mxUtils.parseCssNumber(css.borderTopWidth)
-          : 0),
+      (css.borderTopStyle != 'none'
+        ? mxUtils.parseCssNumber(css.borderTopWidth)
+        : 0),
       mxUtils.parseCssNumber(css.paddingRight) +
-        (css.borderRightStyle != 'none'
-          ? mxUtils.parseCssNumber(css.borderRightWidth)
-          : 0),
+      (css.borderRightStyle != 'none'
+        ? mxUtils.parseCssNumber(css.borderRightWidth)
+        : 0),
       mxUtils.parseCssNumber(css.paddingBottom) +
-        (css.borderBottomStyle != 'none'
-          ? mxUtils.parseCssNumber(css.borderBottomWidth)
-          : 0),
+      (css.borderBottomStyle != 'none'
+        ? mxUtils.parseCssNumber(css.borderBottomWidth)
+        : 0),
     );
   }
 
@@ -3041,8 +3028,8 @@ export class mxGraph extends mxEventSource {
         var s2 = ignoreWidth
           ? h1 / h2
           : ignoreHeight
-          ? w1 / w2
-          : Math.min(w1 / w2, h1 / h2);
+            ? w1 / w2
+            : Math.min(w1 / w2, h1 / h2);
 
         if (this.minFitScale != null) {
           s2 = Math.max(s2, this.minFitScale);
@@ -3058,20 +3045,20 @@ export class mxGraph extends mxEventSource {
               var x0 =
                 bounds.x != null
                   ? Math.floor(
-                      this.view.translate.x -
-                        bounds.x / s +
-                        border / s2 +
-                        margin / 2,
-                    )
+                    this.view.translate.x -
+                    bounds.x / s +
+                    border / s2 +
+                    margin / 2,
+                  )
                   : border;
               var y0 =
                 bounds.y != null
                   ? Math.floor(
-                      this.view.translate.y -
-                        bounds.y / s +
-                        border / s2 +
-                        margin / 2,
-                    )
+                    this.view.translate.y -
+                    bounds.y / s +
+                    border / s2 +
+                    margin / 2,
+                  )
                   : border;
 
               this.view.scaleAndTranslate(s2, x0, y0);
@@ -3246,25 +3233,25 @@ export class mxGraph extends mxEventSource {
           var pts =
             breaks == this.horizontalPageBreaks
               ? [
-                  new mxPoint(
-                    Math.round(bounds.x),
-                    Math.round(bounds.y + i * bounds.height),
-                  ),
-                  new mxPoint(
-                    Math.round(bounds.x + right),
-                    Math.round(bounds.y + i * bounds.height),
-                  ),
-                ]
+                new mxPoint(
+                  Math.round(bounds.x),
+                  Math.round(bounds.y + i * bounds.height),
+                ),
+                new mxPoint(
+                  Math.round(bounds.x + right),
+                  Math.round(bounds.y + i * bounds.height),
+                ),
+              ]
               : [
-                  new mxPoint(
-                    Math.round(bounds.x + i * bounds.width),
-                    Math.round(bounds.y),
-                  ),
-                  new mxPoint(
-                    Math.round(bounds.x + i * bounds.width),
-                    Math.round(bounds.y + bottom),
-                  ),
-                ];
+                new mxPoint(
+                  Math.round(bounds.x + i * bounds.width),
+                  Math.round(bounds.y),
+                ),
+                new mxPoint(
+                  Math.round(bounds.x + i * bounds.width),
+                  Math.round(bounds.y + bottom),
+                ),
+              ];
 
           if (breaks[i] != null) {
             breaks[i].points = pts;
@@ -4202,19 +4189,19 @@ export class mxGraph extends mxEventSource {
 
               geo.width = Math.round(
                 bounds.width +
-                  2 * border +
-                  size.x +
-                  leftBorder +
-                  rightBorder +
-                  size.width,
+                2 * border +
+                size.x +
+                leftBorder +
+                rightBorder +
+                size.width,
               );
               geo.height = Math.round(
                 bounds.height +
-                  2 * border +
-                  size.y +
-                  topBorder +
-                  bottomBorder +
-                  size.height,
+                2 * border +
+                size.y +
+                topBorder +
+                bottomBorder +
+                size.height,
               );
 
               this.model.setGeometry(cells[i], geo);
@@ -6680,7 +6667,7 @@ export class mxGraph extends mxEventSource {
     if (x != null) {
       var y =
         edge.style[
-          source ? mxConstants.STYLE_EXIT_Y : mxConstants.STYLE_ENTRY_Y
+        source ? mxConstants.STYLE_EXIT_Y : mxConstants.STYLE_ENTRY_Y
         ];
 
       if (y != null) {
@@ -6704,12 +6691,12 @@ export class mxGraph extends mxEventSource {
       //Add entry/exit offset
       dx = parseFloat(
         edge.style[
-          source ? mxConstants.STYLE_EXIT_DX : mxConstants.STYLE_ENTRY_DX
+        source ? mxConstants.STYLE_EXIT_DX : mxConstants.STYLE_ENTRY_DX
         ],
       );
       dy = parseFloat(
         edge.style[
-          source ? mxConstants.STYLE_EXIT_DY : mxConstants.STYLE_ENTRY_DY
+        source ? mxConstants.STYLE_EXIT_DY : mxConstants.STYLE_ENTRY_DY
         ],
       );
 
@@ -9239,7 +9226,7 @@ export class mxGraph extends mxEventSource {
   getVerticalAlign(state) {
     return state != null && state.style != null
       ? state.style[mxConstants.STYLE_VERTICAL_ALIGN] ||
-          mxConstants.ALIGN_MIDDLE
+      mxConstants.ALIGN_MIDDLE
       : null;
   }
 
@@ -12065,11 +12052,11 @@ export class mxGraph extends mxEventSource {
 
     var cells = descendants
       ? this.model.filterDescendants(
-          mxUtils.bind(this, function (cell) {
-            return cell != parent && this.view.getState(cell) != null;
-          }),
-          parent,
-        )
+        mxUtils.bind(this, function (cell) {
+          return cell != parent && this.view.getState(cell) != null;
+        }),
+        parent,
+      )
       : this.model.getChildren(parent);
 
     if (cells != null) {
@@ -12360,7 +12347,7 @@ export class mxGraph extends mxEventSource {
             return (
               state.shape == null ||
               state.shape.paintBackground !=
-                mxRectangleShape.prototype.paintBackground ||
+              mxRectangleShape.prototype.paintBackground ||
               mxUtils.getValue(
                 state.style,
                 mxConstants.STYLE_POINTER_EVENTS,

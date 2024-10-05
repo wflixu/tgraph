@@ -97,19 +97,7 @@ export class mxImageShape extends mxRectangleShape {
     return !this.preserveImageAspect;
   }
 
-  /**
-   * Function: createHtml
-   *
-   * Creates and returns the HTML DOM node(s) to represent
-   * this shape. This implementation falls back to <createVml>
-   * so that the HTML creation is optional.
-   */
-  createHtml() {
-    var node = document.createElement('div');
-    node.style.position = 'absolute';
 
-    return node;
-  }
 
   /**
    * Function: isRoundable

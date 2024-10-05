@@ -58,7 +58,7 @@ import { mxRectangle } from '../util/mxRectangle.js';
  * This is stored in <clipped>.
  * overflow - Value of the overflow style. Default is 'visible'.
  */
-export class mxText  extends mxShape  {
+export class mxText extends mxShape {
   /**
    * Variable: baseSpacingTop
    *
@@ -171,7 +171,7 @@ export class mxText  extends mxShape  {
   ) {
     super();
     this.stencil = this;
-    
+
     this.value = value;
     this.bounds = bounds;
     this.color = color != null ? color : 'black';
@@ -345,8 +345,7 @@ export class mxText  extends mxShape  {
         this.dialect == mxConstants.DIALECT_STRICTHTML)
     ) {
       if (
-        this.node.nodeName == 'DIV' &&
-        (this.isHtmlAllowed() || !mxClient.IS_VML)
+        this.node.nodeName == 'DIV'
       ) {
         if (mxClient.IS_SVG) {
           this.redrawHtmlShapeWithCss3();
@@ -580,18 +579,18 @@ export class mxText  extends mxShape  {
     var h =
       this.style != null
         ? mxUtils.getValue(
-            this.style,
-            mxConstants.STYLE_LABEL_POSITION,
-            mxConstants.ALIGN_CENTER,
-          )
+          this.style,
+          mxConstants.STYLE_LABEL_POSITION,
+          mxConstants.ALIGN_CENTER,
+        )
         : null;
     var v =
       this.style != null
         ? mxUtils.getValue(
-            this.style,
-            mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-            mxConstants.ALIGN_MIDDLE,
-          )
+          this.style,
+          mxConstants.STYLE_VERTICAL_LABEL_POSITION,
+          mxConstants.ALIGN_MIDDLE,
+        )
         : null;
 
     if (
@@ -923,10 +922,10 @@ export class mxText  extends mxShape  {
           (r != 0 ? 'rotate(' + r + 'deg) ' : '') +
           (this.margin.x != 0 || this.margin.y != 0
             ? 'translate(' +
-              this.margin.x * 100 +
-              '%,' +
-              this.margin.y * 100 +
-              '%)'
+            this.margin.x * 100 +
+            '%,' +
+            this.margin.y * 100 +
+            '%)'
             : '');
 
         if (tr != '') {
@@ -985,16 +984,16 @@ export class mxText  extends mxShape  {
         style,
         'transform',
         'translate(' +
-          dx * 100 +
-          '%' +
-          ',' +
-          dy * 100 +
-          '%) ' +
-          'scale(' +
-          this.scale +
-          ') rotate(' +
-          theta +
-          'deg)',
+        dx * 100 +
+        '%' +
+        ',' +
+        dy * 100 +
+        '%) ' +
+        'scale(' +
+        this.scale +
+        ') rotate(' +
+        theta +
+        'deg)',
       );
     } else {
       mxUtils.setPrefixedStyle(style, 'transformOrigin', '0% 0%');
@@ -1002,23 +1001,23 @@ export class mxText  extends mxShape  {
         style,
         'transform',
         'scale(' +
-          this.scale +
-          ') ' +
-          'translate(' +
-          dx * 100 +
-          '%' +
-          ',' +
-          dy * 100 +
-          '%)',
+        this.scale +
+        ') ' +
+        'translate(' +
+        dx * 100 +
+        '%' +
+        ',' +
+        dy * 100 +
+        '%)',
       );
     }
 
     style.left =
       Math.round(
         this.bounds.x -
-          Math.ceil(
-            dx * (this.overflow != 'fill' && this.overflow != 'width' ? 3 : 1),
-          ),
+        Math.ceil(
+          dx * (this.overflow != 'fill' && this.overflow != 'width' ? 3 : 1),
+        ),
       ) + 'px';
     style.top =
       Math.round(this.bounds.y - dy * (this.overflow != 'fill' ? 3 : 1)) + 'px';

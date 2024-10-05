@@ -31,20 +31,7 @@ export const mxClient = {
   imageBasePath: '/graph/assets/',
  
 
-  /**
-   * Variable: IS_IE11
-   *
-   * True if the current browser is Internet Explorer 11.x.
-   */
-  IS_IE11:
-    navigator.userAgent != null && !!navigator.userAgent.match(/Trident\/7\./),
 
-  /**
-   * Variable: IS_EDGE
-   *
-   * True if the current browser is Microsoft Edge.
-   */
-  IS_EDGE: navigator.userAgent != null && !!navigator.userAgent.match(/Edge\//),
 
   /**
    * Variable: VML_PREFIX
@@ -61,17 +48,6 @@ export const mxClient = {
   OFFICE_PREFIX: 'o',
 
   /**
-   * Variable: IS_NS
-   *
-   * True if the current browser is Netscape (including Firefox).
-   */
-  IS_NS:
-    navigator.userAgent != null &&
-    navigator.userAgent.indexOf('Mozilla/') >= 0 &&
-    navigator.userAgent.indexOf('MSIE') < 0 &&
-    navigator.userAgent.indexOf('Edge/') < 0,
-
-  /**
    * Variable: IS_OP
    *
    * True if the current browser is Opera.
@@ -81,21 +57,6 @@ export const mxClient = {
     (navigator.userAgent.indexOf('Opera/') >= 0 ||
       navigator.userAgent.indexOf('OPR/') >= 0),
 
-  /**
-   * Variable: IS_OT
-   *
-   * True if -o-transform is available as a CSS style, ie for Opera browsers
-   * based on a Presto engine with version 2.5 or later.
-   */
-  IS_OT:
-    navigator.userAgent != null &&
-    navigator.userAgent.indexOf('Presto/') >= 0 &&
-    navigator.userAgent.indexOf('Presto/2.4.') < 0 &&
-    navigator.userAgent.indexOf('Presto/2.3.') < 0 &&
-    navigator.userAgent.indexOf('Presto/2.2.') < 0 &&
-    navigator.userAgent.indexOf('Presto/2.1.') < 0 &&
-    navigator.userAgent.indexOf('Presto/2.0.') < 0 &&
-    navigator.userAgent.indexOf('Presto/1.') < 0,
 
   /**
    * Variable: IS_SF
@@ -140,38 +101,14 @@ export const mxClient = {
    */
   IS_FF: typeof InstallTrigger !== 'undefined',
 
-  /**
-   * Variable: IS_MT
-   *
-   * True if -moz-transform is available as a CSS style. This is the case
-   * for all Firefox-based browsers newer than or equal 3, such as Camino,
-   * Iceweasel, Seamonkey and Iceape.
-   */
-  IS_MT:
-    (navigator.userAgent.indexOf('Firefox/') >= 0 &&
-      navigator.userAgent.indexOf('Firefox/1.') < 0 &&
-      navigator.userAgent.indexOf('Firefox/2.') < 0) ||
-    (navigator.userAgent.indexOf('Iceweasel/') >= 0 &&
-      navigator.userAgent.indexOf('Iceweasel/1.') < 0 &&
-      navigator.userAgent.indexOf('Iceweasel/2.') < 0) ||
-    (navigator.userAgent.indexOf('SeaMonkey/') >= 0 &&
-      navigator.userAgent.indexOf('SeaMonkey/1.') < 0) ||
-    (navigator.userAgent.indexOf('Iceape/') >= 0 &&
-      navigator.userAgent.indexOf('Iceape/1.') < 0),
 
-  /**
-   * Variable: IS_VML
-   *
-   * True if the browser supports VML.
-   */
-  IS_VML: navigator.appName.toUpperCase() == 'MICROSOFT INTERNET EXPLORER',
 
   /**
    * Variable: IS_SVG
    *
    * True if the browser supports SVG.
    */
-  IS_SVG: navigator.appName.toUpperCase() != 'MICROSOFT INTERNET EXPLORER',
+  IS_SVG: true,
 
   /**
    * Variable: NO_FO
@@ -185,12 +122,7 @@ export const mxClient = {
       '[object SVGForeignObjectElement]' ||
     navigator.userAgent.indexOf('Opera/') >= 0,
 
-  /**
-   * Variable: IS_WIN
-   *
-   * True if the client is a Windows.
-   */
-  IS_WIN: navigator.appVersion.indexOf('Win') > 0,
+
 
   /**
    * Variable: IS_MAC

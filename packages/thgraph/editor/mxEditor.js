@@ -2577,18 +2577,7 @@ mxEditor.prototype.showHelp = function (tasks) {
       wnd.setImage(this.helpWindowImage);
     }
 
-    // Workaround for ignored iframe height 100% in FF
-    if (mxClient.IS_NS) {
-      var handler = function (sender) {
-        var h = wnd.div.offsetHeight;
-        frame.setAttribute('height', h - 26 + 'px');
-      };
-
-      wnd.addListener(mxEvent.RESIZE_END, handler);
-      wnd.addListener(mxEvent.MAXIMIZE, handler);
-      wnd.addListener(mxEvent.NORMALIZE, handler);
-      wnd.addListener(mxEvent.SHOW, handler);
-    }
+   
 
     this.help = wnd;
   }

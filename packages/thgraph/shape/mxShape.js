@@ -308,15 +308,7 @@ export class mxShape {
 
     if (container != null && container.ownerSVGElement != null) {
       node = this.createSvg(container);
-    } else if (
-      document.documentMode == 8 ||
-      !mxClient.IS_VML ||
-      (this.dialect != mxConstants.DIALECT_VML && this.isHtmlAllowed())
-    ) {
-      node = this.createHtml(container);
-    } else {
-      node = this.createVml(container);
-    }
+    } 
 
     return node;
   }
@@ -330,31 +322,8 @@ export class mxShape {
     return document.createElementNS(mxConstants.NS_SVG, 'g');
   }
 
-  /**
-   * Function: createVml
-   *
-   * Creates and returns the VML node to represent this shape.
-   */
-  createVml() {
-    var node = document.createElement(mxClient.VML_PREFIX + ':group');
-    node.style.position = 'absolute';
 
-    return node;
-  }
 
-  /**
-   * Function: createHtml
-   *
-   * Creates and returns the HTML DOM node(s) to represent
-   * this shape. This implementation falls back to <createVml>
-   * so that the HTML creation is optional.
-   */
-  createHtml() {
-    var node = document.createElement('div');
-    node.style.position = 'absolute';
-
-    return node;
-  }
 
   /**
    * Function: reconfigure
@@ -379,8 +348,7 @@ export class mxShape {
       this.clear();
 
       if (
-        this.node.nodeName == 'DIV' &&
-        (this.isHtmlAllowed() || !mxClient.IS_VML)
+        this.node.nodeName == 'DIV' 
       ) {
         this.redrawHtmlShape();
       } else {

@@ -158,14 +158,14 @@
  * optional cell style from the preview as the third argument. It returns
  * the <mxCell> that represents the new edge.
  */
-import { mxUtils ,mxEventSource,mxEvent,mxPoint , mxEventObject,mxConstants} from '../util/index.js';
+import { mxUtils, mxEventSource, mxEvent, mxPoint, mxEventObject, mxConstants } from '../util/index.js';
 
 
 import { mxClient } from '../mxClient.js';
 import { mxCellMarker } from './mxCellMarker.js';
 import { mxConstraintHandler } from './mxConstraintHandler.js';
-import { mxPolyline,mxImageShape } from '../shape/index.js';
-import {mxRectangle,mxMouseEvent} from '../util/index.js';
+import { mxPolyline, mxImageShape } from '../shape/index.js';
+import { mxRectangle, mxMouseEvent } from '../util/index.js';
 
 export function mxConnectionHandler(graph, factoryMethod) {
 	mxEventSource.call(this);
@@ -353,14 +353,6 @@ mxConnectionHandler.prototype.drillHandler = null;
  */
 mxConnectionHandler.prototype.mouseDownCounter = 0;
 
-/**
- * Variable: movePreviewAway
- * 
- * Switch to enable moving the preview away from the mousepointer. This is required in browsers
- * where the preview cannot be made transparent to events and if the built-in hit detection on
- * the HTML elements in the page should be used. Default is the value of <mxClient.IS_VML>.
- */
-mxConnectionHandler.prototype.movePreviewAway = mxClient.IS_VML;
 
 /**
  * Variable: outlineConnect
@@ -1250,38 +1242,10 @@ mxConnectionHandler.prototype.mouseMove = function (sender, me) {
 				}
 			}
 
-			// Makes sure the cell under the mousepointer can be detected
-			// by moving the preview shape away from the mouse. This
-			// makes sure the preview shape does not prevent the detection
-			// of the cell under the mousepointer even for slow gestures.
-			if (this.currentState == null && this.movePreviewAway) {
-				var tmp = pt2;
 
-				if (this.edgeState != null && this.edgeState.absolutePoints.length >= 2) {
-					var tmp2 = this.edgeState.absolutePoints[this.edgeState.absolutePoints.length - 2];
 
-					if (tmp2 != null) {
-						tmp = tmp2;
-					}
-				}
+			this.originalPoint = null;
 
-				var dx = current.x - tmp.x;
-				var dy = current.y - tmp.y;
-
-				var len = Math.sqrt(dx * dx + dy * dy);
-
-				if (len == 0) {
-					return;
-				}
-
-				// Stores old point to reuse when creating edge
-				this.originalPoint = current.clone();
-				current.x -= dx * 4 / len;
-				current.y -= dy * 4 / len;
-			}
-			else {
-				this.originalPoint = null;
-			}
 
 			// Creates the preview shape (lazy)
 			if (this.shape == null) {
