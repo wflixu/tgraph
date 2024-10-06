@@ -167,6 +167,5 @@ export class ThEventSource {
     };
 }
 
-;
 
 

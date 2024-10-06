@@ -9,7 +9,8 @@
  * Creates a HTML table using the specified classname.
  */
 
-import { mxUtils } from './index.js';
+import { mxUtils } from './mxUtils.js';
+
 
 export class mxForm {
   /**
@@ -119,9 +120,6 @@ export class mxForm {
   addTextarea(name, value, rows) {
     var input = document.createElement('textarea');
 
-    if (mxClient.IS_NS) {
-      rows--;
-    }
 
     input.setAttribute('rows', rows || 2);
     input.value = value;

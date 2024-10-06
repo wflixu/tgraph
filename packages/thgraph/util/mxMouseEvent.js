@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxMouseEvent
  * 
@@ -36,209 +33,202 @@
  * state - Optional <mxCellState> under the mouse.
  * 
  */
-import { mxEvent } from "./mxEvent.js";
- import { mxUtils } from "./mxUtils.js";
 
-export function mxMouseEvent(evt, state)
-{
-	this.evt = evt;
-	this.state = state;
-	this.sourceState = state;
-};
+import { mxUtils } from "./mxUtils.js";
+import { getSource as eventGetSource, getClientX, getClientY } from './tools.js'
+import { isPopupTrigger, isMouseEvent } from "./eventUtil.js"
 
-/**
+export class mxMouseEvent {
+
+	/**
  * Variable: consumed
  *
  * Holds the consumed state of this event.
  */
-mxMouseEvent.prototype.consumed = false;
+	consumed = false;
 
-/**
- * Variable: evt
- *
- * Holds the inner event object.
- */
-mxMouseEvent.prototype.evt = null;
+	/**
+	 * Variable: evt
+	 *
+	 * Holds the inner event object.
+	 */
+	evt = null;
 
-/**
- * Variable: graphX
- *
- * Holds the x-coordinate of the event in the graph. This value is set in
- * <mxGraph.fireMouseEvent>.
- */
-mxMouseEvent.prototype.graphX = null;
+	/**
+	 * Variable: graphX
+	 *
+	 * Holds the x-coordinate of the event in the graph. This value is set in
+	 * <mxGraph.fireMouseEvent>.
+	 */
+	graphX = null;
 
-/**
- * Variable: graphY
- *
- * Holds the y-coordinate of the event in the graph. This value is set in
- * <mxGraph.fireMouseEvent>.
- */
-mxMouseEvent.prototype.graphY = null;
+	/**
+	 * Variable: graphY
+	 *
+	 * Holds the y-coordinate of the event in the graph. This value is set in
+	 * <mxGraph.fireMouseEvent>.
+	 */
+	graphY = null;
 
-/**
- * Variable: state
- *
- * Holds the optional <mxCellState> associated with this event.
- */
-mxMouseEvent.prototype.state = null;
+	/**
+	 * Variable: state
+	 *
+	 * Holds the optional <mxCellState> associated with this event.
+	 */
+	state = null;
 
-/**
- * Variable: sourceState
- * 
- * Holds the <mxCellState> that was passed to the constructor. This can be
- * different from <state> depending on the result of <mxGraph.getEventState>.
- */
-mxMouseEvent.prototype.sourceState = null;
-
-/**
- * Function: getEvent
- * 
- * Returns <evt>.
- */
-mxMouseEvent.prototype.getEvent = function()
-{
-	return this.evt;
-};
-
-/**
- * Function: getSource
- * 
- * Returns the target DOM element using <mxEvent.getSource> for <evt>.
- */
-mxMouseEvent.prototype.getSource = function()
-{
-	return mxEvent.getSource(this.evt);
-};
-
-/**
- * Function: isSource
- * 
- * Returns true if the given <mxShape> is the source of <evt>.
- */
-mxMouseEvent.prototype.isSource = function(shape)
-{
-	if (shape != null)
-	{
-		return mxUtils.isAncestorNode(shape.node, this.getSource());
-	}
-	
-	return false;
-};
-
-/**
- * Function: getX
- * 
- * Returns <evt.clientX>.
- */
-mxMouseEvent.prototype.getX = function()
-{
-	return mxEvent.getClientX(this.getEvent());
-};
-
-/**
- * Function: getY
- * 
- * Returns <evt.clientY>.
- */
-mxMouseEvent.prototype.getY = function()
-{
-	return mxEvent.getClientY(this.getEvent());
-};
-
-/**
- * Function: getGraphX
- * 
- * Returns <graphX>.
- */
-mxMouseEvent.prototype.getGraphX = function()
-{
-	return this.graphX;
-};
-
-/**
- * Function: getGraphY
- * 
- * Returns <graphY>.
- */
-mxMouseEvent.prototype.getGraphY = function()
-{
-	return this.graphY;
-};
-
-/**
- * Function: getState
- * 
- * Returns <state>.
- */
-mxMouseEvent.prototype.getState = function()
-{
-	return this.state;
-};
-
-/**
- * Function: getCell
- * 
- * Returns the <mxCell> in <state> is not null.
- */
-mxMouseEvent.prototype.getCell = function()
-{
-	var state = this.getState();
-	
-	if (state != null)
-	{
-		return state.cell;
-	}
-	
-	return null;
-};
-
-/**
- * Function: isPopupTrigger
- *
- * Returns true if the event is a popup trigger.
- */
-mxMouseEvent.prototype.isPopupTrigger = function()
-{
-	return mxEvent.isPopupTrigger(this.getEvent());
-};
-
-/**
- * Function: isConsumed
- *
- * Returns <consumed>.
- */
-mxMouseEvent.prototype.isConsumed = function()
-{
-	return this.consumed;
-};
-
-/**
- * Function: consume
- *
- * Sets <consumed> to true and invokes preventDefault on the native event
- * if such a method is defined. This is used mainly to avoid the cursor from
- * being changed to a text cursor in Webkit. You can use the preventDefault
- * flag to disable this functionality.
- * 
- * Parameters:
- * 
- * preventDefault - Specifies if the native event should be canceled. Default
- * is true.
- */
-mxMouseEvent.prototype.consume = function(preventDefault)
-{
-	preventDefault = (preventDefault != null) ? preventDefault :
-		(this.evt.touches != null || mxEvent.isMouseEvent(this.evt));
-	
-	if (preventDefault && this.evt.preventDefault)
-	{
-		this.evt.preventDefault();
-	}
+	/**
+	 * Variable: sourceState
+	 * 
+	 * Holds the <mxCellState> that was passed to the constructor. This can be
+	 * different from <state> depending on the result of <mxGraph.getEventState>.
+	 */
+	sourceState = null;
 
 
 
-	// Sets local consumed state
-	this.consumed = true;
-};
+	constructor(evt, state) {
+		this.evt = evt;
+		this.state = state;
+		this.sourceState = state;
+	};
+
+
+	/**
+	 * Function: getEvent
+	 * 
+	 * Returns <evt>.
+	 */
+	getEvent() {
+		return this.evt;
+	};
+
+	/**
+	 * Function: getSource
+	 * 
+	 * Returns the target DOM element using <mxEvent.getSource> for <evt>.
+	 */
+	getSource() {
+		return eventGetSource(this.evt);
+	};
+
+	/**
+	 * Function: isSource
+	 * 
+	 * Returns true if the given <mxShape> is the source of <evt>.
+	 */
+	isSource(shape) {
+		if (shape != null) {
+			return mxUtils.isAncestorNode(shape.node, this.getSource());
+		}
+
+		return false;
+	};
+
+	/**
+	 * Function: getX
+	 * 
+	 * Returns <evt.clientX>.
+	 */
+	getX() {
+		return getClientX(this.getEvent());
+	};
+
+	/**
+	 * Function: getY
+	 * 
+	 * Returns <evt.clientY>.
+	 */
+	getY() {
+		return getClientY(this.getEvent());
+	};
+
+	/**
+	 * Function: getGraphX
+	 * 
+	 * Returns <graphX>.
+	 */
+	getGraphX() {
+		return this.graphX;
+	};
+
+	/**
+	 * Function: getGraphY
+	 * 
+	 * Returns <graphY>.
+	 */
+	getGraphY() {
+		return this.graphY;
+	};
+
+	/**
+	 * Function: getState
+	 * 
+	 * Returns <state>.
+	 */
+	getState() {
+		return this.state;
+	};
+
+	/**
+	 * Function: getCell
+	 * 
+	 * Returns the <mxCell> in <state> is not null.
+	 */
+	getCell() {
+		var state = this.getState();
+
+		if (state != null) {
+			return state.cell;
+		}
+
+		return null;
+	};
+
+	/**
+	 * Function: isPopupTrigger
+	 *
+	 * Returns true if the event is a popup trigger.
+	 */
+	isPopupTrigger() {
+		return isPopupTrigger(this.getEvent());
+	};
+
+	/**
+	 * Function: isConsumed
+	 *
+	 * Returns <consumed>.
+	 */
+	isConsumed() {
+		return this.consumed;
+	};
+
+	/**
+	 * Function: consume
+	 *
+	 * Sets <consumed> to true and invokes preventDefault on the native event
+	 * if such a method is defined. This is used mainly to avoid the cursor from
+	 * being changed to a text cursor in Webkit. You can use the preventDefault
+	 * flag to disable this functionality.
+	 * 
+	 * Parameters:
+	 * 
+	 * preventDefault - Specifies if the native event should be canceled. Default
+	 * is true.
+	 */
+	consume(preventDefault) {
+		preventDefault = (preventDefault != null) ? preventDefault :
+			(this.evt.touches != null || isMouseEvent(this.evt));
+
+		if (preventDefault && this.evt.preventDefault) {
+			this.evt.preventDefault();
+		}
+
+
+
+		// Sets local consumed state
+		this.consumed = true;
+	};
+}
+
 console.log('graph/util/mxMouseEvent.js');

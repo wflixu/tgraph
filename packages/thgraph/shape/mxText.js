@@ -11,7 +11,7 @@ import { mxRectangle } from '../util/mxRectangle.js';
  * bottom to top to top to bottom, the following code can be used:
  *
  * (code)
- * mxText.prototype.verticalTextRotation = 90;
+ * mxText.verticalTextRotation = 90;
  * (end)
  *
  * Constructor: mxText
@@ -58,14 +58,14 @@ import { mxRectangle } from '../util/mxRectangle.js';
  * This is stored in <clipped>.
  * overflow - Value of the overflow style. Default is 'visible'.
  */
-export class mxText  extends mxShape  {
+export class mxText extends mxShape {
   /**
    * Variable: baseSpacingTop
    *
    * Specifies the spacing to be added to the top spacing. Default is 0. Use the
    * value 5 here to get the same label positions as in mxGraph 1.x.
    */
-  baseSpacingTop = 0;
+  static baseSpacingTop = 0;
 
   /**
    * Variable: baseSpacingBottom
@@ -73,21 +73,21 @@ export class mxText  extends mxShape  {
    * Specifies the spacing to be added to the bottom spacing. Default is 0. Use the
    * value 1 here to get the same label positions as in mxGraph 1.x.
    */
-  baseSpacingBottom = 0;
+  static baseSpacingBottom = 0;
 
   /**
    * Variable: baseSpacingLeft
    *
    * Specifies the spacing to be added to the left spacing. Default is 0.
    */
-  baseSpacingLeft = 0;
+  static baseSpacingLeft = 0;
 
   /**
    * Variable: baseSpacingRight
    *
    * Specifies the spacing to be added to the right spacing. Default is 0.
    */
-  baseSpacingRight = 0;
+  static baseSpacingRight = 0;
 
   /**
    * Variable: replaceLinefeeds
@@ -171,7 +171,7 @@ export class mxText  extends mxShape  {
   ) {
     super();
     this.stencil = this;
-    
+
     this.value = value;
     this.bounds = bounds;
     this.color = color != null ? color : 'black';
@@ -345,8 +345,7 @@ export class mxText  extends mxShape  {
         this.dialect == mxConstants.DIALECT_STRICTHTML)
     ) {
       if (
-        this.node.nodeName == 'DIV' &&
-        (this.isHtmlAllowed() || !mxClient.IS_VML)
+        this.node.nodeName == 'DIV'
       ) {
         if (mxClient.IS_SVG) {
           this.redrawHtmlShapeWithCss3();
@@ -580,18 +579,18 @@ export class mxText  extends mxShape  {
     var h =
       this.style != null
         ? mxUtils.getValue(
-            this.style,
-            mxConstants.STYLE_LABEL_POSITION,
-            mxConstants.ALIGN_CENTER,
-          )
+          this.style,
+          mxConstants.STYLE_LABEL_POSITION,
+          mxConstants.ALIGN_CENTER,
+        )
         : null;
     var v =
       this.style != null
         ? mxUtils.getValue(
-            this.style,
-            mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-            mxConstants.ALIGN_MIDDLE,
-          )
+          this.style,
+          mxConstants.STYLE_VERTICAL_LABEL_POSITION,
+          mxConstants.ALIGN_MIDDLE,
+        )
         : null;
 
     if (
@@ -923,10 +922,10 @@ export class mxText  extends mxShape  {
           (r != 0 ? 'rotate(' + r + 'deg) ' : '') +
           (this.margin.x != 0 || this.margin.y != 0
             ? 'translate(' +
-              this.margin.x * 100 +
-              '%,' +
-              this.margin.y * 100 +
-              '%)'
+            this.margin.x * 100 +
+            '%,' +
+            this.margin.y * 100 +
+            '%)'
             : '');
 
         if (tr != '') {
@@ -985,16 +984,16 @@ export class mxText  extends mxShape  {
         style,
         'transform',
         'translate(' +
-          dx * 100 +
-          '%' +
-          ',' +
-          dy * 100 +
-          '%) ' +
-          'scale(' +
-          this.scale +
-          ') rotate(' +
-          theta +
-          'deg)',
+        dx * 100 +
+        '%' +
+        ',' +
+        dy * 100 +
+        '%) ' +
+        'scale(' +
+        this.scale +
+        ') rotate(' +
+        theta +
+        'deg)',
       );
     } else {
       mxUtils.setPrefixedStyle(style, 'transformOrigin', '0% 0%');
@@ -1002,23 +1001,23 @@ export class mxText  extends mxShape  {
         style,
         'transform',
         'scale(' +
-          this.scale +
-          ') ' +
-          'translate(' +
-          dx * 100 +
-          '%' +
-          ',' +
-          dy * 100 +
-          '%)',
+        this.scale +
+        ') ' +
+        'translate(' +
+        dx * 100 +
+        '%' +
+        ',' +
+        dy * 100 +
+        '%)',
       );
     }
 
     style.left =
       Math.round(
         this.bounds.x -
-          Math.ceil(
-            dx * (this.overflow != 'fill' && this.overflow != 'width' ? 3 : 1),
-          ),
+        Math.ceil(
+          dx * (this.overflow != 'fill' && this.overflow != 'width' ? 3 : 1),
+        ),
       ) + 'px';
     style.top =
       Math.round(this.bounds.y - dy * (this.overflow != 'fill' ? 3 : 1)) + 'px';
@@ -1460,17 +1459,17 @@ export class mxText  extends mxShape  {
     if (this.align == mxConstants.ALIGN_CENTER) {
       dx = (this.spacingLeft - this.spacingRight) / 2;
     } else if (this.align == mxConstants.ALIGN_RIGHT) {
-      dx = -this.spacingRight - this.baseSpacingRight;
+      dx = -this.spacingRight - mxText.baseSpacingRight;
     } else {
-      dx = this.spacingLeft + this.baseSpacingLeft;
+      dx = this.spacingLeft + mxText.baseSpacingLeft;
     }
 
     if (this.valign == mxConstants.ALIGN_MIDDLE) {
       dy = (this.spacingTop - this.spacingBottom) / 2;
     } else if (this.valign == mxConstants.ALIGN_BOTTOM) {
-      dy = -this.spacingBottom - this.baseSpacingBottom;
+      dy = -this.spacingBottom - mxText.baseSpacingBottom;
     } else {
-      dy = this.spacingTop + this.baseSpacingTop;
+      dy = this.spacingTop + mxText.baseSpacingTop;
     }
 
     return new mxPoint(dx, dy);

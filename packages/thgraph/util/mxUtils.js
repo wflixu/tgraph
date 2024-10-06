@@ -1,11 +1,14 @@
 import { mxClient } from './../mxClient.js';
-import { mxObjectIdentity } from './mxObjectIdentity.js';
 import { mxConstants } from './../util/mxConstants.js';
 import { mxPoint } from './../util/mxPoint.js';
 import { mxDictionary } from './mxDictionary.js';
 import { mxRectangle } from './mxRectangle.js';
-import { mxCellPath, mxEvent } from '../index.js';
-import { mxDragSource, mxXmlRequest } from '../index.js';
+import { mxCellPath } from "../model/mxCellPath.js";
+
+import { mxXmlRequest } from './mxXmlRequest.js'
+import { addListener } from './eventUtil.js'
+
+import { FIELD_NAME } from "./mxConstants.js"
 
 export const mxUtils = {
   /**
@@ -26,7 +29,7 @@ export const mxUtils = {
    *
    * Variable: errorResource
    *
-   * Specifies the resource key for the title of the error window. If the
+   * Specifies the resource key for the title of the error window?. If the
    * resource for this key does not exist then the value is used as
    * the title. Default is 'error'.
    */
@@ -84,7 +87,7 @@ export const mxUtils = {
    * element - DOM node whose current style should be returned.
    */
   getCurrentStyle: function (element) {
-    return element ? window.getComputedStyle(element, '') : null;
+    return element ? window?.getComputedStyle(element, '') : null;
   },
 
   /**
@@ -124,13 +127,7 @@ export const mxUtils = {
   setPrefixedStyle: (function () {
     var prefix = null;
 
-    if (mxClient.IS_OT) {
-      prefix = 'O';
-    } else if (mxClient.IS_SF || mxClient.IS_GC) {
-      prefix = 'Webkit';
-    } else if (mxClient.IS_MT) {
-      prefix = 'Moz';
-    }
+
 
     return function (style, name, value) {
       style[name] = value;
@@ -575,12 +572,12 @@ export const mxUtils = {
       return function () {
         document.selection.empty();
       };
-    } else if (window.getSelection) {
+    } else if (window?.getSelection) {
       return function () {
-        if (window.getSelection().empty) {
-          window.getSelection().empty();
-        } else if (window.getSelection().removeAllRanges) {
-          window.getSelection().removeAllRanges();
+        if (window?.getSelection().empty) {
+          window?.getSelection().empty();
+        } else if (window?.getSelection().removeAllRanges) {
+          window?.getSelection().removeAllRanges();
         }
       };
     } else {
@@ -673,7 +670,7 @@ export const mxUtils = {
     if (!node) {
       return;
     }
-    if (window.XMLSerializer != null) {
+    if (window?.XMLSerializer != null) {
       var xmlSerializer = new XMLSerializer();
       xml = xmlSerializer.serializeToString(node);
     } else if (node.xml != null) {
@@ -1050,7 +1047,7 @@ export const mxUtils = {
     var button = doc.createElement('button');
     mxUtils.write(button, label);
 
-    mxEvent.addListener(button, 'click', function (evt) {
+    addListener(button, 'click', function (evt) {
       funct(evt);
     });
 
@@ -1170,7 +1167,7 @@ export const mxUtils = {
       a.style.paddingLeft = pad + 'px';
     }
 
-    mxEvent.addListener(a, 'click', funct);
+    addListener(a, 'click', funct);
     mxUtils.write(a, text);
 
     if (parent != null) {
@@ -1204,7 +1201,7 @@ export const mxUtils = {
   /**
    * Function: fit
    *
-   * Makes sure the given node is inside the visible area of the window. This
+   * Makes sure the given node is inside the visible area of the window?. This
    * is done by setting the left and top in the style.
    */
   fit: function (node) {
@@ -1551,7 +1548,7 @@ export const mxUtils = {
 
       for (var i in obj) {
         if (
-          i != mxObjectIdentity.FIELD_NAME &&
+          i != FIELD_NAME &&
           (transients == null || mxUtils.indexOf(transients, i) < 0)
         ) {
           if (!shallow && typeof obj[i] == 'object') {
@@ -1669,35 +1666,7 @@ export const mxUtils = {
     return typeof value == 'number' && isNaN(value);
   },
 
-  /**
-   * Function: extend
-   *
-   * Assigns a copy of the superclass prototype to the subclass prototype.
-   * Note that this does not call the constructor of the superclass at this
-   * point, the superclass constructor should be called explicitely in the
-   * subclass constructor. Below is an example.
-   *
-   * (code)
-   * MyGraph = function(container, model, renderHint, stylesheet)
-   * {
-   *   mxGraph.call(this, container, model, renderHint, stylesheet);
-   * }
-   *
-   * mxUtils.extend(MyGraph, mxGraph);
-   * (end)
-   *
-   * Parameters:
-   *
-   * ctor - Constructor of the subclass.
-   * superCtor - Constructor of the superclass.
-   */
-  extend: function (ctor, superCtor) {
-    var f = function () { };
-    f.prototype = superCtor.prototype;
 
-    ctor.prototype = new f();
-    ctor.prototype.constructor = ctor;
-  },
 
   /**
    * Function: toString
@@ -2484,16 +2453,16 @@ export const mxUtils = {
     var wnd = doc.defaultView || doc.parentWindow;
 
     var x =
-      wnd != null && window.pageXOffset !== undefined
-        ? window.pageXOffset
+      wnd != null && window?.pageXOffset !== undefined
+        ? window?.pageXOffset
         : (
           document.documentElement ||
           document.body.parentNode ||
           document.body
         ).scrollLeft;
     var y =
-      wnd != null && window.pageYOffset !== undefined
-        ? window.pageYOffset
+      wnd != null && window?.pageYOffset !== undefined
+        ? window?.pageYOffset
         : (
           document.documentElement ||
           document.body.parentNode ||
@@ -3609,7 +3578,7 @@ export const mxUtils = {
     y0 = y0 != null ? y0 : 0;
 
     if (doc == null) {
-      var wnd = window.open();
+      var wnd = window?.open();
       doc = wnd.document;
     } else {
       doc.open();
@@ -3727,7 +3696,7 @@ export const mxUtils = {
    * graph - <mxGraph> to be printed.
    */
   printScreen: function (graph) {
-    var wnd = window.open();
+    var wnd = window?.open();
     var bounds = graph.getGraphBounds();
     mxUtils.show(graph, wnd.document);
 
@@ -3756,7 +3725,7 @@ export const mxUtils = {
    *
    * content - String that specifies the text to be displayed.
    * isInternalWindow - Optional boolean indicating if an mxWindow should be
-   * used instead of a new browser window. Default is false.
+   * used instead of a new browser window?. Default is false.
    */
   popup: function (content, isInternalWindow) {
     if (isInternalWindow) {
@@ -3793,20 +3762,15 @@ export const mxUtils = {
       wnd.setClosable(true);
       wnd.setVisible(true);
     } else {
-      // Wraps up the XML content in a textarea
-      if (mxClient.IS_NS) {
-        var wnd = window.open();
-        wnd.document.writeln('<pre>' + mxUtils.htmlEntities(content) + '</pre');
-        wnd.document.close();
-      } else {
-        var wnd = window.open();
-        var pre = wnd.document.createElement('pre');
-        pre.innerHTML = mxUtils
-          .htmlEntities(content, false)
-          .replace(/\n/g, '<br>')
-          .replace(/ /g, '&nbsp;');
-        wnd.document.body.appendChild(pre);
-      }
+
+      var wnd = window?.open();
+      var pre = wnd.document.createElement('pre');
+      pre.innerHTML = mxUtils
+        .htmlEntities(content, false)
+        .replace(/\n/g, '<br>')
+        .replace(/ /g, '&nbsp;');
+      wnd.document.body.appendChild(pre);
+
     }
   },
 
@@ -3858,14 +3822,14 @@ export const mxUtils = {
    * Function: error
    *
    * Displays the given error message in a new <mxWindow> of the given width.
-   * If close is true then an additional close button is added to the window.
-   * The optional icon specifies the icon to be used for the window. Default
+   * If close is true then an additional close button is added to the window?.
+   * The optional icon specifies the icon to be used for the window?. Default
    * is <mxUtils.errorImage>.
    *
    * Parameters:
    *
    * message - String specifying the message to be displayed.
-   * width - Integer specifying the width of the window.
+   * width - Integer specifying the width of the window?.
    * close - Optional boolean indicating whether to add a close button.
    * icon - Optional icon for the window decoration.
    */
@@ -3905,7 +3869,7 @@ export const mxUtils = {
 
       button.setAttribute('style', 'float:right');
 
-      mxEvent.addListener(button, 'click', function (evt) {
+      addListener(button, 'click', function (evt) {
         warn.destroy();
       });
 
@@ -3927,132 +3891,10 @@ export const mxUtils = {
     return warn;
   },
 
-  /**
-   * Function: makeDraggable
-   *
-   * Configures the given DOM element to act as a drag source for the
-   * specified graph. Returns a a new <mxDragSource>. If
-   * <mxDragSource.guideEnabled> is enabled then the x and y arguments must
-   * be used in funct to match the preview location.
-   *
-   * Example:
-   *
-   * (code)
-   * var funct = function(graph, evt, cell, x, y)
-   * {
-   *   if (graph.canImportCell(cell))
-   *   {
-   *     var parent = graph.getDefaultParent();
-   *     var vertex = null;
-   *
-   *     graph.getModel().beginUpdate();
-   *     try
-   *     {
-   * 	     vertex = graph.insertVertex(parent, null, 'Hello', x, y, 80, 30);
-   *     }
-   *     finally
-   *     {
-   *       graph.getModel().endUpdate();
-   *     }
-   *
-   *     graph.setSelectionCell(vertex);
-   *   }
-   * }
-   *
-   * var img = document.createElement('img');
-   * img.setAttribute('src', 'editors/images/rectangle.gif');
-   * img.style.position = 'absolute';
-   * img.style.left = '0px';
-   * img.style.top = '0px';
-   * img.style.width = '16px';
-   * img.style.height = '16px';
-   *
-   * var dragImage = img.cloneNode(true);
-   * dragImage.style.width = '32px';
-   * dragImage.style.height = '32px';
-   * mxUtils.makeDraggable(img, graph, funct, dragImage);
-   * document.body.appendChild(img);
-   * (end)
-   *
-   * Parameters:
-   *
-   * element - DOM element to make draggable.
-   * graphF - <mxGraph> that acts as the drop target or a function that takes a
-   * mouse event and returns the current <mxGraph>.
-   * funct - Function to execute on a successful drop.
-   * dragElement - Optional DOM node to be used for the drag preview.
-   * dx - Optional horizontal offset between the cursor and the drag
-   * preview.
-   * dy - Optional vertical offset between the cursor and the drag
-   * preview.
-   * autoscroll - Optional boolean that specifies if autoscroll should be
-   * used. Default is mxGraph.autoscroll.
-   * scalePreview - Optional boolean that specifies if the preview element
-   * should be scaled according to the graph scale. If this is true, then
-   * the offsets will also be scaled. Default is false.
-   * highlightDropTargets - Optional boolean that specifies if dropTargets
-   * should be highlighted. Default is true.
-   * getDropTarget - Optional function to return the drop target for a given
-   * location (x, y). Default is mxGraph.getCellAt.
-   */
-  makeDraggable: function (
-    element,
-    graphF,
-    funct,
-    dragElement,
-    dx,
-    dy,
-    autoscroll,
-    scalePreview,
-    highlightDropTargets,
-    getDropTarget,
-  ) {
-    var dragSource = new mxDragSource(element, funct);
-    dragSource.dragOffset = new mxPoint(
-      dx != null ? dx : 0,
-      dy != null ? dy : mxConstants.TOOLTIP_VERTICAL_OFFSET,
-    );
-    dragSource.autoscroll = autoscroll;
 
-    // Cannot enable this by default. This needs to be enabled in the caller
-    // if the funct argument uses the new x- and y-arguments.
-    dragSource.setGuidesEnabled(false);
-
-    if (highlightDropTargets != null) {
-      dragSource.highlightDropTargets = highlightDropTargets;
-    }
-
-    // Overrides function to find drop target cell
-    if (getDropTarget != null) {
-      dragSource.getDropTarget = getDropTarget;
-    }
-
-    // Overrides function to get current graph
-    dragSource.getGraphForEvent = function (evt) {
-      return typeof graphF == 'function' ? graphF(evt) : graphF;
-    };
-
-    // Translates switches into dragSource customizations
-    if (dragElement != null) {
-      dragSource.createDragElement = function () {
-        return dragElement.cloneNode(true);
-      };
-
-      if (scalePreview) {
-        dragSource.createPreviewElement = function (graph) {
-          var elt = dragElement.cloneNode(true);
-
-          var w = parseInt(elt.style.width);
-          var h = parseInt(elt.style.height);
-          elt.style.width = Math.round(w * graph.view.scale) + 'px';
-          elt.style.height = Math.round(h * graph.view.scale) + 'px';
-
-          return elt;
-        };
-      }
-    }
-
-    return dragSource;
-  },
+  
 };
+
+
+
 console.log('graph/util/mxUtils.js');

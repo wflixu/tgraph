@@ -12,7 +12,7 @@
  *   this.previous = name;
  * };
  *
- * CustomChange.prototype.execute = function()
+ * execute = function()
  * {
  *   var tmp = this.model.name;
  *   this.model.name = this.previous;
@@ -43,8 +43,8 @@
  * Constructs a new undoable edit for the given source.
  */
 
-import { mxEventObject } from './index.js';
-import { mxEvent } from '../util/index.js';
+import { mxEventObject } from './mxEventObject.js';
+import { mxEvent } from './mxEvent.js';
 
 export class mxUndoableEdit {
   /**

@@ -38,7 +38,7 @@ export const mxEvent =
 			element.mxListenerList.push(entry);
 		};
 		
-		if (window.addEventListener)
+		if (window?.addEventListener)
 		{
 			return function(element, eventName, funct)
 			{
@@ -87,7 +87,7 @@ export const mxEvent =
 			}
 		};
 		
-		if (window.removeEventListener)
+		if (window?.removeEventListener)
 		{
 			return function(element, eventName, funct)
 			{
@@ -317,7 +317,7 @@ export const mxEvent =
 				// at this point in time.
 				if (evt == null)
 				{
-					evt = window.event;
+					evt = window?.event;
 				}
 			
 				//To prevent window zoom on trackpad pinch

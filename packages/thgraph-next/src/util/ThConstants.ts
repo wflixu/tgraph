@@ -726,7 +726,7 @@ export class ThConstants {
 	 * 
 	 * Defines the value for none. Default is "none".
 	 */
-	public static NONE: string = 'none',
+	public static NONE: string = 'none'
 
 	/**
 	 * Variable: STYLE_PERIMETER
@@ -737,7 +737,7 @@ export class ThConstants {
 	 * class that start with "PERIMETER_" may be used to access
 	 * perimeter styles in <mxStyleRegistry>. Value is "perimeter".
 	 */
-	public static STYLE_PERIMETER: string = 'perimeter',
+	public static STYLE_PERIMETER: string = 'perimeter'
 
 	//  /**
 	//   * Variable: STYLE_SOURCE_PORT
@@ -1043,7 +1043,7 @@ export class ThConstants {
 	 * 'inherit', 'indicated' to use the color code of a related cell or the
 	 * indicator shape or 'none' for no color. Value is "strokeColor".
 	 */
-	public static STYLE_STROKECOLOR: string = 'strokeColor',
+	public static STYLE_STROKECOLOR: string = 'strokeColor'
 
 	//  /**
 	//   * Variable: STYLE_SEPARATORCOLOR
@@ -2136,7 +2136,7 @@ export class ThConstants {
 	 * 
 	 * Constant for middle vertical alignment. Default is middle.
 	 */
-	public static ALIGN_MIDDLE = 'middle',
+	public static ALIGN_MIDDLE = 'middle'
 
 	//  /**
 	//   * Variable: ALIGN_BOTTOM

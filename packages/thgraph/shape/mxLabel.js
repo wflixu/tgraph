@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxLabel
  *
@@ -23,13 +20,12 @@
  * 1. This is stored in <strokewidth>.
  */
 
-import { mxUtils } from '../util/mxUtils.js';
-import { mxRectangleShape } from './mxRectangleShape.js';
-import { mxConstants } from '../util/mxConstants.js';
 
-import { mxRectangle } from '../index.js';
+import { mxRectangleShape } from './mxRectangleShape.js';
+import { mxRectangle ,mxConstants,mxUtils } from '../util/index.js';
 
 export class mxLabel extends mxRectangleShape {
+  static imageSize = mxConstants.DEFAULT_IMAGESIZE;
   /**
    * Variable: imageSize
    *
@@ -106,7 +102,7 @@ export class mxLabel extends mxRectangleShape {
    */
   isHtmlAllowed() {
     return (
-      mxRectangleShape.prototype.isHtmlAllowed.apply(this, arguments) &&
+      super.isHtmlAllowed() &&
       this.indicatorColor == null &&
       this.indicatorShape == null
     );
@@ -120,8 +116,7 @@ export class mxLabel extends mxRectangleShape {
   paintForeground(c, x, y, w, h) {
     this.paintImage(c, x, y, w, h);
     this.paintIndicator(c, x, y, w, h);
-
-    mxRectangleShape.prototype.paintForeground.apply(this, arguments);
+    super.paintForeground(c, x, y, w, h);
   }
 
   /**
@@ -274,7 +269,7 @@ export class mxLabel extends mxRectangleShape {
    * Generic background painting implementation.
    */
   redrawHtmlShape() {
-    mxRectangleShape.prototype.redrawHtmlShape.apply(this, arguments);
+    super.redrawHtmlShape();
 
     // Removes all children
     while (this.node.hasChildNodes()) {

@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxCompositeLayout
  * 
@@ -30,74 +27,69 @@
  * master - Optional layout that handles moves. If no layout is given then
  * the first layout of the above array is used to handle moves.
  */
- import { mxGraphLayout } from "./mxGraphLayout.js";
-export function mxCompositeLayout(graph, layouts, master)
-{
-	mxGraphLayout.call(this, graph);
-	this.layouts = layouts;
-	this.master = master;
-};
+import { mxGraphLayout } from "./mxGraphLayout.js";
 
-/**
- * Extends mxGraphLayout.
- */
-mxCompositeLayout.prototype = new mxGraphLayout();
-mxCompositeLayout.prototype.constructor = mxCompositeLayout;
-	
-/**
- * Variable: layouts
- * 
- * Holds the array of <mxGraphLayouts> that this layout contains.
- */
-mxCompositeLayout.prototype.layouts = null;
 
-/**
- * Variable: master
- * 
- * Reference to the <mxGraphLayouts> that handles moves. If this is null
- * then the first layout in <layouts> is used.
- */
-mxCompositeLayout.prototype.master = null;
+export class mxCompositeLayout extends mxGraphLayout {
 
-/**
- * Function: moveCell
- * 
- * Implements <mxGraphLayout.moveCell> by calling move on <master> or the first
- * layout in <layouts>.
- */
-mxCompositeLayout.prototype.moveCell = function(cell, x, y)
-{
-	if (this.master != null)
-	{
-		this.master.moveCell.apply(this.master, arguments);
-	}
-	else
-	{
-		this.layouts[0].moveCell.apply(this.layouts[0], arguments);
-	}
-};
+	/**
+	 * Variable: layouts
+	 * 
+	 * Holds the array of <mxGraphLayouts> that this layout contains.
+	 */
+	layouts = null;
 
-/**
- * Function: execute
- * 
- * Implements <mxGraphLayout.execute> by executing all <layouts> in a
- * single transaction.
- */
-mxCompositeLayout.prototype.execute = function(parent)
-{
-	var model = this.graph.getModel();
-	
-	model.beginUpdate();
-	try
-	{
-		for (var i = 0; i < this.layouts.length; i++)
-		{
-			this.layouts[i].execute.apply(this.layouts[i], arguments);
+	/**
+	 * Variable: master
+	 * 
+	 * Reference to the <mxGraphLayouts> that handles moves. If this is null
+	 * then the first layout in <layouts> is used.
+	 */
+	master = null;
+
+
+	constructor(graph, layouts, master) {
+		super(graph);
+		this.layouts = layouts;
+		this.master = master;
+	};
+
+
+
+	/**
+	 * Function: moveCell
+	 * 
+	 * Implements <mxGraphLayout.moveCell> by calling move on <master> or the first
+	 * layout in <layouts>.
+	 */
+	moveCell(cell, x, y) {
+		if (this.master != null) {
+			this.master.moveCell.apply(this.master, arguments);
 		}
-	}
-	finally
-	{
-		model.endUpdate();
-	}
-};
+		else {
+			this.layouts[0].moveCell.apply(this.layouts[0], arguments);
+		}
+	};
+
+	/**
+	 * Function: execute
+	 * 
+	 * Implements <mxGraphLayout.execute> by executing all <layouts> in a
+	 * single transaction.
+	 */
+	execute(parent) {
+		var model = this.graph.getModel();
+
+		model.beginUpdate();
+		try {
+			for (var i = 0; i < this.layouts.length; i++) {
+				this.layouts[i].execute.apply(this.layouts[i], arguments);
+			}
+		}
+		finally {
+			model.endUpdate();
+		}
+	};
+}
+
 console.log('graph/layout/mxCompositeLayout.js');

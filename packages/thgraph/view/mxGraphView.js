@@ -2434,12 +2434,9 @@ export class mxGraphView extends mxEventSource {
 
     // Creates the DOM nodes for the respective display dialect
     var graph = this.graph;
-
-    if (graph.dialect == mxConstants.DIALECT_SVG) {
-      this.createSvg();
-    } else {
-      this.createHtml();
-    }
+    
+    this.createSvg();
+   
   };
 
   /**
@@ -2465,7 +2462,7 @@ export class mxGraphView extends mxEventSource {
           // Condition to avoid scrollbar events starting a rubberband selection
           if (
             this.isContainerEvent(evt) &&
-            ((!mxClient.IS_GC && !mxClient.IS_OP && !mxClient.IS_SF) ||
+            ((!mxClient.IS_GC && !mxClient.IS_SF) ||
               !this.isScrollEvent(evt))
           ) {
             graph.fireMouseEvent(mxEvent.MOUSE_DOWN, new mxMouseEvent(evt));
@@ -2517,7 +2514,7 @@ export class mxGraphView extends mxEventSource {
       // in Firefox and Chrome
       graph.addMouseListener({
         mouseDown: function (sender, me) {
-          graph.popupMenuHandler.hideMenu();
+          graph.popupMenuHandler?.hideMenu();
         },
         mouseMove: function () {},
         mouseUp: function () {},
@@ -2570,35 +2567,6 @@ export class mxGraphView extends mxEventSource {
     }
   };
 
-  /**
-   * Function: createHtml
-   *
-   * Creates the DOM nodes for the HTML display.
-   */
-  createHtml () {
-    var container = this.graph.container;
-
-    if (container != null) {
-      this.canvas = this.createHtmlPane('100%', '100%');
-      this.canvas.style.overflow = 'hidden';
-
-      // Uses minimal size for inner DIVs on Canvas. This is required
-      // for correct event processing in IE. If we have an overlapping
-      // DIV then the events on the cells are only fired for labels.
-      this.backgroundPane = this.createHtmlPane('1px', '1px');
-      this.drawPane = this.createHtmlPane('1px', '1px');
-      this.overlayPane = this.createHtmlPane('1px', '1px');
-      this.decoratorPane = this.createHtmlPane('1px', '1px');
-
-      this.canvas.appendChild(this.backgroundPane);
-      this.canvas.appendChild(this.drawPane);
-      this.canvas.appendChild(this.overlayPane);
-      this.canvas.appendChild(this.decoratorPane);
-
-      container.appendChild(this.canvas);
-      this.updateContainerStyle(container);
-    }
-  };
 
   /**
    * Function: updateHtmlCanvasSize

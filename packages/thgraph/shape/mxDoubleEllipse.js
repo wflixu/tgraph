@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- */
+
 /**
  * Class: mxDoubleEllipse
  *
@@ -10,7 +7,7 @@
  * Use the following override to only fill the inner ellipse in this shape:
  *
  * (code)
- * mxDoubleEllipse.prototype.paintVertexShape = function(c, x, y, w, h)
+ * mxDoubleEllipse.paintVertexShape = function(c, x, y, w, h)
  * {
  *   c.ellipse(x, y, w, h);
  *   c.stroke();

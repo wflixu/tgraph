@@ -10,10 +10,9 @@
  * function SampleShape() { }
  *
  * SampleShape.prototype = new mxActor();
- * SampleShape.prototype.constructor = vsAseShape;
  *
  * mxCellRenderer.registerShape('sample', SampleShape);
- * SampleShape.prototype.redrawPath = function(path, x, y, w, h)
+ * SampleShape.redrawPath = function(path, x, y, w, h)
  * {
  *   path.moveTo(0, 0);
  *   path.lineTo(w, h);
@@ -39,6 +38,8 @@
  * 1. This is stored in <strokewidth>.
  */
 import { mxShape } from './mxShape.js';
+
+
 export class mxActor extends mxShape {
   constructor(bounds, fill, stroke, strokewidth = 1) {
     super();

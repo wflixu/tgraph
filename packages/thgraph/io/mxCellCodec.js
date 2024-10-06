@@ -31,7 +31,6 @@
  *   mxCell.apply(this, arguments);
  * }
  *
- * mxUtils.extend(CustomCell, mxCell);
  *
  * mxCodecRegistry.getCodec(mxCell).template = new CustomCell();
  * mxCodecRegistry.addAlias('CustomCell', 'mxCell');

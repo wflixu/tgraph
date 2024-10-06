@@ -53,7 +53,7 @@ export class mxAnimation extends mxEventSource {
    */
   startAnimation() {
     if (this.thread == null) {
-      this.thread = window.setInterval(
+      this.thread = window?.setInterval(
         mxUtils.bind(this, this.updateAnimation),
         this.delay,
       );
@@ -78,7 +78,7 @@ export class mxAnimation extends mxEventSource {
    */
   stopAnimation() {
     if (this.thread != null) {
-      window.clearInterval(this.thread);
+      window?.clearInterval(this.thread);
       this.thread = null;
       this.fireEvent(new mxEventObject(mxEvent.DONE));
     }

@@ -79,4 +79,11 @@ export class ThEvent {
    */
   static REDO: 'redo';
 
+  /**
+   * Variable: PAN
+   *
+   * Specifies the event name for pan.
+   */
+  static PAN: 'pan';
+
 }

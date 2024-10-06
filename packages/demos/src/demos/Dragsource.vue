@@ -121,7 +121,7 @@ function main(wraper) {
   // if scalePreview (last) argument is true. Dx and dy are null to force
   // the use of the defaults. Note that dx and dy are only used for the
   // drag icon but not for the preview.
-  var ds = mxUtils.makeDraggable(
+  var ds = mxDragSource.makeDraggable(
     img,
     graphF,
     funct,

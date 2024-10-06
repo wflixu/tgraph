@@ -32,7 +32,7 @@
  *
  * div - Reference to the DOM node whose size should be maintained.
  * container - Optional Container that contains the div. Default is the
- * window.
+ * window?.
  */
 export class mxDivResizer {
   /**

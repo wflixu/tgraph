@@ -9,7 +9,9 @@
  * coordinates are given, then the default values for <x> and <y> are used.
  */
 
-import { mxUtils } from './mxUtils.js';
+import { clone as thClone } from './tools.js';
+
+
 export class mxPoint {
   /**
    * Variable: x
@@ -45,7 +47,7 @@ export class mxPoint {
    */
   clone() {
     // Handles subclasses as well
-    return mxUtils.clone(this);
+    return thClone(this);
   }
 }
 
