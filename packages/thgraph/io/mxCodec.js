@@ -111,7 +111,7 @@
  * using <mxUtils.createXmlDocument>.
  */
 
-import { mxCell } from "../index.js";
+import { mxCell } from "../model/mxCell.js";
 import { mxConstants } from "../util/mxConstants.js";
 import { mxLog } from "../util/mxLog.js";
 import { mxUtils } from "../util/mxUtils.js";
@@ -402,7 +402,6 @@ export class mxCodec {
     decode(node, into) {
         this.updateElements();
         var obj = null;
-        debugger;
         if (node != null && node.nodeType == mxConstants.NODETYPE_ELEMENT) {
             var ctor = null;
 

@@ -1,7 +1,7 @@
 
 
-import { mxEventSource, mxUtils, mxRectangle, mxConstants } from "../util/index.js";
-import { mxEvent } from "../index.js";
+import { mxEventSource, mxUtils, mxRectangle, mxConstants, mxEvent } from "../util/index.js";
+
 
 /**
  * Class: mxSwimlaneManager

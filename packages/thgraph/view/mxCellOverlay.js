@@ -128,6 +128,7 @@ export class mxCellOverlay extends mxEventSource {
 
 
 	constructor(image, tooltip, align, verticalAlign, offset, cursor) {
+		super();
 		this.image = image;
 		this.tooltip = tooltip;
 		this.align = (align != null) ? align : this.align;

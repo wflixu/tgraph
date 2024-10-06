@@ -198,20 +198,7 @@ export class mxCellHighlight {
 				this.shape.setCursor(this.state.shape.getCursor());
 			}
 
-			// Workaround for event transparency in VML with transparent color
-			// is to use a non-transparent color with near zero opacity
-			if (mxClient.IS_QUIRKS || document.documentMode == 8) {
-				if (this.shape.stroke == 'transparent') {
-					// KNOWN: Quirks mode does not seem to catch events if
-					// we do not force an update of the DOM via a change such
-					// as mxLog.debug. Since IE6 is EOL we do not add a fix.
-					this.shape.stroke = 'white';
-					this.shape.opacity = 1;
-				}
-				else {
-					this.shape.opacity = this.opacity;
-				}
-			}
+
 
 			this.shape.redraw();
 		}

@@ -28,7 +28,7 @@
  * config - XML node that contains the configuration data.
  */
 
-import { mxResources, mxUtils } from "../index.js";
+import { mxResources, mxUtils } from "../util/index.js";
 
 export class mxDefaultPopupMenu {
 

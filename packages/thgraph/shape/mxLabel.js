@@ -20,11 +20,9 @@
  * 1. This is stored in <strokewidth>.
  */
 
-import { mxUtils } from '../util/mxUtils.js';
-import { mxRectangleShape } from './mxRectangleShape.js';
-import { mxConstants } from '../util/mxConstants.js';
 
-import { mxRectangle } from '../index.js';
+import { mxRectangleShape } from './mxRectangleShape.js';
+import { mxRectangle ,mxConstants,mxUtils } from '../util/index.js';
 
 export class mxLabel extends mxRectangleShape {
   static imageSize = mxConstants.DEFAULT_IMAGESIZE;

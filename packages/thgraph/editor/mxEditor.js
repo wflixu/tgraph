@@ -1,15 +1,8 @@
 
-import {
-  mxCodec,
-  mxEvent,
-  mxEventSource,
-  mxGraph,
-  mxLayoutManager,
-  mxResources,
-  mxSwimlaneManager,
-  mxUndoManager,
-  mxUtils,
-} from '../index.js';
+import { mxUtils, mxUndoManager,  mxResources, mxEvent, mxEventSource } from '../util/index.js';
+import { mxLayoutManager, mxGraph, mxSwimlaneManager } from '../view/index.js';
+import { mxCodec } from '../io/mxCodec.js';
+
 import { mxClient } from '../mxClient.js';
 import { mxDefaultPopupMenu } from './mxDefaultPopupMenu.js';
 import { mxDefaultToolbar } from './mxDefaultToolbar.js';

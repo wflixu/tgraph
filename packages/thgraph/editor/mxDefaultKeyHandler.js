@@ -1,6 +1,6 @@
 
 
-import { mxKeyHandler } from "../index.js";
+
 
 /**
  * Class: mxDefaultKeyHandler
@@ -43,6 +43,8 @@ import { mxKeyHandler } from "../index.js";
  * 
  * editor - Reference to the enclosing <mxEditor>.
  */
+
+import { mxKeyHandler } from "../handler/mxKeyHandler.js";
 
 export class mxDefaultKeyHandler {
 

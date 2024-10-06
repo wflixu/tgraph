@@ -27,8 +27,9 @@
  */
 
 
-import { mxAbstractCanvas2D, mxUtils } from "./index.js";
 
+import { mxUtils } from "./mxUtils.js";
+import { mxAbstractCanvas2D } from "./mxAbstractCanvas2D.js";
 
 export class mxXmlCanvas2D extends mxAbstractCanvas2D {
 

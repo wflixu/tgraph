@@ -536,7 +536,7 @@ export class mxConnectionHandler extends mxEventSource {
         // Overrides to return cell at location only if valid (so that
         // there is no highlight for invalid cells)
         marker.getCell = (me) => {
-            var cell = marker.getCell(me);
+            let cell = me.getCell();
             this.error = null;
 
             // Checks for cell at preview point (with grid)
@@ -592,16 +592,21 @@ export class mxConnectionHandler extends mxEventSource {
                 return this.error == null;
             }
             else {
-                return marker.isValidState(state);
+                return true
             }
         };
 
         // Overrides to use marker color only in highlight mode or for
         // target selection
         marker.getMarkerColor = (evt, state, isValid) => {
-            return (this.connectImage == null || this.isConnecting()) ?
-                marker.getMarkerColor(evt, state, isValid) :
-                null;
+
+            if (this.connectImage == null || this.isConnecting()) {
+                return (isValid) ? marker.validColor : marker.invalidColor;
+            } else {
+
+                return null
+            }
+
         };
 
         // Overrides to use hotspot only for source selection otherwise
@@ -611,7 +616,13 @@ export class mxConnectionHandler extends mxEventSource {
                 return true;
             }
 
-            return marker.intersects(state, evt);
+            if (marker.hotspotEnabled) {
+                return mxUtils.intersectsHotspot(state, evt.getGraphX(), evt.getGraphY(),
+                    marker.hotspot, mxConstants.MIN_HOTSPOT_SIZE,
+                    mxConstants.MAX_HOTSPOT_SIZE);
+            }
+
+            return true;
         };
 
         return marker;

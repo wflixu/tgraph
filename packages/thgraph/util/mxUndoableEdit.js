@@ -43,8 +43,8 @@
  * Constructs a new undoable edit for the given source.
  */
 
-import { mxEventObject } from './index.js';
-import { mxEvent } from '../util/index.js';
+import { mxEventObject } from './mxEventObject.js';
+import { mxEvent } from './mxEvent.js';
 
 export class mxUndoableEdit {
   /**

@@ -33,8 +33,10 @@
  * state - Optional <mxCellState> under the mouse.
  * 
  */
-import { mxEvent } from "./mxEvent.js";
+
 import { mxUtils } from "./mxUtils.js";
+import { getSource as eventGetSource, getClientX, getClientY } from './tools.js'
+import { isPopupTrigger, isMouseEvent } from "./eventUtil.js"
 
 export class mxMouseEvent {
 
@@ -107,7 +109,7 @@ export class mxMouseEvent {
 	 * Returns the target DOM element using <mxEvent.getSource> for <evt>.
 	 */
 	getSource() {
-		return mxEvent.getSource(this.evt);
+		return eventGetSource(this.evt);
 	};
 
 	/**
@@ -129,7 +131,7 @@ export class mxMouseEvent {
 	 * Returns <evt.clientX>.
 	 */
 	getX() {
-		return mxEvent.getClientX(this.getEvent());
+		return getClientX(this.getEvent());
 	};
 
 	/**
@@ -138,7 +140,7 @@ export class mxMouseEvent {
 	 * Returns <evt.clientY>.
 	 */
 	getY() {
-		return mxEvent.getClientY(this.getEvent());
+		return getClientY(this.getEvent());
 	};
 
 	/**
@@ -189,7 +191,7 @@ export class mxMouseEvent {
 	 * Returns true if the event is a popup trigger.
 	 */
 	isPopupTrigger() {
-		return mxEvent.isPopupTrigger(this.getEvent());
+		return isPopupTrigger(this.getEvent());
 	};
 
 	/**
@@ -216,7 +218,7 @@ export class mxMouseEvent {
 	 */
 	consume(preventDefault) {
 		preventDefault = (preventDefault != null) ? preventDefault :
-			(this.evt.touches != null || mxEvent.isMouseEvent(this.evt));
+			(this.evt.touches != null || isMouseEvent(this.evt));
 
 		if (preventDefault && this.evt.preventDefault) {
 			this.evt.preventDefault();

@@ -18,7 +18,10 @@
  * Constructs a new compact tree layout for the specified graph
  * and orientation.
  */
-import { mxCellPath, mxRectangle, mxUtils } from "../index.js";
+
+import { mxCellPath } from "../model/mxCellPath.js";
+import { mxRectangle } from "../util/mxRectangle.js";
+import { mxUtils } from "../util/mxUtils.js";
 import { mxGraphLayout, WeightedCellSorter } from "./mxGraphLayout.js";
 
 export class mxCompactTreeLayout extends mxGraphLayout {

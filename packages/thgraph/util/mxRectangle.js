@@ -39,7 +39,7 @@ export class mxRectangle extends mxPoint {
    *
    * Sets this rectangle to the specified values
    */
-  setRect  (x, y, w, h) {
+  setRect(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.width = w;
@@ -51,7 +51,7 @@ export class mxRectangle extends mxPoint {
    *
    * Returns the x-coordinate of the center point.
    */
-  getCenterX  () {
+  getCenterX() {
     return this.x + this.width / 2;
   };
 
@@ -60,7 +60,7 @@ export class mxRectangle extends mxPoint {
    *
    * Returns the y-coordinate of the center point.
    */
-  getCenterY  () {
+  getCenterY() {
     return this.y + this.height / 2;
   };
 
@@ -69,7 +69,7 @@ export class mxRectangle extends mxPoint {
    *
    * Adds the given rectangle to this rectangle.
    */
-  add  (rect) {
+  add(rect) {
     if (rect != null) {
       var minX = Math.min(this.x, rect.x);
       var minY = Math.min(this.y, rect.y);
@@ -88,7 +88,7 @@ export class mxRectangle extends mxPoint {
    *
    * Changes this rectangle to where it overlaps with the given rectangle.
    */
-  intersect  (rect) {
+  intersect(rect) {
     if (rect != null) {
       var r1 = this.x + this.width;
       var r2 = rect.x + rect.width;
@@ -110,7 +110,7 @@ export class mxRectangle extends mxPoint {
    * the given amount from the x- and y-coordinates and adds twice the amount
    * to the width and height.
    */
-  grow  (amount) {
+  grow(amount) {
     this.x -= amount;
     this.y -= amount;
     this.width += 2 * amount;
@@ -124,7 +124,7 @@ export class mxRectangle extends mxPoint {
    *
    * Returns the top, left corner as a new <mxPoint>.
    */
-  getPoint  () {
+  getPoint() {
     return new mxPoint(this.x, this.y);
   };
 
@@ -133,7 +133,7 @@ export class mxRectangle extends mxPoint {
    *
    * Rotates this rectangle by 90 degree around its center point.
    */
-  rotate90  () {
+  rotate90() {
     var t = (this.width - this.height) / 2;
     this.x += t;
     this.y -= t;
@@ -147,7 +147,7 @@ export class mxRectangle extends mxPoint {
    *
    * Returns true if the given object equals this rectangle.
    */
-  equals  (obj) {
+  equals(obj) {
     return (
       obj != null &&
       obj.x == this.x &&

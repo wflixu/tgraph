@@ -1,5 +1,8 @@
-import { mxEvent, mxUtils, mxWindow } from "./index.js";
-import { mxClient } from "../index.js";
+
+import { mxWindow } from "./mxWindow.js";
+import { mxUtils } from "./mxUtils.js";
+import { mxEvent } from "./mxEvent.js";
+import { mxClient } from "../mxClient.js";
 
 let navigator = window?.navigator ?? {};
 

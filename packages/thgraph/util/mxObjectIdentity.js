@@ -1,8 +1,9 @@
-import { mxUtils } from './mxUtils.js';
-import {FIELD_NAME} from "./mxConstants.js"
+
+import { FIELD_NAME } from "./mxConstants.js"
+import { getFunctionName } from "./tools.js"
 
 export const mxObjectIdentity = {
-  
+
   /**
    * Variable: counter
    *
@@ -20,7 +21,7 @@ export const mxObjectIdentity = {
     if (obj != null) {
       if (obj[FIELD_NAME] == null) {
         if (typeof obj === 'object') {
-          var ctor = mxUtils.getFunctionName(obj.constructor);
+          var ctor = getFunctionName(obj.constructor);
           obj[FIELD_NAME] =
             ctor + '#' + mxObjectIdentity.counter++;
         } else if (typeof obj === 'function') {

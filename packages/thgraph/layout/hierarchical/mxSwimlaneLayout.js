@@ -21,7 +21,7 @@
 
 import { mxConstants } from "../../util/index.js";
 import { mxGraphLayout } from "../mxGraphLayout.js";
-import { mxHierarchicalLayout, mxHierarchicalEdgeStyle } from './mxHierarchicalLayout.js';
+
 
 export class mxSwimlaneLayout extends mxGraphLayout {
 

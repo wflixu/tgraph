@@ -1,7 +1,5 @@
 let navigator = window?.navigator ?? {};
-import {detect} from 'detect-browser'
 
-const browser = detect();
 
 // 检查是否在浏览器环境中
 if (typeof window === 'undefined') {
@@ -46,16 +44,6 @@ export const mxClient = {
    * Prefix for VML office namespace in node names. Default is 'o'.
    */
   OFFICE_PREFIX: 'o',
-
-  /**
-   * Variable: IS_OP
-   *
-   * True if the current browser is Opera.
-   */
-  IS_OP:
-    navigator.userAgent != null &&
-    (navigator.userAgent.indexOf('Opera/') >= 0 ||
-      navigator.userAgent.indexOf('OPR/') >= 0),
 
 
   /**

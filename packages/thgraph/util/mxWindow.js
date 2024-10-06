@@ -4,7 +4,11 @@ let navigator = window?.navigator ?? {};
 import { mxEventSource } from './mxEventSource.js';
 import { mxClient } from '../mxClient.js';
 import { mxRectangle } from './mxRectangle.js';
-import { mxUtils, mxEvent, mxEventObject, mxConstants } from './index.js';
+import { mxUtils } from './mxUtils.js';
+import { mxEvent } from './mxEvent.js';
+import { mxConstants } from './mxConstants.js';
+import { mxEventObject} from './mxEventObject.js';
+
 
 const resizeGif = '/graph/assets/resize.gif';
 const maximizeGif = '/graph/assets/maximize.gif';

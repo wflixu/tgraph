@@ -1,6 +1,6 @@
 
 
-import { mxEvent, mxToolbar, mxUtils } from "../index.js";
+
 
 /**
  * Class: mxDefaultToolbar
@@ -39,6 +39,9 @@ import { mxEvent, mxToolbar, mxUtils } from "../index.js";
  * container - DOM node that contains the toolbar.
  * editor - Reference to the enclosing <mxEditor>.
  */
+
+
+import { mxDragSource, mxUtils, mxEvent, mxToolbar } from "../util/index.js";
 
 
 export class mxDefaultToolbar {
@@ -503,7 +506,7 @@ export class mxDefaultToolbar {
       sprite.style.width = 2 * img.offsetWidth + 'px';
       sprite.style.height = 2 * img.offsetHeight + 'px';
 
-      mxUtils.makeDraggable(img, this.editor.graph, dropHandler, sprite);
+      mxDragSource.makeDraggable(img, this.editor.graph, dropHandler, sprite);
       mxEvent.removeListener(sprite, 'load', loader);
     });
 

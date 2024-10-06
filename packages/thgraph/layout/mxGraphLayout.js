@@ -20,6 +20,9 @@
  * 
  * graph - Enclosing 
  */
+
+import  { mxConstants} from  '../util/index.js'
+
 export class mxGraphLayout {
 
 

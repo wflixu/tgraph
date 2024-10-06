@@ -119,7 +119,7 @@ export class mxCellMarker extends mxEventSource {
 
 
 	constructor(graph, validColor, invalidColor, hotspot) {
-		super(this);
+		super();
 
 		if (graph != null) {
 			this.graph = graph;

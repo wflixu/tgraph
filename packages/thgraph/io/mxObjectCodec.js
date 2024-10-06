@@ -194,7 +194,9 @@
  * references.
  * mapping - Optional mapping from field- to attributenames.
  */
-import { mxUtils, mxObjectIdentity, mxLog } from '../util/index.js';
+import { mxUtils, mxLog } from '../util/index.js';
+
+import { FIELD_NAME } from '../util/mxConstants.js';
 
 export class mxObjectCodec {
 
@@ -345,7 +347,7 @@ export class mxObjectCodec {
    */
   isExcluded(obj, attr, value, write) {
     return (
-      attr == mxObjectIdentity.FIELD_NAME ||
+      attr == FIELD_NAME ||
       mxUtils.indexOf(this.exclude, attr) >= 0
     );
   };

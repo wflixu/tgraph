@@ -83,7 +83,8 @@
  * password - String specifying the password to be used for the request.
  */
 
-import { mxUtils } from './mxUtils.js';
+
+import { write, parseXml } from './tools.js'
 
 export class mxXmlRequest {
 
@@ -245,7 +246,7 @@ export class mxXmlRequest {
       xml == null ||
       xml.documentElement == null
     ) {
-      xml = mxUtils.parseXml(this.request.responseText);
+      xml = parseXml(this.request.responseText);
     }
 
     return xml;
@@ -306,12 +307,12 @@ export class mxXmlRequest {
 
     if (this.request != null) {
       if (onload != null) {
-        this.request.onreadystatechange = mxUtils.bind(this, function () {
+        this.request.onreadystatechange = () => {
           if (this.isReady()) {
             onload(this);
             this.request.onreadystatechange = null;
           }
-        });
+        };
       }
 
       this.request.open(
@@ -416,7 +417,7 @@ export class mxXmlRequest {
         var textarea = doc.createElement('textarea');
         textarea.setAttribute('wrap', 'off');
         textarea.setAttribute('name', name);
-        mxUtils.write(textarea, value);
+        write(textarea, value);
         form.appendChild(textarea);
       }
     }

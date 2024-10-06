@@ -9,7 +9,8 @@
  * Creates a HTML table using the specified classname.
  */
 
-import { mxUtils } from './index.js';
+import { mxUtils } from './mxUtils.js';
+
 
 export class mxForm {
   /**

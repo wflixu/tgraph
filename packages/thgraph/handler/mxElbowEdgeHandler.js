@@ -22,7 +22,7 @@ import { mxClient } from '../mxClient.js';
 import { mxConstants } from '../util/mxConstants.js';
 import { mxEvent } from '../util/mxEvent.js';
 import { mxRectangle } from '../util/mxRectangle.js';
-import { mxEdgeStyle } from '../view/index.js';
+import { mxEdgeStyle } from '../view/mxEdgeStyle.js';
 
 export class mxElbowEdgeHandler extends mxEdgeHandler {
 

@@ -56,14 +56,13 @@
  *
  * Constructs a new shape.
  */
-import {
-  mxRectangle,
-  mxPoint,
-  mxUtils,
-  mxConstants,
-  mxSvgCanvas2D,
-  mxEvent,
-} from '../util/index.js';
+import { mxRectangle } from '../util/mxRectangle.js';
+import { mxPoint } from '../util/mxPoint.js';
+import { mxUtils } from '../util/mxUtils.js';
+import { mxConstants } from '../util/mxConstants.js';
+import { mxSvgCanvas2D } from '../util/mxSvgCanvas2D.js';
+import { mxEvent } from '../util/mxEvent.js';
+
 export class mxShape {
   /**
    * Variable: dialect
@@ -308,7 +307,7 @@ export class mxShape {
 
     if (container != null && container.ownerSVGElement != null) {
       node = this.createSvg(container);
-    } 
+    }
 
     return node;
   }
@@ -348,7 +347,7 @@ export class mxShape {
       this.clear();
 
       if (
-        this.node.nodeName == 'DIV' 
+        this.node.nodeName == 'DIV'
       ) {
         this.redrawHtmlShape();
       } else {
@@ -562,12 +561,12 @@ export class mxShape {
         canvas.setDashed(this.isDashed);
       }
 
-      canvas.setStrokeWidth = function () {};
-      canvas.setStrokeColor = function () {};
-      canvas.setFillColor = function () {};
-      canvas.setGradient = function () {};
-      canvas.setDashed = function () {};
-      canvas.text = function () {};
+      canvas.setStrokeWidth = function () { };
+      canvas.setStrokeColor = function () { };
+      canvas.setFillColor = function () { };
+      canvas.setGradient = function () { };
+      canvas.setDashed = function () { };
+      canvas.text = function () { };
     }
 
     return canvas;
@@ -787,14 +786,14 @@ export class mxShape {
    *
    * Invoked before paint is called.
    */
-  beforePaint(c) {}
+  beforePaint(c) { }
 
   /**
    * Function: afterPaint
    *
    * Invokes after paint was called.
    */
-  afterPaint(c) {}
+  afterPaint(c) { }
 
   /**
    * Function: paint
@@ -1015,21 +1014,21 @@ export class mxShape {
    *
    * Hook for subclassers. This implementation is empty.
    */
-  paintBackground(c, x, y, w, h) {}
+  paintBackground(c, x, y, w, h) { }
 
   /**
    * Function: paintForeground
    *
    * Hook for subclassers. This implementation is empty.
    */
-  paintForeground(c, x, y, w, h) {}
+  paintForeground(c, x, y, w, h) { }
 
   /**
    * Function: paintEdgeShape
    *
    * Hook for subclassers. This implementation is empty.
    */
-  paintEdgeShape(c, pts) {}
+  paintEdgeShape(c, pts) { }
 
   /**
    * Function: getArcSize

@@ -10,15 +10,16 @@ import {
   mxDictionary,
 } from './../util/index.js';
 
-import {
-  mxEdgeStyle,
-  mxCellRenderer,
-  mxConnectionConstraint,
-  mxGraphSelectionModel,
-  mxStylesheet,
-  mxGraphView,
-  mxCellEditor,
-} from './index.js';
+
+
+import { mxEdgeStyle } from './mxEdgeStyle.js';
+import { mxCellRenderer } from './mxCellRenderer.js';
+import { mxConnectionConstraint } from './mxConnectionConstraint.js';
+import { mxGraphSelectionModel } from './mxGraphSelectionModel.js';
+import { mxStylesheet } from './mxStylesheet.js';
+import { mxGraphView } from './mxGraphView.js';
+import { mxCellEditor } from './mxCellEditor.js';
+
 
 import { mxClient } from './../mxClient.js';
 import {
@@ -1718,15 +1719,15 @@ export class mxGraph extends mxEventSource {
    */
   createHandlers() {
     // TODO!
-    // this.tooltipHandler = this.createTooltipHandler();
-    // this.tooltipHandler.setEnabled(false);
+    this.tooltipHandler = this.createTooltipHandler();
+    this.tooltipHandler.setEnabled(false);
     this.selectionCellsHandler = this.createSelectionCellsHandler();
-    // this.connectionHandler = this.createConnectionHandler();
-    // this.connectionHandler.setEnabled(false);
+    this.connectionHandler = this.createConnectionHandler();
+    this.connectionHandler.setEnabled(false);
     this.graphHandler = this.createGraphHandler();
-    // this.panningHandler = this.createPanningHandler();
-    // this.panningHandler.panningEnabled = false;
-    // this.popupMenuHandler = this.createPopupMenuHandler();
+    this.panningHandler = this.createPanningHandler();
+    this.panningHandler.panningEnabled = false;
+    this.popupMenuHandler = this.createPopupMenuHandler();
   }
 
   /**
@@ -12652,8 +12653,7 @@ export class mxGraph extends mxEventSource {
       );
 
       if (
-        mxClient.IS_OP ||
-        mxClient.IS_SF ||
+       
         mxClient.IS_GC ||
         me.getEvent().target != this.container
       ) {

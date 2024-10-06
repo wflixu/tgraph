@@ -3,8 +3,11 @@ import { mxConstants } from './../util/mxConstants.js';
 import { mxPoint } from './../util/mxPoint.js';
 import { mxDictionary } from './mxDictionary.js';
 import { mxRectangle } from './mxRectangle.js';
-import { mxCellPath, mxEvent } from '../index.js';
-import { mxDragSource, mxXmlRequest } from '../index.js';
+import { mxCellPath } from "../model/mxCellPath.js";
+
+import { mxXmlRequest } from './mxXmlRequest.js'
+import { addListener } from './eventUtil.js'
+
 import { FIELD_NAME } from "./mxConstants.js"
 
 export const mxUtils = {
@@ -1044,7 +1047,7 @@ export const mxUtils = {
     var button = doc.createElement('button');
     mxUtils.write(button, label);
 
-    mxEvent.addListener(button, 'click', function (evt) {
+    addListener(button, 'click', function (evt) {
       funct(evt);
     });
 
@@ -1164,7 +1167,7 @@ export const mxUtils = {
       a.style.paddingLeft = pad + 'px';
     }
 
-    mxEvent.addListener(a, 'click', funct);
+    addListener(a, 'click', funct);
     mxUtils.write(a, text);
 
     if (parent != null) {
@@ -3866,7 +3869,7 @@ export const mxUtils = {
 
       button.setAttribute('style', 'float:right');
 
-      mxEvent.addListener(button, 'click', function (evt) {
+      addListener(button, 'click', function (evt) {
         warn.destroy();
       });
 
@@ -3888,132 +3891,10 @@ export const mxUtils = {
     return warn;
   },
 
-  /**
-   * Function: makeDraggable
-   *
-   * Configures the given DOM element to act as a drag source for the
-   * specified graph. Returns a a new <mxDragSource>. If
-   * <mxDragSource.guideEnabled> is enabled then the x and y arguments must
-   * be used in funct to match the preview location.
-   *
-   * Example:
-   *
-   * (code)
-   * var funct = function(graph, evt, cell, x, y)
-   * {
-   *   if (graph.canImportCell(cell))
-   *   {
-   *     var parent = graph.getDefaultParent();
-   *     var vertex = null;
-   *
-   *     graph.getModel().beginUpdate();
-   *     try
-   *     {
-   * 	     vertex = graph.insertVertex(parent, null, 'Hello', x, y, 80, 30);
-   *     }
-   *     finally
-   *     {
-   *       graph.getModel().endUpdate();
-   *     }
-   *
-   *     graph.setSelectionCell(vertex);
-   *   }
-   * }
-   *
-   * var img = document.createElement('img');
-   * img.setAttribute('src', 'editors/images/rectangle.gif');
-   * img.style.position = 'absolute';
-   * img.style.left = '0px';
-   * img.style.top = '0px';
-   * img.style.width = '16px';
-   * img.style.height = '16px';
-   *
-   * var dragImage = img.cloneNode(true);
-   * dragImage.style.width = '32px';
-   * dragImage.style.height = '32px';
-   * mxUtils.makeDraggable(img, graph, funct, dragImage);
-   * document.body.appendChild(img);
-   * (end)
-   *
-   * Parameters:
-   *
-   * element - DOM element to make draggable.
-   * graphF - <mxGraph> that acts as the drop target or a function that takes a
-   * mouse event and returns the current <mxGraph>.
-   * funct - Function to execute on a successful drop.
-   * dragElement - Optional DOM node to be used for the drag preview.
-   * dx - Optional horizontal offset between the cursor and the drag
-   * preview.
-   * dy - Optional vertical offset between the cursor and the drag
-   * preview.
-   * autoscroll - Optional boolean that specifies if autoscroll should be
-   * used. Default is mxGraph.autoscroll.
-   * scalePreview - Optional boolean that specifies if the preview element
-   * should be scaled according to the graph scale. If this is true, then
-   * the offsets will also be scaled. Default is false.
-   * highlightDropTargets - Optional boolean that specifies if dropTargets
-   * should be highlighted. Default is true.
-   * getDropTarget - Optional function to return the drop target for a given
-   * location (x, y). Default is mxGraph.getCellAt.
-   */
-  makeDraggable: function (
-    element,
-    graphF,
-    funct,
-    dragElement,
-    dx,
-    dy,
-    autoscroll,
-    scalePreview,
-    highlightDropTargets,
-    getDropTarget,
-  ) {
-    var dragSource = new mxDragSource(element, funct);
-    dragSource.dragOffset = new mxPoint(
-      dx != null ? dx : 0,
-      dy != null ? dy : mxConstants.TOOLTIP_VERTICAL_OFFSET,
-    );
-    dragSource.autoscroll = autoscroll;
 
-    // Cannot enable this by default. This needs to be enabled in the caller
-    // if the funct argument uses the new x- and y-arguments.
-    dragSource.setGuidesEnabled(false);
-
-    if (highlightDropTargets != null) {
-      dragSource.highlightDropTargets = highlightDropTargets;
-    }
-
-    // Overrides function to find drop target cell
-    if (getDropTarget != null) {
-      dragSource.getDropTarget = getDropTarget;
-    }
-
-    // Overrides function to get current graph
-    dragSource.getGraphForEvent = function (evt) {
-      return typeof graphF == 'function' ? graphF(evt) : graphF;
-    };
-
-    // Translates switches into dragSource customizations
-    if (dragElement != null) {
-      dragSource.createDragElement = function () {
-        return dragElement.cloneNode(true);
-      };
-
-      if (scalePreview) {
-        dragSource.createPreviewElement = function (graph) {
-          var elt = dragElement.cloneNode(true);
-
-          var w = parseInt(elt.style.width);
-          var h = parseInt(elt.style.height);
-          elt.style.width = Math.round(w * graph.view.scale) + 'px';
-          elt.style.height = Math.round(h * graph.view.scale) + 'px';
-
-          return elt;
-        };
-      }
-    }
-
-    return dragSource;
-  },
+  
 };
+
+
+
 console.log('graph/util/mxUtils.js');

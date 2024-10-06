@@ -18,21 +18,17 @@
  */
 
 import { mxConstants } from '../../util/mxConstants.js';
+import { mxRectangle } from '../../util/mxRectangle.js';
 import { mxDictionary } from '../../util/mxDictionary.js';
 import { mxObjectIdentity } from '../../util/mxObjectIdentity.js';
 import { mxGraphLayout } from '../mxGraphLayout.js';
 import { mxGraphHierarchyModel } from './model/mxGraphHierarchyModel.js';
 import { mxMinimumCycleRemover } from './stage/mxMinimumCycleRemover.js';
 import { mxMedianHybridCrossingReduction } from './stage/mxMedianHybridCrossingReduction.js';
-import { mxCoordinateAssignment } from './stage/mxCoordinateAssignment.js';
+import { mxCoordinateAssignment, mxHierarchicalEdgeStyle } from './stage/mxCoordinateAssignment.js';
 
 
-export const mxHierarchicalEdgeStyle = {
-  ORTHOGONAL: 1,
-  POLYLINE: 2,
-  STRAIGHT: 3,
-  CURVE: 4,
-};
+
 
 export class mxHierarchicalLayout extends mxGraphLayout {
 

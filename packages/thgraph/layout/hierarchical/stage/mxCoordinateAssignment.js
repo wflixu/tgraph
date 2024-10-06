@@ -26,9 +26,15 @@ import { mxDictionary } from '../../../util/mxDictionary.js';
 import { mxLog } from '../../../util/mxLog.js';
 import { WeightedCellSorter } from '../../mxGraphLayout.js';
 import { mxHierarchicalLayoutStage } from './mxHierarchicalLayoutStage.js';
-import { mxHierarchicalEdgeStyle } from '../mxHierarchicalLayout.js';
+
 import { mxPoint } from '../../../util/mxPoint.js';
 
+export const mxHierarchicalEdgeStyle = {
+	ORTHOGONAL: 1,
+	POLYLINE: 2,
+	STRAIGHT: 3,
+	CURVE: 4,
+};
 
 export class mxCoordinateAssignment extends mxHierarchicalLayoutStage {
 

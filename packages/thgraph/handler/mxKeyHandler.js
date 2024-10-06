@@ -1,6 +1,5 @@
 
 
-import { mxEvent, mxUtils } from "../index.js";
 
 /**
  * Class: mxKeyHandler
@@ -63,6 +62,9 @@ import { mxEvent, mxUtils } from "../index.js";
  * element is used as the event target, that is, the object where the key
  * event listener is installed.
  */
+
+
+import { mxEvent, mxUtils } from "../util/index.js";
 
 export class mxKeyHandler {
 

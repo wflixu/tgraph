@@ -1,14 +1,13 @@
 
 
-import { mxConstraintHandler } from './index.js';
+
+import { mxConstraintHandler } from './mxConstraintHandler.js';
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import { mxConstants } from '../util/mxConstants.js';
 import { mxEvent } from '../util/mxEvent.js';
 import { mxRectangle } from '../util/mxRectangle.js';
 import { mxCellMarker } from './mxCellMarker.js';
-import { mxGraphHandler } from './mxGraphHandler.js';
-import { mxVertexHandler } from './mxVertexHandler.js';
-import { mxClient } from '../mxClient.js';
+
 import { mxPoint, mxUtils } from '../util/index.js';
 
 import { mxEdgeStyle } from './../view/mxEdgeStyle.js';
