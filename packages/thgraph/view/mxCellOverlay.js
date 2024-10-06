@@ -66,179 +66,171 @@ import { mxRectangle } from "../util/mxRectangle.js";
 
 
 
-export function mxCellOverlay(image, tooltip, align, verticalAlign, offset, cursor)
-{
-	this.image = image;
-	this.tooltip = tooltip;
-	this.align = (align != null) ? align : this.align;
-	this.verticalAlign = (verticalAlign != null) ? verticalAlign : this.verticalAlign;
-	this.offset = (offset != null) ? offset : new mxPoint();
-	this.cursor = (cursor != null) ? cursor : 'help';
-};
+export class mxCellOverlay extends mxEventSource {
 
-/**
- * Extends mxEventSource.
- */
-mxCellOverlay.prototype = new mxEventSource();
-mxCellOverlay.prototype.constructor = mxCellOverlay;
 
-/**
- * Variable: image
- *
- * Holds the <mxImage> to be used as the icon.
- */
-mxCellOverlay.prototype.image = null;
+	/**
+	 * Variable: image
+	 *
+	 * Holds the <mxImage> to be used as the icon.
+	 */
+	image = null;
 
-/**
- * Variable: tooltip
- * 
- * Holds the optional string to be used as the tooltip.
- */
-mxCellOverlay.prototype.tooltip = null;
+	/**
+	 * Variable: tooltip
+	 * 
+	 * Holds the optional string to be used as the tooltip.
+	 */
+	tooltip = null;
 
-/**
- * Variable: align
- * 
- * Holds the horizontal alignment for the overlay. Default is
- * <mxConstants.ALIGN_RIGHT>. For edges, the overlay always appears in the
- * center of the edge.
- */
-mxCellOverlay.prototype.align = mxConstants.ALIGN_RIGHT;
+	/**
+	 * Variable: align
+	 * 
+	 * Holds the horizontal alignment for the overlay. Default is
+	 * <mxConstants.ALIGN_RIGHT>. For edges, the overlay always appears in the
+	 * center of the edge.
+	 */
+	align = mxConstants.ALIGN_RIGHT;
 
-/**
- * Variable: verticalAlign
- * 
- * Holds the vertical alignment for the overlay. Default is
- * <mxConstants.ALIGN_BOTTOM>. For edges, the overlay always appears in the
- * center of the edge.
- */
-mxCellOverlay.prototype.verticalAlign = mxConstants.ALIGN_BOTTOM;
+	/**
+	 * Variable: verticalAlign
+	 * 
+	 * Holds the vertical alignment for the overlay. Default is
+	 * <mxConstants.ALIGN_BOTTOM>. For edges, the overlay always appears in the
+	 * center of the edge.
+	 */
+	verticalAlign = mxConstants.ALIGN_BOTTOM;
 
-/**
- * Variable: offset
- * 
- * Holds the offset as an <mxPoint>. The offset will be scaled according to the
- * current scale.
- */
-mxCellOverlay.prototype.offset = null;
+	/**
+	 * Variable: offset
+	 * 
+	 * Holds the offset as an <mxPoint>. The offset will be scaled according to the
+	 * current scale.
+	 */
+	offset = null;
 
-/**
- * Variable: cursor
- * 
- * Holds the cursor for the overlay. Default is 'help'.
- */
-mxCellOverlay.prototype.cursor = null;
+	/**
+	 * Variable: cursor
+	 * 
+	 * Holds the cursor for the overlay. Default is 'help'.
+	 */
+	cursor = null;
 
-/**
- * Variable: defaultOverlap
- * 
- * Defines the overlapping for the overlay, that is, the proportional distance
- * from the origin to the point defined by the alignment. Default is 0.5.
- */
-mxCellOverlay.prototype.defaultOverlap = 0.5;
+	/**
+	 * Variable: defaultOverlap
+	 * 
+	 * Defines the overlapping for the overlay, that is, the proportional distance
+	 * from the origin to the point defined by the alignment. Default is 0.5.
+	 */
+	defaultOverlap = 0.5;
 
-/**
- * Function: getBounds
- * 
- * Returns the bounds of the overlay for the given <mxCellState> as an
- * <mxRectangle>. This should be overridden when using multiple overlays
- * per cell so that the overlays do not overlap.
- * 
- * The following example will place the overlay along an edge (where
- * x=[-1..1] from the start to the end of the edge and y is the
- * orthogonal offset in px).
- * 
- * (code)
- * overlay.getBounds = function(state)
- * {
- *   var bounds = mxCellOverlay.prototype.getBounds.apply(this, arguments);
- *   
- *   if (state.view.graph.getModel().isEdge(state.cell))
- *   {
- *     var pt = state.view.getPoint(state, {x: 0, y: 0, relative: true});
- *     
- *     bounds.x = pt.x - bounds.width / 2;
- *     bounds.y = pt.y - bounds.height / 2;
- *   }
- *   
- *   return bounds;
- * };
- * (end)
- * 
- * Parameters:
- * 
- * state - <mxCellState> that represents the current state of the
- * associated cell.
- */
-mxCellOverlay.prototype.getBounds = function(state)
-{
-	var isEdge = state.view.graph.getModel().isEdge(state.cell);
-	var s = state.view.scale;
-	var pt = null;
 
-	var w = this.image.width;
-	var h = this.image.height;
-	
-	if (isEdge)
-	{
-		var pts = state.absolutePoints;
-		
-		if (pts.length % 2 == 1)
-		{
-			pt = pts[Math.floor(pts.length / 2)];
-		}
-		else
-		{
-			var idx = pts.length / 2;
-			var p0 = pts[idx-1];
-			var p1 = pts[idx];
-			pt = new mxPoint(p0.x + (p1.x - p0.x) / 2,
-				p0.y + (p1.y - p0.y) / 2);
-		}
-	}
-	else
-	{
-		pt = new mxPoint();
-		
-		if (this.align == mxConstants.ALIGN_LEFT)
-		{
-			pt.x = state.x;
-		}
-		else if (this.align == mxConstants.ALIGN_CENTER)
-		{
-			pt.x = state.x + state.width / 2;
-		}
-		else
-		{
-			pt.x = state.x + state.width;
-		}
-		
-		if (this.verticalAlign == mxConstants.ALIGN_TOP)
-		{
-			pt.y = state.y;
-		}
-		else if (this.verticalAlign == mxConstants.ALIGN_MIDDLE)
-		{
-			pt.y = state.y + state.height / 2;
-		}
-		else
-		{
-			pt.y = state.y + state.height;
-		}
+
+
+	constructor(image, tooltip, align, verticalAlign, offset, cursor) {
+		this.image = image;
+		this.tooltip = tooltip;
+		this.align = (align != null) ? align : this.align;
+		this.verticalAlign = (verticalAlign != null) ? verticalAlign : this.verticalAlign;
+		this.offset = (offset != null) ? offset : new mxPoint();
+		this.cursor = (cursor != null) ? cursor : 'help';
 	}
 
-	return new mxRectangle(Math.round(pt.x - (w * this.defaultOverlap - this.offset.x) * s),
-		Math.round(pt.y - (h * this.defaultOverlap - this.offset.y) * s), w * s, h * s);
+
+
+	/**
+	 * Function: getBounds
+	 * 
+	 * Returns the bounds of the overlay for the given <mxCellState> as an
+	 * <mxRectangle>. This should be overridden when using multiple overlays
+	 * per cell so that the overlays do not overlap.
+	 * 
+	 * The following example will place the overlay along an edge (where
+	 * x=[-1..1] from the start to the end of the edge and y is the
+	 * orthogonal offset in px).
+	 * 
+	 * (code)
+	 * overlay.getBounds = function(state)
+	 * {
+	 *   var bounds = getBounds.apply(this, arguments);
+	 *   
+	 *   if (state.view.graph.getModel().isEdge(state.cell))
+	 *   {
+	 *     var pt = state.view.getPoint(state, {x: 0, y: 0, relative: true});
+	 *     
+	 *     bounds.x = pt.x - bounds.width / 2;
+	 *     bounds.y = pt.y - bounds.height / 2;
+	 *   }
+	 *   
+	 *   return bounds;
+	 * };
+	 * (end)
+	 * 
+	 * Parameters:
+	 * 
+	 * state - <mxCellState> that represents the current state of the
+	 * associated cell.
+	 */
+	getBounds = function (state) {
+		var isEdge = state.view.graph.getModel().isEdge(state.cell);
+		var s = state.view.scale;
+		var pt = null;
+
+		var w = this.image.width;
+		var h = this.image.height;
+
+		if (isEdge) {
+			var pts = state.absolutePoints;
+
+			if (pts.length % 2 == 1) {
+				pt = pts[Math.floor(pts.length / 2)];
+			}
+			else {
+				var idx = pts.length / 2;
+				var p0 = pts[idx - 1];
+				var p1 = pts[idx];
+				pt = new mxPoint(p0.x + (p1.x - p0.x) / 2,
+					p0.y + (p1.y - p0.y) / 2);
+			}
+		}
+		else {
+			pt = new mxPoint();
+
+			if (this.align == mxConstants.ALIGN_LEFT) {
+				pt.x = state.x;
+			}
+			else if (this.align == mxConstants.ALIGN_CENTER) {
+				pt.x = state.x + state.width / 2;
+			}
+			else {
+				pt.x = state.x + state.width;
+			}
+
+			if (this.verticalAlign == mxConstants.ALIGN_TOP) {
+				pt.y = state.y;
+			}
+			else if (this.verticalAlign == mxConstants.ALIGN_MIDDLE) {
+				pt.y = state.y + state.height / 2;
+			}
+			else {
+				pt.y = state.y + state.height;
+			}
+		}
+
+		return new mxRectangle(Math.round(pt.x - (w * this.defaultOverlap - this.offset.x) * s),
+			Math.round(pt.y - (h * this.defaultOverlap - this.offset.y) * s), w * s, h * s);
+	};
+
+	/**
+	 * Function: toString
+	 * 
+	 * Returns the textual representation of the overlay to be used as the
+	 * tooltip. This implementation returns <tooltip>.
+	 */
+	toString = function () {
+		return this.tooltip;
+	};
 };
 
-/**
- * Function: toString
- * 
- * Returns the textual representation of the overlay to be used as the
- * tooltip. This implementation returns <tooltip>.
- */
-mxCellOverlay.prototype.toString = function()
-{
-	return this.tooltip;
-};
+
 console.log('graph/view/mxCellOverlay.js');

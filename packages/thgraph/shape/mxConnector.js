@@ -22,7 +22,6 @@
  */
 import { mxUtils } from '../util/mxUtils.js';
 import { mxPolyline } from './mxPolyline.js';
-import { mxShape } from './mxShape.js';
 import { mxConstants } from '../util/mxConstants.js';
 import { mxMarker } from './mxMarker.js';
 
@@ -55,8 +54,7 @@ export class mxConnector extends mxPolyline {
     // paint the markers after painting the line.
     var sourceMarker = this.createMarker(c, pts, true);
     var targetMarker = this.createMarker(c, pts, false);
-
-    mxPolyline.prototype.paintEdgeShape.apply(this, arguments);
+    super.paintEdgeShape(c, pts);
 
     // Disables shadows, dashed styles and fixes fill color for markers
     c.setFillColor(this.stroke);

@@ -30,7 +30,7 @@
  *
  * (code)
  * var undoManager = new mxUndoManager();
- * var listener = function(sender, evt)
+ * var listener (sender, evt)
  * {
  *   undoManager.undoableEditHappened(evt.getProperty('edit'));
  * };
@@ -72,161 +72,149 @@ import { mxEvent } from "./mxEvent.js";
 import { mxEventObject } from "./mxEventObject.js";
 import { mxEventSource } from "./mxEventSource.js";
 
-export function mxUndoManager(size)
-{
-	this.size = (size != null) ? size : 100;
-	this.clear();
-};
+export class mxUndoManager extends mxEventSource {
 
-/**
- * Extends mxEventSource.
- */
-mxUndoManager.prototype = new mxEventSource();
-mxUndoManager.prototype.constructor = mxUndoManager;
 
-/**
- * Variable: size
- * 
- * Maximum command history size. 0 means unlimited history. Default is
- * 100.
- */
-mxUndoManager.prototype.size = null;
+	/**
+	 * Variable: size
+	 * 
+	 * Maximum command history size. 0 means unlimited history. Default is
+	 * 100.
+	 */
+	size = null;
 
-/**
- * Variable: history
- * 
- * Array that contains the steps of the command history.
- */
-mxUndoManager.prototype.history = null;
+	/**
+	 * Variable: history
+	 * 
+	 * Array that contains the steps of the command history.
+	 */
+	history = null;
 
-/**
- * Variable: indexOfNextAdd
- * 
- * Index of the element to be added next.
- */
-mxUndoManager.prototype.indexOfNextAdd = 0;
+	/**
+	 * Variable: indexOfNextAdd
+	 * 
+	 * Index of the element to be added next.
+	 */
+	indexOfNextAdd = 0;
 
-/**
- * Function: isEmpty
- * 
- * Returns true if the history is empty.
- */
-mxUndoManager.prototype.isEmpty = function()
-{
-	return this.history.length == 0;
-};
 
-/**
- * Function: clear
- * 
- * Clears the command history.
- */
-mxUndoManager.prototype.clear = function()
-{
-	this.history = [];
-	this.indexOfNextAdd = 0;
-	this.fireEvent(new mxEventObject(mxEvent.CLEAR));
-};
 
-/**
- * Function: canUndo
- * 
- * Returns true if an undo is possible.
- */
-mxUndoManager.prototype.canUndo = function()
-{
-	return this.indexOfNextAdd > 0;
-};
-
-/**
- * Function: undo
- * 
- * Undoes the last change.
- */
-mxUndoManager.prototype.undo = function()
-{
-    while (this.indexOfNextAdd > 0)
-    {
-        var edit = this.history[--this.indexOfNextAdd];
-        edit.undo();
-
-		if (edit.isSignificant())
-        {
-        	this.fireEvent(new mxEventObject(mxEvent.UNDO, 'edit', edit));
-            break;
-        }
-    }
-};
-
-/**
- * Function: canRedo
- * 
- * Returns true if a redo is possible.
- */
-mxUndoManager.prototype.canRedo = function()
-{
-	return this.indexOfNextAdd < this.history.length;
-};
-
-/**
- * Function: redo
- * 
- * Redoes the last change.
- */
-mxUndoManager.prototype.redo = function()
-{
-    var n = this.history.length;
-    
-    while (this.indexOfNextAdd < n)
-    {
-        var edit =  this.history[this.indexOfNextAdd++];
-        edit.redo();
-        
-        if (edit.isSignificant())
-        {
-        	this.fireEvent(new mxEventObject(mxEvent.REDO, 'edit', edit));
-            break;
-        }
-    }
-};
-
-/**
- * Function: undoableEditHappened
- * 
- * Method to be called to add new undoable edits to the <history>.
- */
-mxUndoManager.prototype.undoableEditHappened = function(undoableEdit)
-{
-	this.trim();
-	
-	if (this.size > 0 &&
-		this.size == this.history.length)
-	{
-		this.history.shift();
+	constructor(size) {
+		super();
+		this.size = (size != null) ? size : 100;
+		this.clear();
 	}
-	
-	this.history.push(undoableEdit);
-	this.indexOfNextAdd = this.history.length;
-	this.fireEvent(new mxEventObject(mxEvent.ADD, 'edit', undoableEdit));
-};
 
-/**
- * Function: trim
- * 
- * Removes all pending steps after <indexOfNextAdd> from the history,
- * invoking die on each edit. This is called from <undoableEditHappened>.
- */
-mxUndoManager.prototype.trim = function()
-{
-	if (this.history.length > this.indexOfNextAdd)
-	{
-		var edits = this.history.splice(this.indexOfNextAdd,
-			this.history.length - this.indexOfNextAdd);
-			
-		for (var i = 0; i < edits.length; i++)
-		{
-			edits[i].die();
+
+
+	/**
+	 * Function: isEmpty
+	 * 
+	 * Returns true if the history is empty.
+	 */
+	isEmpty() {
+		return this.history.length == 0;
+	};
+
+	/**
+	 * Function: clear
+	 * 
+	 * Clears the command history.
+	 */
+	clear() {
+		this.history = [];
+		this.indexOfNextAdd = 0;
+		this.fireEvent(new mxEventObject(mxEvent.CLEAR));
+	};
+
+	/**
+	 * Function: canUndo
+	 * 
+	 * Returns true if an undo is possible.
+	 */
+	canUndo() {
+		return this.indexOfNextAdd > 0;
+	};
+
+	/**
+	 * Function: undo
+	 * 
+	 * Undoes the last change.
+	 */
+	undo() {
+		while (this.indexOfNextAdd > 0) {
+			var edit = this.history[--this.indexOfNextAdd];
+			edit.undo();
+
+			if (edit.isSignificant()) {
+				this.fireEvent(new mxEventObject(mxEvent.UNDO, 'edit', edit));
+				break;
+			}
 		}
-	}
+	};
+
+	/**
+	 * Function: canRedo
+	 * 
+	 * Returns true if a redo is possible.
+	 */
+	canRedo() {
+		return this.indexOfNextAdd < this.history.length;
+	};
+
+	/**
+	 * Function: redo
+	 * 
+	 * Redoes the last change.
+	 */
+	redo() {
+		var n = this.history.length;
+
+		while (this.indexOfNextAdd < n) {
+			var edit = this.history[this.indexOfNextAdd++];
+			edit.redo();
+
+			if (edit.isSignificant()) {
+				this.fireEvent(new mxEventObject(mxEvent.REDO, 'edit', edit));
+				break;
+			}
+		}
+	};
+
+	/**
+	 * Function: undoableEditHappened
+	 * 
+	 * Method to be called to add new undoable edits to the <history>.
+	 */
+	undoableEditHappened(undoableEdit) {
+		this.trim();
+
+		if (this.size > 0 &&
+			this.size == this.history.length) {
+			this.history.shift();
+		}
+
+		this.history.push(undoableEdit);
+		this.indexOfNextAdd = this.history.length;
+		this.fireEvent(new mxEventObject(mxEvent.ADD, 'edit', undoableEdit));
+	};
+
+	/**
+	 * Function: trim
+	 * 
+	 * Removes all pending steps after <indexOfNextAdd> from the history,
+	 * invoking die on each edit. This is called from <undoableEditHappened>.
+	 */
+	trim() {
+		if (this.history.length > this.indexOfNextAdd) {
+			var edits = this.history.splice(this.indexOfNextAdd,
+				this.history.length - this.indexOfNextAdd);
+
+			for (var i = 0; i < edits.length; i++) {
+				edits[i].die();
+			}
+		}
+	};
 };
+
 console.log('graph/util/mxUndoManager.js');

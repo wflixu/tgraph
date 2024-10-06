@@ -10,14 +10,15 @@
  *
  * Constructs a new hierarchical layout stage.
  */
-export function mxHierarchicalLayoutStage() { };
+export class mxHierarchicalLayoutStage {
+    /**
+    * Function: execute
+    * 
+    * Takes the graph detail and configuration information within the facade
+    * and creates the resulting laid out graph within that facade for further
+    * use.
+    */
+    execute(parent) { };
+};
 
-/**
- * Function: execute
- * 
- * Takes the graph detail and configuration information within the facade
- * and creates the resulting laid out graph within that facade for further
- * use.
- */
-mxHierarchicalLayoutStage.prototype.execute = function(parent) { };
 console.log('graph/layout/hierarchical/stage/mxHierarchicalLayoutStage.js');

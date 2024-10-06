@@ -12,7 +12,7 @@
  *   this.previous = name;
  * };
  *
- * CustomChange.prototype.execute = function()
+ * execute = function()
  * {
  *   var tmp = this.model.name;
  *   this.model.name = this.previous;

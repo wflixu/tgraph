@@ -7,7 +7,7 @@
  * Use the following override to only fill the inner ellipse in this shape:
  *
  * (code)
- * mxDoubleEllipse.prototype.paintVertexShape = function(c, x, y, w, h)
+ * mxDoubleEllipse.paintVertexShape = function(c, x, y, w, h)
  * {
  *   c.ellipse(x, y, w, h);
  *   c.stroke();

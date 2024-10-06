@@ -5,13 +5,7 @@
  * Base class for objects that dispatch named events. To create a subclass that
  * inherits from mxEventSource, the following code is used.
  *
- * (code)
- * function MyClass() { };
- *
- * MyClass.prototype = new mxEventSource();
- * MyClass.prototype.constructor = MyClass;
- * (end)
- *
+
  * Known Subclasses:
  *
  * <mxGraphModel>, <mxGraph>, <mxGraphView>, <mxEditor>, <mxCellOverlay>,

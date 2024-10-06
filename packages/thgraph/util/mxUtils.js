@@ -1,11 +1,11 @@
 import { mxClient } from './../mxClient.js';
-import { mxObjectIdentity } from './mxObjectIdentity.js';
 import { mxConstants } from './../util/mxConstants.js';
 import { mxPoint } from './../util/mxPoint.js';
 import { mxDictionary } from './mxDictionary.js';
 import { mxRectangle } from './mxRectangle.js';
 import { mxCellPath, mxEvent } from '../index.js';
 import { mxDragSource, mxXmlRequest } from '../index.js';
+import { FIELD_NAME } from "./mxConstants.js"
 
 export const mxUtils = {
   /**
@@ -124,7 +124,7 @@ export const mxUtils = {
   setPrefixedStyle: (function () {
     var prefix = null;
 
- 
+
 
     return function (style, name, value) {
       style[name] = value;
@@ -1545,7 +1545,7 @@ export const mxUtils = {
 
       for (var i in obj) {
         if (
-          i != mxObjectIdentity.FIELD_NAME &&
+          i != FIELD_NAME &&
           (transients == null || mxUtils.indexOf(transients, i) < 0)
         ) {
           if (!shallow && typeof obj[i] == 'object') {
@@ -1663,35 +1663,7 @@ export const mxUtils = {
     return typeof value == 'number' && isNaN(value);
   },
 
-  /**
-   * Function: extend
-   *
-   * Assigns a copy of the superclass prototype to the subclass prototype.
-   * Note that this does not call the constructor of the superclass at this
-   * point, the superclass constructor should be called explicitely in the
-   * subclass constructor. Below is an example.
-   *
-   * (code)
-   * MyGraph = function(container, model, renderHint, stylesheet)
-   * {
-   *   mxGraph.call(this, container, model, renderHint, stylesheet);
-   * }
-   *
-   * mxUtils.extend(MyGraph, mxGraph);
-   * (end)
-   *
-   * Parameters:
-   *
-   * ctor - Constructor of the subclass.
-   * superCtor - Constructor of the superclass.
-   */
-  extend: function (ctor, superCtor) {
-    var f = function () { };
-    f.prototype = superCtor.prototype;
 
-    ctor.prototype = new f();
-    ctor.prototype.constructor = ctor;
-  },
 
   /**
    * Function: toString

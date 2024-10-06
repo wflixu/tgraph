@@ -150,7 +150,7 @@ export class mxImageShape extends mxRectangleShape {
         c.stroke();
       }
     } else {
-      mxRectangleShape.prototype.paintBackground.apply(this, arguments);
+      super.paintBackground(c, x, y, w, h);
     }
   }
 

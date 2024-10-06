@@ -11,7 +11,7 @@ import { mxRectangle } from '../util/mxRectangle.js';
  * bottom to top to top to bottom, the following code can be used:
  *
  * (code)
- * mxText.prototype.verticalTextRotation = 90;
+ * mxText.verticalTextRotation = 90;
  * (end)
  *
  * Constructor: mxText
@@ -65,7 +65,7 @@ export class mxText extends mxShape {
    * Specifies the spacing to be added to the top spacing. Default is 0. Use the
    * value 5 here to get the same label positions as in mxGraph 1.x.
    */
-  baseSpacingTop = 0;
+  static baseSpacingTop = 0;
 
   /**
    * Variable: baseSpacingBottom
@@ -73,21 +73,21 @@ export class mxText extends mxShape {
    * Specifies the spacing to be added to the bottom spacing. Default is 0. Use the
    * value 1 here to get the same label positions as in mxGraph 1.x.
    */
-  baseSpacingBottom = 0;
+  static baseSpacingBottom = 0;
 
   /**
    * Variable: baseSpacingLeft
    *
    * Specifies the spacing to be added to the left spacing. Default is 0.
    */
-  baseSpacingLeft = 0;
+  static baseSpacingLeft = 0;
 
   /**
    * Variable: baseSpacingRight
    *
    * Specifies the spacing to be added to the right spacing. Default is 0.
    */
-  baseSpacingRight = 0;
+  static baseSpacingRight = 0;
 
   /**
    * Variable: replaceLinefeeds
@@ -1459,17 +1459,17 @@ export class mxText extends mxShape {
     if (this.align == mxConstants.ALIGN_CENTER) {
       dx = (this.spacingLeft - this.spacingRight) / 2;
     } else if (this.align == mxConstants.ALIGN_RIGHT) {
-      dx = -this.spacingRight - this.baseSpacingRight;
+      dx = -this.spacingRight - mxText.baseSpacingRight;
     } else {
-      dx = this.spacingLeft + this.baseSpacingLeft;
+      dx = this.spacingLeft + mxText.baseSpacingLeft;
     }
 
     if (this.valign == mxConstants.ALIGN_MIDDLE) {
       dy = (this.spacingTop - this.spacingBottom) / 2;
     } else if (this.valign == mxConstants.ALIGN_BOTTOM) {
-      dy = -this.spacingBottom - this.baseSpacingBottom;
+      dy = -this.spacingBottom - mxText.baseSpacingBottom;
     } else {
-      dy = this.spacingTop + this.baseSpacingTop;
+      dy = this.spacingTop + mxText.baseSpacingTop;
     }
 
     return new mxPoint(dx, dy);

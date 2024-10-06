@@ -30,7 +30,7 @@
  * function CustomShape() { }
  *
  * CustomShape.prototype = new mxShape();
- * CustomShape.prototype.constructor = CustomShape;
+ * CustomShape.constructor = CustomShape;
  * (end)
  *
  * To register a custom shape in an existing graph instance,

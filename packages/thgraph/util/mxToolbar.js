@@ -1,6 +1,3 @@
-import { mxEvent } from './mxEvent.js';
-import { mxEventSource } from './mxEventSource.js';
-import { mxUtils } from './mxUtils.js';
 
 /**
  * Class: mxToolbar
@@ -21,6 +18,11 @@ import { mxUtils } from './mxUtils.js';
  *
  * container - DOM node that contains the toolbar.
  */
+
+import { mxEvent } from './mxEvent.js';
+import { mxEventSource } from './mxEventSource.js';
+import { mxUtils } from './mxUtils.js';
+
 
 export class mxToolbar extends mxEventSource {
   /**
@@ -83,7 +85,7 @@ export class mxToolbar extends mxEventSource {
    * factoryMethod - Optional factory method for popup menu, eg.
    * function(menu, evt, cell) { menu.addItem('Hello, World!'); }
    */
-  addItem(title, icon , funct, pressedIcon, style, factoryMethod) {
+  addItem(title, icon, funct, pressedIcon, style, factoryMethod) {
     var img = document.createElement(icon != null ? 'img' : 'button');
     var initialClassName =
       style || (factoryMethod != null ? 'mxToolbarMode' : 'mxToolbarItem');
@@ -117,7 +119,7 @@ export class mxToolbar extends mxEventSource {
     // while it is being clicked with the mouse
     mxEvent.addGestureListeners(
       img,
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         if (pressedIcon != null) {
           img.setAttribute('src', pressedIcon);
         } else {
@@ -160,7 +162,7 @@ export class mxToolbar extends mxEventSource {
             }
           }
         }
-      }),
+      },
       null,
       mouseHandler,
     );

@@ -43,196 +43,201 @@
  * Constructs a new parallel edge layout for the specified graph.
  */
 import { mxGraphLayout } from './mxGraphLayout.js';
-import { mxUtils,mxObjectIdentity } from '../util/index.js';
-export function mxParallelEdgeLayout(graph) {
-  mxGraphLayout.call(this, graph);
-}
+import { mxUtils, mxObjectIdentity } from '../util/index.js';
 
-/**
- * Extends mxGraphLayout.
- */
-mxParallelEdgeLayout.prototype = new mxGraphLayout();
-mxParallelEdgeLayout.prototype.constructor = mxParallelEdgeLayout;
 
-/**
- * Variable: spacing
- *
- * Defines the spacing between the parallels. Default is 20.
- */
-mxParallelEdgeLayout.prototype.spacing = 20;
+export class mxParallelEdgeLayout extends mxGraphLayout {
 
-/**
- * Variable: checkOverlap
- *
- * Specifies if only overlapping edges should be considered
- * parallel. Default is false.
- */
-mxParallelEdgeLayout.prototype.checkOverlap = false;
 
-/**
- * Function: execute
- *
- * Implements <mxGraphLayout.execute>.
- */
-mxParallelEdgeLayout.prototype.execute = function (parent, cells) {
-  var lookup = this.findParallels(parent, cells);
+  /**
+   * Variable: spacing
+   *
+   * Defines the spacing between the parallels. Default is 20.
+   */
+  spacing = 20;
 
-  this.graph.model.beginUpdate();
-  try {
-    for (var i in lookup) {
-      var parallels = lookup[i];
+  /**
+   * Variable: checkOverlap
+   *
+   * Specifies if only overlapping edges should be considered
+   * parallel. Default is false.
+   */
+  checkOverlap = false;
 
-      if (parallels.length > 1) {
-        this.layout(parallels);
-      }
-    }
-  } finally {
-    this.graph.model.endUpdate();
+
+
+  constructor(graph) {
+    super(graph);
   }
-};
 
-/**
- * Function: findParallels
- *
- * Finds the parallel edges in the given parent.
- */
-mxParallelEdgeLayout.prototype.findParallels = function (parent, cells) {
-  var lookup = [];
 
-  var addCell = mxUtils.bind(this, function (cell) {
-    if (!this.isEdgeIgnored(cell)) {
-      var id = this.getEdgeId(cell);
+  /**
+   * Function: execute
+   *
+   * Implements <mxGraphLayout.execute>.
+   */
+  execute(parent, cells) {
+    var lookup = this.findParallels(parent, cells);
 
-      if (id != null) {
-        if (lookup[id] == null) {
-          lookup[id] = [];
+    this.graph.model.beginUpdate();
+    try {
+      for (var i in lookup) {
+        var parallels = lookup[i];
+
+        if (parallels.length > 1) {
+          this.layout(parallels);
         }
-
-        lookup[id].push(cell);
       }
+    } finally {
+      this.graph.model.endUpdate();
     }
-  });
+  };
 
-  if (cells != null) {
-    for (var i = 0; i < cells.length; i++) {
-      addCell(cells[i]);
-    }
-  } else {
-    var model = this.graph.getModel();
-    var childCount = model.getChildCount(parent);
+  /**
+   * Function: findParallels
+   *
+   * Finds the parallel edges in the given parent.
+   */
+  findParallels(parent, cells) {
+    var lookup = [];
 
-    for (var i = 0; i < childCount; i++) {
-      addCell(model.getChildAt(parent, i));
-    }
-  }
+    var addCell = mxUtils.bind(this, function (cell) {
+      if (!this.isEdgeIgnored(cell)) {
+        var id = this.getEdgeId(cell);
 
-  return lookup;
-};
-
-/**
- * Function: getEdgeId
- *
- * Returns a unique ID for the given edge. The id is independent of the
- * edge direction and is built using the visible terminal of the given
- * edge.
- */
-mxParallelEdgeLayout.prototype.getEdgeId = function (edge) {
-  var view = this.graph.getView();
-
-  // Cannot used cached visible terminal because this could be triggered in BEFORE_UNDO
-  var src = view.getVisibleTerminal(edge, true);
-  var trg = view.getVisibleTerminal(edge, false);
-  var pts = '';
-
-  if (src != null && trg != null) {
-    src = mxObjectIdentity.get(src);
-    trg = mxObjectIdentity.get(trg);
-
-    if (this.checkOverlap) {
-      var state = this.graph.view.getState(edge);
-
-      if (state != null && state.absolutePoints != null) {
-        var tmp = [];
-
-        for (var i = 0; i < state.absolutePoints.length; i++) {
-          var pt = state.absolutePoints[i];
-
-          if (pt != null) {
-            tmp.push(pt.x, pt.y);
+        if (id != null) {
+          if (lookup[id] == null) {
+            lookup[id] = [];
           }
-        }
 
-        pts = tmp.join(',');
+          lookup[id].push(cell);
+        }
+      }
+    });
+
+    if (cells != null) {
+      for (var i = 0; i < cells.length; i++) {
+        addCell(cells[i]);
+      }
+    } else {
+      var model = this.graph.getModel();
+      var childCount = model.getChildCount(parent);
+
+      for (var i = 0; i < childCount; i++) {
+        addCell(model.getChildAt(parent, i));
       }
     }
 
-    return (src > trg ? trg + '-' + src : src + '-' + trg) + pts;
-  }
+    return lookup;
+  };
 
-  return null;
-};
+  /**
+   * Function: getEdgeId
+   *
+   * Returns a unique ID for the given edge. The id is independent of the
+   * edge direction and is built using the visible terminal of the given
+   * edge.
+   */
+  getEdgeId(edge) {
+    var view = this.graph.getView();
 
-/**
- * Function: layout
- *
- * Lays out the parallel edges in the given array.
- */
-mxParallelEdgeLayout.prototype.layout = function (parallels) {
-  var edge = parallels[0];
-  var view = this.graph.getView();
-  var model = this.graph.getModel();
-  var src = model.getGeometry(view.getVisibleTerminal(edge, true));
-  var trg = model.getGeometry(view.getVisibleTerminal(edge, false));
+    // Cannot used cached visible terminal because this could be triggered in BEFORE_UNDO
+    var src = view.getVisibleTerminal(edge, true);
+    var trg = view.getVisibleTerminal(edge, false);
+    var pts = '';
 
-  // Routes multiple loops
-  if (src == trg) {
-    var x0 = src.x + src.width + this.spacing;
-    var y0 = src.y + src.height / 2;
+    if (src != null && trg != null) {
+      src = mxObjectIdentity.get(src);
+      trg = mxObjectIdentity.get(trg);
 
-    for (var i = 0; i < parallels.length; i++) {
-      this.route(parallels[i], x0, y0);
-      x0 += this.spacing;
+      if (this.checkOverlap) {
+        var state = this.graph.view.getState(edge);
+
+        if (state != null && state.absolutePoints != null) {
+          var tmp = [];
+
+          for (var i = 0; i < state.absolutePoints.length; i++) {
+            var pt = state.absolutePoints[i];
+
+            if (pt != null) {
+              tmp.push(pt.x, pt.y);
+            }
+          }
+
+          pts = tmp.join(',');
+        }
+      }
+
+      return (src > trg ? trg + '-' + src : src + '-' + trg) + pts;
     }
-  } else if (src != null && trg != null) {
-    // Routes parallel edges
-    var scx = src.x + src.width / 2;
-    var scy = src.y + src.height / 2;
 
-    var tcx = trg.x + trg.width / 2;
-    var tcy = trg.y + trg.height / 2;
+    return null;
+  };
 
-    var dx = tcx - scx;
-    var dy = tcy - scy;
+  /**
+   * Function: layout
+   *
+   * Lays out the parallel edges in the given array.
+   */
+  layout(parallels) {
+    var edge = parallels[0];
+    var view = this.graph.getView();
+    var model = this.graph.getModel();
+    var src = model.getGeometry(view.getVisibleTerminal(edge, true));
+    var trg = model.getGeometry(view.getVisibleTerminal(edge, false));
 
-    var len = Math.sqrt(dx * dx + dy * dy);
-
-    if (len > 0) {
-      var x0 = scx + dx / 2;
-      var y0 = scy + dy / 2;
-
-      var nx = (dy * this.spacing) / len;
-      var ny = (dx * this.spacing) / len;
-
-      x0 += (nx * (parallels.length - 1)) / 2;
-      y0 -= (ny * (parallels.length - 1)) / 2;
+    // Routes multiple loops
+    if (src == trg) {
+      var x0 = src.x + src.width + this.spacing;
+      var y0 = src.y + src.height / 2;
 
       for (var i = 0; i < parallels.length; i++) {
         this.route(parallels[i], x0, y0);
-        x0 -= nx;
-        y0 += ny;
+        x0 += this.spacing;
+      }
+    } else if (src != null && trg != null) {
+      // Routes parallel edges
+      var scx = src.x + src.width / 2;
+      var scy = src.y + src.height / 2;
+
+      var tcx = trg.x + trg.width / 2;
+      var tcy = trg.y + trg.height / 2;
+
+      var dx = tcx - scx;
+      var dy = tcy - scy;
+
+      var len = Math.sqrt(dx * dx + dy * dy);
+
+      if (len > 0) {
+        var x0 = scx + dx / 2;
+        var y0 = scy + dy / 2;
+
+        var nx = (dy * this.spacing) / len;
+        var ny = (dx * this.spacing) / len;
+
+        x0 += (nx * (parallels.length - 1)) / 2;
+        y0 -= (ny * (parallels.length - 1)) / 2;
+
+        for (var i = 0; i < parallels.length; i++) {
+          this.route(parallels[i], x0, y0);
+          x0 -= nx;
+          y0 += ny;
+        }
       }
     }
-  }
-};
+  };
 
-/**
- * Function: route
- *
- * Routes the given edge via the given point.
- */
-mxParallelEdgeLayout.prototype.route = function (edge, x, y) {
-  if (this.graph.isCellMovable(edge)) {
-    this.setEdgePoints(edge, [new mxPoint(x, y)]);
-  }
-};
+  /**
+   * Function: route
+   *
+   * Routes the given edge via the given point.
+   */
+  route(edge, x, y) {
+    if (this.graph.isCellMovable(edge)) {
+      this.setEdgePoints(edge, [new mxPoint(x, y)]);
+    }
+  };
+}
+
+
 console.log('graph/layout/mxParallelEdgeLayout.js');

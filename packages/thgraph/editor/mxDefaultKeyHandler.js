@@ -60,7 +60,7 @@ export class mxDefaultKeyHandler {
 	 */
 	handler = null;
 
-
+	
 	constructor(editor) {
 		if (editor != null) {
 			this.editor = editor;

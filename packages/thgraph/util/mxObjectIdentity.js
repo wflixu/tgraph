@@ -1,23 +1,8 @@
 import { mxUtils } from './mxUtils.js';
-
+import {FIELD_NAME} from "./mxConstants.js"
 
 export const mxObjectIdentity = {
-  /**
-   * Class: mxObjectIdentity
-   *
-   * Identity for JavaScript objects and functions. This is implemented using
-   * a simple incrementing counter which is stored in each object under
-   * <FIELD_NAME>.
-   *
-   * The identity for an object does not change during its lifecycle.
-   *
-   * Variable: FIELD_NAME
-   *
-   * Name of the field to be used to store the object ID. Default is
-   * <code>mxObjectId</code>.
-   */
-  FIELD_NAME: 'mxObjectId',
-
+  
   /**
    * Variable: counter
    *
@@ -33,18 +18,18 @@ export const mxObjectIdentity = {
    */
   get: function (obj) {
     if (obj != null) {
-      if (obj[mxObjectIdentity.FIELD_NAME] == null) {
+      if (obj[FIELD_NAME] == null) {
         if (typeof obj === 'object') {
           var ctor = mxUtils.getFunctionName(obj.constructor);
-          obj[mxObjectIdentity.FIELD_NAME] =
+          obj[FIELD_NAME] =
             ctor + '#' + mxObjectIdentity.counter++;
         } else if (typeof obj === 'function') {
-          obj[mxObjectIdentity.FIELD_NAME] =
+          obj[FIELD_NAME] =
             'Function#' + mxObjectIdentity.counter++;
         }
       }
 
-      return obj[mxObjectIdentity.FIELD_NAME];
+      return obj[FIELD_NAME];
     }
 
     return null;
@@ -57,7 +42,7 @@ export const mxObjectIdentity = {
    */
   clear: function (obj) {
     if (typeof obj === 'object' || typeof obj === 'function') {
-      delete obj[mxObjectIdentity.FIELD_NAME];
+      delete obj[FIELD_NAME];
     }
   },
 };

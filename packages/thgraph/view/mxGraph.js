@@ -1656,7 +1656,7 @@ export class mxGraph extends mxEventSource {
     this.view = this.createGraphView();
 
     // Adds a graph model listener to update the view
-    this.graphModelChangeListener =  (sender, evt) => {
+    this.graphModelChangeListener = (sender, evt) => {
       this.graphModelChanged(evt.getProperty('edit').changes);
     };
 
@@ -5546,13 +5546,13 @@ export class mxGraph extends mxEventSource {
             ) {
               dx +=
                 parseFloat(style[mxConstants.STYLE_IMAGE_WIDTH]) ||
-                mxLabel.prototype.imageSize;
+                mxLabel.imageSize;
             }
 
             if (style[mxConstants.STYLE_ALIGN] != mxConstants.ALIGN_CENTER) {
               dy +=
                 parseFloat(style[mxConstants.STYLE_IMAGE_HEIGHT]) ||
-                mxLabel.prototype.imageSize;
+                mxLabel.imageSize;
             }
           }
         }

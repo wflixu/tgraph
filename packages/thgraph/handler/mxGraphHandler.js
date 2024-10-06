@@ -54,7 +54,7 @@ export class mxGraphHandler {
    * cells in the graph is limited to a small number, eg.
    * 500.
    */
-  maxCells = 50;
+   static maxCells = 50;
 
   /**
    * Variable: enabled

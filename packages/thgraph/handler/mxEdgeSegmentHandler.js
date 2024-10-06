@@ -5,21 +5,17 @@ import { mxElbowEdgeHandler } from './mxElbowEdgeHandler.js';
 
 import { mxPoint, mxRectangle, mxConstants, mxUtils } from '../util/index.js';
 
-export function mxEdgeSegmentHandler(state) {
-  mxEdgeHandler.call(this, state);
-}
-
-/**
- * Extends mxEdgeHandler.
- */
-mxUtils.extend(mxEdgeSegmentHandler, mxElbowEdgeHandler);
-
+export class mxEdgeSegmentHandler extends mxEdgeHandler {
+  constructor(state) {
+    mxEdgeHandler.call(this, state);
+  }
+  
 /**
  * Function: getCurrentPoints
  *
  * Returns the current absolute points.
  */
-mxEdgeSegmentHandler.prototype.getCurrentPoints = function () {
+getCurrentPoints  () {
   var pts = this.state.absolutePoints;
 
   if (pts != null) {
@@ -50,13 +46,13 @@ mxEdgeSegmentHandler.prototype.getCurrentPoints = function () {
 };
 
 /**
- * Function: getPreviewPoints
- *
- * Updates the given preview state taking into account the state of the constraint handler.
- */
-mxEdgeSegmentHandler.prototype.getPreviewPoints = function (point) {
+* Function: getPreviewPoints
+*
+* Updates the given preview state taking into account the state of the constraint handler.
+*/
+getPreviewPoints  (point) {
   if (this.isSource || this.isTarget) {
-    return mxElbowEdgeHandler.prototype.getPreviewPoints.apply(this, arguments);
+    return super.getPreviewPoints(point);
   } else {
     var pts = this.getCurrentPoints();
     var last = this.convertPoint(pts[0].clone(), false);
@@ -108,17 +104,18 @@ mxEdgeSegmentHandler.prototype.getPreviewPoints = function (point) {
 };
 
 /**
- * Function: updatePreviewState
- *
- * Overridden to perform optimization of the edge style result.
- */
-mxEdgeSegmentHandler.prototype.updatePreviewState = function (
+* Function: updatePreviewState
+*
+* Overridden to perform optimization of the edge style result.
+*/
+updatePreviewState  (
   edge,
   point,
   terminalState,
   me,
 ) {
-  mxEdgeHandler.prototype.updatePreviewState.apply(this, arguments);
+  super.updatePreviewState(edge, point, terminalState, me);
+
 
   // Checks and corrects preview by running edge style again
   if (!this.isSource && !this.isTarget) {
@@ -210,9 +207,9 @@ mxEdgeSegmentHandler.prototype.updatePreviewState = function (
 };
 
 /**
- * Overriden to merge edge segments.
- */
-mxEdgeSegmentHandler.prototype.connect = function (
+* Overriden to merge edge segments.
+*/
+connect  (
   edge,
   terminal,
   isSource,
@@ -258,8 +255,7 @@ mxEdgeSegmentHandler.prototype.connect = function (
         model.setGeometry(edge, geo);
       }
     }
-
-    edge = mxEdgeHandler.prototype.connect.apply(this, arguments);
+    edge = super.connect(edge, terminal, isSource, isClone, me);
   } finally {
     model.endUpdate();
   }
@@ -268,21 +264,21 @@ mxEdgeSegmentHandler.prototype.connect = function (
 };
 
 /**
- * Function: getTooltipForNode
- *
- * Returns no tooltips.
- */
-mxEdgeSegmentHandler.prototype.getTooltipForNode = function (node) {
+* Function: getTooltipForNode
+*
+* Returns no tooltips.
+*/
+getTooltipForNode  (node) {
   return null;
 };
 
 /**
- * Function: start
- *
- * Starts the handling of the mouse gesture.
- */
-mxEdgeSegmentHandler.prototype.start = function (x, y, index) {
-  mxEdgeHandler.prototype.start.apply(this, arguments);
+* Function: start
+*
+* Starts the handling of the mouse gesture.
+*/
+start  (x, y, index) {
+  super.start(x, y, index);
 
   if (
     this.bends != null &&
@@ -295,11 +291,11 @@ mxEdgeSegmentHandler.prototype.start = function (x, y, index) {
 };
 
 /**
- * Function: createBends
- *
- * Adds custom bends for the center of each segment.
- */
-mxEdgeSegmentHandler.prototype.createBends = function () {
+* Function: createBends
+*
+* Adds custom bends for the center of each segment.
+*/
+createBends  () {
   var bends = [];
 
   // Source
@@ -341,21 +337,21 @@ mxEdgeSegmentHandler.prototype.createBends = function () {
 };
 
 /**
- * Function: redraw
- *
- * Overridden to invoke <refresh> before the redraw.
- */
-mxEdgeSegmentHandler.prototype.redraw = function () {
+* Function: redraw
+*
+* Overridden to invoke <refresh> before the redraw.
+*/
+redraw  () {
   this.refresh();
-  mxEdgeHandler.prototype.redraw.apply(this, arguments);
+  super.redraw();
 };
 
 /**
- * Function: redrawInnerBends
- *
- * Updates the position of the custom bends.
- */
-mxEdgeSegmentHandler.prototype.redrawInnerBends = function (p0, pe) {
+* Function: redrawInnerBends
+*
+* Updates the position of the custom bends.
+*/
+redrawInnerBends  (p0, pe) {
   if (this.graph.isCellBendable(this.state.cell)) {
     var pts = this.getCurrentPoints();
 
@@ -411,4 +407,7 @@ mxEdgeSegmentHandler.prototype.redrawInnerBends = function (p0, pe) {
     }
   }
 };
+}
+
+
 console.log('graph/handler/mxEdgeSegmentHandler.js');

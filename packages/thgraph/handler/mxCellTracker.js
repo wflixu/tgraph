@@ -71,67 +71,65 @@
  */
 
 import { mxCellMarker } from "./mxCellMarker.js";
-import { mxUtils } from "../util/mxUtils.js";
-export function mxCellTracker(graph, color, funct)
-{
-	mxCellMarker.call(this, graph, color);
 
-	this.graph.addMouseListener(this);
-	
-	if (funct != null)
-	{
-		this.getCell = funct;
-	}
-};
 
-/**
- * Extends mxCellMarker.
- */
-mxUtils.extend(mxCellTracker, mxCellMarker);
+export class mxCellTracker extends mxCellMarker {
+	constructor(graph, color, funct) {
+		super(graph, color);
+		this.graph.addMouseListener(this);
 
-/**
- * Function: mouseDown
- * 
- * Ignores the event. The event is not consumed.
- */
-mxCellTracker.prototype.mouseDown = function(sender, me) { };
+		if (funct != null) {
+			this.getCell = funct;
+		}
+	};
 
-/**
- * Function: mouseMove
- * 
- * Handles the event by highlighting the cell under the mousepointer if it
- * is over the hotspot region of the cell.
- */
-mxCellTracker.prototype.mouseMove = function(sender, me)
-{
-	if (this.isEnabled())
-	{
-		this.process(me);
-	}
-};
 
-/**
- * Function: mouseUp
- * 
- * Handles the event by reseting the highlight.
- */
-mxCellTracker.prototype.mouseUp = function(sender, me) { };
 
-/**
- * Function: destroy
- * 
- * Destroys the object and all its resources and DOM nodes. This doesn't
- * normally need to be called. It is called automatically when the window
- * unloads.
- */
-mxCellTracker.prototype.destroy = function()
-{
-	if (!this.destroyed)
-	{
-		this.destroyed = true;
 
-		this.graph.removeMouseListener(this);
-		mxCellMarker.prototype.destroy.apply(this);
-	}
-};
+	/**
+	 * Function: mouseDown
+	 * 
+	 * Ignores the event. The event is not consumed.
+	 */
+	mouseDown(sender, me) { };
+
+	/**
+	 * Function: mouseMove
+	 * 
+	 * Handles the event by highlighting the cell under the mousepointer if it
+	 * is over the hotspot region of the cell.
+	 */
+	mouseMove(sender, me) {
+		if (this.isEnabled()) {
+			this.process(me);
+		}
+	};
+
+	/**
+	 * Function: mouseUp
+	 * 
+	 * Handles the event by reseting the highlight.
+	 */
+	mouseUp(sender, me) { };
+
+	/**
+	 * Function: destroy
+	 * 
+	 * Destroys the object and all its resources and DOM nodes. This doesn't
+	 * normally need to be called. It is called automatically when the window
+	 * unloads.
+	 */
+	destroy() {
+		if (!this.destroyed) {
+			this.destroyed = true;
+
+			this.graph.removeMouseListener(this);
+			super.destroy();
+		}
+	};
+}
+
+
+
+
 console.log('graph/handler/mxCellTracker.js');

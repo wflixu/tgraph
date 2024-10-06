@@ -1,6 +1,4 @@
-import { mxAnimation } from './mxAnimation.js';
-import { mxCellStatePreview } from '../view/mxCellStatePreview.js';
-import { mxPoint } from './mxPoint.js';
+
 
 /**
  *
@@ -39,6 +37,10 @@ import { mxPoint } from './mxPoint.js';
  * ease - Optional easing constant for the animation. Default is 1.5.
  * delay - Optional delay between the animation steps. Passed to <mxAnimation>.
  */
+
+import { mxAnimation } from './mxAnimation.js';
+import { mxCellStatePreview } from '../view/mxCellStatePreview.js';
+import { mxPoint } from './mxPoint.js';
 
 export class mxMorphing extends mxAnimation {
   /**
@@ -92,7 +94,8 @@ export class mxMorphing extends mxAnimation {
    * Animation step.
    */
   updateAnimation() {
-    mxAnimation.prototype.updateAnimation.apply(this, arguments);
+    super.updateAnimation();
+    
     var move = new mxCellStatePreview(this.graph);
 
     if (this.cells != null) {
