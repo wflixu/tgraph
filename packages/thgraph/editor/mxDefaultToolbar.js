@@ -114,26 +114,26 @@ export class mxDefaultToolbar {
       // selected in the toolbar
       this.toolbar.addListener(
         mxEvent.SELECT,
-        mxUtils.bind(this, function (sender, evt) {
-          var funct = evt.getProperty('function');
+        (sender, evt) => {
+          let funct = evt.getProperty('function');
 
           if (funct != null) {
-            this.editor.insertFunction = mxUtils.bind(this, function () {
+            this.editor.insertFunction = () => {
               funct.apply(this, arguments);
               this.toolbar.resetMode();
-            });
+            };
           } else {
             this.editor.insertFunction = null;
           }
-        }),
+        },
       );
 
       // Resets the selected tool after a doubleclick or escape keystroke
-      this.resetHandler = mxUtils.bind(this, function () {
+      this.resetHandler = () => {
         if (this.toolbar != null) {
           this.toolbar.resetMode(true);
         }
-      });
+      };
 
       this.editor.graph.addListener(mxEvent.DOUBLE_CLICK, this.resetHandler);
       this.editor.addListener(mxEvent.ESCAPE, this.resetHandler);
@@ -154,11 +154,11 @@ export class mxDefaultToolbar {
    * pressed - Optional URL of the icon for the pressed state.
    */
   addItem(title, icon, action, pressed) {
-    var clickHandler = mxUtils.bind(this, function () {
+    var clickHandler = () => {
       if (action != null && action.length > 0) {
         this.editor.execute(action);
       }
-    });
+    };
 
     return this.toolbar.addItem(title, icon, clickHandler, pressed);
   };
@@ -217,9 +217,9 @@ export class mxDefaultToolbar {
    */
 
   addActionOption(combo, title, action) {
-    var clickHandler = mxUtils.bind(this, function () {
+    var clickHandler = () => {
       this.editor.execute(action);
-    });
+    };
 
     this.addOption(combo, title, clickHandler);
   };
@@ -264,13 +264,13 @@ export class mxDefaultToolbar {
     pressed,
     funct,
   ) {
-    var clickHandler = mxUtils.bind(this, function () {
+    var clickHandler = () => {
       this.editor.setMode(mode);
 
       if (funct != null) {
         funct(this.editor);
       }
-    });
+    };
 
     return this.toolbar.addSwitchMode(title, icon, clickHandler, pressed);
   };
@@ -306,7 +306,7 @@ export class mxDefaultToolbar {
   ) {
     // Creates a wrapper function that is in charge of constructing
     // the new cell instance to be inserted into the graph
-    var factory = mxUtils.bind(this, function () {
+    var factory = () => {
       if (typeof ptype == 'function') {
         return ptype();
       } else if (ptype != null) {
@@ -314,11 +314,11 @@ export class mxDefaultToolbar {
       }
 
       return null;
-    });
+    };
 
     // Defines the function for a click event on the graph
     // after this item has been selected in the toolbar
-    var clickHandler = mxUtils.bind(this, function (evt, cell) {
+    var clickHandler = (evt, cell) => {
       if (typeof insert == 'function') {
         insert(this.editor, factory(), evt, cell);
       } else {
@@ -327,7 +327,7 @@ export class mxDefaultToolbar {
 
       this.toolbar.resetMode();
       mxEvent.consume(evt);
-    });
+    };
 
     var img = this.toolbar.addMode(
       title,
@@ -497,7 +497,7 @@ export class mxDefaultToolbar {
     sprite.setAttribute('src', img.getAttribute('src'));
 
     // Handles delayed loading of the images
-    var loader = mxUtils.bind(this, function (evt) {
+    var loader = (evt) => {
       // Preview uses the image node with double size. Later this can be
       // changed to use a separate preview and guides, but for this the
       // dropHandler must use the additional x- and y-arguments and the
@@ -508,7 +508,7 @@ export class mxDefaultToolbar {
 
       mxDragSource.makeDraggable(img, this.editor.graph, dropHandler, sprite);
       mxEvent.removeListener(sprite, 'load', loader);
-    });
+    };
 
     mxEvent.addListener(sprite, 'load', loader);
   };

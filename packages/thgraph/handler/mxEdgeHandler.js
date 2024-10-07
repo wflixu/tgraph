@@ -40,9 +40,6 @@ import { mxEdgeStyle } from './../view/mxEdgeStyle.js';
 
 export class mxEdgeHandler {
 
-
-
-
   /**
    * Variable: graph
    *
@@ -598,7 +595,7 @@ export class mxEdgeHandler {
     };
 
     // Sets the highlight color according to validateConnection
-    marker.isValidState= (state) => {
+    marker.isValidState = (state) => {
       var model = self.graph.getModel();
       var other = self.graph.view.getTerminalPort(
         state,
@@ -653,18 +650,15 @@ export class mxEdgeHandler {
         var terminal = source || target;
 
         if (terminal || this.graph.isCellBendable(cell)) {
-          mxUtils.bind(this, function (index) {
+          const tempFn = (index) => {
             var bend = this.createHandleShape(index);
             this.initBend(
               bend,
-              mxUtils.bind(
-                this,
-                mxUtils.bind(this, function () {
-                  if (this.dblClickRemoveEnabled) {
-                    this.removePoint(this.state, index);
-                  }
-                }),
-              ),
+              () => {
+                if (this.dblClickRemoveEnabled) {
+                  this.removePoint(this.state, index);
+                }
+              },
             );
 
             if (this.isHandleEnabled(i)) {
@@ -681,7 +675,8 @@ export class mxEdgeHandler {
               this.points.push(new mxPoint(0, 0));
               bend.node.style.visibility = 'hidden';
             }
-          })(i);
+          }
+          tempFn(i);
         }
       }
     }
@@ -700,13 +695,15 @@ export class mxEdgeHandler {
     var last = this.abspoints[0];
     var bends = [];
 
+    const tempFn = (bend) => {
+      this.initBend(bend);
+      bend.setCursor(mxConstants.CURSOR_VIRTUAL_BEND_HANDLE);
+      bends.push(bend);
+    }
     if (this.graph.isCellBendable(cell)) {
       for (var i = 1; i < this.abspoints.length; i++) {
-        mxUtils.bind(this, function (bend) {
-          this.initBend(bend);
-          bend.setCursor(mxConstants.CURSOR_VIRTUAL_BEND_HANDLE);
-          bends.push(bend);
-        })(this.createHandleShape());
+        let hs = this.createHandleShape();
+        tempFn(hs);
       }
     }
 
@@ -1098,7 +1095,7 @@ export class mxEdgeHandler {
     var overrideY = false;
 
     if (tt > 0 && this.isSnapToTerminalsEvent(me)) {
-      function snapToPoint(pt) {
+      const snapToPoint = (pt) => {
         if (pt != null) {
           var x = pt.x;
 
@@ -1117,10 +1114,9 @@ export class mxEdgeHandler {
       }
 
       // Temporary function
-      function snapToTerminal(terminal) {
+      const snapToTerminal = (terminal) => {
         if (terminal != null) {
-          snapToPoint.call(
-            this,
+          snapToPoint(
             new mxPoint(
               view.getRoutingCenterX(terminal),
               view.getRoutingCenterY(terminal),
@@ -1129,12 +1125,12 @@ export class mxEdgeHandler {
         }
       }
 
-      snapToTerminal.call(this, this.state.getVisibleTerminalState(true));
-      snapToTerminal.call(this, this.state.getVisibleTerminalState(false));
+      snapToTerminal(this.state.getVisibleTerminalState(true));
+      snapToTerminal(this.state.getVisibleTerminalState(false));
 
       if (this.state.absolutePoints != null) {
         for (var i = 0; i < this.state.absolutePoints.length; i++) {
-          snapToPoint.call(this, this.state.absolutePoints[i]);
+          snapToPoint(this.state.absolutePoints[i]);
         }
       }
     }

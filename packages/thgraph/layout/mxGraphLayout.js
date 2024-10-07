@@ -21,7 +21,8 @@
  * graph - Enclosing 
  */
 
-import  { mxConstants} from  '../util/index.js'
+import { mxConstants, mxRectangle, mxPoint, mxDictionary } from '../util/index.js'
+import { mxGeometry } from '../model/index.js'
 
 export class mxGraphLayout {
 
@@ -529,7 +530,7 @@ export class WeightedCellSorter {
 	 * 
 	 * Compares two WeightedCellSorters.
 	 */
-	 static compare(a, b) {
+	static compare(a, b) {
 		if (a != null && b != null) {
 			if (b.weightedValue > a.weightedValue) {
 				return -1;

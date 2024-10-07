@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2016, JGraph Ltd
- * Copyright (c) 2006-2016, Gaudenz Alder
- */
+
 /**
  * Class: mxConnectionHandler
  *

@@ -2,6 +2,7 @@
  import { mxEditor } from '../editor/mxEditor.js';
  import {mxCodecRegistry} from './mxCodecRegistry.js'
  import { mxObjectCodec } from './mxObjectCodec.js';
+ import { mxWindow } from '../util/mxWindow.js';
 
  /**
 	 * Class: mxEditorCodec

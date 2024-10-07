@@ -94,21 +94,21 @@ export class mxLayoutManager extends mxEventSource {
   constructor(graph) {
     super();
     // Executes the layout before the changes are dispatched
-    this.undoHandler = mxUtils.bind(this, function (sender, evt) {
+    this.undoHandler = (sender, evt) => {
       if (this.isEnabled()) {
         this.beforeUndo(evt.getProperty('edit'));
       }
-    });
+    };
 
     // Notifies the layout of a move operation inside a parent
-    this.moveHandler = mxUtils.bind(this, function (sender, evt) {
+    this.moveHandler = (sender, evt) => {
       if (this.isEnabled()) {
         this.cellsMoved(evt.getProperty('cells'), evt.getProperty('event'));
       }
-    });
+    };
 
     // Notifies the layout of a move operation inside a parent
-    this.resizeHandler = mxUtils.bind(this, function (sender, evt) {
+    this.resizeHandler = (sender, evt) => {
       if (this.isEnabled()) {
         this.cellsResized(
           evt.getProperty('cells'),
@@ -116,7 +116,7 @@ export class mxLayoutManager extends mxEventSource {
           evt.getProperty('previous'),
         );
       }
-    });
+    };
 
     this.setGraph(graph);
   }

@@ -1,6 +1,4 @@
-/**
- * Copyright (c) 2006-2012, JGraph Ltd
- */
+
 /**
  * Construcs a new toolbar for the given editor.
  */

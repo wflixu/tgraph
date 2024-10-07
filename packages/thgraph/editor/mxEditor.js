@@ -1,5 +1,5 @@
 
-import { mxUtils, mxUndoManager,  mxResources, mxEvent, mxEventSource } from '../util/index.js';
+import { mxUtils, mxUndoManager, mxResources, mxEvent, mxEventSource, mxWindow } from '../util/index.js';
 import { mxLayoutManager, mxGraph, mxSwimlaneManager } from '../view/index.js';
 import { mxCodec } from '../io/mxCodec.js';
 
@@ -1847,28 +1847,28 @@ export class mxEditor extends mxEventSource {
       // when files are saved
       this.addListener(
         mxEvent.SAVE,
-        mxUtils.bind(this, function () {
+        () => {
           var tstamp = new Date().toLocaleString();
           this.setStatus(
             (mxResources.get(this.lastSavedResource) || this.lastSavedResource) +
             ': ' +
             tstamp,
           );
-        }),
+        },
       );
 
       // Updates the statusbar to display the filename
       // when new files are opened
       this.addListener(
         mxEvent.OPEN,
-        mxUtils.bind(this, function () {
+        () => {
           this.setStatus(
             (mxResources.get(this.currentFileResource) ||
               this.currentFileResource) +
             ': ' +
             this.filename,
           );
-        }),
+        },
       );
     }
   };

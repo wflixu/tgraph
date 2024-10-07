@@ -760,26 +760,7 @@ export class mxCellRenderer {
         },
       );
 
-      // Uses capture phase for event interception to stop bubble phase
-      if (clickHandler != null && mxClient.IS_IOS) {
-        node.addEventListener(
-          'touchend',
-          function (evt) {
-            if (first != null) {
-              var tol = graph.tolerance;
-
-              if (
-                Math.abs(first.x - mxEvent.getClientX(evt)) < tol &&
-                Math.abs(first.y - mxEvent.getClientY(evt)) < tol
-              ) {
-                clickHandler.call(clickHandler, evt);
-                mxEvent.consume(evt);
-              }
-            }
-          },
-          true,
-        );
-      }
+      
     }
 
     return node;

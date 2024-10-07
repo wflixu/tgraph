@@ -50,7 +50,7 @@ import {
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import { mxCellOverlay } from './mxCellOverlay.js';
 
-const warning = '/graph/assets/warning.png';
+import warning from '../assets/warning.png';
 import expandedGif from '../assets/expand.gif';
 import collapsedGif from '../assets/collapse.gif';
 /**
@@ -12653,7 +12653,7 @@ export class mxGraph extends mxEventSource {
       );
 
       if (
-       
+
         mxClient.IS_GC ||
         me.getEvent().target != this.container
       ) {

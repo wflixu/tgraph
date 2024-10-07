@@ -166,7 +166,7 @@ export class mxGuide {
 			var middle = b.getCenterY();
 
 			// Snaps the left, center and right to the given x-coordinate
-			function snapX(x, state, centerAlign) {
+			const snapX = (x, state, centerAlign) => {
 				var override = false;
 
 				if (centerAlign && Math.abs(x - center) < ttX) {
@@ -208,7 +208,7 @@ export class mxGuide {
 			};
 
 			// Snaps the top, middle or bottom to the given y-coordinate
-			function snapY(y, state, centerAlign) {
+			const snapY = (y, state, centerAlign) => {
 				var override = false;
 
 				if (centerAlign && Math.abs(y - middle) < ttY) {
@@ -255,25 +255,25 @@ export class mxGuide {
 				if (state != null && !this.isStateIgnored(state)) {
 					// Align x
 					if (this.horizontal) {
-						snapX.call(this, state.getCenterX(), state, true);
-						snapX.call(this, state.x, state, false);
-						snapX.call(this, state.x + state.width, state, false);
+						snapX(state.getCenterX(), state, true);
+						snapX(state.x, state, false);
+						snapX(state.x + state.width, state, false);
 
 						// Aligns left and right of shape to center of page
 						if (state.cell == null) {
-							snapX.call(this, state.getCenterX(), state, false);
+							snapX(state.getCenterX(), state, false);
 						}
 					}
 
 					// Align y
 					if (this.vertical) {
-						snapY.call(this, state.getCenterY(), state, true);
-						snapY.call(this, state.y, state, false);
-						snapY.call(this, state.y + state.height, state, false);
+						snapY(state.getCenterY(), state, true);
+						snapY(state.y, state, false);
+						snapY(state.y + state.height, state, false);
 
 						// Aligns left and right of shape to center of page
 						if (state.cell == null) {
-							snapY.call(this, state.getCenterY(), state, false);
+							snapY(state.getCenterY(), state, false);
 						}
 					}
 				}

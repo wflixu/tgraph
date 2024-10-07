@@ -1438,7 +1438,7 @@ export class mxSvgCanvas2D extends mxAbstractCanvas2D {
   /**
    * Updates existing DOM nodes for text rendering.
    */
-  createCss(
+  static createCss(
     w,
     h,
     align,

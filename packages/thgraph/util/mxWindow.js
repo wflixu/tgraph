@@ -7,14 +7,14 @@ import { mxRectangle } from './mxRectangle.js';
 import { mxUtils } from './mxUtils.js';
 import { mxEvent } from './mxEvent.js';
 import { mxConstants } from './mxConstants.js';
-import { mxEventObject} from './mxEventObject.js';
+import { mxEventObject } from './mxEventObject.js';
 
 
-const resizeGif = '/graph/assets/resize.gif';
-const maximizeGif = '/graph/assets/maximize.gif';
-const closeGif = '/graph/assets/close.gif';
-const minimizeGif = '/graph/assets/minimize.gif';
-const normalizeGif = '/graph/assets/normalize.gif';
+import resizeGif from '../assets/resize.gif';
+import maximizeGif from '../assets/maximize.gif';
+import closeGif from '../assets/close.gif';
+import minimizeGif from '../assets/minimize.gif';
+import normalizeGif from '../assets/normalize.gif';
 
 /**
  * Class: mxWindow

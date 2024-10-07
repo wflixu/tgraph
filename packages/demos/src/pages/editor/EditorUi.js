@@ -1,6 +1,4 @@
-/**
- * Copyright (c) 2006-2012, JGraph Ltd
- */
+
 
 import { mxEventSource,mxUtils,mxClient, } from 'thgraph';
 import { Editor } from './Editor.js';

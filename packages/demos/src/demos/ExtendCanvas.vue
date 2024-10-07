@@ -8,6 +8,7 @@ import {
   mxUtils,
   mxRectangle,
   mxRubberband,
+  mxPoint
 
 } from 'thgraph';
 
@@ -245,6 +246,6 @@ function main(container) {
 <style  lang="less">
 
 #graphContainer {
-  position:relative;overflow:auto;width:321px;height:241px;
+  position:relative;overflow:auto;
 }
 </style>

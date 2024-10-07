@@ -1,7 +1,4 @@
-/**
- * Copyright (c) 2006-2019, JGraph Ltd
- * Copyright (c) 2006-2017, draw.io AG
- */
+
 /**
  * Class: mxPrintPreview
  *
@@ -37,18 +34,18 @@
  *
  * preview.getCoverPages (w, h)
  * {
- *   return [this.renderPage(w, h, 0, 0, mxUtils.bind(this, function(div)
+ *   return [this.renderPage(w, h, 0, 0, (div) =>
  *   {
  *     div.innerHTML = '<div style="position:relative;margin:4px;">Cover Page</p>'
- *   }))];
+ *   })];
  * };
  *
  * preview.getAppendices (w, h)
  * {
- *   return [this.renderPage(w, h, 0, 0, mxUtils.bind(this, function(div)
+ *   return [this.renderPage(w, h, 0, 0,function(div)
  *   {
  *     div.innerHTML = '<div style="position:relative;margin:4px;">Appendix</p>'
- *   }))];
+ *   })];
  * };
  *
  * preview.open();
@@ -516,7 +513,7 @@ export class mxPrintPreview {
       );
       this.pageCount = hpages * vpages;
 
-      var writePageSelector = mxUtils.bind(this, function () {
+      var writePageSelector = () => {
         if (this.pageSelector && (vpages > 1 || hpages > 1)) {
           var table = this.createPageSelector(vpages, hpages);
           doc.body.appendChild(table);
@@ -536,9 +533,9 @@ export class mxPrintPreview {
             update();
           });
         }
-      });
+      };
 
-      var addPage = mxUtils.bind(this, function (div, addBreak) {
+      var addPage = (div, addBreak) => {
         // Border of the DIV (aka page) inside the document
         if (this.borderColor != null) {
           div.style.borderColor = this.borderColor;
@@ -560,7 +557,7 @@ export class mxPrintPreview {
         if (forcePageBreaks || addBreak) {
           this.addPageBreak(doc);
         }
-      });
+      };
 
       var cov = this.getCoverPages(this.pageFormat.width, this.pageFormat.height);
 
@@ -596,13 +593,13 @@ export class mxPrintPreview {
             this.pageFormat.height,
             0,
             0,
-            mxUtils.bind(this, function (div) {
+            (div) => {
               this.addGraphFragment(-dx, -dy, this.scale, pageNum, div, clip);
 
               if (this.printBackgroundImage) {
                 this.insertBackgroundImage(div, -dx, -dy);
               }
-            }),
+            },
             pageNum,
           );
 
@@ -836,7 +833,7 @@ export class mxPrintPreview {
         div.style.overflow = 'hidden';
         div.style.pageBreakInside = 'avoid';
 
-      
+
         var innerDiv = document.createElement('div');
         innerDiv.style.width = w - 2 * this.border + 'px';
         innerDiv.style.height = h - 2 * this.border + 'px';
@@ -1017,9 +1014,9 @@ export class mxPrintPreview {
         scale,
         cells,
         null,
-        mxUtils.bind(this, function (state) {
+        (state) => {
           return this.getLinkForCellState(state);
-        }),
+        },
       );
     } finally {
       // Removes overlay pane with selection handles
