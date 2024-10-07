@@ -45,15 +45,15 @@ export class mxImageExport {
 	 */
 	drawState(state, canvas) {
 		if (state != null) {
-			this.visitStatesRecursive(state, canvas, mxUtils.bind(this, function () {
+			this.visitStatesRecursive(state, canvas, () => {
 				this.drawCellState.apply(this, arguments);
-			}));
+			});
 
 			// Paints the overlays
 			if (this.includeOverlays) {
-				this.visitStatesRecursive(state, canvas, mxUtils.bind(this, function () {
+				this.visitStatesRecursive(state, canvas, () => {
 					this.drawOverlays.apply(this, arguments);
-				}));
+				});
 			}
 		}
 	};

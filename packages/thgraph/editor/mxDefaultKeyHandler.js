@@ -97,9 +97,9 @@ export class mxDefaultKeyHandler {
 	 * Default is false.
 	 */
 	bindAction(code, action, control) {
-		var keyHandler = mxUtils.bind(this, function () {
+		var keyHandler =  () =>{
 			this.editor.execute(action);
-		});
+		};
 
 		// Binds the function to control-down keycode
 		if (control) {

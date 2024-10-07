@@ -50,7 +50,7 @@ import {
 import { mxRectangleShape } from '../shape/mxRectangleShape.js';
 import { mxCellOverlay } from './mxCellOverlay.js';
 
-const warning = '/graph/assets/warning.png';
+import warning from '../assets/warning.png';
 import expandedGif from '../assets/expand.gif';
 import collapsedGif from '../assets/collapse.gif';
 /**
@@ -1898,7 +1898,7 @@ export class mxGraph extends mxEventSource {
     var dict = new mxDictionary();
     var cells = [];
 
-    var addCell = mxUtils.bind(this, function (cell) {
+    var addCell = (cell) => {
       if (!dict.get(cell) && this.model.contains(cell)) {
         if (this.model.isEdge(cell) || this.model.isVertex(cell)) {
           dict.put(cell, true);
@@ -1911,7 +1911,7 @@ export class mxGraph extends mxEventSource {
           }
         }
       }
-    });
+    };
 
     for (var i = 0; i < changes.length; i++) {
       var change = changes[i];
@@ -2305,11 +2305,11 @@ export class mxGraph extends mxEventSource {
       if (isSelect) {
         overlay.addListener(
           mxEvent.CLICK,
-          mxUtils.bind(this, function (sender, evt) {
+          (sender, evt) => {
             if (this.isEnabled()) {
               this.setSelectionCell(cell);
             }
-          }),
+          },
         );
       }
 
@@ -2565,7 +2565,7 @@ export class mxGraph extends mxEventSource {
             null,
             null,
             null,
-            mxUtils.bind(this, function (state) {
+            (state) => {
               var selected = this.isCellSelected(state.cell);
               active = active || selected;
 
@@ -2574,7 +2574,7 @@ export class mxGraph extends mxEventSource {
                 selected ||
                 (state.cell != cell && this.model.isAncestor(state.cell, cell))
               );
-            }),
+            }
           );
 
           if (tmp != null) {
@@ -3225,7 +3225,7 @@ export class mxGraph extends mxEventSource {
       this.verticalPageBreaks = [];
     }
 
-    var drawPageBreaks = mxUtils.bind(this, function (breaks) {
+    var drawPageBreaks = (breaks) => {
       if (breaks != null) {
         var count =
           breaks == this.horizontalPageBreaks ? horizontalCount : verticalCount;
@@ -3275,7 +3275,7 @@ export class mxGraph extends mxEventSource {
 
         breaks.splice(count, breaks.length - count);
       }
-    });
+    };
 
     drawPageBreaks(this.horizontalPageBreaks);
     drawPageBreaks(this.verticalPageBreaks);
@@ -4862,7 +4862,7 @@ export class mxGraph extends mxEventSource {
           // Disconnects edges which are not being removed
           var edges = this.getAllEdges([cells[i]]);
 
-          var disconnectTerminal = mxUtils.bind(this, function (edge, source) {
+          var disconnectTerminal = (edge, source) => {
             var geo = this.model.getGeometry(edge);
 
             if (geo != null) {
@@ -4918,7 +4918,7 @@ export class mxGraph extends mxEventSource {
                 this.model.setTerminal(edge, null, source);
               }
             }
-          });
+          };
 
           for (var j = 0; j < edges.length; j++) {
             if (!dict.get(edges[j])) {
@@ -6021,7 +6021,7 @@ export class mxGraph extends mxEventSource {
           dict.put(cells[i], true);
         }
 
-        var isSelected = mxUtils.bind(this, function (cell) {
+        var isSelected = (cell) => {
           while (cell != null) {
             if (dict.get(cell)) {
               return true;
@@ -6031,7 +6031,7 @@ export class mxGraph extends mxEventSource {
           }
 
           return false;
-        });
+        };
 
         // Removes relative edge labels with selected terminals
         var checked = [];
@@ -9514,9 +9514,9 @@ export class mxGraph extends mxEventSource {
   getCloneableCells(cells) {
     return this.model.filterCells(
       cells,
-      mxUtils.bind(this, function (cell) {
+      (cell) => {
         return this.isCellCloneable(cell);
-      }),
+      },
     );
   }
 
@@ -9570,9 +9570,9 @@ export class mxGraph extends mxEventSource {
   getExportableCells(cells) {
     return this.model.filterCells(
       cells,
-      mxUtils.bind(this, function (cell) {
+      (cell) => {
         return this.canExportCell(cell);
-      }),
+      },
     );
   }
 
@@ -9598,9 +9598,9 @@ export class mxGraph extends mxEventSource {
   getImportableCells(cells) {
     return this.model.filterCells(
       cells,
-      mxUtils.bind(this, function (cell) {
+      (cell) => {
         return this.canImportCell(cell);
-      }),
+      },
     );
   }
 
@@ -9675,9 +9675,9 @@ export class mxGraph extends mxEventSource {
   getDeletableCells(cells) {
     return this.model.filterCells(
       cells,
-      mxUtils.bind(this, function (cell) {
+      (cell) => {
         return this.isCellDeletable(cell);
-      }),
+      },
     );
   }
 
@@ -9763,9 +9763,9 @@ export class mxGraph extends mxEventSource {
   getMovableCells(cells) {
     return this.model.filterCells(
       cells,
-      mxUtils.bind(this, function (cell) {
+      (cell) => {
         return this.isCellMovable(cell);
-      }),
+      },
     );
   }
 
@@ -10741,9 +10741,9 @@ export class mxGraph extends mxEventSource {
   getFoldableCells(cells, collapse) {
     return this.model.filterCells(
       cells,
-      mxUtils.bind(this, function (cell) {
+      (cell) => {
         return this.isCellFoldable(cell, collapse);
-      }),
+      },
     );
   }
 
@@ -12053,9 +12053,9 @@ export class mxGraph extends mxEventSource {
 
     var cells = descendants
       ? this.model.filterDescendants(
-        mxUtils.bind(this, function (cell) {
+        (cell) => {
           return cell != parent && this.view.getState(cell) != null;
-        }),
+        },
         parent,
       )
       : this.model.getChildren(parent);
@@ -12103,7 +12103,7 @@ export class mxGraph extends mxEventSource {
   selectCells(vertices, edges, parent, selectGroups) {
     parent = parent || this.getDefaultParent();
 
-    var filter = mxUtils.bind(this, function (cell) {
+    var filter = (cell) => {
       return (
         this.view.getState(cell) != null &&
         (((selectGroups || this.model.getChildCount(cell) == 0) &&
@@ -12112,7 +12112,7 @@ export class mxGraph extends mxEventSource {
           !this.model.isEdge(this.model.getParent(cell))) ||
           (this.model.isEdge(cell) && edges))
       );
-    });
+    };
 
     var cells = this.model.filterDescendants(filter, parent);
 
@@ -12653,7 +12653,7 @@ export class mxGraph extends mxEventSource {
       );
 
       if (
-       
+
         mxClient.IS_GC ||
         me.getEvent().target != this.container
       ) {
@@ -12723,7 +12723,7 @@ export class mxGraph extends mxEventSource {
         this.initialTouchX = me.getGraphX();
         this.initialTouchY = me.getGraphY();
 
-        var handler = function () {
+        var handler = () => {
           if (this.tapAndHoldValid) {
             this.tapAndHold(me);
           }
@@ -12737,7 +12737,9 @@ export class mxGraph extends mxEventSource {
         }
 
         this.tapAndHoldThread = window?.setTimeout(
-          mxUtils.bind(this, handler),
+          () => {
+            handler();
+          },
           this.tapAndHoldDelay,
         );
         this.tapAndHoldValid = true;

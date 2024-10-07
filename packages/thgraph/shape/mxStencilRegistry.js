@@ -1,7 +1,5 @@
 /**
- * Copyright (c) 2006-2015, JGraph Ltd
- * Copyright (c) 2006-2015, Gaudenz Alder
- * 
+
  * Code to add stencils.
  * 
  * (code)

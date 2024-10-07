@@ -269,14 +269,14 @@ export class mxStackLayout extends mxGraphLayout {
         }
 
         if (this.allowGaps) {
-            cells.sort(mxUtils.bind(this, function (c1, c2) {
+            cells.sort((c1, c2) => {
                 var geo1 = this.graph.getCellGeometry(c1);
                 var geo2 = this.graph.getCellGeometry(c2);
 
                 return (this.horizontal) ?
                     ((geo1.x == geo2.x) ? 0 : ((geo1.x > geo2.x > 0) ? 1 : -1)) :
                     ((geo1.y == geo2.y) ? 0 : ((geo1.y > geo2.y > 0) ? 1 : -1));
-            }));
+            });
         }
 
         return cells;

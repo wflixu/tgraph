@@ -332,7 +332,7 @@ export class mxCellRenderer {
       } else if (value == 'swimlane') {
         shape[field] =
           key == mxConstants.STYLE_STROKECOLOR ||
-          key == mxConstants.STYLE_FONTCOLOR
+            key == mxConstants.STYLE_FONTCOLOR
             ? '#000000'
             : '#ffffff';
 
@@ -478,7 +478,7 @@ export class mxCellRenderer {
       // TODO: Add handling for special touch device gestures
       mxEvent.addGestureListeners(
         state.text.node,
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           if (this.isLabelEvent(state, evt)) {
             graph.fireMouseEvent(
               mxEvent.MOUSE_DOWN,
@@ -488,16 +488,16 @@ export class mxCellRenderer {
               graph.dialect != mxConstants.DIALECT_SVG &&
               mxEvent.getSource(evt).nodeName == 'IMG';
           }
-        }),
-        mxUtils.bind(this, function (evt) {
+        },
+        (evt) => {
           if (this.isLabelEvent(state, evt)) {
             graph.fireMouseEvent(
               mxEvent.MOUSE_MOVE,
               new mxMouseEvent(evt, getState(evt)),
             );
           }
-        }),
-        mxUtils.bind(this, function (evt) {
+        },
+        (evt) => {
           if (this.isLabelEvent(state, evt)) {
             graph.fireMouseEvent(
               mxEvent.MOUSE_UP,
@@ -505,7 +505,7 @@ export class mxCellRenderer {
             );
             forceGetCell = false;
           }
-        }),
+        },
       );
 
       // Uses double click timeout in mxGraph for quirks mode
@@ -513,12 +513,12 @@ export class mxCellRenderer {
         mxEvent.addListener(
           state.text.node,
           'dblclick',
-          mxUtils.bind(this, function (evt) {
+          (evt) => {
             if (this.isLabelEvent(state, evt)) {
               graph.dblClick(evt, state.cell);
               mxEvent.consume(evt);
             }
-          }),
+          },
         );
       }
     }
@@ -684,13 +684,13 @@ export class mxCellRenderer {
   createControlClickHandler(state) {
     var graph = state.view.graph;
 
-    return mxUtils.bind(this, function (evt) {
+    return (evt) => {
       if (this.forceControlClickHandler || graph.isEnabled()) {
         var collapse = !graph.isCellCollapsed(state.cell);
         graph.foldCells(collapse, false, [state.cell], null, evt);
         mxEvent.consume(evt);
       }
-    });
+    };
   }
 
   /**
@@ -760,26 +760,7 @@ export class mxCellRenderer {
         },
       );
 
-      // Uses capture phase for event interception to stop bubble phase
-      if (clickHandler != null && mxClient.IS_IOS) {
-        node.addEventListener(
-          'touchend',
-          function (evt) {
-            if (first != null) {
-              var tol = graph.tolerance;
 
-              if (
-                Math.abs(first.x - mxEvent.getClientX(evt)) < tol &&
-                Math.abs(first.y - mxEvent.getClientY(evt)) < tol
-              ) {
-                clickHandler.call(clickHandler, evt);
-                mxEvent.consume(evt);
-              }
-            }
-          },
-          true,
-        );
-      }
     }
 
     return node;
@@ -851,30 +832,30 @@ export class mxCellRenderer {
 
     mxEvent.addGestureListeners(
       state.shape.node,
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         if (this.isShapeEvent(state, evt)) {
           graph.fireMouseEvent(
             mxEvent.MOUSE_DOWN,
             new mxMouseEvent(evt, state),
           );
         }
-      }),
-      mxUtils.bind(this, function (evt) {
+      },
+      (evt) => {
         if (this.isShapeEvent(state, evt)) {
           graph.fireMouseEvent(
             mxEvent.MOUSE_MOVE,
             new mxMouseEvent(evt, getState(evt)),
           );
         }
-      }),
-      mxUtils.bind(this, function (evt) {
+      },
+      (evt) => {
         if (this.isShapeEvent(state, evt)) {
           graph.fireMouseEvent(
             mxEvent.MOUSE_UP,
             new mxMouseEvent(evt, getState(evt)),
           );
         }
-      }),
+      }
     );
 
     // Uses double click timeout in mxGraph for quirks mode
@@ -882,12 +863,12 @@ export class mxCellRenderer {
       mxEvent.addListener(
         state.shape.node,
         'dblclick',
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           if (this.isShapeEvent(state, evt)) {
             graph.dblClick(evt, state.cell);
             mxEvent.consume(evt);
           }
-        }),
+        }
       );
     }
   }
@@ -1210,16 +1191,16 @@ export class mxCellRenderer {
       bounds.width = Math.max(
         0,
         bounds.width -
-          (hpos == mxConstants.ALIGN_CENTER && lw == null
-            ? state.text.spacingLeft * s + state.text.spacingRight * s
-            : 0),
+        (hpos == mxConstants.ALIGN_CENTER && lw == null
+          ? state.text.spacingLeft * s + state.text.spacingRight * s
+          : 0),
       );
       bounds.height = Math.max(
         0,
         bounds.height -
-          (vpos == mxConstants.ALIGN_MIDDLE
-            ? state.text.spacingTop * s + state.text.spacingBottom * s
-            : 0),
+        (vpos == mxConstants.ALIGN_MIDDLE
+          ? state.text.spacingTop * s + state.text.spacingBottom * s
+          : 0),
       );
     }
 
@@ -1389,17 +1370,17 @@ export class mxCellRenderer {
 
       return state.view.graph.getModel().isEdge(state.cell)
         ? new mxRectangle(
-            Math.round(cx - (w / 2) * s),
-            Math.round(cy - (h / 2) * s),
-            Math.round(w * s),
-            Math.round(h * s),
-          )
+          Math.round(cx - (w / 2) * s),
+          Math.round(cy - (h / 2) * s),
+          Math.round(w * s),
+          Math.round(h * s),
+        )
         : new mxRectangle(
-            Math.round(cx - (w / 2) * s),
-            Math.round(cy - (h / 2) * s),
-            Math.round(w * s),
-            Math.round(h * s),
-          );
+          Math.round(cx - (w / 2) * s),
+          Math.round(cy - (h / 2) * s),
+          Math.round(w * s),
+          Math.round(h * s),
+        );
     }
 
     return null;
@@ -1538,7 +1519,7 @@ export class mxCellRenderer {
       state.shape.style != null &&
       state.style != null &&
       state.shape.style[mxConstants.STYLE_SHAPE] !=
-        state.style[mxConstants.STYLE_SHAPE]
+      state.style[mxConstants.STYLE_SHAPE]
     ) {
       state.shape.destroy();
       state.shape = null;
@@ -1581,7 +1562,7 @@ export class mxCellRenderer {
     if (
       state.shape != null &&
       state.shape.indicatorShape !=
-        this.getShape(state.view.graph.getIndicatorShape(state))
+      this.getShape(state.view.graph.getIndicatorShape(state))
     ) {
       if (state.shape.indicator != null) {
         state.shape.indicator.destroy();

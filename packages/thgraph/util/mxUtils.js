@@ -1,5 +1,4 @@
 import { mxClient } from './../mxClient.js';
-import { mxConstants } from './../util/mxConstants.js';
 import { mxPoint } from './../util/mxPoint.js';
 import { mxDictionary } from './mxDictionary.js';
 import { mxRectangle } from './mxRectangle.js';
@@ -8,7 +7,10 @@ import { mxCellPath } from "../model/mxCellPath.js";
 import { mxXmlRequest } from './mxXmlRequest.js'
 import { addListener } from './eventUtil.js'
 
-import { FIELD_NAME } from "./mxConstants.js"
+
+import { FIELD_NAME, mxConstants } from "./mxConstants.js"
+
+import errorGif from './../assets/error.gif'
 
 export const mxUtils = {
   /**
@@ -49,7 +51,7 @@ export const mxUtils = {
    *
    * Defines the image used for error dialogs.
    */
-  errorImage: mxClient.imageBasePath + '/error.gif',
+  errorImage: errorGif,
 
   /**
    * Function: removeCursors
@@ -3728,50 +3730,7 @@ export const mxUtils = {
    * used instead of a new browser window?. Default is false.
    */
   popup: function (content, isInternalWindow) {
-    if (isInternalWindow) {
-      var div = document.createElement('div');
-
-      div.style.overflow = 'scroll';
-      div.style.width = '636px';
-      div.style.height = '460px';
-
-      var pre = document.createElement('pre');
-      pre.innerHTML = mxUtils
-        .htmlEntities(content, false)
-        .replace(/\n/g, '<br>')
-        .replace(/ /g, '&nbsp;');
-
-      div.appendChild(pre);
-
-      var w = document.body.clientWidth;
-      var h = Math.max(
-        document.body.clientHeight || 0,
-        document.documentElement.clientHeight,
-      );
-      var wnd = new mxWindow(
-        'Popup Window',
-        div,
-        w / 2 - 320,
-        h / 2 - 240,
-        640,
-        480,
-        false,
-        true,
-      );
-
-      wnd.setClosable(true);
-      wnd.setVisible(true);
-    } else {
-
-      var wnd = window?.open();
-      var pre = wnd.document.createElement('pre');
-      pre.innerHTML = mxUtils
-        .htmlEntities(content, false)
-        .replace(/\n/g, '<br>')
-        .replace(/ /g, '&nbsp;');
-      wnd.document.body.appendChild(pre);
-
-    }
+    console.warn("popup not implemented, message is:", content)
   },
 
   /**
@@ -3834,65 +3793,11 @@ export const mxUtils = {
    * icon - Optional icon for the window decoration.
    */
   error: function (message, width, close, icon) {
-    var div = document.createElement('div');
-    div.style.padding = '20px';
-
-    var img = document.createElement('img');
-    img.setAttribute('src', icon || mxUtils.errorImage);
-    img.setAttribute('valign', 'bottom');
-    img.style.verticalAlign = 'middle';
-    div.appendChild(img);
-
-    div.appendChild(document.createTextNode('\u00a0')); // &nbsp;
-    div.appendChild(document.createTextNode('\u00a0')); // &nbsp;
-    div.appendChild(document.createTextNode('\u00a0')); // &nbsp;
-    mxUtils.write(div, message);
-
-    var w = document.body.clientWidth;
-    var h = document.body.clientHeight || document.documentElement.clientHeight;
-    var warn = new mxWindow(
-      mxResources.get(mxUtils.errorResource) || mxUtils.errorResource,
-      div,
-      (w - width) / 2,
-      h / 4,
-      width,
-      null,
-      false,
-      true,
-    );
-
-    if (close) {
-      mxUtils.br(div);
-
-      var tmp = document.createElement('p');
-      var button = document.createElement('button');
-
-      button.setAttribute('style', 'float:right');
-
-      addListener(button, 'click', function (evt) {
-        warn.destroy();
-      });
-
-      mxUtils.write(
-        button,
-        mxResources.get(mxUtils.closeResource) || mxUtils.closeResource,
-      );
-
-      tmp.appendChild(button);
-      div.appendChild(tmp);
-
-      mxUtils.br(div);
-
-      warn.setClosable(true);
-    }
-
-    warn.setVisible(true);
-
-    return warn;
+    console.warn("error not implemented, message is:", message, width. close, icon)
   },
 
 
-  
+
 };
 
 

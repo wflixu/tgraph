@@ -54,7 +54,7 @@ export class mxGraphHandler {
    * cells in the graph is limited to a small number, eg.
    * 500.
    */
-   static maxCells = 50;
+  static maxCells = 50;
 
   /**
    * Variable: enabled
@@ -234,24 +234,24 @@ export class mxGraphHandler {
     this.graph.addMouseListener(this);
 
     // Repaints the handler after autoscroll
-    this.panHandler = mxUtils.bind(this, function () {
+    this.panHandler = () => {
       if (!this.suspended) {
         this.updatePreview();
         this.updateHint();
       }
-    });
+    };
 
     this.graph.addListener(mxEvent.PAN, this.panHandler);
 
     // Handles escape keystrokes
-    this.escapeHandler = mxUtils.bind(this, function (sender, evt) {
+    this.escapeHandler = (sender, evt) => {
       this.reset();
-    });
+    };
 
     this.graph.addListener(mxEvent.ESCAPE, this.escapeHandler);
 
     // Updates the preview box for remote changes
-    this.refreshHandler = mxUtils.bind(this, function (sender, evt) {
+    this.refreshHandler = (sender, evt) => {
       // Merges multiple pending calls
       if (this.refreshThread) {
         window?.clearTimeout(this.refreshThread);
@@ -259,7 +259,7 @@ export class mxGraphHandler {
 
       // Waits for the states and handlers to be updated
       this.refreshThread = window?.setTimeout(
-        mxUtils.bind(this, function () {
+        () => {
           this.refreshThread = null;
 
           if (this.first != null && !this.suspended) {
@@ -292,15 +292,15 @@ export class mxGraphHandler {
               }
             }
           }
-        }),
+        },
         0,
       );
-    });
+    };
 
     this.graph.getModel().addListener(mxEvent.CHANGE, this.refreshHandler);
     this.graph.addListener(mxEvent.REFRESH, this.refreshHandler);
 
-    this.keyHandler = mxUtils.bind(this, function (e) {
+    this.keyHandler = (e) => {
       if (
         this.graph.container != null &&
         this.graph.container.style.visibility != 'hidden' &&
@@ -318,7 +318,7 @@ export class mxGraphHandler {
           this.updatePreview();
         }
       }
-    });
+    };
 
     mxEvent.addListener(document, 'keydown', this.keyHandler);
     mxEvent.addListener(document, 'keyup', this.keyHandler);
@@ -646,14 +646,14 @@ export class mxGraphHandler {
     var parent = this.graph.getDefaultParent();
     var model = this.graph.getModel();
 
-    var filter = mxUtils.bind(this, function (cell) {
+    var filter = (cell) => {
       return (
         this.graph.view.getState(cell) != null &&
         model.isVertex(cell) &&
         model.getGeometry(cell) != null &&
         !model.getGeometry(cell).relative
       );
-    });
+    };
 
     return this.graph.view.getCellStates(model.filterDescendants(filter, parent));
   };
@@ -831,7 +831,7 @@ export class mxGraphHandler {
         }
       }
 
-      this.guide.isStateIgnored = mxUtils.bind(this, function (state) {
+      this.guide.isStateIgnored = (state) => {
         var p = this.graph.model.getParent(state.cell);
 
         return (
@@ -844,7 +844,7 @@ export class mxGraphHandler {
                 this.graph.model.getChildCount(this.target) >= 2) &&
               p != (this.target || parent)))
         );
-      });
+      };
     }
   };
 
@@ -1193,7 +1193,7 @@ export class mxGraphHandler {
 
       if (this.allCells != null) {
         this.allCells.visit(
-          mxUtils.bind(this, function (key, state) {
+          (key, state) => {
             var realState = this.graph.view.getState(state.cell);
 
             // Checks if cell was removed or replaced
@@ -1267,7 +1267,7 @@ export class mxGraphHandler {
                 }
               }
             }
-          }),
+          },
         );
       }
 
@@ -1435,7 +1435,7 @@ export class mxGraphHandler {
   resetLivePreview() {
     if (this.allCells != null) {
       this.allCells.visit(
-        mxUtils.bind(this, function (key, state) {
+        (key, state) => {
           // Restores event handling
           if (state.shape != null && state.shape.originalPointerEvents != null) {
             state.shape.pointerEvents = state.shape.originalPointerEvents;
@@ -1468,7 +1468,7 @@ export class mxGraphHandler {
 
           // Forces repaint of connected edges
           state.view.invalidate(state.cell);
-        }),
+        },
       );
 
       // Repaints all invalid states

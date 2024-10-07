@@ -1373,7 +1373,7 @@ export class mxSvgCanvas2D extends mxAbstractCanvas2D {
       '; ',
       this.getTextCss(),
       s,
-      mxUtils.bind(this, function (dx, dy, flex, item, block) {
+      (dx, dy, flex, item, block) => {
         x += this.state.dx;
         y += this.state.dy;
 
@@ -1431,14 +1431,14 @@ export class mxSvgCanvas2D extends mxAbstractCanvas2D {
         } else {
           g.removeAttribute('opacity');
         }
-      }),
+      },
     );
   };
 
   /**
    * Updates existing DOM nodes for text rendering.
    */
-  createCss(
+  static createCss(
     w,
     h,
     align,

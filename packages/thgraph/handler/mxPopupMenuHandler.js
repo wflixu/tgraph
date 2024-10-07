@@ -73,9 +73,9 @@ export class mxPopupMenuHandler extends mxPopupMenu {
       this.graph.addMouseListener(this);
 
       // Does not show menu if any touch gestures take place after the trigger
-      this.gestureHandler = mxUtils.bind(this, function (sender, eo) {
+      this.gestureHandler = (sender, eo) => {
         this.inTolerance = false;
-      });
+      };
 
       this.graph.addListener(mxEvent.GESTURE, this.gestureHandler);
 
@@ -97,9 +97,9 @@ export class mxPopupMenuHandler extends mxPopupMenu {
     // the context menu
     mxEvent.addGestureListeners(
       this.div,
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         this.graph.tooltipHandler.hide();
-      }),
+      },
     );
   };
 

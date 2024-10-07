@@ -69,7 +69,7 @@ export class mxCellHighlight {
 			this.opacity = mxConstants.HIGHLIGHT_OPACITY;
 
 			// Updates the marker if the graph changes
-			this.repaintHandler = mxUtils.bind(this, function () {
+			this.repaintHandler = () => {
 				// Updates reference to state
 				if (this.state != null) {
 					var tmp = this.graph.view.getState(this.state.cell);
@@ -82,7 +82,7 @@ export class mxCellHighlight {
 						this.repaint();
 					}
 				}
-			});
+			};
 
 			this.graph.getView().addListener(mxEvent.SCALE, this.repaintHandler);
 			this.graph.getView().addListener(mxEvent.TRANSLATE, this.repaintHandler);
@@ -90,9 +90,9 @@ export class mxCellHighlight {
 			this.graph.getModel().addListener(mxEvent.CHANGE, this.repaintHandler);
 
 			// Hides the marker if the current root changes
-			this.resetHandler = mxUtils.bind(this, function () {
+			this.resetHandler = () => {
 				this.hide();
-			});
+			};
 
 			this.graph.getView().addListener(mxEvent.DOWN, this.resetHandler);
 			this.graph.getView().addListener(mxEvent.UP, this.resetHandler);

@@ -387,8 +387,8 @@ export class mxDragSource {
     mouseDown(evt) {
         if (this.enabled && !mxEvent.isConsumed(evt) && this.mouseMoveHandler == null) {
             this.startDrag(evt);
-            this.mouseMoveHandler = mxUtils.bind(this, this.mouseMove);
-            this.mouseUpHandler = mxUtils.bind(this, this.mouseUp);
+            this.mouseMoveHandler = () => this.mouseMove();
+            this.mouseUpHandler = () => this.mouseUp();
             mxEvent.addGestureListeners(document, null, this.mouseMoveHandler, this.mouseUpHandler);
 
         }

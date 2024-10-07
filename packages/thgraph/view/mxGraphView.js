@@ -550,7 +550,7 @@ export class mxGraphView extends mxEventSource {
    */
   validate(cell) {
     var t0 = mxLog.enter('mxGraphView.validate');
-    if (typeof window !== 'undefined' ) {
+    if (typeof window !== 'undefined') {
       window.status =
         mxResources.get(this.updatingDocumentResource) ||
         this.updatingDocumentResource;
@@ -590,10 +590,10 @@ export class mxGraphView extends mxEventSource {
     }
 
     this.resetValidationState();
-    if (typeof window !== 'undefined' ) { 
+    if (typeof window !== 'undefined') {
       window.status = mxResources.get(this.doneResource) || this.doneResource;
     }
-   
+
     mxLog.leave('mxGraphView.validate', t0);
   };
 
@@ -740,9 +740,9 @@ export class mxGraphView extends mxEventSource {
           mxEvent.addListener(
             this.backgroundPageShape.node,
             'dblclick',
-            mxUtils.bind(this, function (evt) {
+            (evt) => {
               this.graph.dblClick(evt);
-            }),
+            },
           );
         }
 
@@ -750,13 +750,13 @@ export class mxGraphView extends mxEventSource {
         // container and finishing the handling of a single gesture
         mxEvent.addGestureListeners(
           this.backgroundPageShape.node,
-          mxUtils.bind(this, function (evt) {
+          (evt) => {
             this.graph.fireMouseEvent(
               mxEvent.MOUSE_DOWN,
               new mxMouseEvent(evt),
             );
-          }),
-          mxUtils.bind(this, function (evt) {
+          },
+          (evt) => {
             // Hides the tooltip if mouse is outside container
             if (
               this.graph.tooltipHandler != null &&
@@ -771,10 +771,10 @@ export class mxGraphView extends mxEventSource {
                 new mxMouseEvent(evt),
               );
             }
-          }),
-          mxUtils.bind(this, function (evt) {
+          },
+          (evt) => {
             this.graph.fireMouseEvent(mxEvent.MOUSE_UP, new mxMouseEvent(evt));
-          }),
+          },
         );
       } else {
         this.backgroundPageShape.scale = this.scale;
@@ -2463,7 +2463,7 @@ export class mxGraphView extends mxEventSource {
       // Adds basic listeners for graph event dispatching
       mxEvent.addGestureListeners(
         container,
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           // Condition to avoid scrollbar events starting a rubberband selection
           if (
             this.isContainerEvent(evt) &&
@@ -2473,22 +2473,22 @@ export class mxGraphView extends mxEventSource {
             graph.fireMouseEvent(mxEvent.MOUSE_DOWN, new mxMouseEvent(evt));
             pointerId = evt.pointerId;
           }
-        }),
-        mxUtils.bind(this, function (evt) {
+        },
+        (evt) => {
           if (
             this.isContainerEvent(evt) &&
             (pointerId == null || evt.pointerId == pointerId)
           ) {
             graph.fireMouseEvent(mxEvent.MOUSE_MOVE, new mxMouseEvent(evt));
           }
-        }),
-        mxUtils.bind(this, function (evt) {
+        },
+        (evt) => {
           if (this.isContainerEvent(evt)) {
             graph.fireMouseEvent(mxEvent.MOUSE_UP, new mxMouseEvent(evt));
           }
 
           pointerId = null;
-        }),
+        },
       );
 
       // Adds listener for double click handling on background, this does always
@@ -2497,11 +2497,11 @@ export class mxGraphView extends mxEventSource {
       mxEvent.addListener(
         container,
         'dblclick',
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           if (this.isContainerEvent(evt)) {
             graph.dblClick(evt);
           }
-        }),
+        },
       );
 
       // Workaround for touch events which started on some DOM node
@@ -2525,7 +2525,7 @@ export class mxGraphView extends mxEventSource {
         mouseUp: function () { },
       });
 
-      this.moveHandler = mxUtils.bind(this, function (evt) {
+      this.moveHandler = (evt) => {
         // Hides the tooltip if mouse is outside container
         if (
           graph.tooltipHandler != null &&
@@ -2548,9 +2548,9 @@ export class mxGraphView extends mxEventSource {
             new mxMouseEvent(evt, getState(evt)),
           );
         }
-      });
+      };
 
-      this.endHandler = mxUtils.bind(this, function (evt) {
+      this.endHandler = (evt) => {
         if (
           this.captureDocumentGesture &&
           graph.isMouseDown &&
@@ -2561,7 +2561,7 @@ export class mxGraphView extends mxEventSource {
         ) {
           graph.fireMouseEvent(mxEvent.MOUSE_UP, new mxMouseEvent(evt));
         }
-      });
+      };
 
       mxEvent.addGestureListeners(
         document,

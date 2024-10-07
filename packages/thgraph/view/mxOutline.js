@@ -195,11 +195,11 @@ export class mxOutline {
 
 		// Do not repaint when suspended
 		var outlineGraphModelChanged = this.outline.graphModelChanged;
-		this.outline.graphModelChanged = mxUtils.bind(this, function (changes) {
+		this.outline.graphModelChanged = (changes) => {
 			if (!this.suspended && this.outline != null) {
 				outlineGraphModelChanged.apply(this.outline, arguments);
 			}
-		});
+		};
 
 		// Enables faster painting in SVG
 		if (mxClient.IS_SVG) {
@@ -212,11 +212,11 @@ export class mxOutline {
 		this.outline.labelsVisible = this.labelsVisible;
 		this.outline.setEnabled(false);
 
-		this.updateHandler = mxUtils.bind(this, function (sender, evt) {
+		this.updateHandler = (sender, evt) => {
 			if (!this.suspended && !this.active) {
 				this.update();
 			}
-		});
+		};
 
 		// Updates the scale of the outline after a change of the main graph
 		this.source.getModel().addListener(mxEvent.CHANGE, this.updateHandler);
@@ -233,18 +233,18 @@ export class mxOutline {
 		// Updates blue rectangle on scroll
 		mxEvent.addListener(this.source.container, 'scroll', this.updateHandler);
 
-		this.panHandler = mxUtils.bind(this, function (sender) {
+		this.panHandler = (sender) => {
 			if (this.updateOnPan) {
 				this.updateHandler.apply(this, arguments);
 			}
-		});
+		};
 		this.source.addListener(mxEvent.PAN, this.panHandler);
 
 		// Refreshes the graph in the outline after a refresh of the main graph
-		this.refreshHandler = mxUtils.bind(this, function (sender) {
+		this.refreshHandler = (sender) => {
 			this.outline.setStylesheet(this.source.getStylesheet());
 			this.outline.refresh();
-		});
+		};
 		this.source.addListener(mxEvent.REFRESH, this.refreshHandler);
 
 		// Creates the blue rectangle for the viewport
@@ -265,21 +265,21 @@ export class mxOutline {
 		// complete gesture on the event target. This is needed because all the events
 		// are routed via the initial element even if that element is removed from the
 		// DOM, which happens when we repaint the selection border and zoom handles.
-		var handler = mxUtils.bind(this, function (evt) {
+		var handler = (evt) => {
 			var t = mxEvent.getSource(evt);
 
-			var redirect = mxUtils.bind(this, function (evt) {
+			var redirect = (evt) => {
 				this.outline.fireMouseEvent(mxEvent.MOUSE_MOVE, new mxMouseEvent(evt));
-			});
+			};
 
-			var redirect2 = mxUtils.bind(this, function (evt) {
+			var redirect2 = (evt) => {
 				mxEvent.removeGestureListeners(t, null, redirect, redirect2);
 				this.outline.fireMouseEvent(mxEvent.MOUSE_UP, new mxMouseEvent(evt));
-			});
+			};
 
 			mxEvent.addGestureListeners(t, null, redirect, redirect2);
 			this.outline.fireMouseEvent(mxEvent.MOUSE_DOWN, new mxMouseEvent(evt));
-		});
+		};
 
 		mxEvent.addGestureListeners(this.selectionBorder.node, handler);
 

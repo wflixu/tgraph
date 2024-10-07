@@ -26,7 +26,7 @@ export const mxClient = {
    * Current version is 4.2.2.
    */
   VERSION: '4.2.2',
-  imageBasePath: '/graph/assets/',
+  imageBasePath: '/thgraph/assets/',
  
 
 

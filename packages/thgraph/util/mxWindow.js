@@ -7,14 +7,14 @@ import { mxRectangle } from './mxRectangle.js';
 import { mxUtils } from './mxUtils.js';
 import { mxEvent } from './mxEvent.js';
 import { mxConstants } from './mxConstants.js';
-import { mxEventObject} from './mxEventObject.js';
+import { mxEventObject } from './mxEventObject.js';
 
 
-const resizeGif = '/graph/assets/resize.gif';
-const maximizeGif = '/graph/assets/maximize.gif';
-const closeGif = '/graph/assets/close.gif';
-const minimizeGif = '/graph/assets/minimize.gif';
-const normalizeGif = '/graph/assets/normalize.gif';
+import resizeGif from '../assets/resize.gif';
+import maximizeGif from '../assets/maximize.gif';
+import closeGif from '../assets/close.gif';
+import minimizeGif from '../assets/minimize.gif';
+import normalizeGif from '../assets/normalize.gif';
 
 /**
  * Class: mxWindow
@@ -70,7 +70,7 @@ const normalizeGif = '/graph/assets/normalize.gif';
  * To keep a window inside the current window:
  *
  * (code)
- * mxEvent.addListener(window, 'resize', mxUtils.bind(this, function()
+ * mxEvent.addListener(window, 'resize', () =>
  * {
  *   var iw = window?.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
  *   var ih = window?.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -92,7 +92,7 @@ const normalizeGif = '/graph/assets/normalize.gif';
  *   {
  *     this.window?.setLocation(x, y);
  *   }
- * }));
+ * });
  * (end)
  *
  * Event: mxEvent.MOVE_START
@@ -399,9 +399,9 @@ export class mxWindow extends mxEventSource {
     this.div.appendChild(this.table);
 
     // Puts the window on top of other windows when clicked
-    var activator = mxUtils.bind(this, function (evt) {
+    var activator = (evt) => {
       this.activate();
-    });
+    };
 
     mxEvent.addGestureListeners(this.title, activator);
     mxEvent.addGestureListeners(this.table, activator);
@@ -541,7 +541,7 @@ export class mxWindow extends mxEventSource {
         var width = null;
         var height = null;
 
-        var start = mxUtils.bind(this, function (evt) {
+        var start = (evt) => {
           // LATER: pointerdown starting on border of resize does start
           // the drag operation but does not fire consecutive events via
           // one of the listeners below (does pan instead).
@@ -555,11 +555,11 @@ export class mxWindow extends mxEventSource {
           mxEvent.addGestureListeners(document, null, dragHandler, dropHandler);
           this.fireEvent(new mxEventObject(mxEvent.RESIZE_START, 'event', evt));
           mxEvent.consume(evt);
-        });
+        };
 
         // Adds a temporary pair of listeners to intercept
         // the gesture event in the document
-        var dragHandler = mxUtils.bind(this, function (evt) {
+        var dragHandler = (evt) => {
           if (startX != null && startY != null) {
             var dx = mxEvent.getClientX(evt) - startX;
             var dy = mxEvent.getClientY(evt) - startY;
@@ -569,9 +569,9 @@ export class mxWindow extends mxEventSource {
             this.fireEvent(new mxEventObject(mxEvent.RESIZE, 'event', evt));
             mxEvent.consume(evt);
           }
-        });
+        };
 
-        var dropHandler = mxUtils.bind(this, function (evt) {
+        var dropHandler = (evt) => {
           if (startX != null && startY != null) {
             startX = null;
             startY = null;
@@ -584,7 +584,7 @@ export class mxWindow extends mxEventSource {
             this.fireEvent(new mxEventObject(mxEvent.RESIZE_END, 'event', evt));
             mxEvent.consume(evt);
           }
-        });
+        };
 
         mxEvent.addGestureListeners(this.resize, start, dragHandler, dropHandler);
         this.div.appendChild(this.resize);
@@ -658,7 +658,7 @@ export class mxWindow extends mxEventSource {
     var maxDisplay = null;
     var height = null;
 
-    var funct = mxUtils.bind(this, function (evt) {
+    var funct = (evt) => {
       this.activate();
 
       if (!minimized) {
@@ -711,7 +711,7 @@ export class mxWindow extends mxEventSource {
       }
 
       mxEvent.consume(evt);
-    });
+    };
 
     mxEvent.addGestureListeners(this.minimize, funct);
   };
@@ -749,7 +749,7 @@ export class mxWindow extends mxEventSource {
     var width = null;
     var minDisplay = null;
 
-    var funct = mxUtils.bind(this, function (evt) {
+    var funct = (evt) => {
       this.activate();
 
       if (this.maximize.style.display != 'none') {
@@ -833,7 +833,7 @@ export class mxWindow extends mxEventSource {
 
         mxEvent.consume(evt);
       }
-    });
+    };
 
     mxEvent.addGestureListeners(this.maximize, funct);
     mxEvent.addListener(this.title, 'dblclick', funct);
@@ -849,7 +849,7 @@ export class mxWindow extends mxEventSource {
 
     mxEvent.addGestureListeners(
       this.title,
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         var startX = mxEvent.getClientX(evt);
         var startY = mxEvent.getClientY(evt);
         var x = this.getX();
@@ -857,15 +857,15 @@ export class mxWindow extends mxEventSource {
 
         // Adds a temporary pair of listeners to intercept
         // the gesture event in the document
-        var dragHandler = mxUtils.bind(this, function (evt) {
+        var dragHandler = (evt) => {
           var dx = mxEvent.getClientX(evt) - startX;
           var dy = mxEvent.getClientY(evt) - startY;
           this.setLocation(x + dx, y + dy);
           this.fireEvent(new mxEventObject(mxEvent.MOVE, 'event', evt));
           mxEvent.consume(evt);
-        });
+        };
 
-        var dropHandler = mxUtils.bind(this, function (evt) {
+        var dropHandler = (evt) => {
           mxEvent.removeGestureListeners(
             document,
             null,
@@ -874,12 +874,12 @@ export class mxWindow extends mxEventSource {
           );
           this.fireEvent(new mxEventObject(mxEvent.MOVE_END, 'event', evt));
           mxEvent.consume(evt);
-        });
+        };
 
         mxEvent.addGestureListeners(document, null, dragHandler, dropHandler);
         this.fireEvent(new mxEventObject(mxEvent.MOVE_START, 'event', evt));
         mxEvent.consume(evt);
-      }),
+      },
     );
 
     // Disables built-in pan and zoom in IE10 and later
@@ -935,7 +935,7 @@ export class mxWindow extends mxEventSource {
 
     mxEvent.addGestureListeners(
       this.closeImg,
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         this.fireEvent(new mxEventObject(mxEvent.CLOSE, 'event', evt));
 
         if (this.destroyOnClose) {
@@ -945,7 +945,7 @@ export class mxWindow extends mxEventSource {
         }
 
         mxEvent.consume(evt);
-      }),
+      },
     );
   };
 

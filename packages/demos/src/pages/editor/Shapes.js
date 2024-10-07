@@ -1,6 +1,4 @@
-/**
- * Copyright (c) 2006-2015, JGraph Ltd
- */
+
 
 /**
  * Registers shapes.

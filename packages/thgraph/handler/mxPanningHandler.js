@@ -147,7 +147,7 @@ export class mxPanningHandler extends mxEventSource {
       this.graph.addMouseListener(this);
 
       // Handles force panning event
-      this.forcePanningHandler = mxUtils.bind(this, function (sender, evt) {
+      this.forcePanningHandler = (sender, evt) => {
         var evtName = evt.getProperty('eventName');
         var me = evt.getProperty('event');
 
@@ -157,12 +157,12 @@ export class mxPanningHandler extends mxEventSource {
           this.fireEvent(new mxEventObject(mxEvent.PAN_START, 'event', me));
           me.consume();
         }
-      });
+      };
 
       this.graph.addListener(mxEvent.FIRE_MOUSE_EVENT, this.forcePanningHandler);
 
       // Handles pinch gestures
-      this.gestureHandler = mxUtils.bind(this, function (sender, eo) {
+      this.gestureHandler = (sender, eo) => {
         if (this.isPinchEnabled()) {
           var evt = eo.getProperty('event');
 
@@ -182,15 +182,15 @@ export class mxPanningHandler extends mxEventSource {
             this.zoomGraph(evt);
           }
         }
-      });
+      };
 
       this.graph.addListener(mxEvent.GESTURE, this.gestureHandler);
 
-      this.mouseUpListener = mxUtils.bind(this, function () {
+      this.mouseUpListener = () => {
         if (this.active) {
           this.reset();
         }
-      });
+      };
 
       // Stops scrolling on every mouseup anywhere in the document
       mxEvent.addListener(document, 'mouseup', this.mouseUpListener);

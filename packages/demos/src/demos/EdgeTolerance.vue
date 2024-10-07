@@ -56,8 +56,8 @@ function main(container) {
       );
       cell = this.getCellAt(pt.x, pt.y);
     }
-
-    mxGraphDblClick.call(this, evt, cell);
+    
+     mxGraphDblClick.call(this, evt, cell);
   };
 
   // Creates the graph inside the given container

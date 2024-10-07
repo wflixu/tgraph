@@ -142,13 +142,13 @@ export class mxTooltipHandler {
 
             document.body.appendChild(this.div);
 
-            mxEvent.addGestureListeners(this.div, mxUtils.bind(this, function (evt) {
+            mxEvent.addGestureListeners(this.div, (evt) => {
                 var source = mxEvent.getSource(evt);
 
                 if (source.nodeName != 'A') {
                     this.hideTooltip();
                 }
-            }));
+            });
         }
     };
 
@@ -235,7 +235,7 @@ export class mxTooltipHandler {
                 var y = me.getY();
                 var stateSource = me.isSource(state.shape) || me.isSource(state.text);
 
-                this.thread = window?.setTimeout(mxUtils.bind(this, function () {
+                this.thread = window?.setTimeout(() => {
                     if (!this.graph.isEditing() && !this.graph.popupMenuHandler.isMenuShowing() && !this.graph.isMouseDown) {
                         // Uses information from inside event cause using the event at
                         // this (delayed) point in time is not possible in IE as it no
@@ -246,7 +246,7 @@ export class mxTooltipHandler {
                         this.node = node;
                         this.stateSource = stateSource;
                     }
-                }), this.delay);
+                }, this.delay);
             }
         }
     };

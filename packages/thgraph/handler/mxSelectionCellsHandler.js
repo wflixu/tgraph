@@ -79,11 +79,11 @@ export class mxSelectionCellsHandler extends mxEventSource {
     this.handlers = new mxDictionary();
     this.graph.addMouseListener(this);
 
-    this.refreshHandler = mxUtils.bind(this, function (sender, evt) {
+    this.refreshHandler = (sender, evt) => {
       if (this.isEnabled()) {
         this.refresh();
       }
-    });
+    };
 
     this.graph
       .getSelectionModel()
@@ -199,10 +199,10 @@ export class mxSelectionCellsHandler extends mxEventSource {
 
     // Destroys unused handlers
     oldHandlers.visit(
-      mxUtils.bind(this, function (key, handler) {
+      (key, handler) => {
         this.fireEvent(new mxEventObject(mxEvent.REMOVE, 'state', handler.state));
         handler.destroy();
-      }),
+      },
     );
 
     // Creates new handlers and updates parent highlight on existing handlers
