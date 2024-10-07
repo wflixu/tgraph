@@ -1,91 +1,80 @@
+
+
 # thgraph
 
-mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，去掉旧浏览器的兼容代码，面向现代浏览器。
-因为项目代码是在太多了，一次完成转化不现实，现在的策略是，先转成esmodule 然后，能和主流框架 vue react以及vite/webpack 一起配合使用, 后续重构和优化. 
+**thgraph** is a modern reimplementation of the mxGraph library, which is no longer actively maintained. Our goal is to refactor the existing jgraph/mxGraph source code into TypeScript, removing legacy browser compatibility code and focusing on modern browsers. Given the extensive codebase, a complete rewrite isn't feasible at this time. Instead, our strategy is to first convert it to ES Modules, allowing compatibility with popular frameworks like Vue, React, and build tools like Vite and Webpack, followed by ongoing refactoring and optimization.
 
-[mxgraph代码库](https://github.com/jgraph/mxgraph-js)
+For the original mxGraph codebase, please visit: [mxgraph repository](https://github.com/jgraph/mxgraph-js).
 
+## Roadmap
 
-# 计划
+- [x] Successfully run the Hello World example
+- [x] Convert to ES Module format
+- [x] Create example website
+- [ ] Continue refactoring
+- [ ] Optimize TypeScript types
 
-- [x] 跑通 helloworld 示例
-- [x] 转化成esmodule 模块
-- [x] 示例网站
-- [ ] 继续重构
-- [ ] 优化TS类型
+## Installation
 
-# 使用
+To install thgraph, use one of the following package managers:
 
-```
-   # 安装
+```bash
+# npm
+npm install thgraph
 
-   # npm
-   npm install thgraph
-  
-   # yarn
-   yarn add thgraph
+# yarn
+yarn add thgraph
 
-   # 查看效果
-   pnpm dev
+# View the application
+pnpm dev
 
-   # 文档
-   pnpm dev:doc
-    
-
+# Documentation
+pnpm dev:doc
 ```
 
+## Documentation
 
+Currently, thgraph is a direct conversion of mxGraph to ES Modules, allowing previous global variables to be used seamlessly.
 
+[View the new documentation](https://wflixu.github.io/tgraph/).
 
+### Hello World Example
 
-# 文档
-目前只是把mxgraph 转换成esmodule，所以之前全局变量，引入后就能用了。
+Here’s a simple example of how to use thgraph:
 
-[新文档](https://wflixu.github.io/tgraph/)
+```javascript
+import { mxGraph, mxRubberband } from 'thgraph';
 
-## helloworld
+const container = document.getElementById('graphContainer');
+// Creates the graph inside the specified container
+const graph = new mxGraph(container);
 
-``` javascript
-    //
-    import { mxGraph ,mxRubberband} from 'thgraph';
+// Enables rubberband selection
+new mxRubberband(graph);
 
+// Gets the default parent for inserting new cells
+const parent = graph.getDefaultParent();
 
-     const container = document.getElementById('graphContainer');
-    // Creates the graph inside the given container
-    const graph = new mxGraph(container);
-
-    // Enables rubberband selection
-    new mxRubberband(graph);
-
-    // Gets the default parent for inserting new cells. This
-    // is normally the first child of the root (ie. layer 0).
-    const parent = graph.getDefaultParent();
-
-    // Adds cells to the model in a single step
-    graph.getModel().beginUpdate();
-    try {
-      const v1 = graph.insertVertex(parent, null, 'Hello,', 20, 20, 80, 30);
-      const v2 = graph.insertVertex(parent, null, 'World!', 200, 150, 80, 30);
-      const e1 = graph.insertEdge(parent, null, '', v1, v2);
-    } finally {
-      // Updates the display
-      graph.getModel().endUpdate();
-    }
-
+// Adds cells to the model in a single step
+graph.getModel().beginUpdate();
+try {
+    const v1 = graph.insertVertex(parent, null, 'Hello,', 20, 20, 80, 30);
+    const v2 = graph.insertVertex(parent, null, 'World!', 200, 150, 80, 30);
+    const e1 = graph.insertEdge(parent, null, '', v1, v2);
+} finally {
+    // Updates the display
+    graph.getModel().endUpdate();
+}
 ```
 
+For more information, refer to the [mxGraph documentation](https://jgraph.github.io/mxgraph/).
 
-其他可以参看mxgraph 文档
+## Contributing
 
-[mxgraph文档](https://jgraph.github.io/mxgraph/);
+We welcome contributions to thgraph! Here’s how you can get involved:
 
-
-
-# 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
+1. Fork this repository
+2. Create a new branch named `Feat_xxx`
+3. Commit your changes
+4. Open a Pull Request
 
