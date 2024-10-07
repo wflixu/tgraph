@@ -380,9 +380,11 @@ class mxSelectionChange {
      */
     execute() {
         var t0 = mxLog.enter('mxSelectionChange.execute');
-        window.status = mxResources.get(
-            this.selectionModel.updatingSelectionResource) ||
-            this.selectionModel.updatingSelectionResource;
+        if (typeof window !== 'undefined' ) { 
+            window.status = mxResources.get(
+                this.selectionModel.updatingSelectionResource) ||
+                this.selectionModel.updatingSelectionResource;
+        }
 
         if (this.removed != null) {
             for (var i = 0; i < this.removed.length; i++) {
@@ -399,9 +401,10 @@ class mxSelectionChange {
         var tmp = this.added;
         this.added = this.removed;
         this.removed = tmp;
-
-        window.status = mxResources.get(this.selectionModel.doneResource) ||
-            this.selectionModel.doneResource;
+        if (typeof window !== 'undefined' ) { 
+            window.status = mxResources.get(this.selectionModel.doneResource) ||
+                this.selectionModel.doneResource;
+        }
         mxLog.leave('mxSelectionChange.execute', t0);
 
         this.selectionModel.fireEvent(new mxEventObject(mxEvent.CHANGE,

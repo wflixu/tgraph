@@ -385,7 +385,9 @@ export class mxXmlRequest {
 
     if (doc == document) {
       old = window?.onbeforeunload;
-      window.onbeforeunload = null;
+      if (typeof window !== 'undefined') {
+        window.onbeforeunload = null;
+      }
     }
 
     var form = doc.createElement('form');
@@ -430,7 +432,9 @@ export class mxXmlRequest {
     }
 
     if (old != null) {
-      window.onbeforeunload = old;
+      if (typeof window !== 'undefined') {
+        window.onbeforeunload = old;
+      }
     }
   };
 }

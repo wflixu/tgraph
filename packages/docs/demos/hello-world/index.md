@@ -9,11 +9,17 @@
 ## 效果
 
 <script setup>
-import HelloWorld from './HelloWorld.vue'
+// import HelloWorld from './HelloWorld.vue'
+import { defineClientComponent } from 'vitepress'
 
+const HelloWorld = defineClientComponent(() => {
+  return import('./HelloWorld.vue')
+})
 </script>
 
-<HelloWorld />
+
+  <HelloWorld />
+
    
 
 ## 代码

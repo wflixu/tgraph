@@ -1,52 +1,51 @@
 # thgraph
 
-mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，去掉旧浏览器的兼容代码，面向现代浏览器。
-因为项目代码是在太多了，一次完成转化不现实，现在的策略是，先转成esmodule 然后，能和主流框架 vue react以及vite/webpack 一起配合使用, 后续重构和优化. 
+mxgraph is a popular JavaScript library for creating interactive graphs , and it used by many popular tools like draw.io, but it is no longer maintained.  mxgraph not support modern ES module, and it not work with building tools like vite/webpack.
 
-[mxgraph代码库](https://github.com/jgraph/mxgraph-js)
+So I want to learn mxgraph source code, and rewrite it with modern ES module, and remove old browser compatibility code. I will try to make it work with vue/react and vite/webpack.
 
 
-# 计划
+[mxgraph-js source code](https://github.com/jgraph/mxgraph-js)
 
-- [x] 跑通 helloworld 示例
-- [x] 转化成esmodule 模块
-- [x] 示例网站
-- [ ] 继续重构
-- [ ] 优化TS类型
 
-# 使用
+# plan
+- [x] run pass helloworld demo 
+- [x] convert to ES Module
+- [x] demos website
+- [ ] remove old browser compatibility code
+- [ ] using TS refactor code 
+
+# using
 
 ```
-   # 安装
+   # install with pnpm 
+   pnpm install thgraph
 
-   # npm
-   npm install thgraph
+   # build youself
+   pnpm build
+
+   # run demos 
+   pnpm demos
+
+   # docs
+   pnpm docs:dev
   
-   # yarn
-   yarn add thgraph
+   # build docs
+   pnpm docs:build
 
-   # 查看效果
-   pnpm dev
-
-   # 文档
-   pnpm dev:doc
-    
 
 ```
 
+# documents
 
+A new document for thgraph using vue3 and vite. 
 
-
-
-# 文档
-目前只是把mxgraph 转换成esmodule，所以之前全局变量，引入后就能用了。
-
-[新文档](https://wflixu.github.io/tgraph/)
+[new document](https://wflixu.github.io/tgraph/)
 
 ## helloworld
 
 ``` javascript
-    // 导入依赖
+    // deps
     import { mxGraph ,mxRubberband} from 'thgraph';
 
 
@@ -74,18 +73,11 @@ mxgraph 已经不在维护，学习 jgraph/mxgraph 源码，准备TS 重构，�
 
 ```
 
+Your also can see the old  mxgraph-js document for more details.
 
-其他可以参看mxgraph 文档
-
-[mxgraph文档](https://jgraph.github.io/mxgraph/);
-
+[mxgraph-js document](https://jgraph.github.io/mxgraph/)
 
 
-# 参与贡献
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
 
 

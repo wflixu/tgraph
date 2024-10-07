@@ -7,7 +7,7 @@ import { mxGraph} from 'thgraph';
 
 onMounted(() => {
   const container = document.getElementById('graphContainer');
- main(container);
+   main(container);
 });
 
 

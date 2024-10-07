@@ -5,12 +5,15 @@
 ## 效果
 
 <script setup>
-import Boundary from './Boundary.vue'
 
+import { defineClientComponent } from 'vitepress'
+
+const Boundary = defineClientComponent(() => {
+  return import('./Boundary.vue')
+})
 </script>
 
-<Boundary/>
-
+<Boundary />
 
 ## 代码
 
