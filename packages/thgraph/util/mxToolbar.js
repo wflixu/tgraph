@@ -107,13 +107,13 @@ export class mxToolbar extends mxEventSource {
       mxEvent.addListener(img, 'click', funct);
     }
 
-    var mouseHandler = mxUtils.bind(this, function (evt) {
+    var mouseHandler = (evt) => {
       if (pressedIcon != null) {
         img.setAttribute('src', icon);
       } else {
         img.style.backgroundColor = '';
       }
-    });
+    };
 
     // Highlights the toolbar item with a gray background
     // while it is being clicked with the mouse
@@ -276,7 +276,7 @@ export class mxToolbar extends mxEventSource {
     mxEvent.addListener(
       img,
       'click',
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         var tmp = this.selectedMode.altIcon;
 
         if (tmp != null) {
@@ -303,7 +303,7 @@ export class mxToolbar extends mxEventSource {
 
         this.fireEvent(new mxEventObject(mxEvent.SELECT));
         funct();
-      }),
+      },
     );
 
     this.container.appendChild(img);
@@ -347,19 +347,19 @@ export class mxToolbar extends mxEventSource {
       mxEvent.addListener(
         img,
         'click',
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           this.selectMode(img, funct);
           this.noReset = false;
-        }),
+        },
       );
 
       mxEvent.addListener(
         img,
         'dblclick',
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           this.selectMode(img, funct);
           this.noReset = true;
-        }),
+        },
       );
 
       if (this.defaultMode == null) {

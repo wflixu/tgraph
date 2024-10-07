@@ -175,7 +175,7 @@ export class mxVertexHandler {
 			this.init();
 
 			// Handles escape keystrokes
-			this.escapeHandler = mxUtils.bind(this, function (sender, evt) {
+			this.escapeHandler = (sender, evt) => {
 				if (this.livePreview && this.index != null) {
 					// Redraws the live preview
 					this.state.view.graph.cellRenderer.redraw(this.state, true);
@@ -187,7 +187,7 @@ export class mxVertexHandler {
 				}
 
 				this.reset();
-			});
+			};
 
 			this.state.view.graph.addListener(mxEvent.ESCAPE, this.escapeHandler);
 		}
@@ -499,7 +499,7 @@ export class mxVertexHandler {
 		var hit = (this.allowHandleBoundsCheck && (tol > 0)) ?
 			new mxRectangle(me.getGraphX() - tol, me.getGraphY() - tol, 2 * tol, 2 * tol) : null;
 
-		var checkShape = mxUtils.bind(this, function (shape) {
+		var checkShape = (shape) => {
 			var st = (shape != null && shape.constructor != mxImageShape &&
 				this.allowHandleBoundsCheck) ? shape.strokewidth + shape.svgStrokeTolerance : null;
 			var real = (st != null) ? new mxRectangle(me.getGraphX() - Math.floor(st / 2),
@@ -507,7 +507,7 @@ export class mxVertexHandler {
 
 			return shape != null && (me.isSource(shape) || (real != null && mxUtils.intersects(shape.bounds, real) &&
 				shape.node.style.display != 'none' && shape.node.style.visibility != 'hidden'));
-		});
+		};
 
 		if (checkShape(this.rotationShape)) {
 			return mxEvent.ROTATION_HANDLE;

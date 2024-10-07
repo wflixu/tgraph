@@ -65,14 +65,14 @@ export class mxConstraintHandler {
         this.graph = graph;
 
         // Adds a graph model listener to update the current focus on changes
-        this.resetHandler = mxUtils.bind(this, function (sender, evt) {
+        this.resetHandler = (sender, evt) => {
             if (this.currentFocus != null && this.graph.view.getState(this.currentFocus.cell) == null) {
                 this.reset();
             }
             else {
                 this.redraw();
             }
-        });
+        };
 
         this.graph.model.addListener(mxEvent.CHANGE, this.resetHandler);
         this.graph.view.addListener(mxEvent.SCALE_AND_TRANSLATE, this.resetHandler);
@@ -247,9 +247,9 @@ export class mxConstraintHandler {
         if (this.isEnabled() && !this.isEventIgnored(me)) {
             // Lazy installation of mouseleave handler
             if (this.mouseleaveHandler == null && this.graph.container != null) {
-                this.mouseleaveHandler = mxUtils.bind(this, function () {
+                this.mouseleaveHandler = () => {
                     this.reset();
-                });
+                };
 
                 mxEvent.addListener(this.graph.container, 'mouseleave', this.resetHandler);
             }
@@ -305,9 +305,9 @@ export class mxConstraintHandler {
                             hl.init(this.graph.getView().getOverlayPane());
                             this.focusHighlight = hl;
 
-                            var getState = mxUtils.bind(this, function () {
+                            var getState = () => {
                                 return (this.currentFocus != null) ? this.currentFocus : state;
-                            });
+                            };
 
                             mxEvent.redirectMouseEvents(hl.node, this.graph, getState);
                         }
@@ -404,9 +404,9 @@ export class mxConstraintHandler {
                     icon.node.parentNode.insertBefore(icon.node, icon.node.parentNode.firstChild);
                 }
 
-                var getState = mxUtils.bind(this, function () {
+                var getState = () => {
                     return (this.currentFocus != null) ? this.currentFocus : state;
-                });
+                };
 
                 icon.redraw();
 

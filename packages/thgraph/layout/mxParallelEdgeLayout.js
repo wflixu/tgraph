@@ -101,7 +101,7 @@ export class mxParallelEdgeLayout extends mxGraphLayout {
   findParallels(parent, cells) {
     var lookup = [];
 
-    var addCell = mxUtils.bind(this, function (cell) {
+    var addCell = (cell) => {
       if (!this.isEdgeIgnored(cell)) {
         var id = this.getEdgeId(cell);
 
@@ -113,7 +113,7 @@ export class mxParallelEdgeLayout extends mxGraphLayout {
           lookup[id].push(cell);
         }
       }
-    });
+    };
 
     if (cells != null) {
       for (var i = 0; i < cells.length; i++) {

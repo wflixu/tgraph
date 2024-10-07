@@ -915,7 +915,7 @@ export class mxText extends mxShape {
       flex,
       block,
       this.scale,
-      mxUtils.bind(this, function (dx, dy, flex, item, block, ofl) {
+      (dx, dy, flex, item, block, ofl) => {
         var r = this.getTextRotation();
         var tr =
           (this.scale != 1 ? 'scale(' + this.scale + ') ' : '') +
@@ -959,7 +959,7 @@ export class mxText extends mxShape {
 
         this.node.firstChild.firstChild.setAttribute('style', block);
         this.node.firstChild.setAttribute('style', item);
-      }),
+      },
     );
   }
 

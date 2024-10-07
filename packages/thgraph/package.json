@@ -1,6 +1,6 @@
 {
   "name": "thgraph",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A graph editor render with svg base from mxgraph",
   "main": "dist/thgraph.js",
   "module": "dist/thgraph.esm.js",
@@ -22,11 +22,7 @@
     "assets"
   ],
   "scripts": {
-    "dev": "vite",
-    "docs:dev": "vitepress dev",
-    "build": "NODE_ENV=build rollup -c",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "build": "NODE_ENV=build rollup -c"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.7",

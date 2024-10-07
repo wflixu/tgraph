@@ -1521,21 +1521,15 @@ export class mxEditor extends mxEventSource {
 
     // Redirects the function for creating the
     // popupmenu items
-    graph.popupMenuHandler.factoryMethod = mxUtils.bind(
-      this,
-      function (menu, cell, evt) {
-        return this.createPopupMenu(menu, cell, evt);
-      },
-    );
+    graph.popupMenuHandler.factoryMethod = (menu, cell, evt) => {
+      return this.createPopupMenu(menu, cell, evt);
+    };
 
     // Redirects the function for creating
     // new connections in the diagram
-    graph.connectionHandler.factoryMethod = mxUtils.bind(
-      this,
-      function (source, target) {
-        return this.createEdge(source, target);
-      },
-    );
+    graph.connectionHandler.factoryMethod = (source, target) => {
+      return this.createEdge(source, target);
+    };
 
     // Maintains swimlanes and installs autolayout
     this.createSwimlaneManager(graph);
@@ -1552,13 +1546,13 @@ export class mxEditor extends mxEventSource {
   createSwimlaneManager(graph) {
     var swimlaneMgr = new mxSwimlaneManager(graph, false);
 
-    swimlaneMgr.isHorizontal = mxUtils.bind(this, function () {
+    swimlaneMgr.isHorizontal = () => {
       return this.horizontalFlow;
-    });
+    };
 
-    swimlaneMgr.isEnabled = mxUtils.bind(this, function () {
+    swimlaneMgr.isEnabled = () => {
       return this.maintainSwimlanes;
-    });
+    };
 
     return swimlaneMgr;
   };
@@ -1643,14 +1637,14 @@ export class mxEditor extends mxEventSource {
     // Installs a listener for double click events
     graph.addListener(
       mxEvent.DOUBLE_CLICK,
-      mxUtils.bind(this, function (sender, evt) {
+      (sender, evt) => {
         var cell = evt.getProperty('cell');
 
         if (cell != null && graph.isEnabled() && this.dblClickAction != null) {
           this.execute(this.dblClickAction, cell);
           evt.consume();
         }
-      }),
+      },
     );
   };
 
@@ -1660,16 +1654,16 @@ export class mxEditor extends mxEventSource {
    * Adds the <undoManager> to the graph model and the view.
    */
   installUndoHandler(graph) {
-    var listener = mxUtils.bind(this, function (sender, evt) {
+    var listener = (sender, evt) => {
       var edit = evt.getProperty('edit');
       this.undoManager.undoableEditHappened(edit);
-    });
+    };
 
     graph.getModel().addListener(mxEvent.UNDO, listener);
     graph.getView().addListener(mxEvent.UNDO, listener);
 
     // Keeps the selection state in sync
-    var undoHandler = function (sender, evt) {
+    var undoHandler = (sender, evt) => {
       var changes = evt.getProperty('edit').changes;
       graph.setSelectionCells(graph.getSelectionCellsForChanges(changes));
     };
@@ -1684,9 +1678,9 @@ export class mxEditor extends mxEventSource {
    * Installs listeners for dispatching the <root> event.
    */
   installDrillHandler(graph) {
-    var listener = mxUtils.bind(this, function (sender) {
+    var listener = (sender) => {
       this.fireEvent(new mxEventObject(mxEvent.ROOT));
-    });
+    };
 
     graph.getView().addListener(mxEvent.DOWN, listener);
     graph.getView().addListener(mxEvent.UP, listener);
@@ -1700,7 +1694,7 @@ export class mxEditor extends mxEventSource {
    * fires a <root> event.
    */
   installChangeHandler(graph) {
-    var listener = mxUtils.bind(this, function (sender, evt) {
+    var listener = (sender, evt) => {
       // Updates the modified state
       this.setModified(true);
 
@@ -1727,7 +1721,7 @@ export class mxEditor extends mxEventSource {
           break;
         }
       }
-    });
+    };
 
     graph.getModel().addListener(mxEvent.CHANGE, listener);
   };
@@ -1902,9 +1896,9 @@ export class mxEditor extends mxEventSource {
   setTitleContainer(container) {
     this.addListener(
       mxEvent.ROOT,
-      mxUtils.bind(this, function (sender) {
+      (sender) => {
         container.innerHTML = this.getTitle();
-      }),
+      },
     );
   };
 
@@ -2122,7 +2116,7 @@ export class mxEditor extends mxEventSource {
     mxUtils.post(
       url,
       this.postParameterName + '=' + data,
-      mxUtils.bind(this, function (req) {
+      (req) => {
         this.fireEvent(
           new mxEventObject(
             mxEvent.POST,
@@ -2134,7 +2128,7 @@ export class mxEditor extends mxEventSource {
             data,
           ),
         );
-      }),
+      },
     );
   };
 
@@ -2347,7 +2341,7 @@ export class mxEditor extends mxEventSource {
 
       // Defines the function to be executed when the
       // OK button is pressed in the dialog
-      var okFunction = mxUtils.bind(this, function () {
+      var okFunction = () => {
         // Hides the dialog
         this.hideProperties();
 
@@ -2396,14 +2390,14 @@ export class mxEditor extends mxEventSource {
         } finally {
           model.endUpdate();
         }
-      });
+      };
 
       // Defines the function to be executed when the
       // Cancel button is pressed in the dialog
-      var cancelFunction = mxUtils.bind(this, function () {
+      var cancelFunction = () => {
         // Hides the dialog
         this.hideProperties();
-      });
+      };
 
       form.addButtons(okFunction, cancelFunction);
 
@@ -2466,11 +2460,11 @@ export class mxEditor extends mxEventSource {
       // Installs a function to update the contents
       // of the tasks window on every change of the
       // model, selection or root.
-      var funct = mxUtils.bind(this, function (sender) {
+      var funct = (sender) => {
         mxEvent.release(div);
         div.innerHTML = '';
         this.createTasks(div);
-      });
+      };
 
       this.graph.getModel().addListener(mxEvent.CHANGE, funct);
       this.graph.getSelectionModel().addListener(mxEvent.CHANGE, funct);

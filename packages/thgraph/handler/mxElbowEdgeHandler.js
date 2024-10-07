@@ -68,12 +68,12 @@ export class mxElbowEdgeHandler extends mxEdgeHandler {
     // Virtual
     bends.push(
       this.createVirtualBend(
-        mxUtils.bind(this, function (evt) {
+        (evt) => {
           if (!mxEvent.isConsumed(evt) && this.flipEnabled) {
             this.graph.flipEdge(this.state.cell, evt);
             mxEvent.consume(evt);
           }
-        }),
+        },
       ),
     );
 

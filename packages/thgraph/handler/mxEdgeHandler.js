@@ -232,7 +232,7 @@ export class mxEdgeHandler {
       this.init();
 
       // Handles escape keystrokes
-      this.escapeHandler = mxUtils.bind(this, function (sender, evt) {
+      this.escapeHandler = (sender, evt) => {
         var dirty = this.index != null;
         this.reset();
 
@@ -243,7 +243,7 @@ export class mxEdgeHandler {
             state.view.isRendering(),
           );
         }
-      });
+      };
 
       this.state.view.graph.addListener(mxEvent.ESCAPE, this.escapeHandler);
     }

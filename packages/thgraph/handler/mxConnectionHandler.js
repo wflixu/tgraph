@@ -375,9 +375,9 @@ export class mxConnectionHandler extends mxEventSource {
             this.init();
 
             // Handles escape keystrokes
-            this.escapeHandler = mxUtils.bind(this, function (sender, evt) {
+            this.escapeHandler = (sender, evt) => {
                 this.reset();
-            });
+            };
 
             this.graph.addListener(mxEvent.ESCAPE, this.escapeHandler);
         }
@@ -482,7 +482,7 @@ export class mxConnectionHandler extends mxEventSource {
         this.constraintHandler = new mxConstraintHandler(this.graph);
 
         // Redraws the icons if the graph changes
-        this.changeHandler = mxUtils.bind(this, function (sender) {
+        this.changeHandler = (sender) => {
             if (this.iconState != null) {
                 this.iconState = this.graph.getView().getState(this.iconState.cell);
             }
@@ -494,7 +494,7 @@ export class mxConnectionHandler extends mxEventSource {
             else if (this.previous != null && this.graph.view.getState(this.previous.cell) == null) {
                 this.reset();
             }
-        });
+        };
 
         this.graph.getModel().addListener(mxEvent.CHANGE, this.changeHandler);
         this.graph.getView().addListener(mxEvent.SCALE, this.changeHandler);
@@ -502,9 +502,9 @@ export class mxConnectionHandler extends mxEventSource {
         this.graph.getView().addListener(mxEvent.SCALE_AND_TRANSLATE, this.changeHandler);
 
         // Removes the icon if we step into/up or start editing
-        this.drillHandler = mxUtils.bind(this, function (sender) {
+        this.drillHandler = (sender) => {
             this.reset();
-        });
+        };
 
         this.graph.addListener(mxEvent.START_EDITING, this.drillHandler);
         this.graph.getView().addListener(mxEvent.DOWN, this.drillHandler);
@@ -777,18 +777,18 @@ export class mxConnectionHandler extends mxEventSource {
             icon.node.style.cursor = mxConstants.CURSOR_CONNECT;
 
             // Events transparency
-            var getState = mxUtils.bind(this, function () {
+            var getState = () => {
                 return (this.currentState != null) ? this.currentState : state;
-            });
+            };
 
             // Updates the local icon before firing the mouse down event.
-            var mouseDown = mxUtils.bind(this, function (evt) {
+            var mouseDown = (evt) => {
                 if (!mxEvent.isConsumed(evt)) {
                     this.icon = icon;
                     this.graph.fireMouseEvent(mxEvent.MOUSE_DOWN,
                         new mxMouseEvent(evt, getState()));
                 }
-            });
+            };
 
             mxEvent.redirectMouseEvents(icon.node, this.graph, getState, mouseDown);
 

@@ -64,7 +64,7 @@
  * key press handler as follows.
  *
  * (code)
- * mxEvent.addListener(graph.container, 'keypress', mxUtils.bind(this, function(evt)
+ * mxEvent.addListener(graph.container, 'keypress', (evt) =>
  * {
  *   if (!graph.isEditing() && !graph.isSelectionEmpty() && evt.which !== 0 &&
  *       !mxEvent.isAltDown(evt) && !mxEvent.isControlDown(evt) && !mxEvent.isMetaDown(evt))
@@ -76,7 +76,7 @@
  *       graph.cellEditor.textarea.value = String.fromCharCode(evt.which);
  *     }
  *   }
- * }));
+ * });
  * (end)
  *
  * To allow focus for a DIV, and hence to receive key press events, some browsers
@@ -245,24 +245,24 @@ export class mxCellEditor {
     this.graph = graph;
 
     // Stops editing after zoom changes
-    this.zoomHandler = mxUtils.bind(this, function () {
+    this.zoomHandler = () => {
       if (this.graph.isEditing()) {
         this.resize();
       }
-    });
+    };
 
     this.graph.view.addListener(mxEvent.SCALE, this.zoomHandler);
     this.graph.view.addListener(mxEvent.SCALE_AND_TRANSLATE, this.zoomHandler);
 
     // Adds handling of deleted cells while editing
-    this.changeHandler = mxUtils.bind(this, function (sender) {
+    this.changeHandler = (sender) => {
       if (
         this.editingCell != null &&
         this.graph.getView().getState(this.editingCell) == null
       ) {
         this.stopEditing(true);
       }
-    });
+    };
 
     this.graph.getModel().addListener(mxEvent.CHANGE, this.changeHandler);
   }
@@ -367,28 +367,28 @@ export class mxCellEditor {
     mxEvent.addListener(
       elt,
       'dragstart',
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         this.graph.stopEditing(false);
         mxEvent.consume(evt);
-      }),
+      },
     );
 
     // Applies value if focus is lost
     mxEvent.addListener(
       elt,
       'blur',
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         if (this.blurEnabled) {
           this.focusLost(evt);
         }
-      }),
+      },
     );
 
     // Updates modified state and handles placeholder text
     mxEvent.addListener(
       elt,
       'keydown',
-      mxUtils.bind(this, function (evt) {
+      (evt) => {
         if (!mxEvent.isConsumed(evt)) {
           if (this.isStopEditingEvent(evt)) {
             this.graph.stopEditing(false);
@@ -398,11 +398,11 @@ export class mxCellEditor {
             mxEvent.consume(evt);
           }
         }
-      }),
+      },
     );
 
     // Keypress only fires if printable key was pressed and handles removing the empty placeholder
-    var keypressHandler = mxUtils.bind(this, function (evt) {
+    var keypressHandler = (evt) => {
       if (this.editingCell != null) {
         // Clears the initial empty label on the first keystroke
         // and workaround for FF which fires keypress for delete and backspace
@@ -416,13 +416,13 @@ export class mxCellEditor {
           elt.innerHTML = '';
         }
       }
-    });
+    };
 
     mxEvent.addListener(elt, 'keypress', keypressHandler);
     mxEvent.addListener(elt, 'paste', keypressHandler);
 
     // Handler for updating the empty label text value after a change
-    var keyupHandler = mxUtils.bind(this, function (evt) {
+    var keyupHandler = (evt) => {
       if (this.editingCell != null) {
         // Uses an optional text value for sempty labels which is cleared
         // when the first keystroke appears. This makes it easier to see
@@ -438,7 +438,7 @@ export class mxCellEditor {
           this.clearOnChange = false;
         }
       }
-    });
+    };
 
     mxEvent.addListener(elt, 'input', keyupHandler);
     mxEvent.addListener(elt, 'cut', keyupHandler);
@@ -447,7 +447,7 @@ export class mxCellEditor {
     // Adds automatic resizing of the textbox while typing using input, keyup and/or DOM change events
     var evtName = 'input';
 
-    var resizeHandler = mxUtils.bind(this, function (evt) {
+    var resizeHandler = (evt) => {
       if (this.editingCell != null && this.autoSize && !mxEvent.isConsumed(evt)) {
         // Asynchronous is needed for keydown and shows better results for input events overall
         // (ie non-blocking and cases where the offsetWidth/-Height was wrong at this time)
@@ -456,14 +456,14 @@ export class mxCellEditor {
         }
 
         this.resizeThread = window?.setTimeout(
-          mxUtils.bind(this, function () {
+          () => {
             this.resizeThread = null;
             this.resize();
-          }),
+          },
           0,
         );
       }
-    });
+    };
 
     mxEvent.addListener(elt, evtName, resizeHandler);
     mxEvent.addListener(window, 'resize', resizeHandler);
@@ -945,9 +945,9 @@ export class mxCellEditor {
           state.style[mxConstants.STYLE_OVERFLOW] != 'fill')
       ) {
         window?.setTimeout(
-          mxUtils.bind(this, function () {
+          () => {
             this.resize();
-          }),
+          },
           0,
         );
       }
