@@ -11,19 +11,26 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 jobs:
   # Build job
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 
+          ref: main
+          fetch-depth: 1 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -46,17 +53,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: packages/docs/.vitepress/dist
-
-  # Deployment job
-  deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    needs: build
-    name: Deploy
-    steps:
       - name: Deploy build page
         id: deployment
         uses: actions/deploy-pages@v4
+
+
