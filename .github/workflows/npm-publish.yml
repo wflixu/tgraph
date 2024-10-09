@@ -40,8 +40,6 @@ jobs:
       - name: Get package version
         uses: tyankatsu0105/read-package-version-actions@v1
         id: package-version
-        with: 
-          path: "./packages/thgraph/package.json"
 
       - name: Create a tag
         uses: negz/create-tag@v1
