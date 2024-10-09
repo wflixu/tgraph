@@ -24,10 +24,10 @@
  */
 export class mxEventObject {
 	/**
- * Variable: name
- *
- * Holds the name.
- */
+	 * Variable: name
+	 *
+	 * Holds the name.
+	 */
 	name = null;
 
 	/**

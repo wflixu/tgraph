@@ -36,3 +36,16 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
+      
+      - name: Get package version
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: package-version
+        with: 
+          path: "./packages/thgraph/package.json"
+
+      - name: Create a tag
+        uses: negz/create-tag@v1
+        with:
+            version: v${{ steps.package-version.outputs.version }}
+            message: "Release v${{ steps.package-version.outputs.version }}"
+            token: ${{ secrets.GITHUB_TOKEN }}

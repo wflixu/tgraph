@@ -18,8 +18,10 @@
  * strokewidth - Optional integer that defines the stroke width. Default is
  * 1. This is stored in <strokewidth>.
  */
-import { mxUtils } from '../util/mxUtils.js';
+
+
 import { mxShape } from './mxShape.js';
+
 export class mxEllipse extends mxShape {
   constructor(bounds, fill, stroke, strokewidth) {
     super();

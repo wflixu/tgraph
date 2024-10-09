@@ -21,6 +21,7 @@
  */
 
 import { mxActor } from './mxActor.js';
+
 export class mxCloud extends mxActor {
   constructor(bounds, fill, stroke, strokewidth) {
     super();
