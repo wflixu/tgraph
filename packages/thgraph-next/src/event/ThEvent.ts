@@ -22,6 +22,20 @@ export class ThEvent {
    */
   static EXECUTED = 'executed';
 
+  /**
+  * Variable: ESCAPE
+  *
+  * Specifies the event name for escape.
+  */
+  static ESCAPE: 'escape';
+
+  /**
+   * Variable: REFRESH
+   *
+   * Specifies the event name for refresh.
+   */
+  static REFRESH: 'refresh'
+
 
   /**
    * Variable: END_EDIT

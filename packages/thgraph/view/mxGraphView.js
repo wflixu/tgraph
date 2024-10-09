@@ -208,6 +208,9 @@ export class mxGraphView extends mxEventSource {
    * During validation, this contains the last edge HTML DOM node that was processed.
    */
   lastForegroundHtmlNode = null;
+
+
+
   constructor(graph) {
     super();
     this.graph = graph;
@@ -2675,10 +2678,6 @@ export class mxGraphView extends mxEventSource {
       container.style.position = 'relative';
     }
 
-    // Disables built-in pan and zoom in IE10 and later
-    if (mxClient.IS_POINTER) {
-      container.style.touchAction = 'none';
-    }
   };
 
   /**

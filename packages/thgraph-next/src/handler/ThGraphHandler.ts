@@ -1,7 +1,7 @@
 import { ThGraph } from "../view";
 import { ThEvent } from '../event/ThEvent'
 
-class ThGraphHandler {
+export class ThGraphHandler {
     /**
      * Variable: graph
      *
@@ -22,8 +22,10 @@ class ThGraphHandler {
      * 500.
      */
     maxCells = 50;
+    refreshThread: any;
 
-
+    refreshHandler = (sender, evt) => { };
+    keyHandler = (e) => { };
 
     constructor(graph: ThGraph) {
         this.graph = graph;
@@ -33,12 +35,14 @@ class ThGraphHandler {
 
         this.graph.addListener(ThEvent.PAN, this.panHandler);
 
+        this.escapeHandler = (sender, evt) => {
+            this.reset();
+        };
 
-
-        this.graph.addListener(mxEvent.ESCAPE, this.escapeHandler);
+        this.graph.addListener(ThEvent.ESCAPE, this.escapeHandler);
 
         // Updates the preview box for remote changes
-        this.refreshHandler = mxUtils.bind(this, function (sender, evt) {
+        this.refreshHandler = (sender, evt) => {
             // Merges multiple pending calls
             if (this.refreshThread) {
                 window?.clearTimeout(this.refreshThread);
@@ -46,7 +50,7 @@ class ThGraphHandler {
 
             // Waits for the states and handlers to be updated
             this.refreshThread = window?.setTimeout(
-                mxUtils.bind(this, function () {
+                () => {
                     this.refreshThread = null;
 
                     if (this.first != null && !this.suspended) {
@@ -79,15 +83,15 @@ class ThGraphHandler {
                             }
                         }
                     }
-                }),
+                },
                 0,
             );
-        });
+        };
 
-        this.graph.getModel().addListener(mxEvent.CHANGE, this.refreshHandler);
-        this.graph.addListener(mxEvent.REFRESH, this.refreshHandler);
+        this.graph.getModel().addListener(ThEvent.CHANGE, this.refreshHandler);
+        this.graph.addListener(ThEvent.REFRESH, this.refreshHandler);
 
-        this.keyHandler = mxUtils.bind(this, function (e) {
+        this.keyHandler = (e) => {
             if (
                 this.graph.container != null &&
                 this.graph.container.style.visibility != 'hidden' &&
@@ -105,11 +109,47 @@ class ThGraphHandler {
                     this.updatePreview();
                 }
             }
-        });
+        };
+        document.addEventListener('keydown', this.keyHandler);
+        document.addEventListener('keyup', this.keyHandler);
 
-        mxEvent.addListener(document, 'keydown', this.keyHandler);
-        mxEvent.addListener(document, 'keyup', this.keyHandler);˝
     }
+
+
+    /**
+     * Function: reset
+     *
+     * Resets the state of this handler.
+     */
+    reset() {
+        if (this.livePreviewUsed) {
+            this.resetLivePreview();
+            this.setHandlesVisibleForCells(
+                this.graph.selectionCellsHandler.getHandledSelectionCells(),
+                true,
+            );
+        }
+
+        this.destroyShapes();
+        this.removeHint();
+
+        this.delayedSelection = false;
+        this.livePreviewActive = null;
+        this.livePreviewUsed = null;
+        this.cellWasClicked = false;
+        this.suspended = null;
+        this.currentDx = null;
+        this.currentDy = null;
+        this.cellCount = null;
+        this.cloning = false;
+        this.allCells = null;
+        this.pBounds = null;
+        this.guides = null;
+        this.target = null;
+        this.first = null;
+        this.cells = null;
+        this.cell = null;
+    };
 
 
     // Repaints the handler after autoscroll

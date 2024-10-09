@@ -128,7 +128,7 @@ export class ThGraph extends ThEventSource {
         // TODO!
         // this.tooltipHandler = this.createTooltipHandler();
         // this.tooltipHandler.setEnabled(false);
-        this.selectionCellsHandler = this.createSelectionCellsHandler();
+        // this.selectionCellsHandler = this.createSelectionCellsHandler();
         // this.connectionHandler = this.createConnectionHandler();
         // this.connectionHandler.setEnabled(false);
         this.graphHandler = this.createGraphHandler();

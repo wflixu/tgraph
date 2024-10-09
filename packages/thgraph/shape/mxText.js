@@ -1,8 +1,3 @@
-import { mxUtils } from '../util/mxUtils.js';
-import { mxShape } from './mxShape.js';
-import { mxConstants } from '../util/mxConstants.js';
-import { mxPoint } from '../util/mxPoint.js';
-import { mxRectangle } from '../util/mxRectangle.js';
 
 /**
  * Class: mxText
@@ -58,6 +53,14 @@ import { mxRectangle } from '../util/mxRectangle.js';
  * This is stored in <clipped>.
  * overflow - Value of the overflow style. Default is 'visible'.
  */
+
+import { mxUtils } from '../util/mxUtils.js';
+import { mxShape } from './mxShape.js';
+import { mxConstants } from '../util/mxConstants.js';
+import { mxPoint } from '../util/mxPoint.js';
+import { mxRectangle } from '../util/mxRectangle.js';
+
+
 export class mxText extends mxShape {
   /**
    * Variable: baseSpacingTop
