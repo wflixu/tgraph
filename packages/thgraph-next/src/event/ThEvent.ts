@@ -1,5 +1,3 @@
-
-
 export class ThEvent {
 
   /**
@@ -99,5 +97,22 @@ export class ThEvent {
    * Specifies the event name for pan.
    */
   static PAN: 'pan';
+
+  static isAltDown(evt: MouseEvent): boolean {
+    return evt.altKey;
+  }
+
+  isAltDown(evt: MouseEvent): boolean {
+    return evt.altKey;
+  }
+
+  /**
+   * Function: isMultiTouchEvent
+   * 
+   * Returns true if the event was generated using a touch device (not a pen or mouse).
+   */
+  static isMultiTouchEvent(evt: Event) {
+    return (evt.type != null && evt.type.indexOf('touch') == 0 && evt.touches != null && evt.touches.length > 1);
+  }
 
 }

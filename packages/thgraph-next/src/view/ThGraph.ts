@@ -9,6 +9,7 @@ import { ThEventSource } from './../event/ThEventSource';
 import { ThGraphSelectionModel } from './ThGraphSelectionModel'
 import { ThStylesheet } from './ThStylesheet';
 import { ThEvent } from "../event/ThEvent";
+import { ThGraphHandler } from "../handler/ThGraphHandler";
 
 
 export class ThGraph extends ThEventSource {
@@ -75,6 +76,7 @@ export class ThGraph extends ThEventSource {
     }
     selectionCellsHandler: any;
     graphHandler: any;
+    connectionHandler: any;
 
     constructor(container: HTMLElement, model?: ThGraphModel, renderHint?: string, stylesheet?: ThStylesheet) {
         super();
@@ -129,7 +131,7 @@ export class ThGraph extends ThEventSource {
         // this.tooltipHandler = this.createTooltipHandler();
         // this.tooltipHandler.setEnabled(false);
         // this.selectionCellsHandler = this.createSelectionCellsHandler();
-        // this.connectionHandler = this.createConnectionHandler();
+        // this.connectionHandler = new mxConnectionHandler(this);
         // this.connectionHandler.setEnabled(false);
         this.graphHandler = this.createGraphHandler();
         // this.panningHandler = this.createPanningHandler();
@@ -143,7 +145,7 @@ export class ThGraph extends ThEventSource {
      * Creates and returns a new <mxGraphHandler> to be used in this graph.
      */
     createGraphHandler() {
-        return new mxGraphHandler(this);
+        return new ThGraphHandler(this);
     }
 
     /**

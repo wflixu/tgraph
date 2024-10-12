@@ -1,27 +1,6 @@
 import { ThEventObject } from './ThEventObject';
 
-/**
- * Class: mxEventSource
- *
- * Base class for objects that dispatch named events. To create a subclass that
- * inherits from mxEventSource, the following code is used.
- *
- * (code)
- * function MyClass() { };
- *
- * MyClass.prototype = new mxEventSource();
- * MyClass.prototype.constructor = MyClass;
- * (end)
- *
- * Known Subclasses:
- *
- * <mxGraphModel>, <mxGraph>, <mxGraphView>, <mxEditor>, <mxCellOverlay>,
- * <mxToolbar>, <mxWindow>
- * 
- * Constructor: mxEventSource
- *
- * Constructs a new event source.
- */
+
 export class ThEventSource {
 
     /**
@@ -47,12 +26,10 @@ export class ThEventSource {
      */
     eventSource: Optional<ThEvent>;
 
+
     constructor(eventSource?: ThEvent) {
         this.setEventSource(eventSource);
-        console.log('ThEventSource');
     }
-
-
 
     /**
      * Function: isEventsEnabled

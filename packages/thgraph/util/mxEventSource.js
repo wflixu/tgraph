@@ -17,11 +17,34 @@
  */
 
 export class mxEventSource {
+
+
+    /**
+     * Variable: eventListeners
+     *
+     * Holds the event names and associated listeners in an array. The array
+     * contains the event name followed by the respective listener for each
+     * registered listener.
+     */
+    eventListeners = [];
+
+    /**
+     * Variable: eventsEnabled
+     *
+     * Specifies if events can be fired. Default is true.
+     */
+    eventsEnabled = true;
+
+    /**
+     * Variable: eventSource
+     *
+     * Optional source for events. Default is null.
+     */
+    eventSource = null;
+
+
     constructor(eventSource) {
         this.setEventSource(eventSource);
-        this.eventListeners = null;
-        this.eventsEnabled = true;
-        this.eventSource = null;
     }
 
     isEventsEnabled() {
