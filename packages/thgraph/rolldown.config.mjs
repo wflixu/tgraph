@@ -25,7 +25,7 @@ const bundles = [
         output: {
             banner:"/* This is a banner */",
             dir: './dist',
-            entryFileNames: 'thgraph.esm.js',
+            chunkFileNames: 'thgraph.esm.js',
             name: 'thgraph.esm.js',
             format: 'esm',
             minify: true,
