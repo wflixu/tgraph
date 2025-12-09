@@ -6,6 +6,7 @@ export default defineConfig({
     'model/index': 'src/model/index.ts',
     'view/index': 'src/view/index.ts',
     'renderer/index': 'src/renderer/index.ts',
+    'interaction/index': 'src/interaction/index.ts',
   },
   format: ['esm'],
   target: 'esnext',

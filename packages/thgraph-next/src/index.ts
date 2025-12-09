@@ -16,9 +16,10 @@ export * from './model/index.js'
 export * from './view/index.js'
 export * from './renderer/index.js'
 
-// Interaction exports will be added in Phase 3
-// export * from './interaction/index.js'
+// Interaction exports (Phase 3)
+export * from './interaction/index.js'
 
 // Re-export commonly used classes at top level
 export { Cell, Geometry, GraphModel } from './model/index.js'
 export { GraphView, SvgRenderer, SvgFactory } from './renderer/index.js'
+export { EventEmitter, SelectionModel, PanZoomHandler, MouseHandler, DragHandler, ResizeHandler } from './interaction/index.js'

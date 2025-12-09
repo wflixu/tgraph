@@ -31,6 +31,8 @@
     "TypeScript"
   ],
   "author": "wflixu",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "happy-dom": "^15.11.7"
+  }
 }
-
