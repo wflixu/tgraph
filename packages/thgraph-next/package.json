@@ -1,24 +1,74 @@
 {
   "name": "thgraph-next",
-  "version": "0.0.1",
-  "description": "Typescript mxgraph",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.1.0",
+  "description": "Modern TypeScript 5 graph engine, framework-agnostic",
   "type": "module",
-  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./model": {
+      "types": "./dist/model/index.d.ts",
+      "import": "./dist/model/index.js"
+    },
+    "./view": {
+      "types": "./dist/view/index.d.ts",
+      "import": "./dist/view/index.js"
+    },
+    "./renderer": {
+      "types": "./dist/renderer/index.d.ts",
+      "import": "./dist/renderer/index.js"
+    },
+    "./interaction": {
+      "types": "./dist/interaction/index.d.ts",
+      "import": "./dist/interaction/index.js"
+    }
+  },
   "files": [
     "dist",
-    "package.json",
     "README.md"
   ],
   "scripts": {
-    "doc": "typedoc",
-    "build": "tsc",
-    "test": "vitest"
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "doc": "typedoc"
   },
+  "keywords": [
+    "graph",
+    "diagram",
+    "editor",
+    "typescript",
+    "svg",
+    "canvas",
+    "flowchart",
+    "mindmap"
+  ],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
-    "typedoc": "^0.26.7",
-    "typescript": "^5.6.2",
-    "vitest": "^2.1.2"
+    "@types/node": "^24.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.49.0",
+    "@typescript-eslint/parser": "^8.49.0",
+    "@vitest/coverage-v8": "^4.0.15",
+    "@vitest/ui": "^4.0.15",
+    "eslint": "^9.39.1",
+    "happy-dom": "^15.11.6",
+    "tsdown": "^0.17.2",
+    "typedoc": "^0.28.15",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

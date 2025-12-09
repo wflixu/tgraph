@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "verbatimModuleSyntax": false,
+    "noEmit": true
+  },
+  "include": [
+    "tests/**/*"
+  ]
+}
