@@ -7,6 +7,8 @@ export default defineConfig({
     'view/index': 'src/view/index.ts',
     'renderer/index': 'src/renderer/index.ts',
     'interaction/index': 'src/interaction/index.ts',
+    'edge/index': 'src/edge/index.ts',
+    'undo/index': 'src/undo/index.ts',
   },
   format: ['esm'],
   target: 'esnext',
@@ -14,7 +16,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   dts: {
-    only: true,
+    enabled: true,
   },
   external: [
     // Add external dependencies here if needed

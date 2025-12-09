@@ -115,6 +115,46 @@ export class Cell implements ICell {
   }
 
   /**
+   * Create a vertex cell with convenience parameters
+   */
+  static createVertex(
+    id: string,
+    value?: CellValue,
+    geometry?: Geometry | null,
+    style?: CellStyle
+  ): Cell {
+    return new Cell({
+      id,
+      type: 'vertex',
+      value,
+      geometry,
+      style,
+      connectable: true,
+      visible: true
+    })
+  }
+
+  /**
+   * Create an edge cell with convenience parameters
+   */
+  static createEdge(
+    id: string,
+    value?: CellValue,
+    geometry?: Geometry | null,
+    style?: CellStyle
+  ): Cell {
+    return new Cell({
+      id,
+      type: 'edge',
+      value,
+      geometry,
+      style,
+      connectable: true,
+      visible: true
+    })
+  }
+
+  /**
    * Check if this cell is a descendant of the given cell
    */
   isDescendant(cell: Cell): boolean {

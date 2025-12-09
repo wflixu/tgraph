@@ -342,4 +342,70 @@ export class GraphModel implements IGraphModel {
       this.endUpdate()
     }
   }
+
+  /**
+   * Create a new edge with unique ID
+   */
+  createEdge(
+    id?: string,
+    value?: any,
+    geometry?: any,
+    style?: any
+  ): Cell {
+    const edge = CellImpl.createEdge(
+      id || this._generateId(),
+      value,
+      geometry,
+      style
+    )
+    return edge
+  }
+
+  /**
+   * Add an edge to the model with source and target cells
+   */
+  addEdge(
+    edge: Cell,
+    source: Cell,
+    target: Cell,
+    parent?: Cell
+  ): void {
+    if (!edge.edge) {
+      throw new Error('Only edge cells can be added using addEdge')
+    }
+
+    const updatedEdge = edge.with({
+      source,
+      target,
+      parent: parent || this._root
+    })
+
+    this.addCell(updatedEdge, parent || this._root)
+  }
+
+  /**
+   * Update a cell's geometry
+   */
+  setCellGeometry(cell: Cell, geometry: Geometry | null): void {
+    const existingCell = this._cells.get(cell.id)
+    if (!existingCell) {
+      throw new Error(`Cell with id ${cell.id} not found`)
+    }
+
+    const updatedCell = existingCell.with({ geometry })
+    this._updateCell(updatedCell)
+  }
+
+  /**
+   * Update a cell's style
+   */
+  setCellStyle(cell: Cell, style: any): void {
+    const existingCell = this._cells.get(cell.id)
+    if (!existingCell) {
+      throw new Error(`Cell with id ${cell.id} not found`)
+    }
+
+    const updatedCell = existingCell.with({ style })
+    this._updateCell(updatedCell)
+  }
 }
