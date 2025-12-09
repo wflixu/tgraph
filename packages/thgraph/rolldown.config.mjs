@@ -1,66 +1,26 @@
-import { defineConfig, } from "rolldown";
+import { defineConfig } from 'rolldown'
 
 import image from '@rollup/plugin-image';
 
-// export default defineConfig({
-//     input: './index.js',
-//     output: {
-//         dir: './dist',
-//         format: 'esm',
-//         sourcemap: true,
-//     },
-//     plugins: [
-//         image(),
-//     ],
-// })
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
-const bundles = [
-    {
-
-        output: {
-            banner:"/* This is a banner */",
-            dir: './dist',
-            chunkFileNames: 'thgraph.esm.js',
-            name: 'thgraph.esm.js',
-            format: 'esm',
-            minify: true,
-            sourcemap: true,
-        },
+export default defineConfig({
+    input: {
+       thgraph: './index.js',
     },
-    // {
 
-    //     output: {
-    //         name: path.join(__dirname, 'dist/thgraph.esm.min.js'),
-    //         format: 'esm',
-    //     },
-
-    // },
-    // {
-
-    //     output: {
-    //         name: path.join(__dirname, 'dist/thgraph.esm.development.js'),
-    //         format: 'esm',
-    //     },
-    // }
-];
-
-const buildExport = bundles.map((output) => {
-    return defineConfig({
-        input: './index.js',
-        output,
-        plugins: [
-            image(),
-        ],
-    })
-});
-
-export default buildExport;
-
-
-
-
+    output: {
+        dir: './dist',
+        format: 'esm',
+        minify: true,
+        entryFileNames: '[name].mjs',
+        chunkFileNames: 'thgraph.esm.mini.js',
+        name: 'thgraph',
+        sourcemap: true,
+        banner: '/* thgraph v1.0.0 */',
+        advancedChunks: {
+            minSize: 1000,
+        }
+    },
+    plugins: [
+        image(),
+    ],
+})
