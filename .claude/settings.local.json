@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(pnpm install)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm build:*)",
+      "Bash(git add:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pkill:*)",
+      "Bash(node:*)",
+      "Bash(pnpm list:*)",
+      "Bash(npm run dev)",
+      "Bash(pnpm dev:*)"
+    ]
+  }
+}

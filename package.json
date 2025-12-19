@@ -2,12 +2,9 @@
   "name": "tgraph",
   "version": "0.1.0",
   "description": "a graph editor render with svg base from mxgraph",
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": []
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "demos": "pnpm --filter=demos  dev",
     "build": "pnpm  --filter=thgraph  run build",
@@ -15,7 +12,9 @@
     "docs:build": "pnpm --filter docs run docs:build",
     "next:dev": "pnpm run dev --filter thgraph-next-demo",
     "next:build": "pnpm --filter=thgraph-next run build ",
-    "pub:doc": "zx ./script/docs.mjs"
+    "pub:doc": "zx ./script/docs.mjs",
+    "check:modules": "node scripts/check-node-modules.js",
+    "clean:modules": "rm -rf packages/*/node_modules node_modules && pnpm install"
   },
   "repository": {
     "type": "git",
@@ -31,6 +30,8 @@
     "TypeScript"
   ],
   "author": "wflixu",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "happy-dom": "^15.11.7"
+  }
 }
-

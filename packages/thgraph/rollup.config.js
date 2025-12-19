@@ -78,11 +78,8 @@ const buildExport = bundles.map(({ input, output, plugins }) => ({
     }),
 
     ...plugins,
-
-    output.file.includes('.min.') && terser(),
+    isMinEnv(output.file) && terser(),
   ],
 }));
-
-
 
 export default buildExport;

@@ -1,3 +1,2 @@
 
-export * from './ThGraph'
-export * from './ThCellRenderer'
+export { GraphView, type ViewState } from './GraphView'
