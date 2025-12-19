@@ -1,5 +1,5 @@
 import { EventEmitter } from '../interaction/EventEmitter'
-import type { Cell, Point, Rectangle, GraphModel, Port } from '../types'
+import type { Cell, Point, Rectangle, GraphModel } from '../types'
 
 /**
  * Connection constraints and validation
@@ -255,21 +255,27 @@ export class ConnectionHandler extends EventEmitter {
       }
     )
 
+    // Create proper edge with source and target
+    const properEdge = edge.with({
+      source: { id: source.id, port: sourcePort?.id },
+      target: { id: target.id, port: targetPort?.id }
+    })
+
     // Add to model
-    this._model.addEdge(edge, source, target)
+    this._model.addEdge(properEdge, source, target)
 
     // Clear current connection
     const completedConnection = this._currentConnection
     this._currentConnection = null
 
     this.emit('connection:complete', {
-      edge,
+      edge: properEdge,
       source,
       target,
       connection: completedConnection
     })
 
-    return edge
+    return properEdge
   }
 
   /**
@@ -350,20 +356,8 @@ export class ConnectionHandler extends EventEmitter {
    */
   validateConnection(source: Cell, target: Cell): { valid: boolean; error?: string } {
     // Check if source and target are different
-    if (!this._allowSelfLoops && source === target) {
+    if (!this._allowSelfLoops && source.id === target.id) {
       return { valid: false, error: 'Self-loops are not allowed' }
-    }
-
-    // Check for existing connections if multiple edges are disallowed
-    if (!this._allowMultipleEdges) {
-      const hasExistingConnection = Array.from(this._model.cells).some(cell =>
-        cell.edge &&
-        cell.source?.id === source.id &&
-        cell.target?.id === target.id
-      )
-      if (hasExistingConnection) {
-        return { valid: false, error: 'Multiple connections between same cells are not allowed' }
-      }
     }
 
     // Check source constraints
@@ -387,6 +381,18 @@ export class ConnectionHandler extends EventEmitter {
       const incomingCount = this.getIncomingConnectionCount(target)
       if (incomingCount >= targetConstraints.maxConnections) {
         return { valid: false, error: 'Target has reached maximum connection limit' }
+      }
+    }
+
+    // Check for existing connections if multiple edges are disallowed
+    if (!this._allowMultipleEdges) {
+      const hasExistingConnection = Array.from(this._model.cells.values()).some(cell =>
+        cell.edge &&
+        (cell.source?.id === source.id && cell.target?.id === target.id) ||
+        (cell.source === source && cell.target === target)
+      )
+      if (hasExistingConnection) {
+        return { valid: false, error: 'Multiple connections between same cells are not allowed' }
       }
     }
 
@@ -492,8 +498,8 @@ export class ConnectionHandler extends EventEmitter {
    * Get outgoing connection count for a cell
    */
   private getOutgoingConnectionCount(cell: Cell): number {
-    return Array.from(this._model.cells).filter(edge =>
-      edge.edge && edge.source?.id === cell.id
+    return Array.from(this._model.cells.values()).filter(edge =>
+      edge.edge && (edge.source === cell || edge.source?.id === cell.id)
     ).length
   }
 
@@ -501,8 +507,8 @@ export class ConnectionHandler extends EventEmitter {
    * Get incoming connection count for a cell
    */
   private getIncomingConnectionCount(cell: Cell): number {
-    return Array.from(this._model.cells).filter(edge =>
-      edge.edge && edge.target?.id === cell.id
+    return Array.from(this._model.cells.values()).filter(edge =>
+      edge.edge && (edge.target === cell || edge.target?.id === cell.id)
     ).length
   }
 

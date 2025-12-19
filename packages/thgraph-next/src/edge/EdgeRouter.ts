@@ -112,14 +112,29 @@ export class EdgeRouter {
     }
 
     // Get connection points
-    const sourcePoint = this.getConnectionPoint(sourceGeometry, waypoints[0])
-    const targetPoint = this.getConnectionPoint(targetGeometry, waypoints[waypoints.length - 1])
+    let sourcePoint: Point
+    let targetPoint: Point
+
+    if (waypoints.length > 0) {
+      // Use first waypoint as a hint for source connection point
+      sourcePoint = this.getConnectionPoint(sourceGeometry, waypoints[0])
+      // Use last waypoint as a hint for target connection point
+      targetPoint = this.getConnectionPoint(targetGeometry, waypoints[waypoints.length - 1])
+    } else {
+      // No waypoints, use center points
+      sourcePoint = {
+        x: sourceGeometry.x + (sourceGeometry.width || 0) / 2,
+        y: sourceGeometry.y + (sourceGeometry.height || 0) / 2
+      }
+      targetPoint = {
+        x: targetGeometry.x + (targetGeometry.width || 0) / 2,
+        y: targetGeometry.y + (targetGeometry.height || 0) / 2
+      }
+    }
 
     // Build complete waypoint list
     const allWaypoints: Point[] = [sourcePoint]
-    if (waypoints.length > 0) {
-      allWaypoints.push(...waypoints.slice(1, -1))
-    }
+    allWaypoints.push(...waypoints)
     allWaypoints.push(targetPoint)
 
     // Route based on configured style
@@ -249,8 +264,37 @@ export class EdgeRouter {
    */
   private routeCurved(waypoints: Point[]): Point[] {
     if (waypoints.length < 2) return waypoints
+
+    // Even with just 2 points, generate a curved path
     if (waypoints.length === 2) {
-      return waypoints // Simple straight line
+      const path: Point[] = []
+      const p0 = waypoints[0]
+      const p1 = waypoints[1]
+      const tension = this._config.curveTension
+
+      // Create control points for a simple curve
+      const dx = p1.x - p0.x
+      const dy = p1.y - p0.y
+
+      const cp1 = {
+        x: p0.x + dx * 0.25 + dy * 0.1 * tension,
+        y: p0.y + dy * 0.25 - dx * 0.1 * tension
+      }
+
+      const cp2 = {
+        x: p0.x + dx * 0.75 - dy * 0.1 * tension,
+        y: p0.y + dy * 0.75 + dx * 0.1 * tension
+      }
+
+      // Generate curve points
+      const segments = 20
+      for (let i = 0; i <= segments; i++) {
+        const t = i / segments
+        const point = this.cubicBezier(p0, cp1, cp2, p1, t)
+        path.push(point)
+      }
+
+      return path
     }
 
     const path: Point[] = []

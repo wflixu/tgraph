@@ -232,8 +232,8 @@ describe('ConnectionHandler', () => {
     connectionHandler.completeConnection()
 
     expect(errorListener).toHaveBeenCalledWith({
-      source: sourceCell,
-      target: sourceCell,
+      source: expect.objectContaining({ id: sourceCell.id }),
+      target: expect.objectContaining({ id: sourceCell.id }),
       error: 'Self-loops are not allowed',
       connection: expect.any(Object)
     })

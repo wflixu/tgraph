@@ -717,7 +717,7 @@ class CompositeCommand implements Command {
     this._metadata = {
       timestamp: Date.now(),
       type: 'composite',
-      affectedCells: commands.flatMap(cmd =>
+      affectedCells: (commands || []).flatMap(cmd =>
         cmd.getMetadata?.().affectedCells || []
       )
     }
