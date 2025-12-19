@@ -117,7 +117,7 @@ export class GraphView {
    * Get the absolute (screen) geometry of a cell
    */
   getCellAbsoluteGeometry(cell: Cell): Geometry {
-    const geometry = this._model.getGeometry(cell)
+    const geometry = cell.geometry
     if (!geometry) {
       return { x: 0, y: 0, width: 0, height: 0 }
     }
@@ -127,8 +127,8 @@ export class GraphView {
     let absoluteY = geometry.y
     let currentCell = cell
 
-    while (currentCell.parent && currentCell.parent.id !== '0') {
-      const parentGeometry = this._model.getGeometry(currentCell.parent)
+    while (currentCell.parent && currentCell.parent.id !== 'root') {
+      const parentGeometry = currentCell.parent.geometry
       if (parentGeometry) {
         absoluteX += parentGeometry.x
         absoluteY += parentGeometry.y

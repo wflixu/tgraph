@@ -21,6 +21,7 @@ export class MouseHandler extends EventEmitter {
   private _isRubberBanding = false
   private _rubberBandStart: Point = { x: 0, y: 0 }
   private _rubberBandElement: HTMLDivElement | null = null
+  private _rubberBandBounds: Rectangle | null = null
 
   constructor(view: GraphView) {
     super()
@@ -126,6 +127,7 @@ export class MouseHandler extends EventEmitter {
 
     this._isRubberBanding = true
     this._rubberBandStart = point
+    this._rubberBandBounds = { x: point.x, y: point.y, width: 0, height: 0 }
 
     // Create rubber band element
     this._rubberBandElement = document.createElement('div')
@@ -157,6 +159,9 @@ export class MouseHandler extends EventEmitter {
     const width = Math.abs(point.x - this._rubberBandStart.x)
     const height = Math.abs(point.y - this._rubberBandStart.y)
 
+    // Store bounds for testing purposes
+    this._rubberBandBounds = { x, y, width, height }
+
     this._rubberBandElement.style.left = `${x}px`
     this._rubberBandElement.style.top = `${y}px`
     this._rubberBandElement.style.width = `${width}px`
@@ -181,6 +186,7 @@ export class MouseHandler extends EventEmitter {
     }
 
     this._rubberBandElement = null
+    this._rubberBandBounds = null
 
     this.emit('rubberband:end', {})
   }
@@ -196,7 +202,17 @@ export class MouseHandler extends EventEmitter {
    * Get cells in rubber band rectangle
    */
   getCellsInRubberBand(): Rectangle {
-    if (!this._isRubberBanding || !this._rubberBandElement) {
+    if (!this._isRubberBanding) {
+      return { x: 0, y: 0, width: 0, height: 0 }
+    }
+
+    // Use stored bounds if available, fallback to DOM calculations
+    if (this._rubberBandBounds) {
+      return this._rubberBandBounds
+    }
+
+    // Fallback to DOM calculation
+    if (!this._rubberBandElement) {
       return { x: 0, y: 0, width: 0, height: 0 }
     }
 
@@ -222,6 +238,7 @@ export class MouseHandler extends EventEmitter {
     this._container.addEventListener('mousemove', this.handleMouseMove.bind(this), { passive: false })
     this._container.addEventListener('mouseup', this.handleMouseUp.bind(this), { passive: true })
     this._container.addEventListener('dblclick', this.handleDoubleClick.bind(this), { passive: false })
+    this._container.addEventListener('wheel', this.handleWheel.bind(this), { passive: false })
 
     // Touch events
     this._container.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false })
@@ -433,6 +450,23 @@ export class MouseHandler extends EventEmitter {
         point
       })
     }
+  }
+
+  /**
+   * Handle wheel event
+   */
+  private handleWheel(event: WheelEvent): void {
+    if (!this._isEnabled) return
+
+    const point = this.getRelativePoint(event.clientX, event.clientY)
+
+    this.emit('mouse:wheel', {
+      event,
+      point,
+      deltaX: event.deltaX,
+      deltaY: event.deltaY,
+      deltaMode: event.deltaMode
+    })
   }
 
   /**

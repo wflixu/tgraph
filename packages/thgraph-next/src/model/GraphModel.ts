@@ -28,7 +28,7 @@ export class GraphModel implements IGraphModel {
   }
 
   get root(): Cell {
-    return this._root
+    return this._cells.get(this._root.id) || this._root
   }
 
   getCell(id: string): Cell | undefined {
@@ -40,12 +40,15 @@ export class GraphModel implements IGraphModel {
       throw new Error(`Cell with id '${cell.id}' already exists`)
     }
 
+    // Get the actual parent from model to ensure we have correct children
+    const actualParent = this._cells.get(parent.id) || parent
+
     // Create updated child with parent reference
-    const updatedChild = cell.with({ parent })
+    const updatedChild = cell.with({ parent: actualParent })
 
     // Create updated parent with new child
-    const updatedParent = parent.with({
-      children: [...parent.children, updatedChild],
+    const updatedParent = actualParent.with({
+      children: [...actualParent.children, updatedChild],
     })
 
     // Update the cells - parent first so we have the right child reference
@@ -62,8 +65,11 @@ export class GraphModel implements IGraphModel {
       throw new Error(`Cell with id '${cell.id}' does not exist`)
     }
 
+    // Get the actual cell from model to ensure we have correct children
+    const actualCell = this._cells.get(cell.id)!
+
     // Remove all descendants first
-    for (const child of [...cell.children]) {
+    for (const child of [...actualCell.children]) {
       this.removeCell(child)
     }
 
@@ -218,7 +224,11 @@ export class GraphModel implements IGraphModel {
 
     for (const child of parentFromModel.children) {
       descendants.push(child)
-      descendants.push(...this.getDescendants(child))
+      // Get the child from model to ensure we have correct descendants
+      const childFromModel = this._cells.get(child.id)
+      if (childFromModel) {
+        descendants.push(...this.getDescendants(childFromModel))
+      }
     }
     return descendants
   }

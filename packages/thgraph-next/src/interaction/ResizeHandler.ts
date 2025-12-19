@@ -219,7 +219,7 @@ export class ResizeHandler extends EventEmitter {
   startResize(cell: Cell, handle: ResizeHandle, startPoint: Point): void {
     if (!this._isEnabled || this._isResizing) return
 
-    const geometry = this._view.model.getGeometry(cell)
+    const geometry = cell.geometry
     if (!geometry) return
 
     this._isResizing = true
@@ -312,7 +312,7 @@ export class ResizeHandler extends EventEmitter {
     // Cannot resize locked or invisible cells
     if (!cell.visible || !cell.connectable) return false
 
-    const geometry = this._view.model.getGeometry(cell)
+    const geometry = cell.geometry
     if (!geometry) return false
 
     // Cannot resize if width or height is 0

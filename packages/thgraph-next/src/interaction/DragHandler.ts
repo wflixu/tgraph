@@ -116,9 +116,8 @@ export class DragHandler extends EventEmitter {
     // Store original geometries
     this._dragGeometries.clear()
     this._dragCells.forEach(cell => {
-      const geometry = this._view.model.getGeometry(cell)
-      if (geometry) {
-        this._dragGeometries.set(cell, geometry)
+      if (cell.geometry) {
+        this._dragGeometries.set(cell, cell.geometry)
       }
     })
 
@@ -259,7 +258,7 @@ export class DragHandler extends EventEmitter {
     if (!cell.visible || !cell.connectable) return false
 
     // Cannot drag root cell
-    if (!cell.parent || cell.parent.id === '0') return false
+    if (!cell.parent || cell.id === 'root') return false
 
     return true
   }

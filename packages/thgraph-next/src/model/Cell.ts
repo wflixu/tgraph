@@ -155,6 +155,20 @@ export class Cell implements ICell {
   }
 
   /**
+   * Check if this cell is an edge
+   */
+  isEdge(): boolean {
+    return this.edge
+  }
+
+  /**
+   * Check if this cell is a vertex
+   */
+  isVertex(): boolean {
+    return this.vertex
+  }
+
+  /**
    * Check if this cell is a descendant of the given cell
    */
   isDescendant(cell: Cell): boolean {

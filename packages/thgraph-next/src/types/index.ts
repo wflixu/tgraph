@@ -72,6 +72,20 @@ export interface Cell {
   readonly connectable: boolean
   readonly visible: boolean
   readonly collapsed: boolean
+
+  // Methods
+  isEdge(): boolean
+  isVertex(): boolean
+  isDescendant(cell: Cell): boolean
+  getDepth(): number
+  isConnectedTo(cell: Cell): boolean
+  getConnectedEdges(): Cell[]
+  getPath(): Cell[]
+  hasStyle(key: string): boolean
+  getStyle<K extends keyof CellStyle>(key: K): CellStyle[K]
+  getStyleOrDefault<K extends keyof CellStyle>(key: K, defaultValue: CellStyle[K]): CellStyle[K]
+  isVisible(): boolean
+  getAbsoluteGeometry(): Geometry | null
 }
 
 // Geometry for positioning and sizing

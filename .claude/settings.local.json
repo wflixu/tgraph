@@ -7,10 +7,12 @@
       "Bash(pnpm test:*)",
       "Bash(pnpm build:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)",
       "Bash(pnpm add:*)",
       "Bash(pkill:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(pnpm list:*)",
+      "Bash(npm run dev)",
+      "Bash(pnpm dev:*)"
     ]
   }
 }

@@ -1,4 +1,7 @@
 import { expect, test, describe, beforeEach, afterEach, vi } from 'vitest'
+
+// Setup fake timers for double click detection tests
+vi.useFakeTimers()
 import { MouseHandler } from '../src/interaction/MouseHandler'
 import { GraphView } from '../src/view/GraphView'
 import { GraphModel } from '../src/model/GraphModel'
@@ -138,14 +141,18 @@ describe('MouseHandler', () => {
 
     // Simulate click on cell
     const cellEvent = new MouseEvent('mousedown', { clientX: 125, clientY: 115, button: 0 })
+    const cellUpEvent = new MouseEvent('mouseup', { clientX: 125, clientY: 115, button: 0 })
     Object.defineProperty(container, 'getBoundingClientRect', {
       value: () => ({ left: 0, top: 0, right: 800, bottom: 600 })
     })
     container.dispatchEvent(cellEvent)
+    container.dispatchEvent(cellUpEvent)
 
     // Simulate click on background
     const bgEvent = new MouseEvent('mousedown', { clientX: 50, clientY: 50, button: 0 })
+    const bgUpEvent = new MouseEvent('mouseup', { clientX: 50, clientY: 50, button: 0 })
     container.dispatchEvent(bgEvent)
+    container.dispatchEvent(bgUpEvent)
 
     // Simulate rubber band start
     const rubberEvent = new MouseEvent('mousedown', {

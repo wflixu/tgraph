@@ -22,8 +22,8 @@
     "assets"
   ],
   "scripts": {
-    "build2": "NODE_ENV=build rollup -c",
-    "build": "rolldown -c ./rolldown.config.mjs",
+    "build": "NODE_ENV=build rollup -c",
+    "build2": "rolldown -c ./rolldown.config.mjs",
     "clean": "rm -rf dist/*"
   },
   "dependencies": {

@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Antd from 'ant-design-vue';
 
 import 'virtual:windi.css'
-import 'ant-design-vue/dist/antd.css';
+import 'ant-design-vue/dist/reset.css';
 import './style/style.less';
 
 import App from './App.vue';

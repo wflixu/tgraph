@@ -70,31 +70,41 @@ describe('DragHandler', () => {
     })
     model.addCell(vertexCell)
 
-    expect(dragHandler.isCellDraggable(vertexCell)).toBe(true)
+    // Get the updated cell from the model (with parent reference)
+    const addedCell = model.getCell('vertex')!
+    expect(dragHandler.isCellDraggable(addedCell)).toBe(true)
 
     // Edge cell should not be draggable
     const edgeCell = Cell.createEdge('edge', 'Edge')
     model.addCell(edgeCell)
-
-    expect(dragHandler.isCellDraggable(edgeCell)).toBe(false)
+    const addedEdgeCell = model.getCell('edge')!
+    expect(dragHandler.isCellDraggable(addedEdgeCell)).toBe(false)
 
     // Invisible cell should not be draggable
-    const invisibleCell = Cell.createVertex('invisible', 'Invisible', { x: 0, y: 0, width: 100, height: 50 }, {
+    const invisibleCell = new Cell({
+      id: 'invisible',
+      type: 'vertex',
+      value: 'Invisible',
+      geometry: { x: 0, y: 0, width: 100, height: 50 },
       visible: false,
       connectable: true
     })
     model.addCell(invisibleCell)
-
-    expect(dragHandler.isCellDraggable(invisibleCell)).toBe(false)
+    const addedInvisibleCell = model.getCell('invisible')!
+    expect(dragHandler.isCellDraggable(addedInvisibleCell)).toBe(false)
 
     // Non-connectable cell should not be draggable
-    const nonConnectableCell = Cell.createVertex('nonConnectable', 'Non Connectable', { x: 0, y: 0, width: 100, height: 50 }, {
+    const nonConnectableCell = new Cell({
+      id: 'nonConnectable',
+      type: 'vertex',
+      value: 'Non Connectable',
+      geometry: { x: 0, y: 0, width: 100, height: 50 },
       visible: true,
       connectable: false
     })
     model.addCell(nonConnectableCell)
-
-    expect(dragHandler.isCellDragable(nonConnectableCell)).toBe(false)
+    const addedNonConnectableCell = model.getCell('nonConnectable')!
+    expect(dragHandler.isCellDraggable(addedNonConnectableCell)).toBe(false)
 
     // Root cell should not be draggable
     expect(dragHandler.isCellDraggable(model.root)).toBe(false)
@@ -110,8 +120,12 @@ describe('DragHandler', () => {
     const nonDraggableCell = Cell.createEdge('nonDraggable', 'Non Draggable')
     model.addCell(nonDraggableCell)
 
+    // Get updated cells from model
+    const addedDraggableCell = model.getCell('draggable')!
+    const addedNonDraggableCell = model.getCell('nonDraggable')!
+
     const startPoint = { x: 50, y: 50 }
-    const cells = [draggableCell, nonDraggableCell]
+    const cells = [addedDraggableCell, addedNonDraggableCell]
 
     const listener = vi.fn()
     dragHandler.on('drag:start', listener)
@@ -119,9 +133,9 @@ describe('DragHandler', () => {
     dragHandler.startDrag(cells, startPoint)
 
     expect(dragHandler.isDragging).toBe(true)
-    expect(dragHandler.dragCells).toEqual([draggableCell])
+    expect(dragHandler.dragCells).toEqual([addedDraggableCell])
     expect(listener).toHaveBeenCalledWith({
-      cells: [draggableCell],
+      cells: [addedDraggableCell],
       point: startPoint
     })
   })
@@ -129,8 +143,9 @@ describe('DragHandler', () => {
   test('should not start drag with no draggable cells', () => {
     const nonDraggableCell = Cell.createEdge('nonDraggable', 'Non Draggable')
     model.addCell(nonDraggableCell)
+    const addedNonDraggableCell = model.getCell('nonDraggable')!
 
-    dragHandler.startDrag([nonDraggableCell], { x: 50, y: 50 })
+    dragHandler.startDrag([addedNonDraggableCell], { x: 50, y: 50 })
 
     expect(dragHandler.isDragging).toBe(false)
     expect(dragHandler.dragCells).toEqual([])
@@ -142,8 +157,9 @@ describe('DragHandler', () => {
       connectable: true
     })
     model.addCell(cell)
+    const addedCell = model.getCell('cell')!
 
-    dragHandler.startDrag([cell], { x: 0, y: 0 })
+    dragHandler.startDrag([addedCell], { x: 0, y: 0 })
 
     const listener = vi.fn()
     dragHandler.on('drag:move', listener)
@@ -152,7 +168,7 @@ describe('DragHandler', () => {
     dragHandler.dragTo(movePoint)
 
     expect(listener).toHaveBeenCalledWith({
-      cells: [cell],
+      cells: [addedCell],
       point: movePoint,
       delta: expect.any(Object)
     })
@@ -164,8 +180,9 @@ describe('DragHandler', () => {
       connectable: true
     })
     model.addCell(cell)
+    const addedCell = model.getCell('cell')!
 
-    dragHandler.startDrag([cell], { x: 0, y: 0 })
+    dragHandler.startDrag([addedCell], { x: 0, y: 0 })
     dragHandler.dragTo({ x: 50, y: 25 })
 
     const listener = vi.fn()
@@ -176,7 +193,7 @@ describe('DragHandler', () => {
     expect(dragHandler.isDragging).toBe(false)
     expect(dragHandler.dragCells).toEqual([])
     expect(listener).toHaveBeenCalledWith({
-      cells: [cell],
+      cells: [addedCell],
       geometries: expect.any(Map),
       applied: true
     })
@@ -188,8 +205,9 @@ describe('DragHandler', () => {
       connectable: true
     })
     model.addCell(cell)
+    const addedCell = model.getCell('cell')!
 
-    dragHandler.startDrag([cell], { x: 0, y: 0 })
+    dragHandler.startDrag([addedCell], { x: 0, y: 0 })
 
     const listener = vi.fn()
     dragHandler.on('drag:end', listener)
@@ -198,7 +216,7 @@ describe('DragHandler', () => {
 
     expect(dragHandler.isDragging).toBe(false)
     expect(listener).toHaveBeenCalledWith({
-      cells: [cell],
+      cells: [addedCell],
       geometries: expect.any(Map),
       applied: false
     })
@@ -210,8 +228,9 @@ describe('DragHandler', () => {
       connectable: true
     })
     model.addCell(cell)
+    const addedCell = model.getCell('cell')!
 
-    dragHandler.startDrag([cell], { x: 0, y: 0 })
+    dragHandler.startDrag([addedCell], { x: 0, y: 0 })
     expect(dragHandler.isDragging).toBe(true)
 
     dragHandler.setEnabled(false)
